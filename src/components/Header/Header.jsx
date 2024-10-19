@@ -4,9 +4,9 @@ import { BottomHeader } from "./BottomHeader/BottomHeader";
 
 const Header = () => {
   return (
-    <header className={`min-h-[900px]  flex bg-[#FAFBFC] dark:bg-[#2C2F33] text-[#263238] bg-no-repeat bg-cover bg-header`}>
+    <header className={`min-h-[900px]  flex bg-[#FAFBFC] dark:bg-[#2C2F33] text-[#263238] bg-no-repeat bg-cover bg-header dark:bg-headerDark`}>
       <div className="container xl:w-[1280px] mx-auto  ">
-            <TopHeader/>
+            {/* <TopHeader/> */}
             <BottomHeader/>
       </div>
       

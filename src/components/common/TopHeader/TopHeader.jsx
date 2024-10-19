@@ -7,34 +7,37 @@ import { MainMenu } from "./MainMenu";
 import { LoginButton } from "./LoginButton";
 import { CartButton } from "./CartButton";
 import { DarkButton } from "./DarkButton";
+import { Link } from "react-router-dom";
 
 const TopHeader = () => {
   return (
     <header
-    className={` flex w-full h-[50px]  mt-8 items-center justify-between relative  z-[1] object-cover  `}
-  >
-    {/* Content */}
-    <div className="flex items-center justify-center xl:mr-[0px] mr-[10px]  xl:gap-x-[8px] ">
-      <Logo />
-      <Name />
-      {/* Hamburger Menu */}
-      <HamburgerMenu />
-    </div>
-    <div className="md:flex hidden ">
-      {/* Menu */}
-      <MainMenu />
-    </div>
-    <div className="flex items-center xl:gap-[16px] gap-[10px] xl:ml-[0] ml-[10px]">
-      <DarkButton />
-      {/* CartButton */}
+      className={` flex w-full h-[50px]  mt-8 items-center justify-between relative  z-[1] object-cover    `}
+    >
+      {/* Content */}
+      <Link
+        to={"/"}
+        className="flex items-center justify-center xl:mr-[0px] mr-[10px]  xl:gap-x-[8px] "
+      >
+        <Logo />
+        <Name />
+        {/* Hamburger Menu */}
+        <HamburgerMenu />
+      </Link>
+      <div className="md:flex hidden ">
+        {/* Menu */}
+        <MainMenu />
+      </div>
+      <div className="flex items-center xl:gap-[16px] gap-[10px] xl:ml-[0] ml-[10px]">
+        <DarkButton />
+        {/* CartButton */}
 
-      <CartButton />
+        <CartButton />
 
-      {/*LoginButton */}
-      <LoginButton />
-    </div>
-  </header>
-
+        {/*LoginButton */}
+        <LoginButton />
+      </div>
+    </header>
   );
 };
 

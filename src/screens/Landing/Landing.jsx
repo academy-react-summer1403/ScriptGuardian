@@ -11,18 +11,17 @@ import { Footer } from "../../components/common/Footer/Footer";
 
 const Landing = () => {
   return (
-    <>
+    <div className="relative top-[-80px] w-[1345px] mx-auto">
       {/* Landing Holder */}
 
       <Header />
-      <OurServices/>
-      <OurCourses/>
-      <EducationalPacks/>
+      <OurServices />
+      <OurCourses />
+      <EducationalPacks />
       {/* TODO change bg*/}
-      <TeacherSlider/>
-      <NewsAndArticle/>
-      {/* <Footer/> */}
-    </>
+      <TeacherSlider />
+      <NewsAndArticle />
+    </div>
   );
 };
 

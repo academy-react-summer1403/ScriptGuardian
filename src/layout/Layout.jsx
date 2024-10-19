@@ -6,9 +6,9 @@ import { Footer } from "../components/common/Footer/Footer";
 const Layout = () => {
   return (
     <>
-      {/* <div className="container  xl:w-[1280px] mx-auto">
+      <div className="container  xl:w-[1280px] mx-auto">
         <TopHeader />
-      </div> */}
+      </div>
 
       <Outlet />
 
