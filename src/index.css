@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'BYekan';
+  src: url('/fonts/BYekan+.ttf') format('truetype');
+  font-weight: normal; /* برای وزن عادی */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BYekan';
+  src: url('/fonts/BYekan+ Bold.ttf') format('truetype');
+  font-weight: bold; /* برای وزن بولد */
+  font-style: normal;
+}
+
+body {
+  direction: rtl;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'BYekan';
+}
