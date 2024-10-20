@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <span className="xl:w-[44px] lg:w-[40px] w-[30px] sm:w-[38px] xl:h-[32px] lg:h-[30px] sm:h-[26px] h-[20px]">
+    <Link to={"/"} className="xl:w-[44px] lg:w-[40px] w-[30px] sm:w-[38px] xl:h-[32px] lg:h-[30px] sm:h-[26px] h-[20px]">
       <svg viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M27.7511 29.7527H25.2471V27.759C25.2471 27.4144 25.013 27.1313 24.728 27.1313H20.5241C20.2391 27.1313 20.005 27.4144 20.005 27.759V29.7527H17.501C17.1957 29.7527 16.9106 29.8635 16.6562 30.0973L15.3126 31.3403H29.9091L28.5654 30.0973C28.3517 29.8635 28.0667 29.7527 27.7511 29.7527Z"
@@ -46,7 +47,7 @@ const Logo = () => {
           fill="#64B5F6"
         />
       </svg>
-    </span>
+    </Link>
     
   );
 };

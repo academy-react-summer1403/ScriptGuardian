@@ -11,14 +11,13 @@ import { Footer } from "../../components/common/Footer/Footer";
 
 const Landing = () => {
   return (
-    <div className="relative top-[-80px] w-[1345px] mx-auto">
+    <div className="relative top-[-80px] xl:w-[1343px] mx-auto">
       {/* Landing Holder */}
 
       <Header />
       <OurServices />
       <OurCourses />
       <EducationalPacks />
-      {/* TODO change bg*/}
       <TeacherSlider />
       <NewsAndArticle />
     </div>

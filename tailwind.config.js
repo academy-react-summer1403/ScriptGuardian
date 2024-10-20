@@ -9,6 +9,7 @@ export default {
       },
       backgroundImage: {
         header: "url('src/images/Header/PNGs/header-bg.png')",
+        headerDark: "url('src/images/Header/PNGs/headerdark.png')",
         shopping: "url('/images/Header/SVGs/shopping-bag.svg')",
       },
       borderImage: {

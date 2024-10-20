@@ -5,7 +5,7 @@ import { LeftEducationalPacks } from "./LeftEducationalPacks";
 const EducationalPacks = () => {
   return (
     <>
-      <div className=" bg-[#FAFBFC] dark:bg-[#2C2F33] w-[1345px] mx-auto xl:flex hidden relative">
+      <div className=" bg-[#FAFBFC] dark:bg-[#2C2F33] w-[1343px] mx-auto xl:flex hidden relative">
         <div className="absolute left-0 top-[236px] w-[1004px] z-[6]">
           <svg
             width="1004"

@@ -12,7 +12,7 @@ const App = createBrowserRouter([
     children: [
       { path: "/", element: <Landing/> },
       { path: "/Courses", element: <p> این صفحه دوره هاست</p>},
-      { path: "/News", element: <p> این صفحه دوره هاست</p>},
+      { path: "/News", element: <p> این صفحه اخباره هاست</p>},
     ]
     
   },
