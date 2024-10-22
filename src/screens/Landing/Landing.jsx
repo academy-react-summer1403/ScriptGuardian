@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Header } from "../../components/Header/Header";
+import {  HereSection } from "../../components/HereSection/HereSection";
 import { OurServices } from "../../components/LandingComponents/OurServices/OurServices";
 import { OurCourses } from "../../components/LandingComponents/OurCourses/OurCourses";
 import { EducationalPacks } from "../../components/LandingComponents/EducationalPacks/EducationalPacks";
@@ -15,7 +15,7 @@ const Landing = () => {
     >
       {/* Landing Holder */}
 
-      <Header />
+      <HereSection />
       <OurServices />
       <OurCourses />
       <EducationalPacks />

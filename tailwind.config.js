@@ -10,6 +10,7 @@ export default {
       backgroundImage: {
         header: "url('src/images/Header/PNGs/header-bg.png')",
         headerDark: "url('src/images/Header/PNGs/headerdark.png')",
+        headerDark2: "url('src/images/Header/PNGs/headerdark2.png')",
         shopping: "url('/images/Header/SVGs/shopping-bag.svg')",
         heroCourses: "url('src/images/CorsesPage/HeroSecCourses/Group.png')",
       },

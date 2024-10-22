@@ -7,7 +7,7 @@ const HamburgerMenu = () => {
       <input type="checkbox" id="menu-toggle" className="hidden peer" />
       <label htmlFor="menu-toggle" className="cursor-pointer ">
         {/* آیکون همبرگر */}
-        <FaBars className="w-auto h-auto sm:w-[18px] " />
+        <FaBars className="w-auto h-auto sm:w-[18px] dark:text-white " />
       </label>
 
       {/* منو */}
