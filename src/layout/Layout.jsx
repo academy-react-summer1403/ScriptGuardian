@@ -7,7 +7,7 @@ const Layout = () => {
  
   return (
     <>
-      <div className="container  xl:w-[1280px] mx-auto" >
+      <div className="container  xl:max-w-[1280px] mx-auto" >
         <TopHeader />
       </div>
 

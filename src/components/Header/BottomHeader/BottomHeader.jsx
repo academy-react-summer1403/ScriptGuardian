@@ -9,7 +9,7 @@ const BottomHeader = () => {
     <>
         <CodeIcons />
       <div className="w-full flex justify-center items-center ">
-        <div className="md:w-[765px] w-[100%] mt-[160px]  flex items-center flex-col">
+        <div className="md:w-[765px] w-[100%] mt-[161px]  flex items-center flex-col">
           {/* ContentBottom */}
           <HeaderContent />
           {/* SearchInput */}

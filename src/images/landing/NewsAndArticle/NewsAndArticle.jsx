@@ -8,7 +8,7 @@ const NewsAndArticle = () => {
     <>
 
     {/* TODO*/ }
-      <div className="mt-[100px] container mx-auto xl:w-[1280px]  xl:flex flex-col hidden">
+      <div className="mt-[100px] container mx-auto xl:w-[1280px]  xl:flex flex-col hidden" >
         <div className="flex justify-center">
           <h2 className="font-[900] text-[40px] text-[#263238] dark:text-gray-400">
             اخبار و مقالات
