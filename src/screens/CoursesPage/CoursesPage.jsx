@@ -96,7 +96,7 @@ const CoursesPage = () => {
   return (
     <>
       <HereSectionCourses />
-      <div className="mt-10 flex container mx-auto gap-8">
+      <div className="mt-10 flex xl:w-[1280px] container mx-auto gap-8 ">
         <Filters />
         <div className="flex flex-col ">
           {/* Top */}

@@ -13,6 +13,7 @@ export default {
         headerDark2: "url('src/images/Header/PNGs/headerdark2.png')",
         shopping: "url('/images/Header/SVGs/shopping-bag.svg')",
         heroCourses: "url('src/images/CorsesPage/HeroSecCourses/Group.png')",
+        heroNews: "url('src/images/NewsPage/Asset12.png')",
       },
       borderImage: {
         "landing-gradient":
