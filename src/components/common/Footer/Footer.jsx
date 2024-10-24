@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -85,9 +86,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="sm:w-[427px] w-[90%] h-[25px] flex  text-white/60 sm:gap-10 gap-2 sm:mr-0 mr-1 mt-12">
-          <p className="hover:text-white ease-in-out duration-75 ">
+          <NavLink to={"/Courses"} className="hover:text-white ease-in-out duration-75 ">
             دوره های آموزشی
-          </p>
+          </NavLink>
           <span>
             <svg
               width="1"

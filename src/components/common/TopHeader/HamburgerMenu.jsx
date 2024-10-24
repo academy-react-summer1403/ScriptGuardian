@@ -11,7 +11,7 @@ const HamburgerMenu = () => {
       </label>
 
       {/* منو */}
-      <div className="fixed top-0 left-0 w-48 h-full bg-gray-800 text-white transform -translate-x-full transition-transform duration-300 peer-checked:translate-x-0">
+      <div className="fixed top-0 right-0 w-48 h-full bg-gray-800 dark:bg-gray-950 text-white transform translate-x-full transition-transform duration-300 peer-checked:translate-x-0">
         <div className="flex justify-between items-center p-2">
           <span className="text-sm">اسکریپت گاردین</span>
           <label

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class', 
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -22,6 +22,9 @@ export default {
       boxShadow: {
         "ّFirst-shadow": "0px 0px 50px 0px #0000000D",
         "Second-shadow": "0px 0px 20px 0px rgba(0, 0, 0, 0.05)",
+      },
+      animation: {
+        "spin-slow": "spin 4s linear infinite", // تعریف چرخش آرام
       },
     },
   },

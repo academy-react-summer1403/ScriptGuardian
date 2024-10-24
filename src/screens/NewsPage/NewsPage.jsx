@@ -60,10 +60,10 @@ const NewsPage = () => {
         <NewsSearchAndFilter />
 
         <div className="flex  mt-[48px] w-full flex-wrap  gap-x-[32px] gap-y-[40px] h-[1421px]">
-          {currentItems.map(() =>{
+          {currentItems.map((item , index) =>{
             return(
               <>
-                <CardNewsPage/>
+                <CardNewsPage key={index} id={item.id}/>
               </>
             )
           })}

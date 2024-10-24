@@ -1,7 +1,14 @@
 import React from "react";
 
 import { LandingCourses } from "./LandingCourses";
+import { useNavigate } from "react-router-dom";
 const OurCourses = () => {
+  const navigate = useNavigate();
+
+  const goTOCoursesPage = () => {
+    navigate("/courses");
+    window.scrollTo(0, 0); // اسکرول به بالای صفحه
+  };
   return (
     <>
       <div className="bg-[#FAFBFC] dark:bg-[#2C2F33]  ">
@@ -21,7 +28,12 @@ const OurCourses = () => {
           </div>
           <div className="flex  justify-center mt-[40px]">
             {" "}
-            <button className="w-[131px] h-[48px]  text-white bg-[#2196F3]  rounded-[80px] shadow-Second-shadow  hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] dark:bg-[#1565C0]  ease-in-out duration-300">مشاهده همه   </button>
+            <button
+              className="w-[131px] h-[48px]  text-white bg-[#2196F3]  rounded-[80px] shadow-Second-shadow  hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] dark:bg-[#1565C0]  ease-in-out duration-300"
+              onClick={goTOCoursesPage}
+            >
+              مشاهده همه{" "}
+            </button>
           </div>
         </div>
       </div>

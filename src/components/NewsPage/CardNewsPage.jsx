@@ -1,8 +1,13 @@
 import React from "react";
 import News from "../../images/NewsAndArticle/photo1.png";
-const CardNewsPage = () => {
+import { useNavigate } from "react-router-dom";
+const CardNewsPage = ({id}) => {
+  const navigate = useNavigate();
+  const navigateDetails = () =>{
+    navigate(`/News/${id}`)
+  }
   return (
-    <div className="w-[405px] h-[447px] ">
+    <div className="w-[405px] h-[447px] " onClick={navigateDetails}>
       <div className=" h-[280px] w-[405px]">
         <img src={News} alt="" className="w-full h-full" />
       </div>
