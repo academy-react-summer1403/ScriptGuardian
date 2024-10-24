@@ -103,7 +103,7 @@ const CoursesPage = () => {
           <SearchAndThemeCourses />
           <div className="w-[952px] min-h-[1231px] mt-[32px] flex flex-wrap gap-8">
             {currentItems.map((course, index) => (
-              <LandingCourses key={index} />
+              <LandingCourses key={course.id} id={course.id} />
             ))}
           </div>
           {/* Pagination Controls */}

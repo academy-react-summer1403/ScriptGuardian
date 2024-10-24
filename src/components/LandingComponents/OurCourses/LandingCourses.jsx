@@ -3,10 +3,15 @@ import { ImageCourse } from "./LandingCoursesCoponenets/ImageCourse";
 import { CourseInfo } from "./LandingCoursesCoponenets/CourseInfo";
 import { CourseInstructor } from "./LandingCoursesCoponenets/CourseInstructor";
 import { PriceAndFavorites } from "./LandingCoursesCoponenets/PriceAndFavorites";
+import { useNavigate } from "react-router-dom";
 
-const LandingCourses = () => {
+const LandingCourses = ({ id }) => {
+  const navigate = useNavigate();
+  const navigateDetails = () => {
+    navigate(`/Courses/${id}`);
+  };
   return (
-    <div className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white ">
+    <div className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white  "onClick={navigateDetails}>
       {/* Image */}
       <ImageCourse />
       {/* Content */}
@@ -17,8 +22,7 @@ const LandingCourses = () => {
       </h3>
       <CourseInfo />
       <CourseInstructor />
-        <PriceAndFavorites/>
-
+      <PriceAndFavorites />
     </div>
   );
 };

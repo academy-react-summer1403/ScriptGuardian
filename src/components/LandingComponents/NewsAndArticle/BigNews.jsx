@@ -2,7 +2,7 @@ import React from "react";
 import { BigImgNews } from "./BigImgNews";
 const BigNews = () => {
   return (
-    <div className="w-[616px] flex flex-col">
+    <div className="xl:w-[616px]   flex flex-col xl:mx-auto  w-full ">
       <BigImgNews/>
       <div className="flex mt-10">
         <div className="w-[102px] h-[40px] flex bg-[#DAEEFF] dark:bg-[#0A4E9D] rounded-[80px] items-center justify-center text-[#2196F3] dark:text-[#1976D2]">

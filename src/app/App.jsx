@@ -7,6 +7,7 @@ import { CoursesPage } from "../screens/CoursesPage/CoursesPage";
 import { NewsPage } from "../screens/NewsPage/NewsPage";
 import { Error404 } from "../screens/Error/Error404";
 import { DetailsNews } from "../screens/DetailsNews/DetailsNews";
+import { CoursesDetails } from "../screens/CoursesDetails/CoursesDetails";
 
 const App = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const App = createBrowserRouter([
     children: [
       { path: "/", element: <Landing /> },
       { path: "/Courses", element: <CoursesPage /> },
+      { path: "/Courses/:id", element: <CoursesDetails/>},
       {
         path: "/News",
         element: <NewsPage />,
