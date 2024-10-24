@@ -20,7 +20,7 @@ const NewsAndArticle = () => {
         </div>
         <div className="flex xl:flex-row flex-col sm:mt-[40px] mt-5 items-center   ">
           <BigNews />
-          {/* <News />    */}
+          <News />   
         </div>
         <div className="flex  justify-center mt-[40px] ">
           {" "}
