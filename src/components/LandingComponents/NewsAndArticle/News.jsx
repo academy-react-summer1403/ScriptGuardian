@@ -3,7 +3,7 @@ import React from "react";
 import { NewsImg } from "./NewsImg";
 const News = () => {
   return (
-    <div className="flex flex-col mr-[40px] gap-y-[40px]">
+    <div className="flex flex-col mr-[40px] gap-y-[40px] xl:items-start items-center xl:mt-0 mt-10">
       <div className="w-[624px] h-[161px] flex">
         <NewsImg />
         <div className="mr-[24px] flex flex-col w-[376px]">
