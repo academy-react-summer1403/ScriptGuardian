@@ -94,22 +94,30 @@ const CoursesPage = () => {
     setItemOffset(newOffset);
   };
 
+  //Filter in md
+
+  const [showMenu, setShowContent] = useState(false);
+
+  const handleClick = () => {
+    setShowContent(!showMenu);
+  };
+
   return (
     <>
-    {/* TODO */}
+      {/* TODO */}
       <HereSectionCourses />
-      <div className="mt-10 flex xl:w-[1280px] container   xl:mx-auto lg:gap-8 ">
-        <Filters />
-        <div className="flex flex-col ">
+      <div className="mt-10 flex xl:w-[1280px]  container lg:justify-start   xl:mx-auto lg:gap-8  justify-center">
+        <Filters  showMenu={showMenu}  handleClick={handleClick}/>
+        <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}
-          <SearchAndThemeCourses />
-          <div className="xl:w-[952px] lg:w-[722px] w-[400px]   min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 ">
+          <SearchAndThemeCourses handleClick={handleClick} />
+          <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
             {currentItems.map((course, index) => (
               <CoursesCard key={course.id} id={course.id} />
             ))}
           </div>
           {/* Pagination Controls */}
-          <div className="flex justify-center">
+          <div className="flex w-full justify-center">
             <ReactPaginate
               breakLabel="..."
               nextLabel=<div className="w-[32px] h-[32px] bg-[#ECEFF1] dark:bg-[#37474F] rounded-full flex items-center justify-center ">
@@ -165,6 +173,8 @@ const CoursesPage = () => {
           </div>
         </div>
       </div>
+
+
     </>
   );
 };
