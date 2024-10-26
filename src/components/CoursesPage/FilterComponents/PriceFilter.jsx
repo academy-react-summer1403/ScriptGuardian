@@ -11,7 +11,7 @@ const PriceFilter = () => {
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
       <div className="border-b pb-2 flex flex-col items-center dark:border-b-gray-950 text-[#263238] dark:text-gray-200">
-        <div className="w-[248px] ">
+        <div className="xl:w-[248px] w-10/12 ">
           {" "}
           <button
             onClick={() => setIsOpenSecond(!isOpenSecond)}
@@ -24,7 +24,7 @@ const PriceFilter = () => {
           </button>
         </div>
         {isOpenSecond && (
-          <div className="flex flex-col w-[248px]">
+          <div className="flex flex-col xl:w-[248px] w-10/12">
             <div style={{ width: 300, margin: "auto" }}>
               <Typography gutterBottom>
                 محدوده قیمت: {value[0]} - {value[1]}

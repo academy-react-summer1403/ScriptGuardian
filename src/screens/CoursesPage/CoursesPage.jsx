@@ -45,6 +45,7 @@ import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCour
 import { Filters } from "../../components/CoursesPage/FilterComponents/Filters";
 import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThemeCourses/SearchAndThemeCourses";
 import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
+import { CoursesCard } from "../../components/CoursesPage/CourseCard/CourseCard";
 
 const CoursesPage = () => {
   const [map, setMap] = useState([
@@ -95,15 +96,16 @@ const CoursesPage = () => {
 
   return (
     <>
+    {/* TODO */}
       <HereSectionCourses />
-      <div className="mt-10 flex xl:w-[1280px] container mx-auto gap-8 ">
+      <div className="mt-10 flex xl:w-[1280px] container   xl:mx-auto lg:gap-8 ">
         <Filters />
         <div className="flex flex-col ">
           {/* Top */}
           <SearchAndThemeCourses />
-          <div className="w-[952px] min-h-[1231px] mt-[32px] flex flex-wrap gap-8">
+          <div className="xl:w-[952px] lg:w-[722px] w-[400px]   min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 ">
             {currentItems.map((course, index) => (
-              <LandingCourses key={course.id} id={course.id} />
+              <CoursesCard key={course.id} id={course.id} />
             ))}
           </div>
           {/* Pagination Controls */}
@@ -145,17 +147,19 @@ const CoursesPage = () => {
                     <path
                       d="M5.96666 2.71978L10.3133 7.06645C10.8267 7.57978 10.8267 8.41978 10.3133 8.93312L5.96666 13.2798"
                       stroke="white"
-                      stroke-width="1.5"
-                      stroke-miterlimit="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
               </div>
               renderOnZeroPageCount={null}
               containerClassName={"pagination"}
-              activeClassName={"w-[32px] h-[32px] bg-[#2196F3] dark:bg-[#1565C0] rounded-full flex items-center justify-center text-white "}
+              activeClassName={
+                "w-[32px] h-[32px] bg-[#2196F3] dark:bg-[#1565C0] rounded-full flex items-center justify-center text-white "
+              }
               className="flex gap-5 mt-[48px] justify-center items-center text-[#263238] dark:text-gray-300"
             />
           </div>

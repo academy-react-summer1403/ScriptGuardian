@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchCourses = () => {
   return (
-    <div className="relative shadow-Second-shadow   flex items-center md:w-[620px] w-[85%] h-[56px]">
+    <div className="relative shadow-Second-shadow   flex items-center xl:w-[620px] w-[40%] w- h-[56px]">
       <input
         type="text"
         className="w-full px-[20px] py-[15.5px]  h-full border-gray-300 rounded-[16px] focus:outline-none dark:bg-gray-900 dark:caret-white dark:placeholder-white dark:text-white  z-0"

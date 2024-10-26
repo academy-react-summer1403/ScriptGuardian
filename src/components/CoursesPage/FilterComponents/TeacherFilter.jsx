@@ -8,7 +8,7 @@ const TeacherFilter = () => {
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
       <div className="border-b pb-2 flex flex-col items-center dark:border-b-gray-950 text-[#263238] dark:text-gray-200">
-        <div className="w-[248px] ">
+        <div className="xl:w-[248px] w-10/12 ">
           {" "}
           <button
             onClick={() => setIsOpenFifth(!isOpenFifth)}
@@ -21,7 +21,7 @@ const TeacherFilter = () => {
           </button>
         </div>
         {isOpenFifth && (
-          <div className="flex flex-col w-[248px]">
+          <div className="flex flex-col xl:w-[248px] w-10/12">
             <div className="relative w-[248px] h-[46px]  mt-6 ">
               <input
                 type="search"

@@ -5,7 +5,7 @@ const CategoryFilter = () => {
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
       <div className="border-b dark:border-b-gray-950 text-[#263238] dark:text-gray-200 pb-2 flex flex-col items-center">
-        <div className="w-[248px] ">
+        <div className="xl:w-[248px] w-10/12  ">
           {" "}
           <button
             onClick={() => setIsOpenFirst(!isOpenFirst)}
@@ -18,7 +18,7 @@ const CategoryFilter = () => {
           </button>
         </div>
         {isOpenFirst && (
-          <div className="flex flex-col w-[248px]">
+          <div className="flex flex-col xl:w-[248px] w-10/12">
             <div>زیر دسته 1-1</div>
             <div>زیر دسته 1-2</div>
             <div>زیر دسته 1-3</div>

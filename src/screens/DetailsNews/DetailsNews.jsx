@@ -10,7 +10,6 @@ import commentProfile from "../../images/NewsDetails/Unsplash-Avatars_0005s_0017
 import { CommentDetails } from "../../components/DetailNews/CommentDetails";
 const DetailsNews = () => {
   const { id } = useParams();
-  console.log(id, "id");
   return (
     <>
       <TopDetails />

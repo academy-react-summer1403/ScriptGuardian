@@ -11,7 +11,7 @@ const LandingCourses = ({ id }) => {
     navigate(`/Courses/${id}`);
   };
   return (
-    <div className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white  "onClick={navigateDetails}>
+    <div className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5  " onClick={navigateDetails}>
       {/* Image */}
       <ImageCourse />
       {/* Content */}
