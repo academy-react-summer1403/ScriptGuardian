@@ -7,11 +7,11 @@ const CardNewsPage = ({id}) => {
     navigate(`/News/${id}`)
   }
   return (
-    <div className="w-[405px] h-[447px] " onClick={navigateDetails}>
-      <div className=" h-[280px] w-[405px]">
+    <div className=" lg:w-[405px]  w-[90%] sm:h-[447px] last:mb-5 cursor-pointer " onClick={navigateDetails}>
+      <div className=" h-[280px] lg:w-[405px]">
         <img src={News} alt="" className="w-full h-full" />
       </div>
-      <div className="flex flex-col text-[] w-[405px]">
+      <div className="flex flex-col text-[] lg:w-[405px]">
         <h2 className="mt-[24px] text-[#263238] dark:text-gray-200 font-[700] text-[20px]">
           چگونه مطالعه موثر را برای شما آسانتر کنیم.
         </h2>

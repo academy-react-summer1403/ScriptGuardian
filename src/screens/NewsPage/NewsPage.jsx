@@ -59,7 +59,7 @@ const NewsPage = () => {
       <div className="flex flex-col container xl:w-[1280px] mx-auto  ">
         <NewsSearchAndFilter />
 
-        <div className="flex  mt-[48px] w-full flex-wrap  gap-x-[32px] gap-y-[40px] h-[1421px]">
+        <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
           {currentItems.map((item , index) =>{
             return(
               <>

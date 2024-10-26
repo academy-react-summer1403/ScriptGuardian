@@ -4,7 +4,7 @@ const SearchNews = () => {
 
 
   return (
-    <div className="relative shadow-Second-shadow   flex items-center md:w-[722px] w-[50%] xl:mr-0 mr-3 h-[56px]">
+    <div className="relative shadow-Second-shadow   flex items-center lg:w-[722px]  w-[50%] xl:mr-0 mr-3 h-[56px]">
       <input
         type="text"
         className="w-full px-[20px] py-[15.5px]  h-full border-gray-300 rounded-[16px] focus:outline-none dark:bg-gray-900 dark:caret-white dark:placeholder-white dark:text-white  z-0 xl:placeholder:text-[16px] placeholder:text-[12px]"
