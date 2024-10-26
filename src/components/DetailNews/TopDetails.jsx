@@ -4,17 +4,16 @@ import DetailsBigImage from "../../images/NewsDetails/Rectangle 34.png";
 import DetailsSmallImage from "../../images/NewsDetails/Rectangle 16.png";
 const TopDetails = () => {
   const { id } = useParams();
-  console.log(id, "id");
   return (
-    <div className="flex container  xl:w-[1280px] h-[340px]  mt-[56px] mx-auto gap-8">
-      <div className="w-[515px] h-[340px]">
+    <div className="flex container lg:flex-row flex-col xl:w-[1280px]  lg:h-[340px]  mt-[56px]  mx-auto xl:gap-8 lg:gap-0 gap-8 lg:items-start items-center lg:justify-around  ">
+      <div className="xl:w-[515px] lg:w-[54%]  w-[95%]  h-[340px]">
         <img src={DetailsBigImage} className="w-full h-full shadow-ّFirst-shadow" alt="" />
       </div>
-      <div className="flex flex-col w-[733px]">
-        <h2 className="text-[32px] font-[700] text-[#263238] dark:text-gray-200">
+      <div className="flex flex-col xl:w-[733px] lg:w-[40%]  w-[95%]">
+        <h2 className="sm:text-[32px] text-lg sm:mr-0  font-[700] text-[#263238] dark:text-gray-200">
           چگونه مطالعه {id} موثر را برای شما آسانتر کنیم.
         </h2>
-        <p className="text-[#455A64] dark:text-gray-400 mt-3">
+        <p className="text-[#455A64] dark:text-gray-400 mt-3 sm:text-base text-xs sm:mr-0 ">
           همانطور که از عنوان مقاله مشخص است، صحبت ما روی آموزش یک موضوع خاص مثل
           آموزش از کتاب، ویدئو یا هر آنچه که برای آموزش است نخواهد بود و این
           مقاله به صورت جامع در مورد چگونگی آموزش دیدن و یادگیری است.همانطور که
@@ -27,8 +26,8 @@ const TopDetails = () => {
           افراد آموزش دیدن به این جا ختم میشود و همه به درک عمیقی از اون مطلب
           میرسند؟ قطعا خیر.
         </p>
-        <div className="flex  justify-between">
-          <div className="w-[170px] flex text-[#2196F3] dark:text-[#1565C0] mt-4 items-center  text-[14px] tracking-tighter ">
+        <div className="flex  sm:justify-between sm:flex-row flex-col-reverse items-center md:mt-0 mt-3">
+          <div className="w-[170px] flex text-[#2196F3] dark:text-[#1565C0] md:mt-4 sm:mt-0 mt-5 items-center  text-[14px] tracking-tighter ">
             <span>
               <svg
                 width="14"
@@ -136,7 +135,7 @@ const TopDetails = () => {
             </span>
             <p className="mr-1">1402/7/2</p>
           </div>
-          <div className="flex w-[186px] h-[64px] items-center bg-white  shadow-2xl dark:bg-gray-900 rounded-2xl">
+          <div className="flex w-[186px] h-[64px] items-center bg-white  shadow-2xl mt-5 sm:mt-0 dark:bg-gray-900 rounded-2xl">
             <img src={DetailsSmallImage} alt="" className="mr-3" />
             <p className="text-[#263238] dark:text-gray-200 mr-3">
               بهاره یزدانی
