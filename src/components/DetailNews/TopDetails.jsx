@@ -10,7 +10,7 @@ const TopDetails = () => {
         <img src={DetailsBigImage} className="w-full h-full shadow-ّFirst-shadow" alt="" />
       </div>
       <div className="flex flex-col xl:w-[733px] lg:w-[40%]  w-[95%]">
-        <h2 className="sm:text-[32px] text-lg sm:mr-0  font-[700] text-[#263238] dark:text-gray-200">
+        <h2 className="sm:text-[32px] lg:text-[24px] xl:text-[32px] text-lg sm:mr-0  font-[700] text-[#263238] dark:text-gray-200">
           چگونه مطالعه {id} موثر را برای شما آسانتر کنیم.
         </h2>
         <p className="text-[#455A64] dark:text-gray-400 mt-3 sm:text-base text-xs sm:mr-0 ">

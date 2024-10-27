@@ -13,8 +13,8 @@ const DetailsNews = () => {
   return (
     <>
       <TopDetails />
-      {/* <MidDetails />
-      <CommentDetails/> */}
+      <MidDetails />
+      {/* <CommentDetails/>  */}
 
     </>
   );
