@@ -63,7 +63,7 @@ const SliderCourseDetails = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
         },
       },
       {
@@ -84,8 +84,7 @@ const SliderCourseDetails = () => {
 
       <Slider
         {...settings}
-        className="xl:w-[1280px] gap-0   justify-center w-[300px] md:mt-0 mt-10 flex    "
-       
+        className="xl:w-[1280px] gap-0 md:w-[90%]   justify-center w-[300px] lg:mt-0 mt-10 flex    "
       >
         {courses.map((courses, index) => {
           return <LandingCourses  id={courses.id} key={index}/>;

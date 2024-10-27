@@ -15,7 +15,7 @@ const CoursesDetails = () => {
   return (
     <>
       <div className="flex flex-col  container xl:w-[1280px] mx-auto mt-20 ">
-        <div className="flex md:flex-row flex-col xl:gap-x-[30px] xl:items-start items-center">
+        <div className="flex lg:flex-row flex-col xl:gap-x-[30px] xl:items-start items-center">
           <div className="flex flex-col xl:w-[843px] w-[95%] ">
             <BigImage />
 

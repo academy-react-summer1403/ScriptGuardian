@@ -2,12 +2,12 @@ import React from "react";
 import TeacherImage from "../../images/CoursesDetails/Rectangle 14.png";
 const DetailsLeft = () => {
   return (
-    <div className="flex flex-col md:w-[405px] w-[95%] md:mt-0 mt-5 ">
+    <div className="flex flex-col lg:w-[405px] w-[95%] lg:mt-0 mt-5 ">
       <div className="w-full items-center flex flex-col h-[501px] shadow-ّFirst-shadow bg-white dark:bg-gray-900 rounded-3xl">
         <h3 className="text-[#263238] dark:text-gray-200 font-[700] text-[24px] mt-8">
           مشخصات دوره
         </h3>
-        <div className="border-y-[1px] dark:border-y-gray-950 md:w-[341px] w-[95%] h-[288px] mt-6 flex flex-col">
+        <div className="border-y-[1px] dark:border-y-gray-950 lg:w-[341px] w-[95%] h-[288px] mt-6 flex flex-col">
           <div className="flex justify-between w-full h-[72px] border-b dark:border-b-gray-950 items-center">
             <div className="flex items-center">
               <div className="w-[40px] h-[40px] bg-[#2196F3] dark:bg-[#1E88E5] rounded-full  flex items-center justify-center">
@@ -294,7 +294,7 @@ const DetailsLeft = () => {
             </p>
           </div>
         </div>
-        <div className="md:w-[341px] w-[95%] h-[56px] mt-8 flex items-center justify-between">
+        <div className="lg:w-[341px] w-[95%] h-[56px] mt-8 flex items-center justify-between">
           <div className="w-[132px] h-full bg-[#2196F3] dark:bg-[#1E88E5] rounded-[80px] shadow-Second-shadow text-white flex items-center justify-center">
             شرکت در دوره
           </div>

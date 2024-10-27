@@ -15,7 +15,7 @@ const Tabs = () => {
 
       <TapLinks activeTab={activeTab} setActiveTab={setActiveTab}/>
       {/* محتوای تب‌ها */}
-      <div className=" md:w-[779px] w-[95%] mx-auto mt-8">
+      <div className=" lg:w-[779px] w-[95%] mx-auto mt-8">
         <DescriptionTab  activeTab={activeTab}/>
       <PreviewTab  activeTab={activeTab}/>
       <CommentTab activeTab={activeTab}/>

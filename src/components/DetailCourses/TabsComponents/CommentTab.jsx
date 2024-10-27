@@ -6,11 +6,11 @@ const CommentTab = ({ activeTab }) => {
   return (
     <>
       {activeTab === "comments" && (
-        <div className="md:w-[779px]  w-full  flex flex-col items-center ">
+        <div className="lg:w-[779px]  w-full  flex flex-col items-center ">
           <Formik>
             <Form className="w-full flex justify-center  flex-col">
               <textarea
-                className="md:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs"
+                className="lg:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs"
                 placeholder="نظر خودتو بنویس..."
               />
 
@@ -23,7 +23,7 @@ const CommentTab = ({ activeTab }) => {
             </Form>
           </Formik>
 
-          <div className="md:w-[778px] w-full mt-[24px] flex flex-col">
+          <div className="lg:w-[778px] w-full mt-[24px] flex flex-col">
             {/* Comment */}
             <div className="w-full  sm:min-h-[92px] flex  flex-col">
               <div className="flex justify-between items-center w-full">
@@ -91,7 +91,7 @@ const CommentTab = ({ activeTab }) => {
             </div>
 
             {/* Replay */}
-            <div className="md:w-[722px]  w-[92%]   flex  flex-col sm:mr-[31px] mr-3 mt-6 border-r  border-[#CFD8DC] dark:border-[#B0BEC5] ">
+            <div className="lg:w-[722px]  w-[92%]   flex  flex-col sm:mr-[31px] mr-3 mt-6 border-r  border-[#CFD8DC] dark:border-[#B0BEC5] ">
               <div className="flex justify-between items-center w-full sm:mr-4 mr-2">
                 <div className="flex items-center ">
                   {" "}
@@ -165,7 +165,7 @@ const CommentTab = ({ activeTab }) => {
 
             {/* Replay */}
 
-            <div className="md:w-[722px]   w-[92%]   flex  flex-col sm:mr-[31px] mr-3 mt-6 border-r  border-[#CFD8DC] dark:border-[#B0BEC5] ">
+            <div className="lg:w-[722px]   w-[92%]   flex  flex-col sm:mr-[31px] mr-3 mt-6 border-r  border-[#CFD8DC] dark:border-[#B0BEC5] ">
               <div className="flex justify-between items-center w-full sm:mr-4 mr-2">
                 <div className="flex items-center ">
                   {" "}

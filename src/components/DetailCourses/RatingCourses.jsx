@@ -2,8 +2,8 @@ import React from "react";
 
 const RatingCourses = () => {
   return (
-    <div className="w-full md:h-[48px] flex md:flex-row flex-col justify-between mt-4 md:gap-y-0 gap-y-5">
-      <div className="flex items-center md:justify-start justify-between">
+    <div className="w-full lg:h-[48px] flex lg:flex-row flex-col justify-between mt-4 lg:gap-y-0 gap-y-5">
+      <div className="flex items-center lg:justify-start justify-between">
         {/* Stars */}
         <div className="flex gap-x-2">
           <span>
@@ -92,7 +92,7 @@ const RatingCourses = () => {
             </svg>
           </span>
         </div>
-        <div className="flex items-center md:gap-x-0 gap-x-2">
+        <div className="flex items-center lg:gap-x-0 gap-x-2">
           <p className="sm:mr-3 text-[#263238] dark:text-gray-200 sm:text-base text-xs">
             امتیاز 20 نفر
           </p>
@@ -102,7 +102,7 @@ const RatingCourses = () => {
         </div>
       </div>
 
-      <div className="flex items-center md:justify-start justify-between">
+      <div className="flex items-center lg:justify-start justify-between">
         <p className="sm:ml-6 text-[#455A64] sm:text-base text-xs dark:text-gray-400">
           آیا از این مقاله راضی بودید ؟
         </p>

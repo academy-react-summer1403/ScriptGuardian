@@ -19,7 +19,7 @@ const PreviewTab = ({ activeTab }) => {
     <>
       {activeTab === "preview" && (
         <>
-          <div className=" mx-auto md:w-[779px] w-full  ">
+          <div className=" mx-auto lg:w-[779px] w-full  ">
             {/* فصل اول */}
             <div className="flex flex-col ">
               <div
