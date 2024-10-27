@@ -59,11 +59,11 @@ const NewsPage = () => {
       <div className="flex flex-col container xl:w-[1280px] mx-auto  ">
         <NewsSearchAndFilter />
 
-        <div className="flex  mt-[48px] w-full flex-wrap  gap-x-[32px] gap-y-[40px] h-[1421px]">
-          {currentItems.map(() =>{
+        <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
+          {currentItems.map((item , index) =>{
             return(
               <>
-                <CardNewsPage/>
+                <CardNewsPage key={index} id={item.id}/>
               </>
             )
           })}
@@ -106,10 +106,10 @@ const NewsPage = () => {
                   <path
                     d="M5.96666 2.71978L10.3133 7.06645C10.8267 7.57978 10.8267 8.41978 10.3133 8.93312L5.96666 13.2798"
                     stroke="white"
-                    stroke-width="1.5"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </span>

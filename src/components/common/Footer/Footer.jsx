@@ -1,8 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className=" h-[553px] bg-[#252641] dark:bg-[#1C1D33] mt-[100px] xl:w-[1343px] mx-auto" >
+    <footer className=" h-[553px] bg-[#252641] dark:bg-[#1C1D33] mt-[100px] xl:w-[100%] mx-auto" >
       <div className="container flex flex-col  items-center mx-auto">
         <div className=" h-[30.68px] flex mt-[56px] gap-[8px] items-center">
           <span>
@@ -85,9 +86,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="sm:w-[427px] w-[90%] h-[25px] flex  text-white/60 sm:gap-10 gap-2 sm:mr-0 mr-1 mt-12">
-          <p className="hover:text-white ease-in-out duration-75 ">
+          <NavLink to={"/Courses"} className="hover:text-white ease-in-out duration-75 ">
             دوره های آموزشی
-          </p>
+          </NavLink>
           <span>
             <svg
               width="1"

@@ -25,18 +25,17 @@ const DropDownCourses = () => {
   };
   return (
     <div className="flex h-full">
-      <div className="relative inline-block text-left h-full">
+      <div className="relative  inline-block text-left h-full">
         <button
           onClick={toggleDropdown}
-          className="flex items-center justify-center w-[200px] h-full rounded-md border border-gray-300 dark:border-gray-950 shadow-sm  bg-white dark:bg-gray-900 dark:hover:bg-gray-950  text-gray-700 hover:bg-gray-50 focus:outline-none"
+          className="flex items-center justify-center md:w-[200px] sm:w-[150px] 
+             max-w-max sm:max-w-none  h-full rounded-md border border-gray-300 dark:border-gray-950 shadow-sm   bg-white dark:bg-gray-900 dark:hover:bg-gray-950  text-gray-700 hover:bg-gray-50 focus:outline-none"
           id="options-menu"
           aria-haspopup="true"
           aria-expanded={isOpen} // تغییر وضعیت aria-expanded
         >
-          <span>
+          <span className="md:w-[24px] md:h-[25px] w-[14px] h-[15px] sm:mr-0 mr-1 ">
             <svg
-              width="24"
-              height="25"
               viewBox="0 0 24 25"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -61,13 +60,16 @@ const DropDownCourses = () => {
               />
             </svg>
           </span>
-          <p className="min-w-[100px] text-[#263238] dark:text-gray-200"> {selectedFilter}</p>
+          <p className="sm:min-w-[100px] min-w-[70px]  sm:text-base text-xs text-[#263238] dark:text-gray-200 sm:mr-0 mr-1">
+            {" "}
+            {selectedFilter}
+          </p>
 
           <span>
             {isOpen ? (
-              <FaChevronDown className="text-[#263238] dark:text-white" />
+              <FaChevronDown className="text-[#263238] dark:text-white md:text-base sm:text-sm text-xs sm:mr-0 mr-1" />
             ) : (
-              <FaChevronUp className="text-[#263238] dark:text-white" />
+              <FaChevronUp className="text-[#263238] dark:text-white md:text-base sm:text-sm text-xs sm:mr-0 mr-1" />
             )}
           </span>
         </button>

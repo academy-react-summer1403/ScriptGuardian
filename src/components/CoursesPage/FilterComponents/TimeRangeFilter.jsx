@@ -6,7 +6,7 @@ const TimeRangeFilter = () => {
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
       <div className="border-b pb-2 flex flex-col items-center dark:border-b-gray-950 text-[#263238] dark:text-gray-200">
-        <div className="w-[248px] ">
+        <div className="xl:w-[248px] w-10/12 ">
           {" "}
           <button
             onClick={() => setIsOpenFourth(!isOpenFourth)}
@@ -19,7 +19,7 @@ const TimeRangeFilter = () => {
           </button>
         </div>
         {isOpenFourth && (
-          <div className="flex flex-col w-[248px] text-[#455A64]  dark:text-gray-400">
+          <div className="flex flex-col xl:w-[248px] w-10/12 text-[#455A64]  dark:text-gray-400">
             {/* Filter1 */}
             <div className="flex items-center  gap-[8px] ">
               <input

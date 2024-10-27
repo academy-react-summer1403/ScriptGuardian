@@ -4,7 +4,7 @@ import { OurServices } from "../../components/LandingComponents/OurServices/OurS
 import { OurCourses } from "../../components/LandingComponents/OurCourses/OurCourses";
 import { EducationalPacks } from "../../components/LandingComponents/EducationalPacks/EducationalPacks";
 import { TeacherSlider } from "../../components/LandingComponents/TeachersSlider/TeacherSlider";
-import { NewsAndArticle } from "../../images/landing/NewsAndArticle/NewsAndArticle";
+import { NewsAndArticle } from "../../components/LandingComponents/NewsAndArticle/NewsAndArticle.jsx";
 import { Footer } from "../../components/common/Footer/Footer";
 const Landing = () => {
 
@@ -20,7 +20,7 @@ const Landing = () => {
       <OurCourses />
       <EducationalPacks />
       <TeacherSlider />
-      <NewsAndArticle />
+      <NewsAndArticle/>
     </div>
   );
 };

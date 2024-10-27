@@ -1,5 +1,6 @@
 import React from "react";
 import { FaSignInAlt, FaBars, FaTimes } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 const HamburgerMenu = () => {
   return (
     <div className="flex md:hidden  justify-center items-center mr-[5px] z-10">
@@ -11,7 +12,7 @@ const HamburgerMenu = () => {
       </label>
 
       {/* منو */}
-      <div className="fixed top-0 left-0 w-48 h-full bg-gray-800 text-white transform -translate-x-full transition-transform duration-300 peer-checked:translate-x-0">
+      <div className="fixed top-0 right-0 w-48 h-full bg-gray-800 dark:bg-gray-950 text-white transform translate-x-full transition-transform duration-300 peer-checked:translate-x-0">
         <div className="flex justify-between items-center p-2">
           <span className="text-sm">اسکریپت گاردین</span>
           <label
@@ -23,20 +24,20 @@ const HamburgerMenu = () => {
         </div>
         <ul className="space-y-2 p-2">
           <li>
-            <a
-              href="#"
+            <NavLink
+              to="/Courses"
               className="block text-white hover:bg-gray-600 p-1 text-sm"
             >
               دوره ها
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
+            <NavLink
+              to=""
               className="block text-white hover:bg-gray-600 p-1 text-sm"
             >
               اساتید
-            </a>
+            </NavLink>
           </li>
           <li>
             <a
@@ -47,12 +48,12 @@ const HamburgerMenu = () => {
             </a>
           </li>
           <li>
-            <a
-              href="#"
+            <NavLink
+              to="/News"
               className="block text-white hover:bg-gray-600 p-1 text-sm"
             >
               اخبار مقالات
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>
