@@ -63,7 +63,7 @@ const SliderCourseDetails = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
         },
       },
       {
@@ -84,7 +84,7 @@ const SliderCourseDetails = () => {
 
       <Slider
         {...settings}
-        className="xl:w-[1280px] w-[300px] sm:mt-0 mt-5 flex justify-center   "
+        className="xl:w-[1280px] gap-0   justify-center w-[300px] md:mt-0 mt-10 flex    "
        
       >
         {courses.map((courses, index) => {
