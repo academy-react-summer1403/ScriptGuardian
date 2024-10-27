@@ -7,23 +7,28 @@ import { AboutCourses } from "../../components/DetailCourses/AboutCourses";
 import { Tabs } from "../../components/DetailCourses/Tabs";
 
 import { DetailsLeft } from "../../components/DetailCourses/DetailsLeft";
+import { SliderCourseDetails } from "../../components/DetailCourses/SliderCourseDetails";
 const CoursesDetails = () => {
   const { id } = useParams();
   console.log(id, "id");
 
   return (
     <>
-      <div className="flex  container xl:w-[1280px] mx-auto mt-20 gap-x-[30px]">
-        <div className="flex flex-col w-[843px] ">
-          <BigImage />
+      <div className="flex flex-col  container xl:w-[1280px] mx-auto mt-20 ">
+        <div className="flex gap-x-[30px]">
+          <div className="flex flex-col w-[843px] ">
+            <BigImage />
 
-          <AboutCourses />
+            <AboutCourses />
 
-          <RatingCourses />
+            <RatingCourses />
 
-          <Tabs />
+            <Tabs />
+          </div>
+          <DetailsLeft />
         </div>
-        <DetailsLeft/>
+
+        {/* <SliderCourseDetails/> */}
       </div>
     </>
   );

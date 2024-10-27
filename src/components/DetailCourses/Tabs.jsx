@@ -10,7 +10,7 @@ const Tabs = () => {
   // حالت باز یا بسته بودن هر فصل را مدیریت می‌کند
 
   return (
-    <div className="w-full bg-white h-auto rounded-3xl mt-10 flex flex-col">
+    <div className="w-full bg-white dark:bg-gray-900 h-auto rounded-3xl mt-10 flex flex-col">
       {/* تب‌ها */}
 
       <TapLinks activeTab={activeTab} setActiveTab={setActiveTab}/>
