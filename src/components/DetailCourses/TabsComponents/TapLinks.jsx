@@ -2,7 +2,7 @@ import React from "react";
 
 const TapLinks = ({activeTab  , setActiveTab}) => {
   return (
-    <div className=" mt-[24px] flex border-b border-gray-300 dark:border-gray-500 w-[779px] mx-auto h-[41px] gap-x-10 ">
+    <div className=" sm:mt-[24px] mt-2 flex border-b border-gray-300 dark:border-gray-500 sm:w-[779px]  w-[95%] mx-auto h-[41px] sm:text-base text-xs gap-x-10  sm:justify-start justify-center">
       <button
         className={` ${
           activeTab === "description"

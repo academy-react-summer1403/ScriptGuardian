@@ -77,14 +77,14 @@ const SliderCourseDetails = () => {
   };
 
   return (
-    <div className="flex flex-col w-full   items-center">
+    <div className="flex flex-col w-full    items-center">
       <h2 className="font-black text-[#263238] dark:text-gray-200 text-[40px] mt-20">
         دوره‌های مشابه{" "}
       </h2>
 
       <Slider
         {...settings}
-        className="xl:w-[1280px] w-[90%] bg-   "
+        className="xl:w-[1280px] w-[300px] sm:mt-0 mt-5 flex justify-center   "
        
       >
         {courses.map((courses, index) => {

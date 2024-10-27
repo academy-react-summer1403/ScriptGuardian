@@ -3,14 +3,12 @@ import BigImage2 from "../../images/CoursesDetails/Rectangle 85.png";
 
 const BigImage = () => {
   return (
-    <div className="w-full h-[548px] relative ">
+    <div className="w-full xl:h-[548px] relative ">
       <img src={BigImage2} alt="" />
-      <div className="absolute w-[78px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 cursor-pointer flex top-8 right-8">
-        <span>
+      <div className="absolute sm:w-[78px] w-[58px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 cursor-pointer flex sm:top-8 sm:right-8 top-4 right-4">
+        <span className="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]">
           {" "}
           <svg
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -24,16 +22,14 @@ const BigImage = () => {
             />
           </svg>
         </span>
-        <p className="text-[#F44336] dark:text-[#D32F2F] text-2xl mr-[6px]">
+        <p className="text-[#F44336] dark:text-[#D32F2F] sm:text-2xl text-lg mr-[6px]">
           3
         </p>
       </div>
 
-      <div className="absolute w-[117px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 flex bottom-8 left-8">
-        <span>
+      <div className="absolute sm:w-[117px] w-[87px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 flex sm:bottom-8 bottom-2 left-2 sm:left-8">
+        <span className="sm:w-[24] sm:h-[24px] w-5 h-5">
           <svg
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -54,13 +50,11 @@ const BigImage = () => {
             />
           </svg>
         </span>
-        <p className="text-[#263238] dark:text-gray-200  mr-[6px]">14 ساعت</p>
+        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">14 ساعت</p>
       </div>
-      <div className="absolute w-[119px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 flex bottom-8 left-[165px]">
-        <span>
+      <div className="absolute sm:w-[119px] w-[89px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 flex sm:bottom-8 bottom-2  sm:left-[165px] left-[100px]">
+        <span className="sm:w-[24px] sm:h-[24px] w-5 h-5">
           <svg
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +89,7 @@ const BigImage = () => {
             />
           </svg>
         </span>
-        <p className="text-[#263238] dark:text-gray-200  mr-[6px]">202 درس</p>
+        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">202 درس</p>
       </div>
     </div>
   );

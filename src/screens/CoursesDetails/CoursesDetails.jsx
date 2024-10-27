@@ -15,8 +15,8 @@ const CoursesDetails = () => {
   return (
     <>
       <div className="flex flex-col  container xl:w-[1280px] mx-auto mt-20 ">
-        <div className="flex gap-x-[30px]">
-          <div className="flex flex-col w-[843px] ">
+        <div className="flex sm:flex-row flex-col xl:gap-x-[30px] xl:items-start items-center">
+          <div className="flex flex-col xl:w-[843px] w-[95%] ">
             <BigImage />
 
             <AboutCourses />
@@ -28,7 +28,7 @@ const CoursesDetails = () => {
           <DetailsLeft />
         </div>
 
-        {/* <SliderCourseDetails/> */}
+        <SliderCourseDetails/>
       </div>
     </>
   );
