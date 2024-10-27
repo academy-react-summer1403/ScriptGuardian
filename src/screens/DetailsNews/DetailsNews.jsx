@@ -14,7 +14,7 @@ const DetailsNews = () => {
     <>
       <TopDetails />
       <MidDetails />
-      {/* <CommentDetails/>  */}
+      <CommentDetails/> 
 
     </>
   );
