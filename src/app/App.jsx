@@ -12,6 +12,7 @@ import { StudentLayout } from "../layout/StudentLayout";
 import { DashBoard } from "../screens/StudentPanel/DashBoard/DashBoard";
 import { StudentProfile } from "../screens/StudentPanel/Profile/StudentProfile";
 import { ChangePassWord } from "../screens/StudentPanel/ChangePassWord/ChangePassWord";
+import { MyCourses } from "../screens/StudentPanel/MyCourses/MyCourses";
 
 const App = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const App = createBrowserRouter([
     children:[
       {path:"/panel", element:<DashBoard />},
       {path:"/panel/MyProfile", element:<StudentProfile/>},
-      {path:"/panel/MyCourses", element:<p>دوره ها</p>},
+      {path:"/panel/MyCourses", element:<MyCourses/>},
       {path:"/panel/ChangePassword", element:<ChangePassWord/>},
       {path:"/panel/Logout", element:<p>خروج</p>},
       {path:"/panel/MyComments", element:<p>کامنت های من</p>},
@@ -47,3 +48,7 @@ const App = createBrowserRouter([
 ]);
 
 export { App };
+
+
+
+
