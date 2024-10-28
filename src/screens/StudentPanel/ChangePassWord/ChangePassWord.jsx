@@ -116,29 +116,42 @@ const ChangePassWord = () => {
 
         {/* Unic */}
 
-        <div className="flex flex-col  mt-20">
-              <form>
-                <div class="mb-4">
-                  <label class="block text-gray-700">رمز عبور جدید</label>
+        <div className="flex flex-col  mt-20  sm:w-[43%] w-[50%]  ">
+              <form className="">
+                <div className="mb-4">
+                  <label className="block text-gray-700">رمز عبور فعلی</label>
                   <input
                     type="password"
-                    class="mt-1 p-2 border border-gray-300 rounded w-full"
+                    className="mt-1 p-2 border border-gray-300 rounded w-full"
+                    placeholder="رمز عبور فعلی"
+                    required
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-gray-700">رمز عبور جدید</label>
+                  <input
+                    type="password"
+                    className="mt-1 p-2 border border-gray-300 rounded w-full"
                     placeholder="رمز عبور جدید"
                     required
                   />
                 </div>
-                <div class="mb-4">
-                  <label class="block text-gray-700">تأیید رمز عبور جدید</label>
+
+
+                <div className="mb-4">
+                  <label className="block text-gray-700">تکرار رمز عبور جدید</label>
                   <input
                     type="password"
-                    class="mt-1 p-2 border border-gray-300 rounded w-full"
-                    placeholder="تأیید رمز عبور جدید"
+                    className="mt-1 p-2 border border-gray-300 rounded w-full"
+                    placeholder="تکرار رمز عبور جدید"
                     required
                   />
                 </div>
+
                 <button
                   type="submit"
-                  class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
+                  className="lg:w-[33.333%] sm:w-[50%]  bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition mx-auto block"
                 >
                   ثبت اطلاعات عبور
                 </button>
