@@ -8,6 +8,9 @@ import { NewsPage } from "../screens/NewsPage/NewsPage";
 import { Error404 } from "../screens/Error/Error404";
 import { DetailsNews } from "../screens/DetailsNews/DetailsNews";
 import { CoursesDetails } from "../screens/CoursesDetails/CoursesDetails";
+import { StudentLayout } from "../layout/StudentLayout";
+import { DashBoard } from "../screens/StudentPanel/DashBoard/DashBoard";
+import { StudentProfile } from "../screens/StudentPanel/Profile/StudentProfile";
 
 const App = createBrowserRouter([
   {
@@ -28,6 +31,18 @@ const App = createBrowserRouter([
     path: "*",
     element: <Error404 />,
   },
+  {
+    path :"/panel",
+    element:<StudentLayout/>,
+    children:[
+      {path:"/panel", element:<DashBoard />},
+      {path:"/panel/MyProfile", element:<StudentProfile/>},
+      {path:"/panel/MyCourses", element:<p>دوره ها</p>},
+      {path:"/panel/ChangePassword", element:<p>تغییر رمز عبور</p>},
+      {path:"/panel/Logout", element:<p>خروج</p>},
+      {path:"/panel/MyComments", element:<p>کامنت های من</p>},
+    ],
+  }
 ]);
 
 export { App };
