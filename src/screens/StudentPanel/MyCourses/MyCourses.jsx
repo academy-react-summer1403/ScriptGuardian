@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaBars,
   FaBell,
@@ -10,8 +10,10 @@ import {
   FaHome,
   FaLock,
   FaMinus,
+  FaMoon,
   FaShoppingCart,
   FaSignOutAlt,
+  FaSun,
   FaTrash,
   FaUserCircle,
 } from "react-icons/fa";
@@ -30,19 +32,40 @@ const MyCourses = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // وضعیت اولیه دارک مود بر اساس localStorage
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
+
+  // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
+
+  // تغییر حالت دارک مود هنگام کلیک
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   //dropdown
 
   // ایجاد state برای ذخیره مقدار انتخاب شده
-  const [pageSize, setPageSize] = useState(8); // مقدار پیش‌فرض
+  const [pageSize, setPageSize] = useState(2); // مقدار پیش‌فرض
 
   // تابع برای به‌روزرسانی مقدار انتخاب شده
   const handlePageSizeChange = (event) => {
-    setPageSize(event.target.value);
-    // در اینجا می‌توانید منطق مربوط به صفحه‌بندی را به‌روزرسانی کنید
+    setPageSize(Number(event.target.value));
+    setItemOffset(0); // شروع از اول لیست بعد از تغییر سایز صفحه
     console.log("Page Size:", event.target.value); // مقدار جدید در کنسول
   };
 
-  //page in
+  // page data
   const [map, setMap] = useState([
     { id: 1 },
     { id: 2 },
@@ -76,16 +99,15 @@ const MyCourses = () => {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = pageSize;
 
   React.useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
+    const endOffset = itemOffset + pageSize;
     setCurrentItems(map.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(map.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, map]);
+    setPageCount(Math.ceil(map.length / pageSize));
+  }, [itemOffset, pageSize, map]); // اضافه کردن pageSize به وابستگی‌ها
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % map.length;
+    const newOffset = (event.selected * pageSize) % map.length;
     setItemOffset(newOffset);
   };
 
@@ -159,7 +181,7 @@ const MyCourses = () => {
 
       <div className="flex flex-col items-center ">
         {/* Common */}
-        <div className="h-[50px] border-b border-white w-[95%] flex justify-between items-center ">
+        <div className="h-[50px] border-b border-white dark:border-gray-950 w-[95%] flex justify-between items-center ">
           <div className="flex items-center">
             {/* OpenMenu */}
             <div className="xl:hidden flex">
@@ -168,11 +190,24 @@ const MyCourses = () => {
                 <FaBars />
               </button>
             </div>
-            <FaMinus className="text-purple-600 sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238]"> تغییر رمز عبور</h2>
+            <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
+            <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-200"> دوره های من</h2>
           </div>
 
-          <div className="flex items-center gap-x-4 text-gray-500">
+          <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
+            {isDarkMode ? (
+              <FaMoon
+                className="text-gray-800"
+                size={20}
+                onClick={toggleDarkMode}
+              />
+            ) : (
+              <FaSun
+                className="text-yellow-500"
+                size={20}
+                onClick={toggleDarkMode}
+              />
+            )}
             <FaBell className="text-xl" />
             <FaShoppingCart className="text-xl" />
           </div>
@@ -181,26 +216,26 @@ const MyCourses = () => {
         {/* Unic */}
         <div className="flex  justify-between w-[95%]  mt-5">
           {/* Search */}
-          <div className="flex items-center bg-gray-100 rounded-md p-2 shadow-md  sm:w-[90%] w-[80%]">
+          <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-md p-2 shadow-md  sm:w-[90%] w-[80%]">
             <input
               type="text"
               placeholder="جستجو کنید..."
-              className="bg-transparent outline-none text-gray-700 w-full px-2"
+              className="bg-transparent outline-none text-gray-700 dark:placeholder:text-white w-full px-2"
             />
             <button className="text-gray-500 hover:text-gray-700 transition-colors duration-150">
-              <FiSearch size={20} />
+              <FiSearch size={20} className="dark:text-white" />
             </button>
           </div>
 
           {/* DropDown */}
-          <div className="flex items-center sm:w-[8%] w-[13%] sm:max-w-none max-w-[60px] relative">
+          <div className="flex items-center sm:w-[8%] w-[13%] sm:max-w-none max-w-[60px] relative ">
             <FiChevronDown
               className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-transform duration-200 md:text-base sm:text-sm text-xs `}
             />
 
             <select
               id="pageSize"
-              className="bg-gray-100 rounded-md w-full h-full text-gray-700 outline-none text-center appearance-none md:pr-8 pr-4 md:text-base sm:text-sm text-xs"
+              className="bg-gray-100 dark:bg-gray-800 rounded-md w-full h-full text-gray-700 dark:text-gray-100 outline-none text-center appearance-none md:pr-8 pr-4 md:text-base sm:text-sm text-xs "
               value={pageSize} // مقدار انتخاب شده
               onChange={handlePageSizeChange}
             >
@@ -214,8 +249,8 @@ const MyCourses = () => {
           </div>
         </div>
 
-        <div className="flex flex-col w-[95%] bg-white h-[400px] mt-5 overflow-hidden">
-          <div className="flex lg:gap-x-[13.5%] items-center text-white h-[50px] bg-purple-700 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
+        <div className="flex flex-col w-[95%] bg-white dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
+          <div className="flex lg:gap-x-[13.5%] items-center text-white h-[50px] bg-purple-700 dark:bg-purple-900 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
             <h2 className="mr-5 md:block hidden">تصویر</h2>
             <h2>نام دوره</h2>
             <h2>مدرس</h2>
@@ -229,7 +264,7 @@ const MyCourses = () => {
               <>
                 <div
                   key={index}
-                  className="flex items-center text-white h-[50px] bg-purple-400 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] md:justify-start justify-around"
+                  className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] md:justify-start justify-around"
                 >
                   <div className="lg:mr-[1%] sm:w-[6%] lg:w-[15%] md:w-[12%] md:mr-[6%] max-w-[60px] h-full    items-center md:flex  hidden">
                     <img

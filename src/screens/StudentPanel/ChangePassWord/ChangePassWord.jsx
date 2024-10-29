@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaBars,
   FaBell,
@@ -9,8 +9,10 @@ import {
   FaHome,
   FaLock,
   FaMinus,
+  FaMoon,
   FaShoppingCart,
   FaSignOutAlt,
+  FaSun,
   FaUserCircle,
 } from "react-icons/fa";
 import { FaShop } from "react-icons/fa6";
@@ -25,6 +27,28 @@ const ChangePassWord = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // وضعیت اولیه دارک مود بر اساس localStorage
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
+
+  // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
+
+  // تغییر حالت دارک مود هنگام کلیک
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
     <>
       {/* hamburger */}
@@ -95,7 +119,7 @@ const ChangePassWord = () => {
 
       <div className="flex flex-col items-center ">
         {/* Common */}
-        <div className="h-[50px] border-b border-white w-[95%] flex justify-between items-center ">
+        <div className="h-[50px] border-b border-white dark:border-gray-950 w-[95%] flex justify-between items-center ">
           <div className="flex items-center">
             {/* OpenMenu */}
             <div className="xl:hidden flex">
@@ -104,11 +128,27 @@ const ChangePassWord = () => {
                 <FaBars />
               </button>
             </div>
-            <FaMinus className="text-purple-600 sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238]"> تغییر رمز عبور</h2>
+            <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
+            <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-200">
+              {" "}
+              تغییر رمز عبور
+            </h2>
           </div>
 
-          <div className="flex items-center gap-x-4 text-gray-500">
+          <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
+            {isDarkMode ? (
+              <FaMoon
+                className="text-gray-800"
+                size={20}
+                onClick={toggleDarkMode}
+              />
+            ) : (
+              <FaSun
+                className="text-yellow-500"
+                size={20}
+                onClick={toggleDarkMode}
+              />
+            )}
             <FaBell className="text-xl" />
             <FaShoppingCart className="text-xl" />
           </div>
@@ -117,45 +157,44 @@ const ChangePassWord = () => {
         {/* Unic */}
 
         <div className="flex flex-col  mt-20  sm:w-[43%] w-[50%]  ">
-              <form className="">
-                <div className="mb-4">
-                  <label className="block text-gray-700">رمز عبور فعلی</label>
-                  <input
-                    type="password"
-                    className="mt-1 p-2 border border-gray-300 rounded w-full"
-                    placeholder="رمز عبور فعلی"
-                    required
-                  />
-                </div>
+          <form className="">
+            <div className="mb-4">
+              <label className="block text-gray-700 dark:text-gray-200">رمز عبور فعلی</label>
+              <input
+                type="password"
+                className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full"
+                placeholder="رمز عبور فعلی"
+                required
+              />
+            </div>
 
-                <div className="mb-4">
-                  <label className="block text-gray-700">رمز عبور جدید</label>
-                  <input
-                    type="password"
-                    className="mt-1 p-2 border border-gray-300 rounded w-full"
-                    placeholder="رمز عبور جدید"
-                    required
-                  />
-                </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 dark:text-gray-200">رمز عبور جدید</label>
+              <input
+                type="password"
+                className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full "
+                placeholder="رمز عبور جدید"
+                required
+              />
+            </div>
 
+            <div className="mb-4">
+              <label className="block text-gray-700 dark:text-gray-200">تکرار رمز عبور جدید</label>
+              <input
+                type="password"
+                className="mt-1 p-2 border  border-gray-300 dark:border-gray-950 dark:bg-gray-800  rounded w-full"
+                placeholder="تکرار رمز عبور جدید"
+                required
+              />
+            </div>
 
-                <div className="mb-4">
-                  <label className="block text-gray-700">تکرار رمز عبور جدید</label>
-                  <input
-                    type="password"
-                    className="mt-1 p-2 border border-gray-300 rounded w-full"
-                    placeholder="تکرار رمز عبور جدید"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="lg:w-[33.333%] sm:w-[50%]  bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition mx-auto block"
-                >
-                  ثبت اطلاعات عبور
-                </button>
-              </form>
+            <button
+              type="submit"
+              className="lg:w-[33.333%] sm:w-[50%]  bg-blue-500 dark:hover:bg-blue-700 dark:bg-blue-600 text-white p-2 rounded hover:bg-blue-600 transition mx-auto block"
+            >
+              ثبت اطلاعات عبور
+            </button>
+          </form>
         </div>
       </div>
     </>
