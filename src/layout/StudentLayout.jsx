@@ -13,11 +13,10 @@ import { Link, NavLink } from "react-router-dom";
 import userProfile from "../images/StudentPanel/NavStudent/images.png";
 
 const StudentLayout = () => {
-
   return (
     <>
       <div className="flex container   md:mt-5 min-h-[600px] gap-x-7     mx-auto  ">
-        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#7665E7] rounded-xl  hidden">
+        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#7665E7]  dark:bg-[#5C4DAC] rounded-xl  hidden">
           <div className="flex">
             {" "}
             <Link to="/">
@@ -58,24 +57,22 @@ const StudentLayout = () => {
               <NavLink to="/panel/ChangePassword">تغییر رمز عبور</NavLink>
             </div>
 
+            {/* <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+              <FaComment className="text-xl" />
+              <NavLink to="/panel/MyComments">نظرات ثبت شده</NavLink>
+            </div> */}
+
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaSignOutAlt className="text-xl" />
               <NavLink to="/panel/LogOut">خروج از حساب</NavLink>
             </div>
-
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaComment className="text-xl" />
-              <NavLink to="/panel/MyComments">نظرات ثبت شده</NavLink>
-            </div>
           </div>
         </div>
 
-        <div className="w-full bg-gray-200   md:rounded-xl">
-          <Outlet  />
+        <div className="w-full bg-gray-200 dark:bg-gray-900    md:rounded-xl">
+          <Outlet />
         </div>
       </div>
-
-
     </>
   );
 };

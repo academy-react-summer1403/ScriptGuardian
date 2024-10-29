@@ -106,7 +106,7 @@ const CoursesPage = () => {
     <>
       {/* TODO */}
       <HereSectionCourses />
-      <div className="mt-10 flex xl:w-[1280px]  container lg:justify-start   xl:mx-auto lg:gap-8  justify-center">
+      <div className="mt-10 flex xl:w-[1280px]  container lg:justify-start   sm:mx-auto lg:gap-8  justify-center">
         <Filters  showMenu={showMenu}  handleClick={handleClick}/>
         <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}

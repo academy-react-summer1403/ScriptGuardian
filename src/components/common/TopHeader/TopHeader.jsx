@@ -12,12 +12,12 @@ import { Link } from "react-router-dom";
 const TopHeader = () => {
   return (
     <header
-      className={` flex w-full h-[50px]  mt-8 items-center justify-between relative  z-[1] object-cover    `}
+      className={` flex w-full h-[50px]  mt-8 items-center justify-between relative  z-[10] object-cover    `}
     >
       {/* Content */}
       <div
 
-        className="flex items-center justify-center xl:mr-[0px] mr-[10px]  xl:gap-x-[8px] "
+        className="flex items-center justify-center xl:mr-[0px] mr-[10px]  xl:gap-x-[8px]  "
       >
         <Logo />
         <Name />

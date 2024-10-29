@@ -2,10 +2,10 @@ import React from "react";
 
 const SearchCourses = () => {
   return (
-    <div className="relative z-0 shadow-Second-shadow   flex items-center xl:w-[620px] sm:w-[40%] w-[100px]  h-[56px] ">
+    <div className="relative z-0 shadow-Second-shadow   flex items-center xl:w-[620px] sm:w-[40%] w-full  h-[56px] xl:order-none ">
       <input
         type="text"
-        className="w-full sm:px-[20px] py-[15.5px]  h-full border-gray-300 rounded-[16px] focus:outline-none dark:bg-gray-900 dark:caret-white dark:placeholder-white dark:text-white  z-0 sm:placeholder:text-base placeholder:text-[10px]"
+        className="w-full sm:px-[20px] py-[15.5px]  h-full border-gray-300 sm:rounded-[16px] focus:outline-none dark:bg-gray-900 dark:caret-white dark:placeholder-white dark:text-white  z-0 sm:placeholder:text-base placeholder:text-[10px]"
         placeholder="چی میخوای یادبگیری؟"
       />
 

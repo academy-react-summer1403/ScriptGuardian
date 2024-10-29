@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaBars,
   FaBell,
@@ -9,8 +9,10 @@ import {
   FaHome,
   FaLock,
   FaMinus,
+  FaMoon,
   FaShoppingCart,
   FaSignOutAlt,
+  FaSun,
   FaUserCircle,
 } from "react-icons/fa";
 import { FaShop } from "react-icons/fa6";
@@ -25,6 +27,28 @@ const StudentProfile = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+    // وضعیت اولیه دارک مود بر اساس localStorage
+    const [isDarkMode, setIsDarkMode] = useState(
+      localStorage.getItem("theme") === "dark"
+    );
+  
+    // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
+    useEffect(() => {
+      if (isDarkMode) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+    }, [isDarkMode]);
+  
+    // تغییر حالت دارک مود هنگام کلیک
+    const toggleDarkMode = () => {
+      setIsDarkMode(!isDarkMode);
+    };
+  
 
   return (
     <>
@@ -93,19 +117,33 @@ const StudentProfile = () => {
       </div>
 
       <div className="flex flex-col items-center ">
-        <div className="h-[50px] border-b border-white w-[95%] flex justify-between items-center">
+      <div className="h-[50px] border-b border-white dark:border-gray-950 w-[95%] flex justify-between items-center ">
           <div className="flex items-center">
+            {/* OpenMenu */}
             <div className="xl:hidden flex">
               {/* open-btn*/}
               <button onClick={toggleMenu} className="text-gray-500">
                 <FaBars />
               </button>
             </div>
-            <FaMinus className="text-purple-600 sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238]">حساب کاربری</h2>
+            <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
+            <h2 className="text-[20px] mr-2 text-[#263238]"> داشبورد</h2>
           </div>
 
-          <div className="flex items-center gap-x-4 text-gray-500">
+          <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
+            {isDarkMode ? (
+              <FaMoon
+                className="text-gray-800"
+                size={20}
+                onClick={toggleDarkMode}
+              />
+            ) : (
+              <FaSun
+                className="text-yellow-500"
+                size={20}
+                onClick={toggleDarkMode}
+              />
+            )}
             <FaBell className="text-xl" />
             <FaShoppingCart className="text-xl" />
           </div>
@@ -212,7 +250,7 @@ const StudentProfile = () => {
         </div>
 
         <div className="flex sm:justify-between justify-center w-[95%] mt-12 mb-5">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3  px-8 rounded">
+          <button className="bg-blue-500 dark:bg-blue-600 hover:bg-blue-700 text-white font-bold py-3  xl:mr-8 px-8 rounded">
             ثبت اطلاعات
           </button>
         </div>

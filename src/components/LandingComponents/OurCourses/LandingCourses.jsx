@@ -10,6 +10,11 @@ const LandingCourses = ({ id }) => {
   const navigateDetails = () => {
     navigate(`/Courses/${id}`);
   };
+
+  const handleClickTitle = (e) => {
+    e.stopPropagation(); // جلوگیری از پیشرفت رویداد کلیک
+  };
+
   return (
     <div className="w-[296px] h-[389px] flex flex-col  dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5    " onClick={navigateDetails} style={{direction:"rtl"}}>
       {/* Image */}
@@ -22,7 +27,7 @@ const LandingCourses = ({ id }) => {
       </h3>
       <CourseInfo />
       <CourseInstructor />
-      <PriceAndFavorites />
+      <PriceAndFavorites  handleClickTitle={handleClickTitle}/>
     </div>
   );
 };
