@@ -26,7 +26,7 @@ const InfoBoxes = () => {
           </span>
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
-          <h3 className="font-[900] text-[30px] text-[#263238] dark:text-gray-200">
+          <h3 className="font-[900] sm:text-[30px] text-[25px] text-[#263238] dark:text-gray-200">
             167
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
@@ -58,7 +58,7 @@ const InfoBoxes = () => {
         </div>
 
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
-          <h3 className="font-[900] text-[30px]  text-[#263238] dark:text-gray-200">
+          <h3 className="font-[900]  sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
             408,228
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
@@ -109,7 +109,7 @@ const InfoBoxes = () => {
           </span>
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
-          <h3 className="font-[900] text-[30px]  text-[#263238] dark:text-gray-200">
+          <h3 className="font-[900] sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
             460,798
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">

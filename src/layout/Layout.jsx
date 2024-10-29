@@ -70,7 +70,7 @@ const Layout = () => {
           {isVisible && (
             <button
               onClick={scrollToTop}
-              className="fixed bottom-5 right-5 bg-blue-600 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-blue-800 dark:hover:bg-blue-600 dark:focus:ring-blue-400"
+              className="fixed sm:bottom-5 bottom-1 right-5 bg-blue-600 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-blue-800 dark:hover:bg-blue-600 dark:focus:ring-blue-400"
               style={{ zIndex: 1000 }}
             >
               <FaArrowUp size={24} />

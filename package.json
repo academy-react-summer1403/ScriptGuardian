@@ -12,6 +12,8 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.1.5",
     "@mui/material": "^6.1.4",
     "aos": "^2.3.4",
     "formik": "^2.4.6",
@@ -22,6 +24,7 @@
     "react-router-dom": "^6.27.0",
     "react-slick": "^0.30.2",
     "react-spinners": "^0.14.1",
+    "react-table": "^7.8.0",
     "react-transition-group": "^4.4.5",
     "slick-carousel": "^1.8.1",
     "yup": "^1.4.0"

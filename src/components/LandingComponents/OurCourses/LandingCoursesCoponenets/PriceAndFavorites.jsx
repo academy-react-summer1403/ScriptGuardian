@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PriceAndFavorites = () => {
+const PriceAndFavorites = ({handleClickTitle}) => {
   const [likes, setLikes] = useState(12);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -51,7 +51,7 @@ const PriceAndFavorites = () => {
   );
 
   return (
-    <div className="flex  mt-[14px] gap-x-[132px] ">
+    <div className="flex  mt-[14px] gap-x-[132px] " onClick={handleClickTitle}>
       <div className="w-[51px] h-[32px] bg-[#FFEBEE] text-[#F44336] dark:bg-[#2E2E2E] dark:text-[#FFCDD2] rounded-[24px] flex items-center justify-center gap-1 mr-[16px]">
         <span onClick={handelLike} className="">
           {isLiked ? isLikedTrue : isLikedFalse}

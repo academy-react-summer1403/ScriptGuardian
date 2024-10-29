@@ -15,7 +15,7 @@ const CommentDetails = () => {
         <Formik>
           <Form className="w-full flex justify-center  flex-col">
             <textarea
-              className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 bg-slate-900  outline-none dark:caret-white"
+              className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
               placeholder="نظر خودتو بنویس..."
             />
 

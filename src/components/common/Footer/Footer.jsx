@@ -85,7 +85,7 @@ const Footer = () => {
             خبرم کن
           </div>
         </div>
-        <div className="sm:w-[427px] w-[90%] h-[25px] flex  text-white/60 sm:gap-10 gap-2 sm:mr-0 mr-1 mt-12">
+        <div className="sm:w-[427px]  w-[90%] sm:justify-start justify-center h-[25px] flex  text-white/60 sm:gap-10 gap-2 sm:mr-0 mr-1 mt-12">
           <NavLink to={"/Courses"} className="hover:text-white ease-in-out duration-75 ">
             دوره های آموزشی
           </NavLink>
