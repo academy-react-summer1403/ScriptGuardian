@@ -127,7 +127,7 @@ const StudentProfile = () => {
               </button>
             </div>
             <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238]"> داشبورد</h2>
+            <h2 className="text-[20px] mr-2 text-[#263238] dark:text-white"> ویرایش پروفایل</h2>
           </div>
 
           <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
@@ -153,7 +153,7 @@ const StudentProfile = () => {
           <div className="w-[200px] h-[200px] rounded-full bg-gray-400">
             <img src="" alt="" className="w-full h-full rounded-full" />
           </div>
-          <h4 className="mx-auto mt-3 text-[#455A64]">ویرایش تصویر</h4>
+          <h4 className="mx-auto mt-3 text-[#455A64] dark:text-gray-400">ویرایش تصویر</h4>
         </div>
 
         <div className="flex flex-wrap w-[95%] gap-x-5 justify-center gap-y-7 mt-3">
