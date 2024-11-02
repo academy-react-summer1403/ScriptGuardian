@@ -23,6 +23,13 @@ const LoginCodeVerification = ({ isOpen, toggleModal }) => {
       .required("این فیلد اجباری است"),
   });
 
+
+  if(isOpen === true){
+    console.log("true Code Modal")
+  }
+  else{
+    console.log("false Code Modal")
+  }
   return (
     <>
       {isOpen && (

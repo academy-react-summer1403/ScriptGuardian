@@ -20,3 +20,26 @@ const onSuccess = (response) => {
   }
   return response.data;
 };
+
+const onError = (err) => {
+  console.log("interceptor", err);
+  if (err.response.status === 401) {
+    window.location.pathname = "/";
+    removeItem("token");
+  }
+  if (err.response.status >= 400 && err.response.status < 500) {
+    // alert("Client error: " + err.response.status);
+  }
+
+  return Promise.reject(err);
+};
+
+http.interceptors.response.use(onSuccess, onError);
+
+http.interceptors.request.use((opt) => {
+  const token = getItem("token");
+  if (token) opt.headers.Authorization = "Bearer " + token;
+  return opt;
+});
+
+export default http;

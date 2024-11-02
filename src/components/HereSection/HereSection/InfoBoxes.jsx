@@ -1,6 +1,10 @@
 import React from "react";
+import { useLandingReport } from "../../../core/services/api/Landing/LandingReport/LandingReport";
 
 const InfoBoxes = () => {
+  const { data, isPending } = useLandingReport();
+  if (isPending) return <div>Loading...</div>; // بارگذاری
+  console.log(data, "this data Landing Report in InfoBoxes Comp");
   return (
     <>
       <div className="md:w-[220px] w-[150px] flex flex-col  items-center h-[211px] bg-[#ffffff] dark:bg-gray-900 bg-opacity-[60%] dark:bg-opacity-[90%] border-white transition duration-300 ease-in-out  hover:scale-[105%] rounded-[16px] dark:border-gray-900 border-[4px]">
@@ -27,7 +31,7 @@ const InfoBoxes = () => {
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900] sm:text-[30px] text-[25px] text-[#263238] dark:text-gray-200">
-            167
+            {data.teacherCount}
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
             مدرس مجرب
@@ -59,10 +63,10 @@ const InfoBoxes = () => {
 
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900]  sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
-            408,228
+            {data.courseCount}
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
-            دقیقه آموزش
+             دوره با کیفیت 
           </p>
         </div>
       </div>
@@ -110,7 +114,7 @@ const InfoBoxes = () => {
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900] sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
-            460,798
+            {data.studentCount}
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
             نفر دانشجو

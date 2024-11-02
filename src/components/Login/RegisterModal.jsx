@@ -8,6 +8,13 @@ const RegisterModal = ({
   openVerification,
   openLogin,
 }) => {
+  if (isOpen === true) {
+    console.log("true Register Modal");
+    history.pushState(null, "", "/Register");
+  } else {
+    console.log("false Register Modal");
+    history.pushState(null, "", "/");
+  }
   return (
     <>
       {isOpen && (
@@ -65,10 +72,10 @@ const RegisterModal = ({
 
               <div className="flex justify-center mt-[48px]">
                 <button
-                onClick={() =>{
-                  toggleModal()
-                  openVerification()
-                }}
+                  onClick={() => {
+                    toggleModal();
+                    openVerification();
+                  }}
                   type="submit"
                   className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
                 >

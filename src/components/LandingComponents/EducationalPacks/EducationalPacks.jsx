@@ -5,7 +5,7 @@ import { LeftEducationalPacks } from "./LeftEducationalPacks";
 const EducationalPacks = () => {
   return (
     <>
-      <div className=" bg-[#FAFBFC] dark:bg-[#2C2F33] w-[1343px] mx-auto xl:flex hidden relative" >
+      <div className=" bg-[#FAFBFC] dark:bg-[#2C2F33] w-[1343px] mx-auto xl:flex hidden relative">
         <div className="absolute left-0 top-[236px] w-[1004px] z-[6]">
           <svg
             width="1004"
@@ -1009,13 +1009,12 @@ const EducationalPacks = () => {
           </svg>
         </div>
 
-        
         <div className="flex mt-[100px] container xl:w-[1280px] mx-auto z-[10] ">
           <div className="flex justify-between w-full">
-            <LeftEducationalPacks/>
+            <LeftEducationalPacks />
 
             {/* Right */}
-            <RightEducationalPacks/>
+            <RightEducationalPacks />
           </div>
         </div>
       </div>

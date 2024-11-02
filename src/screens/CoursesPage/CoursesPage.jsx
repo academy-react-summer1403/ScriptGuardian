@@ -44,8 +44,9 @@ import ReactPaginate from "react-paginate";
 import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCourses/HereSectionCourses";
 import { Filters } from "../../components/CoursesPage/FilterComponents/Filters";
 import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThemeCourses/SearchAndThemeCourses";
-import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
+// import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
 import { CoursesCard } from "../../components/CoursesPage/CourseCard/CourseCard";
+import { Course } from "../../components/LandingComponents/OurCourses/Course";
 
 const CoursesPage = () => {
   const [map, setMap] = useState([
@@ -102,18 +103,20 @@ const CoursesPage = () => {
     setShowContent(!showMenu);
   };
 
+  const style =
+    "w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5 ";
   return (
     <>
       {/* TODO */}
       <HereSectionCourses />
       <div className="mt-10 flex xl:w-[1280px]  container lg:justify-start   sm:mx-auto lg:gap-8  justify-center">
-        <Filters  showMenu={showMenu}  handleClick={handleClick}/>
+        <Filters showMenu={showMenu} handleClick={handleClick} />
         <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}
           <SearchAndThemeCourses handleClick={handleClick} />
           <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
             {currentItems.map((course, index) => (
-              <CoursesCard key={course.id} id={course.id} />
+              <Course key={course.id} id={course.id} style={style} />
             ))}
           </div>
           {/* Pagination Controls */}
@@ -173,8 +176,6 @@ const CoursesPage = () => {
           </div>
         </div>
       </div>
-
-
     </>
   );
 };

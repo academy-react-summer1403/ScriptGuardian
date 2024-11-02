@@ -13,8 +13,9 @@ const CoursesCard = ({ id }) => {
   };
   return (
     <div
-      className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5  "
+      className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5 "
       onClick={navigateDetails}
+      style={{direction: 'rtl'}}
     >
       {/* Image */}
       <ImageCourseCard />

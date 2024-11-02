@@ -1,8 +1,56 @@
-import React from "react";
-import { Field, Form, Formik } from "formik";
+import React, { useEffect } from "react";
+import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import { MdCheck } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-const LoginModal = ({ toggleModal, isOpen,openVerification , openRegister }) => {
+import { Experimental_CssVarsProvider } from "@mui/material";
+import { useLogin } from "../../core/services/api/Auth/Login/Login";
+import * as Yup from "yup";
+const LoginModal = ({
+  toggleModal,
+  isOpen,
+  openVerification,
+  openRegister,
+}) => {
+  // if (isOpen === true) {
+  //   console.log("true Login Modal");
+  //   history.pushState(null, "", "/login");
+  // } else {
+  //   console.log("false Login Modal");
+  //   history.pushState(null , '' ,"/")
+  // }
+
+  //Formik Practice
+
+  // تعریف اسکیما برای اعتبارسنجی
+  const validationSchema = Yup.object({
+    phoneOrGmail: Yup.string()
+      .required("این فیلد الزامی است")
+      .matches(
+        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
+        "لطفا یک ایمیل معتبر وارد کنید"
+      )
+      .min(5, "حداقل 5 کاراکتر وارد کنید"),
+    password: Yup.string()
+      .required("این فیلد الزامی است")
+      .min(6, "رمز عبور باید حداقل 6 کاراکتر باشد"),
+    rememberMe: Yup.boolean(),
+  });
+
+  const { mutate: login } = useLogin(); // هوک login را به دست می‌آوریم
+
+  const formik = useFormik({
+    initialValues: {
+      phoneOrGmail: "",
+      password: "",
+      rememberMe: false,
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log("Formik Values :", values);
+      // ارسال مقادیر به هوک login
+      login(values);
+    },
+  });
   return (
     <>
       {isOpen && (
@@ -46,79 +94,76 @@ const LoginModal = ({ toggleModal, isOpen,openVerification , openRegister }) => 
                 </span>
               </div>
             </div>
-            <Formik
-              initialValues={{
-                emailOrNumber: "",
-                password: "",
-                accepted: false,
-              }}
-            >
-              <Form>
-                <Field
-                  className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 border rounded-[50px] pr-5 mr-[32px] mt-[48px] outline-none dark:text-gray-200 text-[#607D8B]"
-                  placeholder="ایمیل یا شماره موبایل"
-                  name="emailOrNumber"
-                />
-                <Field
-                  className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none text-[#607D8B] dark:text-white"
-                  placeholder="رمز عبور"
-                  name="password"
-                  type="password"
-                />
-                <div className="flex  mt-[24px] justify-between sm:text-[14px] text-[12px]">
-                  <div className="flex items-center mr-[32px] gap-[8px] ">
-                    <Field
-                      type="checkbox"
-                      name="accepted"
-                      className="peer hidden"
-                      id="accepted"
-                    />
-                    <label
-                      htmlFor="accepted"
-                      className="flex justify-center items-center w-[20px] h-[20px] border-[#2196F3] dark:border-[#1565C0] border rounded-lg peer-checked:bg-blue-500 dark:peer-checked:bg-[#1565C0] peer-checked:ease-in-out"
-                    >
-                      <MdCheck className="text-white dark:text-gray-900" />
-                    </label>
+            <form onSubmit={formik.handleSubmit}>
+              <input
+                className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 border rounded-[50px] pr-5 mr-[32px] mt-[48px] outline-none dark:text-gray-200 text-[#607D8B]"
+                placeholder="ایمیل یا شماره موبایل"
+                id="phoneOrGmail"
+                name="phoneOrGmail"
+                {...formik.getFieldProps("phoneOrGmail")}
+              />
 
-                    <p className="text-[#455A64] dark:text-gray-200 ">
-                      من را به خاطر بسپار
-                    </p>
-                  </div>
-                  <NavLink className="text-[#2196F3] dark:text-[#1565C0] ml-[32px] underline p-">
-                    رمز عبور را فراموش کردم
-                  </NavLink>
+              <input
+                className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none text-[#607D8B] dark:text-white"
+                placeholder="رمز عبور"
+                name="password"
+                type="text"
+                id="password"
+                {...formik.getFieldProps("password")}
+              />
+              <div className="flex  mt-[24px] justify-between sm:text-[14px] text-[12px]">
+                <div className="flex items-center mr-[32px] gap-[8px] ">
+                  <input
+                    type="checkbox"
+                    className="peer hidden"
+                    id="rememberMe"
+                    {...formik.getFieldProps("rememberMe")}
+                  />
+                  <label
+                    htmlFor="rememberMe"
+                    className="flex justify-center items-center w-[20px] h-[20px] border-[#2196F3] dark:border-[#1565C0] border rounded-lg peer-checked:bg-blue-500 dark:peer-checked:bg-[#1565C0] peer-checked:ease-in-out"
+                  >
+                    <MdCheck className="text-white dark:text-gray-900" />
+                  </label>
+
+                  <p className="text-[#455A64] dark:text-gray-200 ">
+                    من را به خاطر بسپار
+                  </p>
                 </div>
+                <NavLink className="text-[#2196F3] dark:text-[#1565C0] ml-[32px] underline p-">
+                  رمز عبور را فراموش کردم
+                </NavLink>
+              </div>
 
-                <div className="flex justify-center mt-[48px]">
-                  <button
-                  onClick={() =>{
-                    toggleModal();
-                    openVerification()
+              <div className="flex justify-center mt-[48px]">
+                <button
+                  onClick={() => {
+                    // toggleModal();
+                    // openVerification();
                   }}
-                    type="submit"
-                    className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-                  >
-                    دریافت کد تایید
-                  </button>
-                </div>
-                <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
-                  <p className="text-[#455A64] dark:text-gray-200">
-                    حساب کاربری ندارید؟{" "}
-                  </p>
-                  <p
-                    className={
-                      "underline text-[#2196F3] dark:text-[#1565C0] mr-[3px] cursor-pointer"
-                    }
-                    onClick={() => {
-                      toggleModal();
-                      openRegister();
-                    }}
-                  >
-                    ثبت نام
-                  </p>
-                </div>
-              </Form>
-            </Formik>
+                  type="submit"
+                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  دریافت کد تایید
+                </button>
+              </div>
+              <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
+                <p className="text-[#455A64] dark:text-gray-200">
+                  حساب کاربری ندارید؟{" "}
+                </p>
+                <p
+                  className={
+                    "underline text-[#2196F3] dark:text-[#1565C0] mr-[3px] cursor-pointer"
+                  }
+                  onClick={() => {
+                    toggleModal();
+                    openRegister();
+                  }}
+                >
+                  ثبت نام
+                </p>
+              </div>
+            </form>
           </div>
         </>
       )}

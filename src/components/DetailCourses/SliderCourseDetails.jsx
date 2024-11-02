@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { LandingCourses } from "../LandingComponents/OurCourses/LandingCourses";
 import { CourseCardInfo } from "../CoursesPage/CourseCard/CourseCardInfo";
 import { TbBackground } from "react-icons/tb";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Course } from "../LandingComponents/OurCourses/Course";
+import { CoursesCard } from "../CoursesPage/CourseCard/CourseCard";
 
 const SliderCourseDetails = () => {
   const [courses, setCourses] = useState([
@@ -22,7 +23,6 @@ const SliderCourseDetails = () => {
     { id: "11" },
     { id: "12" },
   ]);
-
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
@@ -41,7 +41,6 @@ const SliderCourseDetails = () => {
     );
   };
 
-
   const settings = {
     dots: true,
     infinite: true,
@@ -54,8 +53,6 @@ const SliderCourseDetails = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
-
-
       {
         breakpoint: 1280,
         settings: {
@@ -85,6 +82,7 @@ const SliderCourseDetails = () => {
     rtl: true,
   };
 
+
   return (
     <div className="flex flex-col w-full    items-center">
       <h2 className="font-black text-[#263238] dark:text-gray-200 text-[40px] mt-20">
@@ -96,9 +94,12 @@ const SliderCourseDetails = () => {
         className="xl:w-[1280px] gap-0 lg:w-full md:w-[95%]   justify-center w-[300px] lg:mt-0 mt-10 flex    "
       >
         {courses.map((courses, index) => {
-          return <LandingCourses  id={courses.id} key={index}/>;
+          return <CoursesCard id={courses.id} key={index}  />;
         })}
       </Slider>
+
+
+
     </div>
   );
 };

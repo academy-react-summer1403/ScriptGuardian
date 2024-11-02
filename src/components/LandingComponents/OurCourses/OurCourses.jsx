@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LandingCourses } from "./LandingCourses";
+import { Course } from "./Course";
 import { useNavigate } from "react-router-dom";
 const OurCourses = () => {
   const navigate = useNavigate();
@@ -9,6 +9,8 @@ const OurCourses = () => {
     navigate("/courses");
     window.scrollTo(0, 0); // اسکرول به بالای صفحه
   };
+
+  const style = `w-[296px] h-[389px] flex flex-col  dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5    `;
   return (
     <>
       <div className="bg-[#FAFBFC] dark:bg-[#2C2F33]  ">
@@ -21,10 +23,11 @@ const OurCourses = () => {
 
           {/* Content */}
           <div className="flex xl:flex-row flex-col xl:gap-x-[32px] gap-y-6 mt-[40px] sm:justify-between items-center">
-            <LandingCourses />
-            <LandingCourses />
-            <LandingCourses />
-            <LandingCourses />
+            <Course style={style}/>
+            <Course style={style}/>
+            <Course style={style}/>
+            <Course style={style}/>
+
           </div>
           <div className="flex  justify-center mt-[40px]">
             {" "}

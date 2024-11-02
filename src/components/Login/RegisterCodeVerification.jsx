@@ -27,6 +27,13 @@ const RegisterCodeVerification = ({
       .required("این فیلد اجباری است"),
   });
 
+
+  if(isOpen === true){
+    console.log("true Register Modal Modal")
+  }
+  else{
+    console.log("false Register Modal Modal")
+  }
   return (
     <>
       {" "}
