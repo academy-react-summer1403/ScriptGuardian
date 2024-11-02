@@ -14,6 +14,7 @@ import { StudentProfile } from "../screens/StudentPanel/Profile/StudentProfile";
 import { ChangePassWord } from "../screens/StudentPanel/ChangePassWord/ChangePassWord";
 import { MyCourses } from "../screens/StudentPanel/MyCourses/MyCourses";
 
+
 const App = createBrowserRouter([
   {
     path: "",

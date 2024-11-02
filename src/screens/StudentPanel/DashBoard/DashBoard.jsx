@@ -130,7 +130,7 @@ const DashBoard = () => {
               </button>
             </div>
             <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238]"> داشبورد</h2>
+            <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-100"> داشبورد</h2>
           </div>
 
           <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">

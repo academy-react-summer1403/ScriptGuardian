@@ -21,7 +21,7 @@ const ThemeCourses = () => {
     setIsLeftActive(false);
   };
   return (
-    <div className="sm:w-[100px]  w-full sm:h-full h-[50px] flex bg-[#ECEFF1] dark:bg-[#1C1C1C] justify-center items-center gap-1 rounded-2xl xl:order-none order-1 ">
+    <div className="sm:w-[100px]  w-full sm:h-full h-[50px] flex bg-[#ECEFF1] dark:bg-[#1C1C1C] justify-center items-center gap-1 rounded-2xl sm:order-none order-1 ">
       <div
         className={`w-[40px]  h-[40px] flex justify-center items-center rounded-2xl  ${
           isLeftActive ? `bg-white dark:bg-gray-900` : ``
