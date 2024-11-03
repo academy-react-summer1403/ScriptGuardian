@@ -7,6 +7,7 @@ import { useLogin } from "../../core/services/api/Auth/Login/Login";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { setItem } from "../../core/services/storage/storage.services";
+import { validationSchema } from "../../core/services/validation/validationSchema/Auth";
 const LoginModal = ({
   toggleModal,
   isOpen,
@@ -15,19 +16,6 @@ const LoginModal = ({
 }) => {
 
   const navigate = useNavigate()
-  const validationSchema = Yup.object({
-    phoneOrGmail: Yup.string()
-      .required("این فیلد الزامی است")
-      .matches(
-        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
-        "لطفا یک ایمیل معتبر وارد کنید"
-      )
-      .min(5, "حداقل 5 کاراکتر وارد کنید"),
-    password: Yup.string()
-      .required("این فیلد الزامی است")
-      .min(6, "رمز عبور باید حداقل 8 کاراکتر باشد"),
-    rememberMe: Yup.boolean(),
-  });
 
   const { mutate: login, isError, data } = useLogin();
   console.log("this use login Data", data);

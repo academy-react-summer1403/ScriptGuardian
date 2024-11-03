@@ -5,7 +5,7 @@ import { OurCourses } from "../../components/LandingComponents/OurCourses/OurCou
 import { EducationalPacks } from "../../components/LandingComponents/EducationalPacks/EducationalPacks";
 import { TeacherSlider } from "../../components/LandingComponents/TeachersSlider/TeacherSlider";
 import { NewsAndArticle } from "../../components/LandingComponents/NewsAndArticle/NewsAndArticle.jsx";
-import { useLandingReport } from "../../core/services/api/Landing/LandingReport/LandingReport.js";
+
 const Landing = () => {
 
   return (

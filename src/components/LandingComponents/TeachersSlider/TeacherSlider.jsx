@@ -4,18 +4,28 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useLandingTeachers } from "../../../core/services/api/Landing/LandingTeachers";
 const TeacherSlider = () => {
-  const [slides, setSlides] = useState([
-    { id: 1, name: " سالار حیدری ", image: ImageSLider },
-    { id: 2, name: "حیدر سالاری", image: ImageSLider },
-    { id: 4, name: "تصویر 4", image: ImageSLider },
-    { id: 5, name: "تصویر 5", image: ImageSLider },
-    { id: 6, name: "تصویر 6", image: ImageSLider },
-    { id: 7, name: "تصویر 6", image: ImageSLider },
-    { id: 8, name: "تصویر 6", image: ImageSLider },
-    { id: 9, name: "تصویر 6", image: ImageSLider },
-    { id: 10, name: "تصویر 6", image: ImageSLider },
-  ]);
+  //API
+  const { data, isPending } = useLandingTeachers();
+
+  if (isPending) {
+    return <h1>Loading...</h1>;
+  }
+  console.log(data, "this data Landing Teachers in TeacherSlider Comp");
+
+  //
+  // const [slides, setSlides] = useState([
+  //   { id: 1, name: " سالار حیدری ", image: ImageSLider },
+  //   { id: 2, name: "حیدر سالاری", image: ImageSLider },
+  //   { id: 4, name: "تصویر 4", image: ImageSLider },
+  //   { id: 5, name: "تصویر 5", image: ImageSLider },
+  //   { id: 6, name: "تصویر 6", image: ImageSLider },
+  //   { id: 7, name: "تصویر 6", image: ImageSLider },
+  //   { id: 8, name: "تصویر 6", image: ImageSLider },
+  //   { id: 9, name: "تصویر 6", image: ImageSLider },
+  //   { id: 10, name: "تصویر 6", image: ImageSLider },
+  // ]);
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
@@ -75,7 +85,7 @@ const TeacherSlider = () => {
         </div>
 
         <Slider {...settings} className="xl:w-[1280px] w-[90%]    ">
-          {slides.map((item, index) => {
+          {data?.map((item, index) => {
             return (
               <div
                 className={`xl:w-[296px] h-[382px] flex flex-col ${
@@ -85,13 +95,13 @@ const TeacherSlider = () => {
               >
                 <div className="xl:w-[296px] h-[300px]  flex">
                   <img
-                    src={ImageSLider}
+                    src={item.pictureAddress}
                     className="w-full h-full rounded-[24px]"
                   />
                 </div>
                 <div className="flex flex-col items-center">
                   <h3 className="text-[#263238] dark:text-gray-400 mt-[16px] font-[700] xl:text-[24px] text-[20px]">
-                    ss
+                    {item.fullName}
                   </h3>
                   <p className="text-[#455A64] dark:text-gray-200 mt-[4px] xl:text-[16px] text-[14px]">
                     بکند, node js, .netcore, database

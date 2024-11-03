@@ -1,13 +1,47 @@
 import React from "react";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, useFormik } from "formik";
 import { MdCheck } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { validationRegisterFinish } from "../../core/services/validation/validationSchema/Auth";
+import { useRegisterFinish } from "../../core/services/api/Auth/Register/Register";
+import { toast } from "react-toastify";
+import { setItem } from "../../core/services/storage/storage.services";
 const RegisterFinish = ({ isOpen, toggleModal }) => {
   // if (isOpen === true) {
   //   console.log("true Register Finish Modal");
   // } else {
   //   console.log("false Register Finish Modal");
+
+  const navigate = useNavigate();
+  const { mutate: RegisterFinish, isError, data } = useRegisterFinish();
   // }
+
+  const formik = useFormik({
+    initialValues: {
+      gmail: "",
+      password: "",
+      phoneNumber: "",
+    },
+    validationSchema: validationRegisterFinish,
+    onSubmit(values) {
+      RegisterFinish(values, {
+        onSuccess: (data) => {
+          if (data.success === true) {
+            setItem("token", data.token);
+            toast.success(data.message);
+            toggleModal();
+            navigate("/panel");
+          } else {
+            toast.error(data.message);
+          }
+        },
+        // onError: (error) => {
+        //   alert(error)
+        //   console.log(error, "data on error");
+        // },
+      });
+    },
+  });
   return (
     <>
       {isOpen && (
@@ -50,59 +84,77 @@ const RegisterFinish = ({ isOpen, toggleModal }) => {
               </span>
             </div>
           </div>
-          <Formik
-            initialValues={{ emailOrNumber: "", password: "", accepted: false }}
-          >
-            <Form>
-              <Field
-                className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 border rounded-[50px] pr-5 mr-[32px] mt-[48px] outline-none dark:text-gray-200 text-[#607D8B]"
-                placeholder="ایمیل"
-                name="emailOrNumber"
-              />
-              <Field
-                className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none text-[#607D8B] dark:text-white"
-                placeholder="رمز عبور"
-                name="password"
-                type="password"
-              />
+          <form onSubmit={formik.handleSubmit}>
+            <input
+              className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 border rounded-[50px] pr-5 mr-[32px] mt-[48px] outline-none dark:text-gray-200 text-[#607D8B]"
+              placeholder="ایمیل"
+              name="gmail"
+              {...formik.getFieldProps("gmail")}
+            />
 
-              <Field
-                className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none text-[#607D8B] dark:text-white"
-                placeholder="تکرار عبور"
-                name="password"
-                type="password"
-              />
-              <div className="flex  mt-[24px] justify-between sm:text-[14px] text-[12px]">
-                <div className="flex items-center mr-[32px] gap-[8px] ">
-                  <Field
-                    type="checkbox"
-                    name="accepted"
-                    className="peer hidden"
-                    id="accepted"
-                  />
-                  <label
-                    htmlFor="accepted"
-                    className="flex justify-center items-center w-[20px] h-[20px] border-[#2196F3] dark:border-[#1565C0] border rounded-lg peer-checked:bg-blue-500 dark:peer-checked:bg-[#1565C0] peer-checked:ease-in-out"
-                  >
-                    <MdCheck className="text-white dark:text-gray-900" />
-                  </label>
-
-                  <p className="text-[#455A64] dark:text-gray-200 ">
-                    من را به خاطر بسپار
-                  </p>
-                </div>
+            {formik.errors.gmail && (
+              <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                {formik.errors.gmail}
               </div>
+            )}
 
-              <div className="flex justify-center mt-[48px]">
-                <button
-                  type="submit"
-                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+            <input
+              className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none text-[#607D8B] dark:text-white"
+              placeholder="رمز عبور"
+              name="password"
+              type="text"
+              {...formik.getFieldProps("password")}
+            />
+
+            {formik.errors.password && (
+              <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                {formik.errors.password}
+              </div>
+            )}
+
+            <input
+              className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none text-[#607D8B] dark:text-white"
+              placeholder="تلفن همراه"
+              name=""
+              type="text"
+              {...formik.getFieldProps("phoneNumber")}
+            />
+
+            {formik.errors.phoneNumber && (
+              <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                {formik.errors.phoneNumber}
+              </div>
+            )}
+            <div className="flex  mt-[24px] justify-between sm:text-[14px] text-[12px]">
+              {/* <div className="flex items-center mr-[32px] gap-[8px] ">
+                <input
+                  type="checkbox"
+                  name="accepted"
+                  className="peer hidden"
+                  id="accepted"
+                />
+                <label
+                  htmlFor="accepted"
+                  className="flex justify-center items-center w-[20px] h-[20px] border-[#2196F3] dark:border-[#1565C0] border rounded-lg peer-checked:bg-blue-500 dark:peer-checked:bg-[#1565C0] peer-checked:ease-in-out"
                 >
-                  دریافت کد تایید
-                </button>
-              </div>
-            </Form>
-          </Formik>
+                  <MdCheck className="text-white dark:text-gray-900" />
+                </label>
+
+                <p className="text-[#455A64] dark:text-gray-200 ">
+                  من را به خاطر بسپار
+                </p>
+              </div> */}
+            </div>
+
+            <div className="flex justify-center mt-[48px]">
+              <button
+                type="submit"
+                className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+              >
+                ثبت نام{" "}
+              </button>
+            </div>
+          </form>
         </div>
       )}
     </>

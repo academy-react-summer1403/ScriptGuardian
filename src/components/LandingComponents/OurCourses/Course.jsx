@@ -5,10 +5,19 @@ import { CourseInstructor } from "./LandingCoursesCoponenets/CourseInstructor";
 import { PriceAndFavorites } from "./LandingCoursesCoponenets/PriceAndFavorites";
 import { useNavigate } from "react-router-dom";
 
-const Course = ({ style,id  }) => {
+const Course = ({
+  style,
+  courseId,
+  teacherName,
+  cost,
+  likeCount,
+  userIsLiked,
+  title,
+  describe,
+}) => {
   const navigate = useNavigate();
   const navigateDetails = () => {
-    navigate(`/Courses/${id}`);
+    navigate(`/Courses/${courseId}`);
   };
 
   const handleClickTitle = (e) => {
@@ -24,14 +33,14 @@ const Course = ({ style,id  }) => {
       {/* Image */}
       <ImageCourse />
       {/* Content */}
-            
+
       {/* TopicCourses */}
       <h3 className="font-[700] mt-[16px] mr-[16px] ">
-        دوره جامع React JS صفر تا صد
+          {title}
       </h3>
       <CourseInfo />
-      <CourseInstructor />
-      <PriceAndFavorites handleClickTitle={handleClickTitle} />
+      <CourseInstructor teacherName={teacherName}/>
+      <PriceAndFavorites handleClickTitle={handleClickTitle} likeCount={likeCount} cost={cost}/>
     </div>
   );
 };

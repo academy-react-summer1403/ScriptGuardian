@@ -1,32 +1,59 @@
-import { Field, Formik } from "formik";
+import { Field, Formik, useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { MdCheck } from "react-icons/md";
 import { Form, NavLink } from "react-router-dom";
 import * as Yup from "yup";
+import { useRegisterVerification } from "../../core/services/api/Auth/Register/Register";
+import { validationRegisterVerification } from "../../core/services/validation/validationSchema/Auth";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const RegisterCodeVerification = ({
   isOpen,
   toggleModal,
   OpenRegisterFinish,
 }) => {
-  // const validationSchema = Yup.object().shape({
-  //   code1: Yup.string()
-  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
-  //     .required("این فیلد اجباری است"),
-  //   code2: Yup.string()
-  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
-  //     .required("این فیلد اجباری است"),
-  //   code3: Yup.string()
-  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
-  //     .required("این فیلد اجباری است"),
-  //   code4: Yup.string()
-  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
-  //     .required("این فیلد اجباری است"),
-  //   code5: Yup.string()
-  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
-  //     .required("این فیلد اجباری است"),
-  // });
+  // دریافت شماره تلفن از ریداکس
+  const phoneNumber = useSelector((state) => state.phoneNumber.phoneNumber);
+  const {
+    mutate: RegisterVerificationCode,
+    isError,
+    data,
+  } = useRegisterVerification();
 
+  const formik = useFormik({
+    initialValues: {
+      // phoneNumber: phoneNumber,
+      verifyCode1: "",
+      verifyCode2: "",
+      verifyCode3: "",
+      verifyCode4: "",
+      verifyCode5: "",
+    },
+    validationSchema: validationRegisterVerification,
+    onSubmit(values) {
+      const verifyCode = `${values.verifyCode1}${values.verifyCode2}${values.verifyCode3}${values.verifyCode4}${values.verifyCode5}`;
+      const FinalValues = {
+        phoneNumber: phoneNumber,
+        verifyCode: verifyCode,
+      };
+      RegisterVerificationCode(FinalValues, {
+        onSuccess: (data) => {
+          if (data.success === true) {
+            toast.success(data.message);
+            toggleModal();
+            OpenRegisterFinish();
+          } else {
+            toast.error("کد تایید صحیح نیست یا از زمان کد گذشته");
+          }
+        },
+        // onError: (error) => {
+        //   alert(error)
+        //   console.log(error, "data on error");
+        // },
+      });
+    },
+  });
 
   // if(isOpen === true){
   //   console.log("true Register Modal Modal")
@@ -78,73 +105,102 @@ const RegisterCodeVerification = ({
             </div>
           </div>
           <div className="w-[356px] mt-[32px] mx-auto text-[#455A64] dark:text-gray-400">
-            کد به شماره 989118045177+ ارسال شد، در صورت اشتباه بودن شماره آنرا
+            کد به شماره {phoneNumber}+ ارسال شد، در صورت اشتباه بودن شماره آنرا
             <NavLink className={""}> تغییر دهید</NavLink>
           </div>
-          <Formik
-            initialValues={{
-              code1: "",
-              code2: "",
-              code3: "",
-              code4: "",
-              code5: "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={(values) => {
-              const verificationCode = Object.values(values).join("");
-              console.log("Verification Code:", verificationCode);
-              startCountdown(); // شروع شمارش معکوس پس از ارسال
-            }}
-          >
-            {({ errors, touched }) => (
-              <Form className="">
-                <div className="flex mt-[24px] mx-auto w-[356px] justify-between">
-                  {["code1", "code2", "code3", "code4", "code5"].map(
-                    (name, index) => (
-                      <div key={index} className="">
-                        <Field
-                          name={name}
-                          type="text"
-                          maxLength="1"
-                          className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
-                        />
-                        {errors[name] && touched[name] ? (
-                          <div className="text-red-500 text-xs absolute ">
-                            {errors[name]}
-                          </div>
-                        ) : null}
-                      </div>
-                    )
-                  )}
+          <form onSubmit={formik.handleSubmit}>
+            <div className="flex relative mt-[24px] mx-auto w-[356px] justify-between">
+              <input
+                name="verifyCode1"
+                type="text"
+                maxLength="1"
+                className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
+                {...formik.getFieldProps("verifyCode1")}
+              />
+              {formik.errors.verifyCode1 && (
+                <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                  {formik.errors.verifyCode1}
                 </div>
+              )}
 
-                <div className="flex justify-center mt-[48px]">
-                  <button
-                    onClick={() => {
-                      toggleModal();
-                      OpenRegisterFinish();
-                    }}
-                    type="submit"
-                    className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-                  >
-                    ساخت حساب کاربری
-                  </button>
+              <input
+                name="verifyCode2"
+                type="text"
+                maxLength="1"
+                className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
+                {...formik.getFieldProps("verifyCode2")}
+              />
+              {formik.errors.verifyCode1 && (
+                <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                  {formik.errors.verifyCode2}
                 </div>
-                <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
-                  <p className="text-[#455A64] dark:text-gray-200">
-                    کد ارسال نشد؟{" "}
-                  </p>
-                  <NavLink
-                    className={
-                      "underline text-[#2196F3] dark:text-[#1565C0] mr-[3px]"
-                    }
-                  >
-                    ارسال دوباره
-                  </NavLink>
+              )}
+
+              <input
+                name="verifyCode3"
+                type="text"
+                maxLength="1"
+                className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
+                {...formik.getFieldProps("verifyCode3")}
+              />
+              {formik.errors.verifyCode1 && (
+                <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                  {formik.errors.verifyCode3}
                 </div>
-              </Form>
-            )}
-          </Formik>
+              )}
+
+              <input
+                name="verifyCode4"
+                type="text"
+                maxLength="1"
+                className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
+                {...formik.getFieldProps("verifyCode4")}
+              />
+              {formik.errors.verifyCode1 && (
+                <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                  {formik.errors.verifyCode4}
+                </div>
+              )}
+
+              <input
+                name="verifyCode5"
+                type="text"
+                maxLength="1"
+                className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
+                {...formik.getFieldProps("verifyCode5")}
+              />
+              {formik.errors.verifyCode1 && (
+                <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
+                  {formik.errors.verifyCode5}
+                </div>
+              )}
+            </div>
+
+            <div className="flex justify-center mt-[48px]">
+              <button
+                onClick={() => {
+                  // toggleModal();
+                  // OpenRegisterFinish();
+                }}
+                type="submit"
+                className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+              >
+                ارسال کد{" "}
+              </button>
+            </div>
+            <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
+              <p className="text-[#455A64] dark:text-gray-200">
+                کد ارسال نشد؟{" "}
+              </p>
+              <NavLink
+                className={
+                  "underline text-[#2196F3] dark:text-[#1565C0] mr-[3px]"
+                }
+              >
+                ارسال دوباره
+              </NavLink>
+            </div>
+          </form>
         </div>
       )}
     </>

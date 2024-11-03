@@ -2,6 +2,7 @@ import React from "react";
 
 import { Course } from "./Course";
 import { useNavigate } from "react-router-dom";
+import { useLandingCourses } from "../../../core/services/api/Landing/LandingCourses";
 const OurCourses = () => {
   const navigate = useNavigate();
 
@@ -10,6 +11,16 @@ const OurCourses = () => {
     window.scrollTo(0, 0); // اسکرول به بالای صفحه
   };
 
+  //Handel API
+
+  const { data, isPending } = useLandingCourses();
+
+  if (isPending) {
+    return <h1>Loading...</h1>;
+  }
+  console.log(data, "this data Landing Courses in OurCourses Comp");
+
+  //style
   const style = `w-[296px] h-[389px] flex flex-col  dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5    `;
   return (
     <>
@@ -23,11 +34,21 @@ const OurCourses = () => {
 
           {/* Content */}
           <div className="flex xl:flex-row flex-col xl:gap-x-[32px] gap-y-6 mt-[40px] sm:justify-between items-center">
-            <Course style={style}/>
-            <Course style={style}/>
-            <Course style={style}/>
-            <Course style={style}/>
-
+            {data?.map((courses, index) => {
+              return (
+                <Course
+                  key={index}
+                  courseId={courses.courseId}
+                  teacherName={courses.teacherName}
+                  cost={courses.cost}
+                  likeCount={courses.likeCount}
+                  userIsLiked={courses.userIsLiked}
+                  style={style}
+                  title={courses.title}
+                  describe={courses.describe}
+                />
+              );
+            })}
           </div>
           <div className="flex  justify-center mt-[40px]">
             {" "}

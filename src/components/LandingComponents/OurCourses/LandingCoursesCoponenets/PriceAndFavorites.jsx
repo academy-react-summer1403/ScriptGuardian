@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PriceAndFavorites = ({handleClickTitle}) => {
+const PriceAndFavorites = ({ handleClickTitle, likeCount, cost }) => {
   const [likes, setLikes] = useState(12);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -51,7 +51,10 @@ const PriceAndFavorites = ({handleClickTitle}) => {
   );
 
   return (
-    <div className="flex  mt-[14px] gap-x-[132px] " onClick={handleClickTitle}>
+    <div
+      className="flex  mt-[14px] justify-between "
+      onClick={handleClickTitle}
+    >
       <div className="w-[51px] h-[32px] bg-[#FFEBEE] text-[#F44336] dark:bg-[#2E2E2E] dark:text-[#FFCDD2] rounded-[24px] flex items-center justify-center gap-1 mr-[16px]">
         <span onClick={handelLike} className="">
           {isLiked ? isLikedTrue : isLikedFalse}
@@ -60,7 +63,10 @@ const PriceAndFavorites = ({handleClickTitle}) => {
       </div>
       <p className="text-[#2196F3] dark:text-[#BBDEFB] font-[500] tracking-tight">
         {" "}
-        500,000 <span className="text-[12px] text-[#263238] dark:text-[#CFD8DC]">تومان</span>{" "}
+        {cost}{" "}
+        <span className="text-[12px] text-[#263238] dark:text-[#CFD8DC] ml-5">
+          تومان
+        </span>{" "}
       </p>
     </div>
   );

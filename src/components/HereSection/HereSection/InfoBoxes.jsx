@@ -1,5 +1,6 @@
 import React from "react";
-import { useLandingReport } from "../../../core/services/api/Landing/LandingReport/LandingReport";
+import { useLandingReport } from "../../../core/services/api/Landing/LandingReport";
+
 
 const InfoBoxes = () => {
   const { data, isPending } = useLandingReport();
