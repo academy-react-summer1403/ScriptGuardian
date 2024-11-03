@@ -1,27 +1,20 @@
 import React, { useEffect } from "react";
 import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import { MdCheck } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Experimental_CssVarsProvider } from "@mui/material";
 import { useLogin } from "../../core/services/api/Auth/Login/Login";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
+import { setItem } from "../../core/services/storage/storage.services";
 const LoginModal = ({
   toggleModal,
   isOpen,
   openVerification,
   openRegister,
 }) => {
-  // if (isOpen === true) {
-  //   console.log("true Login Modal");
-  //   history.pushState(null, "", "/login");
-  // } else {
-  //   console.log("false Login Modal");
-  //   history.pushState(null , '' ,"/")
-  // }
 
-  //Formik Practice
-
-  // تعریف اسکیما برای اعتبارسنجی
+  const navigate = useNavigate()
   const validationSchema = Yup.object({
     phoneOrGmail: Yup.string()
       .required("این فیلد الزامی است")
@@ -32,11 +25,12 @@ const LoginModal = ({
       .min(5, "حداقل 5 کاراکتر وارد کنید"),
     password: Yup.string()
       .required("این فیلد الزامی است")
-      .min(6, "رمز عبور باید حداقل 6 کاراکتر باشد"),
+      .min(6, "رمز عبور باید حداقل 8 کاراکتر باشد"),
     rememberMe: Yup.boolean(),
   });
 
-  const { mutate: login } = useLogin(); // هوک login را به دست می‌آوریم
+  const { mutate: login, isError, data } = useLogin();
+  console.log("this use login Data", data);
 
   const formik = useFormik({
     initialValues: {
@@ -46,11 +40,26 @@ const LoginModal = ({
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log("Formik Values :", values);
-      // ارسال مقادیر به هوک login
-      login(values);
+      login(values, {
+        onSuccess: (data) => {
+          if (data.success) {
+            toast.success("ورود با موفقیت انجام شد");
+            setItem("token", data.token);
+            console.log(data, "data");
+            toggleModal()
+            navigate("./panel")
+          }
+          else{
+            toast.error("ورود ناموفق بود");
+          }
+        },
+        // onError: (error) => {
+         
+        // },
+      });
     },
   });
+
   return (
     <>
       {isOpen && (
@@ -95,22 +104,36 @@ const LoginModal = ({
               </div>
             </div>
             <form onSubmit={formik.handleSubmit}>
-              <input
-                className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 border rounded-[50px] pr-5 mr-[32px] mt-[48px] outline-none dark:text-gray-200 text-[#607D8B]"
-                placeholder="ایمیل یا شماره موبایل"
-                id="phoneOrGmail"
-                name="phoneOrGmail"
-                {...formik.getFieldProps("phoneOrGmail")}
-              />
+              <div className="relative">
+                <input
+                  className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 border rounded-[50px] pr-5 mr-[32px] mt-[48px] mb-5 outline-none dark:text-gray-200 text-[#607D8B]"
+                  placeholder="ایمیل یا شماره موبایل"
+                  id="phoneOrGmail"
+                  name="phoneOrGmail"
+                  {...formik.getFieldProps("phoneOrGmail")}
+                />
+                {formik.errors.phoneOrGmail && (
+                  <div className="dark:text-red-800 text-red-600 absolute top-[110px] right-11">
+                    {formik.errors.phoneOrGmail}
+                  </div>
+                )}
+              </div>
+              <div className="relative">
+                <input
+                  className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none mb-2 text-[#607D8B] dark:text-white"
+                  placeholder="رمز عبور"
+                  name="password"
+                  type="text"
+                  id="password"
+                  {...formik.getFieldProps("password")}
+                />
 
-              <input
-                className="sm:w-[365px] w-[80%] h-[56px] border-[#CFD8DC] border  dark:bg-gray-900 dark:border-gray-950 dark:placeholder:text-gray-200 rounded-[50px] pr-5 mr-[32px] mt-[16px] outline-none text-[#607D8B] dark:text-white"
-                placeholder="رمز عبور"
-                name="password"
-                type="text"
-                id="password"
-                {...formik.getFieldProps("password")}
-              />
+                {formik.errors.phoneOrGmail && (
+                  <div className="dark:text-red-800 text-red-600 right-11 absolute top-[80px]">
+                    {formik.errors.password}
+                  </div>
+                )}
+              </div>
               <div className="flex  mt-[24px] justify-between sm:text-[14px] text-[12px]">
                 <div className="flex items-center mr-[32px] gap-[8px] ">
                   <input
@@ -144,7 +167,7 @@ const LoginModal = ({
                   type="submit"
                   className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
                 >
-                  دریافت کد تایید
+                  ورود به حساب{" "}
                 </button>
               </div>
               <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">

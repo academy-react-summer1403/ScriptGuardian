@@ -13,10 +13,10 @@ const onSuccess = (response) => {
   console.log("interceptor", response);
   if (response.data.success != undefined && !response.data.success) {
     console.log("toast error");
-    toast(response.data.message);
+    // toast(response.data.message);
   } else if (response.data.success != undefined && response.data.success) {
     console.log("toast info");
-    toast(response.data.message);
+    // toast(response.data.message);
   }
   return response.data;
 };

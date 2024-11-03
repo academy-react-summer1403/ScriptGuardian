@@ -9,31 +9,31 @@ const RegisterCodeVerification = ({
   toggleModal,
   OpenRegisterFinish,
 }) => {
-  const validationSchema = Yup.object().shape({
-    code1: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code2: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code3: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code4: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code5: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-  });
+  // const validationSchema = Yup.object().shape({
+  //   code1: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code2: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code3: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code4: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code5: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  // });
 
 
-  if(isOpen === true){
-    console.log("true Register Modal Modal")
-  }
-  else{
-    console.log("false Register Modal Modal")
-  }
+  // if(isOpen === true){
+  //   console.log("true Register Modal Modal")
+  // }
+  // else{
+  //   console.log("false Register Modal Modal")
+  // }
   return (
     <>
       {" "}

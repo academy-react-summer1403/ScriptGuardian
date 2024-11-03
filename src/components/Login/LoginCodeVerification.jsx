@@ -5,31 +5,31 @@ import { Form, NavLink } from "react-router-dom";
 import * as Yup from "yup";
 
 const LoginCodeVerification = ({ isOpen, toggleModal }) => {
-  const validationSchema = Yup.object().shape({
-    code1: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code2: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code3: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code4: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-    code5: Yup.string()
-      .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("این فیلد اجباری است"),
-  });
+  // const validationSchema = Yup.object().shape({
+  //   code1: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code2: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code3: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code4: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  //   code5: Yup.string()
+  //     .matches(/^[0-9]$/, "فقط عدد مجاز است")
+  //     .required("این فیلد اجباری است"),
+  // });
 
 
-  if(isOpen === true){
-    console.log("true Code Modal")
-  }
-  else{
-    console.log("false Code Modal")
-  }
+  // if(isOpen === true){
+  //   console.log("true Code Modal")
+  // }
+  // else{
+  //   console.log("false Code Modal")
+  // }
   return (
     <>
       {isOpen && (

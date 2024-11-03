@@ -8,13 +8,13 @@ const RegisterModal = ({
   openVerification,
   openLogin,
 }) => {
-  if (isOpen === true) {
-    console.log("true Register Modal");
-    history.pushState(null, "", "/Register");
-  } else {
-    console.log("false Register Modal");
-    history.pushState(null, "", "/");
-  }
+  // if (isOpen === true) {
+  //   console.log("true Register Modal");
+  //   history.pushState(null, "", "/Register");
+  // } else {
+  //   console.log("false Register Modal");
+  //   history.pushState(null, "", "/");
+  // }
   return (
     <>
       {isOpen && (

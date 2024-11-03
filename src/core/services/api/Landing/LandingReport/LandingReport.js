@@ -8,6 +8,7 @@ const LandingReport = async () => {
     return response;
   } catch (error) {
     return false;
+    console.log("This error Four Landing Report.js" , error);
   }
 };
 export const useLandingReport = () => {

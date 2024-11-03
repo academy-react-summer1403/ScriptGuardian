@@ -3,11 +3,11 @@ import { Field, Form, Formik } from "formik";
 import { MdCheck } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 const RegisterFinish = ({ isOpen, toggleModal }) => {
-  if (isOpen === true) {
-    console.log("true Register Finish Modal");
-  } else {
-    console.log("false Register Finish Modal");
-  }
+  // if (isOpen === true) {
+  //   console.log("true Register Finish Modal");
+  // } else {
+  //   console.log("false Register Finish Modal");
+  // }
   return (
     <>
       {isOpen && (
