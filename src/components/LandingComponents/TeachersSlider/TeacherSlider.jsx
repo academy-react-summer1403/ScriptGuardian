@@ -91,7 +91,7 @@ const TeacherSlider = () => {
                 className={`xl:w-[296px] h-[382px] flex flex-col ${
                   index % 2 !== 0 ? "xl:mt-[64px]" : ""
                 }`}
-                key={item.id}
+                key={item.index}
               >
                 <div className="xl:w-[296px] h-[300px]  flex">
                   <img
