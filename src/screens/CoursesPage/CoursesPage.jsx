@@ -47,51 +47,56 @@ import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThe
 // import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
 import { CoursesCard } from "../../components/CoursesPage/CourseCard/CourseCard";
 import { Course } from "../../components/LandingComponents/OurCourses/Course";
+import { useCourses } from "../../core/services/api/CoursesPage/GetAllCourses";
 
 const CoursesPage = () => {
-  const [map, setMap] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-  ]);
+  //API
+
+  const { data } = useCourses();
+  console.log(data, "CoursesPage");
+  // const [aa, setMap] = useState([
+  //   { id: 1 },
+  //   { id: 2 },
+  //   { id: 3 },
+  //   { id: 4 },
+  //   { id: 5 },
+  //   { id: 6 },
+  //   { id: 7 },
+  //   { id: 8 },
+  //   { id: 9 },
+  //   { id: 1 },
+  //   { id: 2 },
+  //   { id: 3 },
+  //   { id: 4 },
+  //   { id: 5 },
+  //   { id: 6 },
+  //   { id: 7 },
+  //   { id: 8 },
+  //   { id: 9 },
+  //   { id: 1 },
+  //   { id: 2 },
+  //   { id: 3 },
+  //   { id: 4 },
+  //   { id: 5 },
+  //   { id: 6 },
+  //   { id: 7 },
+  //   { id: 8 },
+  //   { id: 9 },
+  // ]);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 8;
+  const itemsPerPage = 6;
 
   React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(map.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(map.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, map]);
+    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(data?.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, data]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % map.length;
+    const newOffset = (event.selected * itemsPerPage) % data?.length;
     setItemOffset(newOffset);
   };
 
@@ -115,8 +120,18 @@ const CoursesPage = () => {
           {/* Top */}
           <SearchAndThemeCourses handleClick={handleClick} />
           <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
-            {currentItems.map((course, index) => (
-              <Course key={course.id} id={course.id} style={style} />
+            {currentItems?.map((course, index) => (
+              <Course
+                key={course.id}
+                courseId={course.courseId}
+                teacherName={course.teacherName}
+                style={style}
+                cost={course.cost}
+                likeCount={course.likeCount}
+                userIsLiked={course.userIsLiked}
+                title={course.title}
+                describe={course.describe}
+              />
             ))}
           </div>
           {/* Pagination Controls */}
