@@ -1,6 +1,6 @@
 import React from "react";
 import TeacherImage from "../../images/CoursesDetails/Rectangle 14.png";
-const DetailsLeft = () => {
+const DetailsLeft = ({ startTime, endTime }) => {
   return (
     <div className="flex flex-col xl:w-[405px] lg:w-[305px] w-[95%] lg:mt-0 mt-5 ">
       <div className="w-full items-center flex flex-col h-[501px] shadow-ّFirst-shadow bg-white dark:bg-gray-900 rounded-3xl">
@@ -197,7 +197,8 @@ const DetailsLeft = () => {
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
-              24 فروردین 1403
+              {/* 24 فروردین 1403 */}
+              {startTime.slice(0, 10)}
             </p>
           </div>
 
@@ -290,7 +291,7 @@ const DetailsLeft = () => {
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
-              24 شهریور 1403
+              {endTime.slice(0, 10)}{" "}
             </p>
           </div>
         </div>

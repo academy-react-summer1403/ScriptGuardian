@@ -1,26 +1,33 @@
 import React from "react";
 import News from "../../images/NewsAndArticle/photo1.png";
 import { useNavigate } from "react-router-dom";
-const CardNewsPage = ({id}) => {
+const CardNewsPage = ({
+  id,
+  title,
+  miniDescribe,
+  addUserProfileImage,
+  currentView,
+}) => {
   const navigate = useNavigate();
-  const navigateDetails = () =>{
-    navigate(`/News/${id}`)
-  }
+  const navigateDetails = () => {
+    navigate(`/News/${id}`);
+  };
   return (
-    <div className=" lg:w-[405px]  w-[90%] sm:h-[447px] last:mb-5 cursor-pointer " onClick={navigateDetails}>
+    <div
+      className=" lg:w-[405px]  w-[90%] sm:h-[447px] last:mb-5 cursor-pointer "
+      onClick={navigateDetails}
+    >
       <div className=" h-[280px] lg:w-[405px]">
-        <img src={News} alt="" className="w-full h-full" />
+        <img src={addUserProfileImage} alt="" className="w-full h-full" />
       </div>
       <div className="flex flex-col text-[] lg:w-[405px]">
         <h2 className="mt-[24px] text-[#263238] dark:text-gray-200 font-[700] text-[20px]">
-          چگونه مطالعه موثر را برای شما آسانتر کنیم.
-        </h2>
+        {title}
+            </h2>
         <p className="mt-2 text-[#455A64] dark:text-gray-400">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-          از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و
-          سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد.
+        {miniDescribe}
         </p>
-        <div className="w-[170px] flex text-[#2196F3] dark:text-[#1565C0] mt-4 items-center  text-[14px] tracking-tighter ">
+        <div className="w-auto flex text-[#2196F3] dark:text-[#1565C0] mt-4 items-center  text-[14px] tracking-tighter ">
           <span>
             <svg
               width="14"
@@ -45,7 +52,7 @@ const CardNewsPage = ({id}) => {
               />
             </svg>
           </span>
-          <p className="mr-1">22 بازدید</p>
+          <p className="mr-1">{currentView} بازدید</p>
           <span className="mr-4">
             <svg
               width="6"

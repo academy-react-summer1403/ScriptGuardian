@@ -14,10 +14,13 @@ export const ApiRoutes = {
   LANDING_TEACHERS_URL: "/Home/GetTeachers",
   LANDING_NEWS_URL: "/News",
 
+  //Courses Page
+  COURSES_PAGE_URL: "/Home/GetCoursesWithPagination",
 
-  //Courses Page 
-  COURSES_PAGE:"/Home/GetCoursesWithPagination",
-
+  //Details Of Courses
+  DETAILS_COURSES_PAGE_URL: "/Home/GetCourseDetails?CourseId=",
+  //Detail OF News
+  DETAILS_NEWS_PAGE_URL: "/News/",
   //StudentPanel
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
 };

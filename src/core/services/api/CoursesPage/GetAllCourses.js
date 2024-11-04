@@ -4,7 +4,7 @@ import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 
 const Courses = async () => {
   try {
-    const response = await http.get(`${ApiRoutes.COURSES_PAGE}`);
+    const response = await http.get(`${ApiRoutes.COURSES_PAGE_URL}`);
     return response.courseFilterDtos;
   } catch (error) {
     console.log("This error Four Get All Courses Courses.js", error);

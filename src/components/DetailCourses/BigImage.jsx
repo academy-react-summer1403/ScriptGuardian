@@ -1,10 +1,10 @@
 import React from "react";
 import BigImage2 from "../../images/CoursesDetails/Rectangle 85.png";
 
-const BigImage = () => {
+const BigImage = ({ imageAddress }) => {
   return (
     <div className="w-full xl:h-[548px] relative ">
-      <img src={BigImage2} alt="" />
+      <img src={imageAddress} alt="" className="w-full h-full rounded-2xl " />
       <div className="absolute sm:w-[78px] w-[58px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 cursor-pointer flex sm:top-8 sm:right-8 top-4 right-4">
         <span className="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]">
           {" "}
@@ -50,7 +50,9 @@ const BigImage = () => {
             />
           </svg>
         </span>
-        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">14 ساعت</p>
+        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">
+          14 ساعت
+        </p>
       </div>
       <div className="absolute sm:w-[119px] w-[89px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 flex sm:bottom-8 bottom-2  sm:left-[165px] left-[100px]">
         <span className="sm:w-[24px] sm:h-[24px] w-5 h-5">
@@ -89,7 +91,9 @@ const BigImage = () => {
             />
           </svg>
         </span>
-        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">202 درس</p>
+        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">
+          202 درس
+        </p>
       </div>
     </div>
   );

@@ -4,8 +4,10 @@ import News from "../../images/NewsAndArticle/photo1.png";
 import { NewsSearchAndFilter } from "../../components/NewsPage/NewsSearchAndFilter";
 import { CardNewsPage } from "../../components/NewsPage/CardNewsPage";
 import ReactPaginate from "react-paginate";
+import { useLandingNews } from "../../core/services/api/Landing/LandingNews";
 
 const NewsPage = () => {
+  const { data } = useLandingNews();
   const [map, setMap] = useState([
     { id: 1 },
     { id: 2 },
@@ -43,12 +45,12 @@ const NewsPage = () => {
 
   React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(map.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(map.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, map]);
+    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(data?.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, data]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % map.length;
+    const newOffset = (event.selected * itemsPerPage) % data?.length;
     setItemOffset(newOffset);
   };
 
@@ -60,12 +62,19 @@ const NewsPage = () => {
         <NewsSearchAndFilter />
 
         <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
-          {currentItems.map((item , index) =>{
-            return(
+          {currentItems?.map((item, index) => {
+            return (
               <>
-                <CardNewsPage key={index} id={item.id}/>
+                <CardNewsPage
+                  key={index}
+                  id={item.id}
+                  title={item.title}
+                  miniDescribe={item.miniDescribe}
+                  addUserProfileImage={item.addUserProfileImage}
+                  currentView={item.currentView}
+                />
               </>
-            )
+            );
           })}
         </div>
         <div className="flex justify-center">

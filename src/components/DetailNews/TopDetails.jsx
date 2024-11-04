@@ -2,19 +2,24 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import DetailsBigImage from "../../images/NewsDetails/Rectangle 34.png";
 import DetailsSmallImage from "../../images/NewsDetails/Rectangle 16.png";
-const TopDetails = () => {
-  const { id } = useParams();
+const TopDetails = ({ title, currentImageAddress, miniDescribe }) => {
+  // const { id } = useParams();
   return (
     <div className="flex container lg:flex-row flex-col xl:w-[1280px]  lg:h-[340px]  mt-[56px]  mx-auto xl:gap-8 lg:gap-0 gap-8 lg:items-start items-center lg:justify-around  ">
       <div className="xl:w-[515px] lg:w-[54%]  w-[95%]  h-[340px]">
-        <img src={DetailsBigImage} className="w-full h-full shadow-ّFirst-shadow" alt="" />
+        <img
+          src={currentImageAddress}
+          className="w-full h-full shadow-ّFirst-shadow rounded-2xl"
+          alt=""
+        />
       </div>
       <div className="flex flex-col xl:w-[733px] lg:w-[40%]  w-[95%]">
         <h2 className="sm:text-[32px] lg:text-[24px] xl:text-[32px] text-lg sm:mr-0  font-[700] text-[#263238] dark:text-gray-200">
-          چگونه مطالعه {id} موثر را برای شما آسانتر کنیم.
+          {/* چگونه مطالعه موثر را برای شما آسانتر کنیم. */}
+          {title}
         </h2>
-        <p className="text-[#455A64] dark:text-gray-400 mt-3 sm:text-base text-xs sm:mr-0 ">
-          همانطور که از عنوان مقاله مشخص است، صحبت ما روی آموزش یک موضوع خاص مثل
+        <p className="text-[#455A64] dark:text-gray-400 mt-3 sm:text-base text-xs sm:mr-0 mb-2">
+          {/* همانطور که از عنوان مقاله مشخص است، صحبت ما روی آموزش یک موضوع خاص مثل
           آموزش از کتاب، ویدئو یا هر آنچه که برای آموزش است نخواهد بود و این
           مقاله به صورت جامع در مورد چگونگی آموزش دیدن و یادگیری است.همانطور که
           از عنوان مقاله مشخص است، صحبت ما روی آموزش یک موضوع خاص مثل آموزش از
@@ -24,9 +29,10 @@ const TopDetails = () => {
           های متفاوتی هم از هم دارند، در نظر گرفت. ولی خب هدف تمامی این افراد
           آموزش دیدن و رسیدن به درک عمیقی از اون مطلب است ولی آیا برای تمامی
           افراد آموزش دیدن به این جا ختم میشود و همه به درک عمیقی از اون مطلب
-          میرسند؟ قطعا خیر.
+          میرسند؟ قطعا خیر. */}
+          {miniDescribe}
         </p>
-        <div className="flex  sm:justify-between sm:flex-row flex-col-reverse items-center md:mt-0 mt-3">
+        <div className="flex  sm:justify-between sm:flex-row flex-col-reverse items-center md:mt-0 mt-3 ">
           <div className="w-[170px] flex text-[#2196F3] dark:text-[#1565C0] md:mt-4 sm:mt-0 mt-5 items-center  text-[14px] tracking-tighter ">
             <span>
               <svg
