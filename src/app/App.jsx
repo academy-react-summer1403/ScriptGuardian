@@ -42,7 +42,7 @@ const App = createBrowserRouter([
       {path:"/panel/MyProfile", element:<StudentProfile/>},
       {path:"/panel/MyCourses", element:<MyCourses/>},
       {path:"/panel/ChangePassword", element:<ChangePassWord/>},
-      {path:"/panel/Logout", element:<p>خروج</p>},
+      // {path:"/panel/Logout", element:<p>خروج</p>},
       {path:"/panel/MyComments", element:<p>کامنت های من</p>},
     ],
   }

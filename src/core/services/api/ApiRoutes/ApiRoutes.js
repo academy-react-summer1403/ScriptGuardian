@@ -13,4 +13,7 @@ export const ApiRoutes = {
   LANDING_COURSES_URL: "/Home/GetCoursesTop",
   LANDING_TEACHERS_URL: "/Home/GetTeachers",
   LANDING_NEWS_URL: "/News",
+
+  //StudentPanel
+  PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
 };
