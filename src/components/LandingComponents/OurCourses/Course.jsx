@@ -11,9 +11,13 @@ const Course = ({
   teacherName,
   cost,
   likeCount,
+  dissLikeCount,
   userIsLiked,
   title,
   describe,
+  isUserFavorite,
+  userLikeId,
+  userIsDissLiked,
 }) => {
   const navigate = useNavigate();
   const navigateDetails = () => {
@@ -35,12 +39,20 @@ const Course = ({
       {/* Content */}
 
       {/* TopicCourses */}
-      <h3 className="font-[700] mt-[16px] mr-[16px] ">
-          {title}
-      </h3>
+      <h3 className="font-[700] mt-[16px] mr-[16px] ">{title}</h3>
       <CourseInfo />
-      <CourseInstructor teacherName={teacherName}/>
-      <PriceAndFavorites handleClickTitle={handleClickTitle} likeCount={likeCount} cost={cost}/>
+      <CourseInstructor teacherName={teacherName} />
+      <PriceAndFavorites
+        handleClickTitle={handleClickTitle}
+        likeCount={likeCount}
+        cost={cost}
+        dissLikeCount={dissLikeCount}
+        isUserFavorite={isUserFavorite}
+        courseId={courseId}
+        userIsLiked={userIsLiked}
+        userLikeId={userLikeId}
+        userIsDissLiked={userIsDissLiked}
+      />
     </div>
   );
 };

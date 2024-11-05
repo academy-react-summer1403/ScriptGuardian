@@ -1,19 +1,79 @@
 import React, { useState } from "react";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import {
+  useAddDissLikeCourses,
+  useAddLikeCourses,
+  useDeleteLikeCourses,
+} from "../../../../core/services/api/CoursesPage/handelCourseLike";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import {
+  useAddFavoriteCourses,
+  useDeleteFavoriteCourses,
+} from "../../../../core/services/api/CoursesPage/handelCoursesFavorite";
+const PriceAndFavorites = ({
+  handleClickTitle,
+  likeCount,
+  cost,
+  isUserFavorite,
+  dissLikeCount,
+  courseId,
+  userIsLiked,
+  userLikeId,
+  userIsDissLiked,
+}) => {
+  const queryClient = useQueryClient();
+  //Api
 
-const PriceAndFavorites = ({ handleClickTitle, likeCount, cost }) => {
-  const [likes, setLikes] = useState(12);
-  const [isLiked, setIsLiked] = useState(false);
-
+  const { mutate: AddLike } = useAddLikeCourses();
+  const { mutate: DeleteLike } = useDeleteLikeCourses();
+  const { mutate: DissLike } = useAddDissLikeCourses();
   const handelLike = () => {
-    if (isLiked) {
-      setLikes(likes - 1);
+    if (userIsLiked === true) {
+      DeleteLike(userLikeId);
     } else {
-      setLikes(likes + 1);
+      AddLike(courseId, {
+        onSuccess: () => {
+          toast.success("با موفقیت لایک شد");
+          queryClient.invalidateQueries("AddLikeCourses");
+        },
+      }),
+        {};
     }
-    setIsLiked(!isLiked);
   };
 
-  const isLikedTrue = (
+  const handleDissLike = () => {
+    DissLike(courseId, {
+      onSuccess: () => {
+        toast.success("با موفقیت دیس لایک شد");
+
+        queryClient.invalidateQueries("AddDissLikeCourses");
+      },
+    });
+  };
+
+  //handel favorite
+
+  //API
+
+  const { mutate: AddFavorite, data } = useAddFavoriteCourses();
+  const { mutate: DeleteFavorite } = useDeleteFavoriteCourses();
+  const handelFavorite = () => {
+    if (isUserFavorite === true) {
+      DeleteFavorite(courseId);
+    } else {
+      AddFavorite(courseId, {
+        //TODO "Add IF For Show Toast"
+        onSuccess: () => {
+          toast.success("با موفقیت به  لیست علاقه مندی ها اضافه شد");
+
+          queryClient.invalidateQueries("AddFavoriteCourses");
+        },
+      });
+    }
+  };
+
+  const isFavorite = (
     <svg
       width="16"
       height="16"
@@ -32,7 +92,7 @@ const PriceAndFavorites = ({ handleClickTitle, likeCount, cost }) => {
     </svg>
   );
 
-  const isLikedFalse = (
+  const isFavoriteFalse = (
     <svg
       width="16"
       height="16"
@@ -50,16 +110,33 @@ const PriceAndFavorites = ({ handleClickTitle, likeCount, cost }) => {
     </svg>
   );
 
+  console.log(isUserFavorite, "isUserFavorite");
   return (
     <div
       className="flex  mt-[14px] justify-between "
       onClick={handleClickTitle}
     >
       <div className="w-[51px] h-[32px] bg-[#FFEBEE] text-[#F44336] dark:bg-[#2E2E2E] dark:text-[#FFCDD2] rounded-[24px] flex items-center justify-center gap-1 mr-[16px]">
-        <span onClick={handelLike} className="">
-          {isLiked ? isLikedTrue : isLikedFalse}
+        <span className="" onClick={handelFavorite}>
+          {isUserFavorite ? isFavorite : isFavoriteFalse}
         </span>
-        {likes}
+      </div>
+
+      <div className="flex items-center gap-3">
+        <button className="flex items-center 0">
+          <span className="ml-1 text-xs">{likeCount}</span>
+          <FaThumbsUp
+            className={`text-sm ${userIsLiked ? "text-green-400" : ""}`}
+            onClick={handelLike}
+          />
+        </button>
+        <button className="flex items-center ">
+          <FaThumbsDown
+            className={`text-sm  ${userIsDissLiked ? "text-red-400" : ""}`}
+            onClick={handleDissLike}
+          />
+          <span className="mr-1 text-xs">{dissLikeCount}</span>
+        </button>
       </div>
       <p className="text-[#2196F3] dark:text-[#BBDEFB] font-[500] tracking-tight">
         {" "}

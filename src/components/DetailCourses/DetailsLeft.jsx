@@ -198,7 +198,7 @@ const DetailsLeft = ({ startTime, endTime }) => {
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
               {/* 24 فروردین 1403 */}
-              {startTime.slice(0, 10)}
+              {startTime?.slice(0, 10)}
             </p>
           </div>
 
@@ -291,7 +291,7 @@ const DetailsLeft = ({ startTime, endTime }) => {
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
-              {endTime.slice(0, 10)}{" "}
+              {endTime?.slice(0, 10)}{" "}
             </p>
           </div>
         </div>

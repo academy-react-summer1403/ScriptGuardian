@@ -1,10 +1,8 @@
 import React from "react";
 import { useLandingReport } from "../../../core/services/api/Landing/LandingReport";
-
-
 const InfoBoxes = () => {
   const { data, isPending } = useLandingReport();
-  if (isPending) return <div>Loading...</div>; // بارگذاری
+  if (isPending) return <>Load</>; // بارگذاری
   console.log(data, "this data Landing Report in InfoBoxes Comp");
   return (
     <>
@@ -67,7 +65,7 @@ const InfoBoxes = () => {
             {data.courseCount}
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
-             دوره با کیفیت 
+            دوره با کیفیت
           </p>
         </div>
       </div>

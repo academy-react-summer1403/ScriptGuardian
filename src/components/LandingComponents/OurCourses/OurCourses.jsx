@@ -42,10 +42,14 @@ const OurCourses = () => {
                   teacherName={courses.teacherName}
                   cost={courses.cost}
                   likeCount={courses.likeCount}
+                  dissLikeCount={courses.dissLikeCount}
                   userIsLiked={courses.userIsLiked}
                   style={style}
                   title={courses.title}
                   describe={courses.describe}
+                  isUserFavorite={courses.isUserFavorite}
+                  userLikeId={courses.userLikeId}
+                  userIsDissLiked={courses.userIsDissLiked}
                 />
               );
             })}
