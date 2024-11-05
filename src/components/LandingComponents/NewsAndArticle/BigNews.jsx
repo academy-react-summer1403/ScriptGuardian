@@ -130,7 +130,6 @@ const BigNews = ({
           </div>
         </div>
         <div className="flex flex-row-reverse">
-        {id}
           {Array.from({ length: totalStars }).map((_, index) => (
             <span key={index} onClick={() => alert(`Index: ${index + 1}`)}>
               <svg

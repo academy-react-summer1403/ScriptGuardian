@@ -15,7 +15,7 @@ export const ApiRoutes = {
 
   //News
   LANDING_NEWS_URL: "/News",
-  ADD_RATE_NEWS_URL:"/News/NewsRate?",
+  ADD_RATE_NEWS_URL: "/News/NewsRate?",
 
   //Courses Page
   COURSES_PAGE_URL: "/Home/GetCoursesWithPagination",
@@ -28,6 +28,8 @@ export const ApiRoutes = {
   DETAILS_COURSES_PAGE_URL: "/Home/GetCourseDetails?CourseId=",
   //Detail OF News
   DETAILS_NEWS_PAGE_URL: "/News/",
+  DETAILS_NEWS_PAGE_REPLAY_COMMENT_URL: "/News/GetRepliesComments?",
+  DETAILS_NEWS_PAGE_LIKE_COMMENT_URL: "/News/CommentLike/",
   //StudentPanel DashBoard
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
 

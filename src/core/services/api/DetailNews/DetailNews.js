@@ -5,7 +5,7 @@ import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 const DetailNews = async (id) => {
   try {
     const response = await http.get(`${ApiRoutes.DETAILS_NEWS_PAGE_URL}${id}`);
-    return response.detailsNewsDto;
+    return response;
   } catch (error) {
     console.log("This error For DetailNews.js", error);
     return false;

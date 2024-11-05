@@ -15,15 +15,20 @@ const DetailsNews = () => {
   //API
 
   const { data } = useDetailNews(id);
+  // console.log(data?.detailsNewsDto, "DetailNews");
+  const detailsNewsDto = data?.detailsNewsDto;
+  console.log(detailsNewsDto, "DetailNews2");
+  // console.log(data?.detailsNewsDto, "DetailNews");
+  const commentDtos = data?.commentDtos;
   return (
     <>
       <TopDetails
-        title={data?.title}
-        currentImageAddress={data?.currentImageAddress}
-        miniDescribe={data?.miniDescribe}
+        title={detailsNewsDto?.title}
+        currentImageAddress={detailsNewsDto?.currentImageAddress}
+        miniDescribe={detailsNewsDto?.miniDescribe}
       />
       <MidDetails />
-      <CommentDetails />
+      <CommentDetails commentDtos={commentDtos} />
     </>
   );
 };
