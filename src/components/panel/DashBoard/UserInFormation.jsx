@@ -13,7 +13,13 @@ const UserInFormation = () => {
           </p>
           <p className="text-purple-900 dark:text-purple-700">
             {" "}
-            {data?.fName} {data?.lName}
+            {!data?.fName && !data?.lName ? (
+              <p className="text-xs">نام و نام خانوادگی وارد نکردید</p>
+            ) : (
+              <p>
+                {data?.fName} {data?.lName}
+              </p>
+            )}{" "}
           </p>
         </div>
 
@@ -21,7 +27,11 @@ const UserInFormation = () => {
           <p className="text-[#455A64] dark:text-gray-400">تاریخ تولد:</p>
           <p className="text-purple-900 dark:text-purple-700">
             {" "}
-            {data?.birthDay.slice(0, 10)}
+            {data?.birthDay === "0001-01-01T00:00:00" ? (
+              <p className="text-xs">لطفا تاریخ تولد خود را وارد کنید</p>
+            ) : (
+              <p>{data?.birthDay.slice(0, 10)}</p>
+            )}{" "}
           </p>
         </div>
 
@@ -39,7 +49,11 @@ const UserInFormation = () => {
           <p className="text-[#455A64] dark:text-gray-400">شماره ملی:</p>
           <p className="text-purple-900 dark:text-purple-700">
             {" "}
-            {data?.nationalCode}
+            {data?.nationalCode ? (
+              data?.nationalCode
+            ) : (
+              <p className="text-xs">لطفا کد ملی خود را وارد کنید</p>
+            )}
           </p>
         </div>
 

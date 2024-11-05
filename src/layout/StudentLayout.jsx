@@ -26,7 +26,7 @@ const StudentLayout = () => {
   };
   //API
   const { data } = useGetStudentProfile();
-  const handleImage = data?.currentPictureAddress || userProfile ; 
+  const handleImage = data?.currentPictureAddress || userProfile;
 
   return (
     <>
@@ -43,7 +43,12 @@ const StudentLayout = () => {
           <div className="flex flex-col  justify-center items-center ">
             <div className="flex w-[100px] h-[100px]  rounded-full">
               <img
-                src={handleImage}
+                src={
+                  data?.currentPictureAddress &&
+                  data.currentPictureAddress !== "Not-set"
+                    ? data.currentPictureAddress
+                    : userProfile
+                }
                 alt=""
                 className="w-full h-full rounded-full "
               />
