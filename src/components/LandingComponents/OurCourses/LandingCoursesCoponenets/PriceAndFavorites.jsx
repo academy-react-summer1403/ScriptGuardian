@@ -30,7 +30,9 @@ const PriceAndFavorites = ({
   const { mutate: DissLike } = useAddDissLikeCourses();
   const handelLike = () => {
     if (userIsLiked === true) {
-      DeleteLike(userLikeId);
+      const formData = new FormData();
+      formData.append("CourseLikeId", "e81e8c37-2986-ef11-b6de-e3821792c3b7");
+      DeleteLike(formData);
     } else {
       AddLike(courseId, {
         onSuccess: () => {
@@ -121,7 +123,7 @@ const PriceAndFavorites = ({
           {isUserFavorite ? isFavorite : isFavoriteFalse}
         </span>
       </div>
-
+      {/* {userLikeId} */}
       <div className="flex items-center gap-3">
         <button className="flex items-center 0">
           <span className="ml-1 text-xs">{likeCount}</span>

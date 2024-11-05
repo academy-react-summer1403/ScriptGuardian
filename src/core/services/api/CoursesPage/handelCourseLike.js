@@ -54,17 +54,18 @@ export const useAddDissLikeCourses = () => {
 
 //handel delete like
 
-const DeleteLikeCourses = async (CourseLikeId) => {
-  console.log("this is Delete CourseLike ", CourseLikeId);
+const DeleteLikeCourses = async (formData) => {
+  console.log("this is Delete CourseLike ", formData);
   try {
-    // const response = await http.delete(ApiRoutes.DELETE_LIKE_COURSES_URL, {
-    //   data: userLikeId,
-    // });
-    const response = await http.delete("/Course/DeleteCourseLike", {
-      data: {
-        CourseLikeId,
-      },
-    });
+    const response = await http.delete(
+      ApiRoutes.DELETE_LIKE_COURSES_URL,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     console.log(response.message, "this response Of  DeleteLikeCourses");
     return response;
   } catch (error) {
@@ -76,9 +77,9 @@ const DeleteLikeCourses = async (CourseLikeId) => {
 export const useDeleteLikeCourses = () => {
   return useMutation({
     mutationKey: ["DeleteLikeCourses"],
-    mutationFn: (CourseLikeId) => {
-      console.log("this is DeleteLikeCourses =", CourseLikeId);
-      return DeleteLikeCourses(CourseLikeId);
+    mutationFn: (formData) => {
+      console.log("this is DeleteLikeCourses =", formData);
+      return DeleteLikeCourses(formData);
     },
   });
 };

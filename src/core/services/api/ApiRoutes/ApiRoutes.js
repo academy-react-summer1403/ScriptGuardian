@@ -12,7 +12,10 @@ export const ApiRoutes = {
   LANDING_REPORT_URL: "/Home/LandingReport",
   LANDING_COURSES_URL: "/Home/GetCoursesTop",
   LANDING_TEACHERS_URL: "/Home/GetTeachers",
+
+  //News
   LANDING_NEWS_URL: "/News",
+  ADD_RATE_NEWS_URL:"/News/NewsRate?",
 
   //Courses Page
   COURSES_PAGE_URL: "/Home/GetCoursesWithPagination",
@@ -25,6 +28,13 @@ export const ApiRoutes = {
   DETAILS_COURSES_PAGE_URL: "/Home/GetCourseDetails?CourseId=",
   //Detail OF News
   DETAILS_NEWS_PAGE_URL: "/News/",
-  //StudentPanel
+  //StudentPanel DashBoard
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
+
+  //student panel My Courses
+
+  PANEL_MY_COURSES_URL: "/SharePanel/GetMyCourses",
+
+  //Student Panel Change pass
+  PANEL_CHANGE_PASSWORD_URL: "/SharePanel/ChangePassword",
 };

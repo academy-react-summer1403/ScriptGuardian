@@ -122,15 +122,19 @@ const CoursesPage = () => {
           <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
             {currentItems?.map((course, index) => (
               <Course
-                key={course.id}
+                style={style}
+                key={index}
                 courseId={course.courseId}
                 teacherName={course.teacherName}
-                style={style}
                 cost={course.cost}
                 likeCount={course.likeCount}
+                dissLikeCount={course.dissLikeCount}
                 userIsLiked={course.userIsLiked}
                 title={course.title}
                 describe={course.describe}
+                isUserFavorite={course.userFavorite}
+                userLikeId={course.userLikeId}
+                userIsDissLiked={course.currentUserDissLike}
               />
             ))}
           </div>

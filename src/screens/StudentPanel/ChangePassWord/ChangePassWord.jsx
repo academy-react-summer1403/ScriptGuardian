@@ -20,10 +20,30 @@ import { HiX } from "react-icons/hi";
 import { MdDashboard, MdShoppingCart } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
+import { usePanelChangePassword } from "../../../core/services/api/Panel/HandelChangePAss";
+import { useFormik, validateYupSchema } from "formik";
+import { validationEditPass } from "../../../core/services/validation/validationSchema/Panel";
 
 const ChangePassWord = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //API
 
+  const { mutate: ChangePassword } = usePanelChangePassword();
+
+  const formik = useFormik({
+    initialValues: {
+      oldPassword: "",
+      newPassword: "",
+    },
+    validationSchema: validationEditPass,
+
+    onSubmit(values) {
+      ChangePassword(values);
+    },
+  });
+
+  //handel menu
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -157,35 +177,57 @@ const ChangePassWord = () => {
         {/* Unic */}
 
         <div className="flex flex-col  mt-20  sm:w-[43%] w-[50%]  ">
-          <form className="">
+          <form className="" onSubmit={formik.handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-200">رمز عبور فعلی</label>
+              <label className="block text-gray-700 dark:text-gray-200">
+                رمز عبور فعلی
+              </label>
               <input
                 type="password"
                 className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full"
                 placeholder="رمز عبور فعلی"
-                required
+                name="oldPassword"
+                id="oldPassword"
+                {...formik.getFieldProps("oldPassword")}
               />
+              {formik.touched.oldPassword && formik.errors.oldPassword ? (
+                <div className="text-red-500">{formik.errors.oldPassword}</div>
+              ) : null}
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-200">رمز عبور جدید</label>
+              <label className="block text-gray-700 dark:text-gray-200">
+                رمز عبور جدید
+              </label>
               <input
                 type="password"
                 className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full "
                 placeholder="رمز عبور جدید"
-                required
+                name="newPassword"
+                id="newPassword"
+                {...formik.getFieldProps("newPassword")}
               />
+              {formik.touched.newPassword && formik.errors.newPassword ? (
+                <div className="text-red-500">{formik.errors.newPassword}</div>
+              ) : null}
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-200">تکرار رمز عبور جدید</label>
+              <label className="block text-gray-700 dark:text-gray-200">
+                تکرار رمز عبور جدید
+              </label>
               <input
                 type="password"
                 className="mt-1 p-2 border  border-gray-300 dark:border-gray-950 dark:bg-gray-800  rounded w-full"
                 placeholder="تکرار رمز عبور جدید"
-                required
+                {...formik.getFieldProps("confirmPassword")}
               />
+              {formik.touched.confirmPassword &&
+              formik.errors.confirmPassword ? (
+                <div className="text-red-500">
+                  {formik.errors.confirmPassword}
+                </div>
+              ) : null}
             </div>
 
             <button

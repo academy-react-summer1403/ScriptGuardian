@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import http from "../../../../interceptors/interceptors";
 import { ApiRoutes } from "../../ApiRoutes/ApiRoutes";
-import { toast } from "react-toastify";
 
 const Login = async (user) => {
   console.log("this is user", user);
@@ -23,5 +22,3 @@ export const useLogin = () => {
     },
   });
 };
-
-
