@@ -2,13 +2,21 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import DetailsBigImage from "../../images/NewsDetails/Rectangle 34.png";
 import DetailsSmallImage from "../../images/NewsDetails/Rectangle 16.png";
-const TopDetails = ({ title, currentImageAddress, miniDescribe }) => {
+import image from "../../images/NewsDetails/default_image.png";
+import profile from "../../images/NewsDetails/profile.png";
+const TopDetails = ({
+  title,
+  currentImageAddress,
+  miniDescribe,
+  currentView,
+  addUserFullName,
+}) => {
   // const { id } = useParams();
   return (
     <div className="flex container lg:flex-row flex-col xl:w-[1280px]  lg:h-[340px]  mt-[56px]  mx-auto xl:gap-8 lg:gap-0 gap-8 lg:items-start items-center lg:justify-around  ">
       <div className="xl:w-[515px] lg:w-[54%]  w-[95%]  h-[340px]">
         <img
-          src={currentImageAddress}
+          src={currentImageAddress ? currentImageAddress : image}
           className="w-full h-full shadow-ّFirst-shadow rounded-2xl"
           alt=""
         />
@@ -33,7 +41,7 @@ const TopDetails = ({ title, currentImageAddress, miniDescribe }) => {
           {miniDescribe}
         </p>
         <div className="flex  sm:justify-between sm:flex-row flex-col-reverse items-center md:mt-0 mt-3 ">
-          <div className="w-[170px] flex text-[#2196F3] dark:text-[#1565C0] md:mt-4 sm:mt-0 mt-5 items-center  text-[14px] tracking-tighter ">
+          <div className="min-w-[170px] flex text-[#2196F3] dark:text-[#1565C0] md:mt-4 sm:mt-0 mt-5 items-center   text-[14px] tracking-tighter ">
             <span>
               <svg
                 width="14"
@@ -58,7 +66,7 @@ const TopDetails = ({ title, currentImageAddress, miniDescribe }) => {
                 />
               </svg>
             </span>
-            <p className="mr-1">22 بازدید</p>
+            <p className="mr-1">{currentView} بازدید</p>
             <span className="mr-4">
               <svg
                 width="6"
@@ -142,9 +150,12 @@ const TopDetails = ({ title, currentImageAddress, miniDescribe }) => {
             <p className="mr-1">1402/7/2</p>
           </div>
           <div className="flex w-[186px] h-[64px] items-center bg-white  shadow-2xl mt-5 sm:mt-0 dark:bg-gray-900 rounded-2xl">
-            <img src={DetailsSmallImage} alt="" className="mr-3" />
-            <p className="text-[#263238] dark:text-gray-200 mr-3">
-              بهاره یزدانی
+            <div className="w-10 h-10 rounded-2xl">
+              {" "}
+              <img src={profile} alt="" className="mr-3 w-full h-full rounded-2xl" />
+            </div>
+            <p className="text-[#263238] dark:text-gray-200 mr-5">
+              {addUserFullName}
             </p>
           </div>
         </div>

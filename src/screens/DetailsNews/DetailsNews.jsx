@@ -26,8 +26,14 @@ const DetailsNews = () => {
         title={detailsNewsDto?.title}
         currentImageAddress={detailsNewsDto?.currentImageAddress}
         miniDescribe={detailsNewsDto?.miniDescribe}
+        currentView={detailsNewsDto?.currentView}
+        addUserFullName={detailsNewsDto?.addUserFullName}
       />
-      <MidDetails />
+      <MidDetails
+        currentUserSetRate={detailsNewsDto?.currentUserSetRate}
+        currentUserRateNumber={detailsNewsDto?.currentUserRateNumber}
+        id={detailsNewsDto?.id}
+      />
       <CommentDetails commentDtos={commentDtos} />
     </>
   );

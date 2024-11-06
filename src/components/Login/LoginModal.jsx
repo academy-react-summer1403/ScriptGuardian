@@ -14,8 +14,7 @@ const LoginModal = ({
   openVerification,
   openRegister,
 }) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { mutate: login, isError, data } = useLogin();
   console.log("this use login Data", data);
@@ -34,15 +33,14 @@ const LoginModal = ({
             toast.success("ورود با موفقیت انجام شد");
             setItem("token", data.token);
             console.log(data, "data");
-            toggleModal()
-            navigate("./panel")
-          }
-          else{
+            toggleModal();
+            navigate("./panel");
+          } else {
             toast.error("ورود ناموفق بود");
           }
         },
         // onError: (error) => {
-         
+
         // },
       });
     },
