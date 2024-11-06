@@ -1,6 +1,51 @@
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import {
+  useAddDissLikeCourses,
+  useAddLikeCourses,
+  useDeleteLikeCourses,
+} from "../../core/services/api/CoursesPage/handelCourseLike";
+import { toast } from "react-toastify";
 
-const RatingCourses = () => {
+const RatingCourses = ({
+  currentUserDissLike,
+  currentUserLike,
+  likeCount,
+  dissLikeCount,
+  courseId,
+}) => {
+  const queryClient = useQueryClient();
+  //Api
+
+  const { mutate: AddLike } = useAddLikeCourses();
+  const { mutate: DeleteLike } = useDeleteLikeCourses();
+  const { mutate: DissLike } = useAddDissLikeCourses();
+  const handelLike = () => {
+    if (currentUserLike == "1") {
+      const formData = new FormData();
+      formData.append("CourseLikeId", "e81e8c37-2986-ef11-b6de-e3821792c3b7");
+      DeleteLike(formData);
+    } else {
+      AddLike(courseId, {
+        onSuccess: () => {
+          toast.success("با موفقیت لایک شد");
+          queryClient.invalidateQueries("AddLikeCourses");
+        },
+      }),
+        {};
+    }
+  };
+
+  const handleDissLike = () => {
+    DissLike(courseId, {
+      onSuccess: () => {
+        toast.success("با موفقیت دیس لایک شد");
+
+        queryClient.invalidateQueries("AddDissLikeCourses");
+      },
+    });
+  };
   return (
     <div className="w-full xl:h-[48px] flex xl:flex-row flex-col justify-between mt-4 xl:gap-y-0 gap-y-5">
       <div className="flex items-center xl:justify-start justify-between">
@@ -101,12 +146,11 @@ const RatingCourses = () => {
           </button>
         </div>
       </div>
-
       <div className="flex items-center xl:justify-start justify-between">
         <p className="sm:ml-6 text-[#455A64] sm:text-base text-xs dark:text-gray-400">
           آیا از این مقاله راضی بودید ؟
         </p>
-        <div className="flex items-center sm:gap-0 gap-2 ">
+        {/* <div className="flex items-center sm:gap-0 gap-2 ">
           <div className="items-center flex sm:w-[83px] w-[53px] h-[48px] bg-[#ECEFF1] sm:ml-4 rounded-[50px] dark:bg-[#37474F] sm:justify-start justify-center">
             <span className="sm:mr-4 sm:w-[24px] w-[16px] sm:h-[24px] h-[16px]">
               <svg
@@ -160,6 +204,31 @@ const RatingCourses = () => {
               22
             </p>
           </div>
+        </div> */}
+
+        <div className="flex items-center gap-3">
+          <button className="flex items-center 0">
+            <span className="ml-1 text-xs">{likeCount}</span>
+            <FaThumbsUp
+              className={`text-xl ${
+                currentUserLike == "1"
+                  ? "text-green-400 dark:text-green-600"
+                  : "text-black dark:text-white"
+              }`}
+              onClick={handelLike}
+            />
+          </button>
+          <button className="flex items-center ">
+            <FaThumbsDown
+              className={`text-xl  ${
+                currentUserDissLike == "1"
+                  ? " text-red-400 dark:text-red-600"
+                  : "dark:text-white text-black "
+              }`}
+              onClick={handleDissLike}
+            />
+            <span className="mr-1 text-xs">{dissLikeCount}</span>
+          </button>
         </div>
       </div>
     </div>

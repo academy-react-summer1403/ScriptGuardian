@@ -70,7 +70,6 @@ const Comment = ({
 
   return (
     <>
-      {/* {id} */}
       <div
         className={`w-full  sm:min-h-[92px] flex   flex-col ${
           showReplies ? "" : "mb-5 "

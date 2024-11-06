@@ -25,10 +25,12 @@ import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
 import { FiChevronDown, FiSearch } from "react-icons/fi";
 import Test from "../../../images/StudentPanel/MyCourses/images.png";
 import ReactPaginate from "react-paginate";
-import { useMyCourses } from "../../../core/services/api/Panel/handelMyCourses";
+import {
+  useMyCourses,
+  useMyReservedCourses,
+} from "../../../core/services/api/Panel/handelMyCourses";
 import { ListPanel } from "../../../components/common/ListPanl/ListPanel";
-const MyCourses = () => {
-  const navigate = useNavigate();
+const MyReservedCourses = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -69,7 +71,8 @@ const MyCourses = () => {
   };
 
   //API
-  const { data, isPending } = useMyCourses();
+  const { data, isPending } = useMyReservedCourses();
+  console.log(data, "this data of course is pending");
 
   // page data
 
@@ -200,7 +203,7 @@ const MyCourses = () => {
             <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
             <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-200">
               {" "}
-              دوره های من
+              دوره های رزرو شده ی من
             </h2>
           </div>
 
@@ -272,40 +275,6 @@ const MyCourses = () => {
           {currentItems?.map((item, index) => {
             return (
               <>
-                {/* <div
-                  key={index}
-                  className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] md:justify-start justify-around"
-                >
-                  <div className="lg:mr-[1%] sm:w-[6%] lg:w-[15%] md:w-[12%] md:mr-[6%] max-w-[60px] h-full    items-center md:flex  hidden">
-                    <img
-                      src={item.tumbImageAddress}
-                      alt=""
-                      className="w-full object-cover h-[80%] rounded block"
-                    />
-                  </div>
-                  <div className="lg:mr-[12%] md:mr-[6%]   lg:w-[10%] md:w-[10%]   ">
-                    {item.courseTitle}
-                  </div>
-                  <div className="lg:mr-[6%] md:mr-[5%]  lg:w-[12%] md:w-[15%] b">
-                    {item.fullName}
-                  </div>
-                  <div className="lg:mr-[7.5%] md:mr-[4%]  lg:w-[10%] md:w-[11.3%]  ">
-                    {" "}
-                    1403/10/02
-                  </div>
-                  <div className="lg:mr-[10%] md:mr-[5%]  lg:w-[13%] md:w-[13%] ">
-                    {item.cost} <span>تومان</span>
-                  </div>
-                  <div className="flex items-center gap-x-1 sm:mr-[6%]">
-                    <FaEye
-                      className="cursor-pointer"
-                      onClick={() => {
-                        navigate(`/courses/${item?.courseId}`);
-                      }}
-                    />
-                    <FaTrash className="text-red-600" />
-                  </div>
-                </div> */}
                 <ListPanel
                   key={index}
                   tumbImageAddress={item.tumbImageAddress}
@@ -378,4 +347,4 @@ const MyCourses = () => {
   );
 };
 
-export { MyCourses };
+export { MyReservedCourses };

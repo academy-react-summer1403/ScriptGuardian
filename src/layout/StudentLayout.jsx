@@ -76,6 +76,11 @@ const StudentLayout = () => {
             </div>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+              <FaBookOpen className="text-xl" />
+              <NavLink to="/panel/MyReservedCourses">دوره های  رزرو شده </NavLink>
+            </div>
+
+            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaLock className="text-xl" />
               <NavLink to="/panel/ChangePassword">تغییر رمز عبور</NavLink>
             </div>

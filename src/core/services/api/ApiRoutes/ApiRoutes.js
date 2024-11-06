@@ -26,16 +26,21 @@ export const ApiRoutes = {
   DELETE_COURSES_FAVORITE_URL: "/Course/DeleteCourseFavorite",
   //Details Of Courses
   DETAILS_COURSES_PAGE_URL: "/Home/GetCourseDetails?CourseId=",
+  DETAILS_COURSES_ADD_TO_RESERVE_URL: "/CourseReserve/ReserveAdd",
   //Detail OF News
   DETAILS_NEWS_PAGE_URL: "/News/",
   DETAILS_NEWS_PAGE_REPLAY_COMMENT_URL: "/News/GetRepliesComments?",
   DETAILS_NEWS_PAGE_LIKE_COMMENT_URL: "/News/CommentLike/",
+  DETAILS_ADD_LIKE_NEWS_URL: "/News/NewsLike/",
+  DETAILS_ADD_DISS_LIKE_NEWS_URL: "/News/NewsDissLike/",
+  DETAILS_DELETE_LIKE_NEWS_URL: "/News/DeleteLikeNews",
+
   //StudentPanel DashBoard
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
 
   //student panel My Courses
-
   PANEL_MY_COURSES_URL: "/SharePanel/GetMyCourses",
+  PANEL_MY_RESERVED_COURSES_URL: "/SharePanel/GetMyCoursesReserve",
 
   //student panel Edit Profile
   PANEL_EDIT_PROFILE_URL: "/SharePanel/UpdateProfileInfo",

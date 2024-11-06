@@ -33,6 +33,11 @@ const DetailsNews = () => {
         currentUserSetRate={detailsNewsDto?.currentUserSetRate}
         currentUserRateNumber={detailsNewsDto?.currentUserRateNumber}
         id={detailsNewsDto?.id}
+        currentLikeCount={detailsNewsDto?.currentLikeCount}
+        currentDissLikeCount={detailsNewsDto?.currentDissLikeCount}
+        currentUserIsLike={detailsNewsDto?.currentUserIsLike}
+        currentUserIsDissLike={detailsNewsDto?.currentUserIsDissLike}
+        likeId={detailsNewsDto?.likeId}
       />
       <CommentDetails commentDtos={commentDtos} />
     </>

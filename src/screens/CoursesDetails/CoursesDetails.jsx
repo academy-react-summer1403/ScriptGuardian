@@ -15,22 +15,40 @@ const CoursesDetails = () => {
 
   //API
   const { data } = useCoursesDetail(id);
-  console.log(data , "data");
 
   return (
     <>
       <div className="flex flex-col  container xl:w-[1280px] mx-auto mt-20 ">
         <div className="flex lg:flex-row flex-col lg:gap-x-[30px] lg:items-start items-center">
           <div className="flex flex-col xl:w-[843px] xl:mr-0 lg:w-[653px] mr-0 lg:mr-3 w-[95%] ">
-            <BigImage imageAddress={data?.imageAddress} />
+            <BigImage
+              imageAddress={data?.imageAddress}
+              techs={data?.techs}
+              isUserFavorite={data?.isUserFavorite}
+              courseId={data?.courseId}
+            />
 
-            <AboutCourses />
+            <AboutCourses title={data?.title} describe={data?.describe} />
 
-            <RatingCourses />
+            <RatingCourses
+              currentUserDissLike={data?.currentUserDissLike}
+              currentUserLike={data?.currentUserLike}
+              likeCount={data?.likeCount}
+              dissLikeCount={data?.dissLikeCount}
+              courseId={data?.courseId}
+            />
 
             <Tabs />
           </div>
-          <DetailsLeft  startTime={data?.startTime} endTime={data?.endTime}/>
+          <DetailsLeft
+            startTime={data?.startTime}
+            endTime={data?.endTime}
+            courseStatusName={data?.courseStatusName}
+            cost={data?.cost}
+            currentRegistrants={data?.currentRegistrants}
+            teacherName={data?.teacherName}
+            courseId={data?.courseId}
+          />
         </div>
 
         <SliderCourseDetails />

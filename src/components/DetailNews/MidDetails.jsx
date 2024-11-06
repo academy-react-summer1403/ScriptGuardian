@@ -2,7 +2,22 @@ import React from "react";
 import { useAddRateNews } from "../../core/services/api/News/HandelRateNews";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
-const MidDetails = ({ currentUserSetRate, currentUserRateNumber, id }) => {
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import {
+  useAddLikeNews,
+  useDeleteLikeNews,
+  useDissAddLikeNews,
+} from "../../core/services/api/DetailNews/handelNewsLike";
+const MidDetails = ({
+  currentUserSetRate,
+  currentUserRateNumber,
+  id,
+  currentUserIsLike,
+  currentLikeCount,
+  currentUserIsDissLike,
+  currentDissLikeCount,
+  likeId,
+}) => {
   const queryClient = useQueryClient();
 
   const totalStars = 5; // تعداد کل ستاره‌ها
@@ -12,21 +27,24 @@ const MidDetails = ({ currentUserSetRate, currentUserRateNumber, id }) => {
       { NewsId: id, RateNumber: index + 1 },
       {
         onSuccess: (data) => {
-          if (currentUserSetRate === true) {
+          if (
+            currentUserSetRate === true &&
+            data.message !== "هشدار ایجاد هرزنامه در دیتابیس"
+          ) {
             if (data.success === true) {
-              queryClient.invalidateQueries("AddRateNews");
+              queryClient.invalidateQueries("DetailNews");
               toast.success("امتیاز شما با موفقیت تغییر کرد");
-            } else if (
-              data.success === true &&
-              data.message == "هشدار ایجاد هرزنامه در دیتابیس"
-            ) {
-              toast.error(data.error);
             } else {
               toast.error("   خطا در تغییر امتیاز");
             }
+          } else if (
+            data.success === true &&
+            data.message == "هشدار ایجاد هرزنامه در دیتابیس"
+          ) {
+            toast.error(data.message);
           } else {
             if (data.success === true) {
-              queryClient.invalidateQueries("AddRateNews");
+              queryClient.invalidateQueries("DetailNews");
               toast.success("امتیاز شما با موفقیت ثبت شد");
             } else {
               toast.error("   خطا در ثبن امتیاز");
@@ -36,6 +54,52 @@ const MidDetails = ({ currentUserSetRate, currentUserRateNumber, id }) => {
       }
     );
   };
+
+  //handel API handel Like  News
+
+  const { mutate: AddLike } = useAddLikeNews();
+  const { mutate: DeleteLike } = useDeleteLikeNews();
+  const { mutate: DissLike } = useDissAddLikeNews();
+  const handleLike = () => {
+    if (currentUserIsLike === true) {
+      DeleteLike(likeId, {
+        onSuccess: () => {
+          queryClient.invalidateQueries("DetailNews");
+          toast.success("با موفقیت  لایک  برداشته شد");
+        },
+      });
+      queryClient.invalidateQueries("DetailNews");
+    } else {
+      AddLike(id, {
+        onSuccess: () => {
+          queryClient.invalidateQueries("DetailNews");
+          toast.success("با موفقیت لایک شد");
+        },
+      }),
+        {};
+    }
+  };
+
+  const handleDissLike = () => {
+    if (currentUserIsDissLike === true) {
+      DeleteLike(likeId, {
+        onSuccess: () => {
+          queryClient.invalidateQueries("DetailNews");
+          toast.success("با موفقیت دیس لایک  برداشته شد");
+        },
+      });
+      queryClient.invalidateQueries("DetailNews");
+    } else {
+      DissLike(id, {
+        onSuccess: () => {
+          toast.success("با موفقیت دیس لایک شد");
+
+          queryClient.invalidateQueries("DetailNews");
+        },
+      });
+    }
+  };
+
   return (
     <div className="container flex bg- mx-auto justify-center">
       <div className="flex flex-col xl:w-[842px]   bg- w-[95%] sm:items-start items-center mx-auto">
@@ -308,7 +372,7 @@ const MidDetails = ({ currentUserSetRate, currentUserRateNumber, id }) => {
             <p className="sm:ml-6 text-[#455A64] dark:text-gray-400">
               آیا از این مقاله راضی بودید ؟
             </p>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <div className="items-center flex sm:mr-0 mr-10  sm:w-[83px] w-[63px] h-[48px] bg-[#ECEFF1] sm:ml-4 ml-2 rounded-[50px] dark:bg-[#37474F] ">
                 <span className="sm:mr-4 mr-2 sm:w-[24px] sm:h-[24px] w-5 h-5">
                   <svg
@@ -362,6 +426,31 @@ const MidDetails = ({ currentUserSetRate, currentUserRateNumber, id }) => {
                   22
                 </p>
               </div>
+            </div> */}
+
+            <div className="flex items-center gap-3">
+              <button className="flex items-center 0">
+                <span className="ml-1 text-xs">{currentLikeCount}</span>
+                <FaThumbsUp
+                  className={`text-xl  ${
+                    currentUserIsLike
+                      ? "dark:text-green-600 text-green-400"
+                      : "dark:text-white text-white"
+                  }`}
+                  onClick={handleLike}
+                />
+              </button>
+              <button className="flex items-center ">
+                <FaThumbsDown
+                  className={`text-xl  ${
+                    currentUserIsDissLike
+                      ? "text-red-400 dark:text-red-600"
+                      : " text-white dark:text-white"
+                  }`}
+                  onClick={handleDissLike}
+                />
+                <span className="mr-1 text-xs">{currentDissLikeCount}</span>
+              </button>
             </div>
           </div>
         </div>

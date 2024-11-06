@@ -30,7 +30,7 @@ const UserInFormation = () => {
             {data?.birthDay === "0001-01-01T00:00:00" ? (
               <p className="text-xs">لطفا تاریخ تولد خود را وارد کنید</p>
             ) : (
-              <p>{data?.birthDay.slice(0, 10)}</p>
+              <p>{data?.birthDay?.slice(0, 10)}</p>
             )}{" "}
           </p>
         </div>
