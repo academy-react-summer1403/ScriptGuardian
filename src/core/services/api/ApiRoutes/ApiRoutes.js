@@ -27,6 +27,9 @@ export const ApiRoutes = {
   //Details Of Courses
   DETAILS_COURSES_PAGE_URL: "/Home/GetCourseDetails?CourseId=",
   DETAILS_COURSES_ADD_TO_RESERVE_URL: "/CourseReserve/ReserveAdd",
+  DETAILS_COURSES_COMMENTS_URL: "/Course/GetCourseCommnets/",
+  DETAILS_COURSES_RATE_URL:
+    "/Course/SetCourseRating?",
   //Detail OF News
   DETAILS_NEWS_PAGE_URL: "/News/",
   DETAILS_NEWS_PAGE_REPLAY_COMMENT_URL: "/News/GetRepliesComments?",

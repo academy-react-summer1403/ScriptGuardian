@@ -6,8 +6,15 @@ import {
   useDeleteFavoriteCourses,
 } from "../../core/services/api/CoursesPage/handelCoursesFavorite";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
-const BigImage = ({ imageAddress, techs, isUserFavorite, courseId }) => {
+const BigImage = ({
+  imageAddress,
+  techs,
+  isUserFavorite,
+  courseId,
+  userFavoriteId,
+}) => {
   // const handelimage = console.log(imageAddress, "imageAddress");
   const queryClient = useQueryClient();
 
@@ -15,18 +22,26 @@ const BigImage = ({ imageAddress, techs, isUserFavorite, courseId }) => {
   const { mutate: DeleteFavorite } = useDeleteFavoriteCourses();
   const handelFavorite = () => {
     if (isUserFavorite === true) {
-      DeleteFavorite(courseId);
+      const formData = new FormData();
+      formData.append("CourseFavoriteId", userFavoriteId);
+      DeleteFavorite(formData, {
+        onSuccess: () => {
+          toast.success("با موفقیت از  لیست علاقه مندی ها حذف شد");
+
+          queryClient.invalidateQueries("CoursesDetail");
+        },
+      });
     } else {
       AddFavorite(courseId, {
-        //TODO "Add IF For Show Toast"
         onSuccess: () => {
           toast.success("با موفقیت به  لیست علاقه مندی ها اضافه شد");
 
-          queryClient.invalidateQueries("AddFavoriteCourses");
+          queryClient.invalidateQueries("CoursesDetail");
         },
       });
     }
   };
+
   return (
     <div className="w-full xl:h-[548px] relative ">
       <img

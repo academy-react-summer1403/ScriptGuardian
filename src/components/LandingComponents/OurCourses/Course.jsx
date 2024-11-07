@@ -18,6 +18,8 @@ const Course = ({
   isUserFavorite,
   userLikeId,
   userIsDissLiked,
+  userFavoriteId,
+  tumbImageAddress,
 }) => {
   const navigate = useNavigate();
   const navigateDetails = () => {
@@ -35,11 +37,11 @@ const Course = ({
       style={{ direction: "rtl" }}
     >
       {/* Image */}
-      <ImageCourse />
+      <ImageCourse  tumbImageAddress={tumbImageAddress}/>
       {/* Content */}
 
       {/* TopicCourses */}
-      <h3 className="font-[700] mt-[16px] mr-[16px] ">{title}</h3>
+      <h3 className="font-[700] mt-2 mr-[16px] ">{title}</h3>
       <CourseInfo />
       <CourseInstructor teacherName={teacherName} />
       <PriceAndFavorites
@@ -52,6 +54,7 @@ const Course = ({
         userIsLiked={userIsLiked}
         userLikeId={userLikeId}
         userIsDissLiked={userIsDissLiked}
+        userFavoriteId={userFavoriteId}
       />
     </div>
   );

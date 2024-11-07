@@ -38,6 +38,7 @@ const OurCourses = () => {
               return (
                 <Course
                   key={index}
+                  tumbImageAddress={courses.tumbImageAddress}
                   courseId={courses.courseId}
                   teacherName={courses.teacherName}
                   cost={courses.cost}
@@ -50,6 +51,7 @@ const OurCourses = () => {
                   isUserFavorite={courses.isUserFavorite}
                   userLikeId={courses.userLikeId}
                   userIsDissLiked={courses.userIsDissLiked}
+                  userFavoriteId={courses.userFavoriteId}
                 />
               );
             })}

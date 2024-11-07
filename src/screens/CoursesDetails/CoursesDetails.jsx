@@ -26,8 +26,8 @@ const CoursesDetails = () => {
               techs={data?.techs}
               isUserFavorite={data?.isUserFavorite}
               courseId={data?.courseId}
+              userFavoriteId={data?.userFavoriteId}
             />
-
             <AboutCourses title={data?.title} describe={data?.describe} />
 
             <RatingCourses
@@ -36,6 +36,9 @@ const CoursesDetails = () => {
               likeCount={data?.likeCount}
               dissLikeCount={data?.dissLikeCount}
               courseId={data?.courseId}
+              currentUserSetRate={data?.currentUserSetRate}
+              currentUserRateNumber={data?.currentUserRateNumber}
+              userLikeId={data?.userLikeId}
             />
 
             <Tabs />

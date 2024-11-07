@@ -1,7 +1,7 @@
 import React from "react";
 import TeacherImage from "../../images/CoursesDetails/Rectangle 14.png";
 import image from "../../images/StudentPanel/NavStudent/images.png";
-import { useAddReserveCourse } from "../../core/services/api/CourseDetils/handelReserve";
+import { useAddReserveCourse } from "../../core/services/api/DetailCourses/handelReserve";
 const DetailsLeft = ({
   startTime,
   endTime,
@@ -312,7 +312,10 @@ const DetailsLeft = ({
           </div>
         </div>
         <div className="xl:w-[341px] w-[95%] h-[56px] mt-8 flex items-center justify-between">
-          <button onClick={handleAddReserve} className="w-[132px] h-full bg-[#2196F3] dark:bg-[#1E88E5] rounded-[80px] shadow-Second-shadow text-white flex items-center justify-center">
+          <button
+            onClick={handleAddReserve}
+            className="w-[132px] h-full bg-[#2196F3] dark:bg-[#1E88E5] rounded-[80px] shadow-Second-shadow text-white flex items-center justify-center"
+          >
             شرکت در دوره
           </button>
           <p className="text-[#2196F3] dark:text-[#1E88E5]">

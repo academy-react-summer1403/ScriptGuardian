@@ -27,7 +27,7 @@
 //           {/* Top */}
 //           <SearchAndThemeCourses />
 //           <div className="w-[952px] min-h-[200px] mt-[32px]  flex flex-wrap gap-8">
-//           {map.map((course, index) => (
+//           {map.map((course?, index) => (
 //             <LandingCourses key={index} />
 //           ))}
 //           </div>
@@ -124,17 +124,19 @@ const CoursesPage = () => {
               <Course
                 style={style}
                 key={index}
-                courseId={course.courseId}
-                teacherName={course.teacherName}
-                cost={course.cost}
-                likeCount={course.likeCount}
-                dissLikeCount={course.dissLikeCount}
-                userIsLiked={course.userIsLiked}
-                title={course.title}
-                describe={course.describe}
-                isUserFavorite={course.userFavorite}
-                userLikeId={course.userLikeId}
-                userIsDissLiked={course.currentUserDissLike}
+                courseId={course?.courseId}
+                teacherName={course?.teacherName}
+                cost={course?.cost}
+                likeCount={course?.likeCount}
+                dissLikeCount={course?.dissLikeCount}
+                userIsLiked={course?.userIsLiked}
+                title={course?.title}
+                describe={course?.describe}
+                isUserFavorite={course?.userFavorite}
+                userLikeId={course?.userLikedId}
+                userIsDissLiked={course?.currentUserDissLike}
+                userFavoriteId={course?.userFavoriteId}
+                tumbImageAddress={course?.tumbImageAddress}
               />
             ))}
           </div>

@@ -1,12 +1,14 @@
 import React from "react";
 import ReactIcon from "../../../../images/landing/OurCourses/Rectangle 124.png";
-const ImageCourse = () => {
+import image from "../../../../images/NewsDetails/default_image.png";
+
+const ImageCourse = ({tumbImageAddress}) => {
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center  h-[200px] items-center ">
       <img
-        src={ReactIcon}
+        src={tumbImageAddress  && tumbImageAddress !== "null"  ? tumbImageAddress : image}
         alt=""
-        className="block  pt-[16px] w-[264px] h-[180px] "
+        className="block   w-[264px] h-[180px] rounded-2xl "
       />
     </div>
   );

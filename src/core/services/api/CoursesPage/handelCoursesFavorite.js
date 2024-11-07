@@ -25,15 +25,15 @@ export const useAddFavoriteCourses = () => {
   });
 };
 
-const DeleteFavoriteCourses = async (CourseFavoriteId) => {
-  console.log("this is CourseFavoriteId ", CourseFavoriteId);
+const DeleteFavoriteCourses = async (formData) => {
+  console.log("this is CourseFavoriteId ", formData);
   try {
-    const response = await http.delete(
-      `${ApiRoutes.DELETE_COURSES_FAVORITE_URL}`,
-      {
-        CourseFavoriteId,
-      }
-    );
+    const response = await http.delete(ApiRoutes.DELETE_COURSES_FAVORITE_URL, {
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     console.log(response.message, "this response Of  DeleteFavoriteCourses");
     return response;
   } catch (error) {
@@ -44,9 +44,9 @@ const DeleteFavoriteCourses = async (CourseFavoriteId) => {
 export const useDeleteFavoriteCourses = () => {
   return useMutation({
     mutationKey: ["DeleteFavoriteCourses"],
-    mutationFn: (CourseFavoriteId) => {
-      console.log("this is DeleteFavoriteCourses =", CourseFavoriteId);
-      return DeleteFavoriteCourses(CourseFavoriteId);
+    mutationFn: (formData) => {
+      console.log("this is DeleteFavoriteCourses =", formData);
+      return DeleteFavoriteCourses(formData);
     },
   });
 };

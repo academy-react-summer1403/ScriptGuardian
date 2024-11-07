@@ -1,4 +1,5 @@
 import React from "react";
+import image from "../../../images/NewsDetails/default_image.png";
 
 import { NewsImg } from "./NewsImg";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +28,9 @@ const News = ({
       className="sm:w-[624px] sm:h-[161px]  flex sm:flex-row flex-col items-center  "
       onClick={goDetails}
     >
-      <NewsImg addUserProfileImage={addUserProfileImage} />
+      <NewsImg
+        addUserProfileImage={addUserProfileImage && addUserProfileImage !== "Not-set" ? addUserProfileImage : image}
+      />
       <div className="md:mr-[24px] mr-4 flex flex-col sm:w-[376px] sm:mt-0 mt-3 w-[212px] sm:text-right text-center">
         <h3 className="text-[20px] font-[700] text-[#263238] dark:text-gray-400">
           {title}
@@ -35,7 +38,10 @@ const News = ({
         <p className="text-[14px] text-[#455A64] dark:text-gray-200 mt-[8px]  md:w-auto sm:w-[320px] ">
           {miniDescribe}
         </p>
-        <div className="mt-[18px] flex items-center text-[14px] text-[#2196F3] dark:text-[#1976D2] justify-between" onClick={handleClickTitle}>
+        <div
+          className="mt-[18px] flex items-center text-[14px] text-[#2196F3] dark:text-[#1976D2] justify-between"
+          onClick={handleClickTitle}
+        >
           <div className="flex items-center">
             {" "}
             <span>

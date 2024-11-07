@@ -21,6 +21,7 @@ const PriceAndFavorites = ({
   userIsLiked,
   userLikeId,
   userIsDissLiked,
+  userFavoriteId,
 }) => {
   const queryClient = useQueryClient();
   //Api
@@ -31,45 +32,79 @@ const PriceAndFavorites = ({
   const handelLike = () => {
     if (userIsLiked === true) {
       const formData = new FormData();
-      formData.append("CourseLikeId", "e81e8c37-2986-ef11-b6de-e3821792c3b7");
-      DeleteLike(formData);
+      formData.append("CourseLikeId", userLikeId);
+      DeleteLike(formData, {
+        onSuccess: () => {
+          toast.success("با موفقیت لایک   پاک شد");
+          queryClient.invalidateQueries("LandingCourses", "Courses");
+        },
+      });
     } else {
       AddLike(courseId, {
         onSuccess: () => {
           toast.success("با موفقیت لایک شد");
-          queryClient.invalidateQueries("AddLikeCourses");
+          queryClient.invalidateQueries("LandingCourses", "Courses");
         },
       }),
         {};
     }
   };
 
-  const handleDissLike = () => {
-    DissLike(courseId, {
-      onSuccess: () => {
-        toast.success("با موفقیت دیس لایک شد");
+  // const handleDissLike = () => {
+  //   DissLike(courseId, {
+  //     onSuccess: () => {
+  //       toast.success("با موفقیت دیس لایک شد");
 
-        queryClient.invalidateQueries("AddDissLikeCourses");
-      },
-    });
+  //       queryClient.invalidateQueries("LandingCourses", "CoursesDetail");
+  //     },
+  //   });
+  // };
+
+  const handleDissLike = () => {
+    if (userIsDissLiked === true) {
+      const formData = new FormData();
+      formData.append("CourseLikeId", userLikeId);
+      DeleteLike(formData, {
+        onSuccess: () => {
+          toast.success("با موفقیت دیس لایک  پاک  شد");
+
+          queryClient.invalidateQueries("LandingCourses", "Courses");
+        },
+      });
+    } else {
+      DissLike(courseId, {
+        onSuccess: () => {
+          toast.success("با موفقیت دیس لایک شد");
+
+          queryClient.invalidateQueries("LandingCourses");
+        },
+      });
+    }
   };
 
   //handel favorite
 
   //API
 
-  const { mutate: AddFavorite, data } = useAddFavoriteCourses();
+  const { mutate: AddFavorite } = useAddFavoriteCourses();
   const { mutate: DeleteFavorite } = useDeleteFavoriteCourses();
   const handelFavorite = () => {
     if (isUserFavorite === true) {
-      DeleteFavorite(courseId);
+      const formData = new FormData();
+      formData.append("CourseFavoriteId", userFavoriteId);
+      DeleteFavorite(formData, {
+        onSuccess: () => {
+          toast.success("با موفقیت از  لیست علاقه مندی ها حذف شد");
+
+          queryClient.invalidateQueries("LandingCourses");
+        },
+      });
     } else {
       AddFavorite(courseId, {
-        //TODO "Add IF For Show Toast"
         onSuccess: () => {
           toast.success("با موفقیت به  لیست علاقه مندی ها اضافه شد");
 
-          queryClient.invalidateQueries("AddFavoriteCourses");
+          queryClient.invalidateQueries("LandingCourses");
         },
       });
     }
@@ -115,7 +150,7 @@ const PriceAndFavorites = ({
   console.log(isUserFavorite, "isUserFavorite");
   return (
     <div
-      className="flex  mt-[14px] justify-between "
+      className="flex  mt-[14px] justify-between  items-center"
       onClick={handleClickTitle}
     >
       <div className="w-[51px] h-[32px] bg-[#FFEBEE] text-[#F44336] dark:bg-[#2E2E2E] dark:text-[#FFCDD2] rounded-[24px] flex items-center justify-center gap-1 mr-[16px]">

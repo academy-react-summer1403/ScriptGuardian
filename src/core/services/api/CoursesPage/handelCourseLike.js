@@ -59,8 +59,9 @@ const DeleteLikeCourses = async (formData) => {
   try {
     const response = await http.delete(
       ApiRoutes.DELETE_LIKE_COURSES_URL,
-      formData,
+
       {
+        data: formData,
         headers: {
           "Content-Type": "multipart/form-data",
         },

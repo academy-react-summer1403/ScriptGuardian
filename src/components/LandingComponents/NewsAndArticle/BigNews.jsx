@@ -1,6 +1,8 @@
 import React from "react";
 import { BigImgNews } from "./BigImgNews";
 import { useNavigate } from "react-router-dom";
+import image from "../../../images/NewsDetails/default_image.png";
+
 const BigNews = ({
   title,
   addUserProfileImage,
@@ -28,7 +30,9 @@ const BigNews = ({
       className="xl:w-[616px]   flex flex-col xl:mx-auto  md:w-full items-center xl:items-start w-[90%]"
       onClick={goDetails}
     >
-      <BigImgNews addUserProfileImage={addUserProfileImage} />
+      <BigImgNews
+        addUserProfileImage={addUserProfileImage ? addUserProfileImage : image}
+      />
       <div
         className="flex justify-between w-full items-center md:mt-8 mt-4 "
         onClick={handleClickTitle}
@@ -157,10 +161,10 @@ const BigNews = ({
       </div>
 
       <h2 className="mt-[24px] text-[#263238] dark:text-gray-400 font-[700] sm:text-[32px] text-[18px] ">
-        {title}
+        {title ? title : ""}
       </h2>
       <p className="mt-[12px] text-[#455A64] dark:text-gray-200 font-[500] xl:w-auto sm:w-[516px] w-full xl:text-right text-center ">
-        {miniDescribe}
+        {miniDescribe ?  miniDescribe : ""}
       </p>
     </div>
   );
