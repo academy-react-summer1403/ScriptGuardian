@@ -43,6 +43,7 @@ export const ApiRoutes = {
   //student panel My Courses
   PANEL_MY_COURSES_URL: "/SharePanel/GetMyCourses",
   PANEL_MY_RESERVED_COURSES_URL: "/SharePanel/GetMyCoursesReserve",
+  PANEL_DELETE_MY_RESERVED_COURSES_URL: "/CourseReserve",
 
   //student panel Edit Profile
   PANEL_EDIT_PROFILE_URL: "/SharePanel/UpdateProfileInfo",

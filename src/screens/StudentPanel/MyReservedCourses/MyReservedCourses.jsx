@@ -26,11 +26,19 @@ import { FiChevronDown, FiSearch } from "react-icons/fi";
 import Test from "../../../images/StudentPanel/MyCourses/images.png";
 import ReactPaginate from "react-paginate";
 import {
+  useDeleteMyReservedCourses,
   useMyCourses,
   useMyReservedCourses,
 } from "../../../core/services/api/Panel/handelMyCourses";
 import { ListPanel } from "../../../components/common/ListPanl/ListPanel";
+import { StudentHamburger } from "../../../components/HamberGerStudentPanel/Studenthamburger";
+import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 const MyReservedCourses = () => {
+  const queryClient = useQueryClient();
+
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -72,39 +80,9 @@ const MyReservedCourses = () => {
 
   //API
   const { data, isPending } = useMyReservedCourses();
-  console.log(data, "this data of course is pending");
+  console.log(data, "this data of course is pending now now");
 
   // page data
-
-  // const [map, setMap] = useState([
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  // ]);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -121,110 +99,33 @@ const MyReservedCourses = () => {
     setItemOffset(newOffset);
   };
 
+  //API DELETE RESERVE
+
+  const { mutate: DeleteReserve } = useDeleteMyReservedCourses();
+
+  const handelDelete = (id) => {
+    DeleteReserve(id , {
+      onSuccess: () =>{
+        queryClient.invalidateQueries("MyReservedCourses");
+        toast.success("با موفقیت دوره رزرو شده ی شما حذف شد");
+      }
+    });
+    // alert(id)
+  };
+
   return (
     <>
       {/* hamburger */}
-      <div
-        className={`absolute top-0 right-0 sm:w-[40%] w-full  bg-white shadow-md  transition-transform duration-300 z-10 ${
-          isMenuOpen
-            ? " translate-x-0 flex"
-            : " translate-x-[100%] opacity-0 hidden"
-        }`}
-      >
-        <div className="flex flex-col h-[100vh]  w-full  bg-[#7665E7]   ">
-          <div className="flex justify-between">
-            {" "}
-            <Link to="/">
-              {" "}
-              <FaHome className="text-white mr-2 mt-2 text-xl " />
-            </Link>
-            <HiX
-              className="text-white ml-2 mt-2 text-xl"
-              onClick={toggleMenu}
-            />
-          </div>
-
-          <div className="flex flex-col  justify-center items-center ">
-            <div className="flex w-[100px] h-[100px]  rounded-full">
-              <img
-                src={userProfile}
-                alt=""
-                className="w-full h-full rounded-full "
-              />
-            </div>
-            <h3 className="mt-2 text-white">نام کاربر</h3>
-          </div>
-
-          <div className="flex flex-col border-t-[1px] mt-1 w-[90%] mx-auto ">
-            <div className="flex items-center gap-x-2 text-white mt-3 py-2  w-full">
-              <MdDashboard className="text-xl" />
-              <NavLink to="/panel">داشبورد</NavLink>
-            </div>
-
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaUserCircle className="text-xl" />
-              <NavLink to="/panel/MyProfile">پروفایل</NavLink>
-            </div>
-
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaBookOpen className="text-xl" />
-              <NavLink to="/panel/MyCourses">دوره های من</NavLink>
-            </div>
-
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaLock className="text-xl" />
-              <NavLink to="/panel/ChangePassword">تغییر رمز عبور</NavLink>
-            </div>
-
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaSignOutAlt className="text-xl" />
-              <NavLink to="/panel/LogOut">خروج از حساب</NavLink>
-            </div>
-
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaComment className="text-xl" />
-              <NavLink to="/panel/MyComments">نظرات ثبت شده</NavLink>
-            </div>
-          </div>
-        </div>
-      </div>
+      <StudentHamburger toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
 
       <div className="flex flex-col items-center ">
         {/* Common */}
-        <div className="h-[50px] border-b border-white dark:border-gray-950 w-[95%] flex justify-between items-center ">
-          <div className="flex items-center">
-            {/* OpenMenu */}
-            <div className="xl:hidden flex">
-              {/* open-btn*/}
-              <button onClick={toggleMenu} className="text-gray-500">
-                <FaBars />
-              </button>
-            </div>
-            <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-200">
-              {" "}
-              دوره های رزرو شده ی من
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
-            {isDarkMode ? (
-              <FaMoon
-                className="text-gray-800"
-                size={20}
-                onClick={toggleDarkMode}
-              />
-            ) : (
-              <FaSun
-                className="text-yellow-500"
-                size={20}
-                onClick={toggleDarkMode}
-              />
-            )}
-            <FaBell className="text-xl" />
-            <FaShoppingCart className="text-xl" />
-          </div>
-        </div>
+        <CommonStudent
+          toggleMenu={toggleMenu}
+          toggleDarkMode={toggleDarkMode}
+          isDarkMode={isDarkMode}
+          title={"دوره های رزرو شده ی من"}
+        />
 
         {/* Unic */}
         <div className="flex  justify-between w-[95%]  mt-5">
@@ -263,26 +164,67 @@ const MyReservedCourses = () => {
         </div>
 
         <div className="flex flex-col w-[95%] bg-white dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
-          <div className="flex lg:gap-x-[13.5%] items-center text-white h-[50px] bg-purple-700 dark:bg-purple-900 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
-            <h2 className="mr-5 md:block hidden">تصویر</h2>
-            <h2>نام دوره</h2>
-            <h2>مدرس</h2>
-            <h2>تاریخ شروع</h2>
-            <h2>قیمت</h2>
-            <h2>مدیریت</h2>
+          <div className="flex  items-center text-white h-[50px] bg-purple-700 dark:bg-purple-900 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs  justify-between">
+            <h2 className="mr-5">نام دوره</h2>
+            <h2 className="ml-5">تاریخ رزرو</h2>
+            <h2 className="ml-5">وضعیت</h2>
           </div>
 
           {currentItems?.map((item, index) => {
             return (
               <>
-                <ListPanel
+                <div
+                  className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
                   key={index}
-                  tumbImageAddress={item.tumbImageAddress}
-                  courseTitle={item.courseTitle}
-                  fullName={item.fullName}
-                  cost={item.cost}
-                  courseId={item.courseId}
-                />
+                >
+                  <div className="mr-5 min-w-[150px] ">{item?.courseName}</div>
+                  <div className="ml-[110px]">
+                    {item?.reserverDate ? item?.reserverDate : ""}
+                  </div>
+                  {item?.accept ? (
+                    <div className="ml-5 gap-1 flex items-center">
+                      <FaEye
+                        className="cursor-pointer"
+                        onClick={() => {
+                          navigate(
+                            `/courses/${
+                              item?.courseId ? item.courseId : "no id"
+                            }`
+                          );
+                        }}
+                      />
+                      <p
+                        className="text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900 rounded-md text-xs  "
+                        onClick={() => {
+                          navigate(
+                            `/courses/${
+                              item?.courseId ? item.courseId : "no id"
+                            }`
+                          );
+                        }}
+                      >
+                        تایید شده
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="ml-5 gap-1 flex">
+                      <FaEye
+                        className="cursor-pointer"
+                        onClick={() => {
+                          navigate(
+                            `/courses/${
+                              item?.courseId ? item.courseId : "no id"
+                            }`
+                          );
+                        }}
+                      />
+                      <FaTrash
+                        className="text-red-600"
+                        onClick={() => handelDelete(item?.reserveId)}
+                      />
+                    </div>
+                  )}
+                </div>
               </>
             );
           })}

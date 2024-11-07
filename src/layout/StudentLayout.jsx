@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import {
   FaBookOpen,
+  FaCalendarAlt,
   FaComment,
+  FaHeart,
   FaHome,
   FaLock,
   FaSignOutAlt,
@@ -76,8 +78,17 @@ const StudentLayout = () => {
             </div>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaBookOpen className="text-xl" />
-              <NavLink to="/panel/MyReservedCourses">دوره های  رزرو شده </NavLink>
+              <FaCalendarAlt className="text-xl" />
+              <NavLink to="/panel/MyReservedCourses">
+                دوره های رزرو شده{" "}
+              </NavLink>
+            </div>
+
+            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+              <FaHeart className="text-xl" />
+              <NavLink to="/panel/MyFavoriteCourses">
+                دوره های مورد علاقه{" "}
+              </NavLink>
             </div>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
