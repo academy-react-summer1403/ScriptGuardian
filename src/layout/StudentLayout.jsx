@@ -7,6 +7,7 @@ import {
   FaHeart,
   FaHome,
   FaLock,
+  FaRegNewspaper,
   FaSignOutAlt,
   FaUserCircle,
 } from "react-icons/fa";
@@ -59,7 +60,7 @@ const StudentLayout = () => {
             </div>
             <h3 className="mt-2 text-white">
               {" "}
-              {data?.fName} {data?.lName}{" "}
+              {data?.fName ? data?.fName : ""} {data?.lName ? data?.lName : ""}{" "}
             </h3>
           </div>
 
@@ -93,6 +94,12 @@ const StudentLayout = () => {
               </NavLink>
             </div>
 
+            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+              <FaRegNewspaper className="text-xl" />
+              <NavLink to="/panel/MyFavoriteNews">
+                خبر های مورد علاقه{" "}
+              </NavLink>
+            </div>
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaLock className="text-xl" />
               <NavLink to="/panel/ChangePassword">تغییر رمز عبور</NavLink>

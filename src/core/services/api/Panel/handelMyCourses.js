@@ -85,3 +85,21 @@ export const useMyFavoriteCourses = () => {
     queryFn: MyFavoriteCourses,
   });
 };
+
+// handel MyFavoriteNews
+
+const MyFavoriteNews = async () => {
+  try {
+    const response = await http.get(`${ApiRoutes.PANEL_MY_FAVORITE_NEWS_URL}`);
+    return response.myFavoriteNews;
+  } catch (error) {
+    console.log("This error For MyFavoriteNews", error);
+    return false;
+  }
+};
+export const useMyFavoriteNews = () => {
+  return useQuery({
+    queryKey: ["MyFavoriteNews"],
+    queryFn: MyFavoriteNews,
+  });
+};

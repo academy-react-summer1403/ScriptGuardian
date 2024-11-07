@@ -38,6 +38,8 @@ export const ApiRoutes = {
   DETAILS_ADD_LIKE_NEWS_URL: "/News/NewsLike/",
   DETAILS_ADD_DISS_LIKE_NEWS_URL: "/News/NewsDissLike/",
   DETAILS_DELETE_LIKE_NEWS_URL: "/News/DeleteLikeNews",
+  DETAILS_ADD_FAVORITE_NEWS_URL: "/News/AddFavoriteNews?",
+  DETAILS_DELETE_FAVORITE_NEWS_URL: "/News/DeleteFavoriteNews",
 
   //StudentPanel DashBoard
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
@@ -47,6 +49,7 @@ export const ApiRoutes = {
   PANEL_MY_RESERVED_COURSES_URL: "/SharePanel/GetMyCoursesReserve",
   PANEL_DELETE_MY_RESERVED_COURSES_URL: "/CourseReserve",
   PANEL_MY_FAVORITE_COURSES_URL: "/SharePanel/GetMyFavoriteCourses",
+  PANEL_MY_FAVORITE_NEWS_URL: "/SharePanel/GetMyFavoriteNews",
 
   //student panel Edit Profile
   PANEL_EDIT_PROFILE_URL: "/SharePanel/UpdateProfileInfo",

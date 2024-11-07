@@ -28,6 +28,9 @@ const DetailsNews = () => {
         miniDescribe={detailsNewsDto?.miniDescribe}
         currentView={detailsNewsDto?.currentView}
         addUserFullName={detailsNewsDto?.addUserFullName}
+        id={detailsNewsDto?.id}
+        isCurrentUserFavorite={detailsNewsDto?.isCurrentUserFavorite}
+        currentUserFavoriteId={detailsNewsDto?.currentUserFavoriteId}
       />
       <MidDetails
         currentUserSetRate={detailsNewsDto?.currentUserSetRate}
@@ -39,7 +42,7 @@ const DetailsNews = () => {
         currentUserIsDissLike={detailsNewsDto?.currentUserIsDissLike}
         likeId={detailsNewsDto?.likeId}
       />
-      <CommentDetails commentDtos={commentDtos} newsId={id}/>
+      <CommentDetails commentDtos={commentDtos} newsId={id} />
     </>
   );
 };

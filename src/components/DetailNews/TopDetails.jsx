@@ -4,22 +4,80 @@ import DetailsBigImage from "../../images/NewsDetails/Rectangle 34.png";
 import DetailsSmallImage from "../../images/NewsDetails/Rectangle 16.png";
 import image from "../../images/NewsDetails/default_image.png";
 import profile from "../../images/NewsDetails/profile.png";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  useAddFavoriteNews,
+  useDeleteFavoriteNews,
+} from "../../core/services/api/DetailNews/handelNewsFavorite";
+import { toast } from "react-toastify";
 const TopDetails = ({
   title,
   currentImageAddress,
   miniDescribe,
   currentView,
   addUserFullName,
+  id,
+  isCurrentUserFavorite,
+  currentUserFavoriteId,
 }) => {
-  // const { id } = useParams();
+  const queryClient = useQueryClient();
+
+  const { mutate: AddFavorite } = useAddFavoriteNews();
+  const { mutate: DeleteFavorite } = useDeleteFavoriteNews();
+
+  const handelFavorite = () => {
+    if (isCurrentUserFavorite === true) {
+      DeleteFavorite(currentUserFavoriteId, {
+        onSuccess: () => {
+          toast.success("با موفقیت از  لیست علاقه مندی ها حذف شد");
+
+          queryClient.invalidateQueries("DetailNews");
+        },
+      });
+    } else {
+      AddFavorite(id, {
+        onSuccess: () => {
+          toast.success("با موفقیت به  لیست علاقه مندی ها اضافه شد");
+
+          queryClient.invalidateQueries("DetailNews");
+        },
+      });
+    }
+  };
+
   return (
     <div className="flex container lg:flex-row flex-col xl:w-[1280px]  lg:h-[340px]  mt-[56px]  mx-auto xl:gap-8 lg:gap-0 gap-8 lg:items-start items-center lg:justify-around  ">
-      <div className="xl:w-[515px] lg:w-[54%]  w-[95%]  h-[340px]">
+      <div className="xl:w-[515px] lg:w-[54%]  w-[95%]  h-[340px] relative">
         <img
           src={currentImageAddress ? currentImageAddress : image}
           className="w-full h-full shadow-ّFirst-shadow rounded-2xl"
           alt=""
         />
+        <div className="absolute sm:w-[78px] w-[58px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 cursor-pointer flex sm:top-8 sm:right-8 top-4 right-4">
+          <span
+            className="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
+            onClick={handelFavorite}
+          >
+            {" "}
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.62 20.8101C12.28 20.9301 11.72 20.9301 11.38 20.8101C8.48 19.8201 2 15.6901 2 8.6901C2 5.6001 4.49 3.1001 7.56 3.1001C9.38 3.1001 10.99 3.9801 12 5.3401C13.01 3.9801 14.63 3.1001 16.44 3.1001C19.51 3.1001 22 5.6001 22 8.6901C22 15.6901 15.52 19.8201 12.62 20.8101Z"
+                className={` stroke-[#F44336]  dark:stroke-[#D32F2F] ${
+                  isCurrentUserFavorite
+                    ? "dark:fill-[#D32F2F] fill-[#F44336]"
+                    : ""
+                }`}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
       <div className="flex flex-col xl:w-[733px] lg:w-[40%]  w-[95%]">
         <h2 className="sm:text-[32px] lg:text-[24px] xl:text-[32px] text-lg sm:mr-0  font-[700] text-[#263238] dark:text-gray-200">
@@ -152,7 +210,11 @@ const TopDetails = ({
           <div className="flex w-[186px] h-[64px] items-center bg-white  shadow-2xl mt-5 sm:mt-0 dark:bg-gray-900 rounded-2xl">
             <div className="w-10 h-10 rounded-2xl">
               {" "}
-              <img src={profile} alt="" className="mr-3 w-full h-full rounded-2xl" />
+              <img
+                src={profile}
+                alt=""
+                className="mr-3 w-full h-full rounded-2xl"
+              />
             </div>
             <p className="text-[#263238] dark:text-gray-200 mr-5">
               {addUserFullName}
