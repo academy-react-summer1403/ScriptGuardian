@@ -2,6 +2,8 @@ import React from "react";
 import TeacherImage from "../../images/CoursesDetails/Rectangle 14.png";
 import image from "../../images/StudentPanel/NavStudent/images.png";
 import { useAddReserveCourse } from "../../core/services/api/DetailCourses/handelReserve";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 const DetailsLeft = ({
   startTime,
   endTime,
@@ -10,10 +12,20 @@ const DetailsLeft = ({
   currentRegistrants,
   teacherName,
   courseId,
+  isCourseReseve,
+  isCourseUser,
 }) => {
+  const queryClient = useQueryClient();
+
+  //API
   const { mutate: AddReserve } = useAddReserveCourse();
   const handleAddReserve = () => {
-    AddReserve({ courseId });
+    AddReserve(courseId, {
+      onSuccess: () => {
+        toast.success("با موفقیت رزرو شده");
+        queryClient.invalidateQueries("CoursesDetail");
+      },
+    });
   };
   return (
     <div className="flex flex-col xl:w-[405px] lg:w-[305px] w-[95%] lg:mt-0 mt-5 ">
@@ -312,12 +324,27 @@ const DetailsLeft = ({
           </div>
         </div>
         <div className="xl:w-[341px] w-[95%] h-[56px] mt-8 flex items-center justify-between">
-          <button
-            onClick={handleAddReserve}
-            className="w-[132px] h-full bg-[#2196F3] dark:bg-[#1E88E5] rounded-[80px] shadow-Second-shadow text-white flex items-center justify-center"
-          >
-            شرکت در دوره
-          </button>
+          {isCourseUser != 1 ? (
+            <>
+              {isCourseReseve != 1 ? (
+                <button
+                  onClick={handleAddReserve}
+                  className="w-[132px] h-full bg-[#2196F3] dark:bg-[#1E88E5] rounded-[80px] shadow-Second-shadow text-white flex items-center justify-center"
+                >
+                  شرکت در دوره
+                </button>
+              ) : (
+                <button className="w-[132px] h-full bg-[#d5a71a] dark:bg-[#7c641d] rounded-[80px] shadow-Second-shadow text-white flex items-center justify-center">
+                  در انتظار تایید{" "}
+                </button>
+              )}
+            </>
+          ) : (
+            <button className="w-[132px] h-full bg-[#4CAF50] dark:bg-[#388E3C] rounded-[80px] shadow-Second-shadow text-white flex items-center justify-center">
+              تایید شده
+            </button>
+          )}
+
           <p className="text-[#2196F3] dark:text-[#1E88E5]">
             {" "}
             {cost}

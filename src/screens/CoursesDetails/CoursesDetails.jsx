@@ -51,6 +51,8 @@ const CoursesDetails = () => {
             currentRegistrants={data?.currentRegistrants}
             teacherName={data?.teacherName}
             courseId={data?.courseId}
+            isCourseReseve={data?.isCourseReseve}
+            isCourseUser={data?.isCourseUser}
           />
         </div>
 

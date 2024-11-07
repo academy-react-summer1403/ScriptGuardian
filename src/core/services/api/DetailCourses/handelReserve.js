@@ -4,11 +4,13 @@ import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 
 //handel like
 
-const AddReserveCourse = async (newsId) => {
-  console.log("this is AddReserveCourse ", newsId);
+const AddReserveCourse = async (courseId) => {
+  console.log("this is AddReserveCourse ", courseId);
   try {
     const response = await http.post(
-      `${ApiRoutes.DETAILS_COURSES_ADD_TO_RESERVE_URL}${newsId}`
+      `${ApiRoutes.DETAILS_COURSES_ADD_TO_RESERVE_URL}`,{
+        courseId
+      }
     );
     console.log(response.message, "this response Of  AddReserveCourse");
     return response;
@@ -20,9 +22,9 @@ const AddReserveCourse = async (newsId) => {
 export const useAddReserveCourse = () => {
   return useMutation({
     mutationKey: ["AddReserveCourse"],
-    mutationFn: (newsId) => {
-      console.log("this is AddReserveCourse =", newsId);
-      return AddReserveCourse(newsId);
+    mutationFn: (courseId) => {
+      console.log("this is AddReserveCourse =", courseId);
+      return AddReserveCourse(courseId);
     },
   });
 };

@@ -41,7 +41,7 @@ const NewsAndArticle = () => {
             {data?.slice(1, 4).map((item, index) => {
               return (
                 <News
-                  key={item?.index}
+                  key={index}
                   title={item?.title}
                   addUserProfileImage={item?.addUserProfileImage}
                   miniDescribe={item?.miniDescribe}
