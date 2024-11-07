@@ -80,3 +80,41 @@ export const useAddCommentForNews = () => {
     },
   });
 };
+
+//Add Replay Comment
+
+const AddReplayCommentForNews = async ({
+  newsId,
+  userIpAddress,
+  title,
+  describe,
+  userId,
+  parentId,
+}) => {
+  try {
+    const response = await http.post(
+      ApiRoutes.NEWS_DETAILS_ADD_REPLAY_COMMENT_URL,
+      {
+        newsId,
+        userIpAddress,
+        title,
+        describe,
+        userId,
+        parentId,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log("This error For AddReplayCommentForNews  ", error);
+    return false;
+  }
+};
+export const useAddReplayCommentForNews = () => {
+  return useMutation({
+    mutationKey: ["AddCommentForNews"],
+    mutationFn: (data) => {
+      console.log("this is AddReplayCommentForNews =", data);
+      return AddReplayCommentForNews(data);
+    },
+  });
+};

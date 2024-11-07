@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import commentProfile from "../../images/NewsDetails/Unsplash-Avatars_0005s_0017_harps-joseph-tAvpDE7fXgY-unsplash.png";
-import { useAddLikeCommentNews } from "../../core/services/api/DetailNews/handelNewsComment";
+import {
+  useAddLikeCommentNews,
+  useAddReplayCommentForNews,
+} from "../../core/services/api/DetailNews/handelNewsComment";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { ReplayComment } from "./ReplayComment";
 import { useReplayCommentNews } from "../../core/services/api/DetailNews/handelNewsComment";
+import { useFormik } from "formik";
 
 const Comment = ({
   title,
@@ -15,7 +19,11 @@ const Comment = ({
   replyCount,
   isLastVisible,
   onShowMore,
+  newsId,
   id,
+  roles,
+  userId,
+  parentId,
 }) => {
   const queryClient = useQueryClient();
 
@@ -68,11 +76,52 @@ const Comment = ({
     setShowReplies(!showReplies);
   };
 
+  //handel replay
+
+  // تعریف یک یوز استیت برای نمایش یا عدم نمایش فرم ریپلای
+  const [isReplyVisible, setIsReplyVisible] = useState(false);
+
+  // تابعی برای تغییر وضعیت نمایش فرم
+  const toggleReplyForm = () => {
+    setIsReplyVisible(!isReplyVisible);
+  };
+
+  //handel Replay API
+
+  const { mutate: postReplayComment } = useAddReplayCommentForNews();
+  const formik = useFormik({
+    initialValues: {
+      newsId: newsId,
+      userIpAddress: "1",
+      title: "تست تست تست تست",
+      describe: "",
+      userId: userId,
+      parentId: id,
+    },
+    onSubmit: (values, { resetForm }) => {
+      postReplayComment(values, {
+        onSuccess: (data) => {
+          if (data.success === true) {
+            if (roles.includes("Administrator") || roles.includes("Referee")) {
+              toast.success("ریپلای  با موفقیت ارسال شد", data);
+            } else {
+              toast.warning("ریپلای ارسال شد در انتظار تایید", data);
+            }
+            queryClient.invalidateQueries("CoursesDetail");
+            resetForm();
+          } else {
+            toast.error("خطا در ارسال کامنت");
+          }
+        },
+      });
+    },
+  });
+
   return (
     <>
       <div
         className={`w-full  sm:min-h-[92px] flex   flex-col ${
-          showReplies ? "" : "mb-5 "
+          showReplies && isReplyVisible === false ? "" : "mb-5 "
         }`}
       >
         <div className="flex justify-between items-center w-full">
@@ -88,7 +137,7 @@ const Comment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            2 روز پیش
+            2 روز پیش 
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -116,7 +165,13 @@ const Comment = ({
                 />
               </svg>
             </span>
-            <p className="text-[#455A64] dark:text-gray-400 mr-3 ">پاسخ</p>
+            <p
+              className="text-[#455A64] dark:text-gray-400 mr-3 "
+              onClick={toggleReplyForm}
+            >
+              {" "}
+              {isReplyVisible ? "انصراف" : "پاسخ"}
+            </p>
             <span className="mr-1 sm:w-4 w-3 sm:h-4 h-3">
               <svg
                 viewBox="0 0 16 16"
@@ -153,6 +208,26 @@ const Comment = ({
           )}
         </div>
       </div>
+      {isReplyVisible && (
+        <>
+          <form onSubmit={formik.handleSubmit}>
+            <div className="w-full flex justify-center  flex-col">
+              <textarea
+                className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
+                placeholder="نظر خودتو بنویس..."
+                {...formik.getFieldProps("describe")}
+              />
+
+              <button
+                type="submit"
+                className="w-[84px] h-[48px] mx-auto bg-[#2196F3] dark:bg-[#1565C0] text-white rounded-[80px] mt-4 "
+              >
+                ارسال
+              </button>
+            </div>
+          </form>
+        </>
+      )}
       {showReplies && (
         <>
           {/* <ReplayComment /> */}
@@ -166,6 +241,9 @@ const Comment = ({
                 likeCount={item?.likeCount}
                 id={item?.id}
                 currentUserIsLike={item?.currentUserIsLike}
+                newsId={item?.newsId }
+                roles={roles}
+                userId={userId}
               />
             );
           })}

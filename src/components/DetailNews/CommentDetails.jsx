@@ -17,7 +17,7 @@ const CommentDetails = ({ commentDtos, newsId }) => {
 
   //API
   const { mutate: postComment } = useAddCommentForNews();
-  const id = getItem("id");
+  const userId = getItem("id");
   const roles = getItem("roles");
   console.log(roles, "sssssss");
   const formik = useFormik({
@@ -26,7 +26,7 @@ const CommentDetails = ({ commentDtos, newsId }) => {
       userIpAddress: "1",
       title: "تست تست تست تست",
       describe: "",
-      userId: id,
+      userId: userId,
     },
     onSubmit: (values, { resetForm }) => {
       postComment(values, {
@@ -142,13 +142,14 @@ const CommentDetails = ({ commentDtos, newsId }) => {
             return (
               <Comment
                 key={index}
-                title={item.title}
-                describe={item.describe}
-                likeCount={item.likeCount}
-                currentUserIsLike={item.currentUserIsLike}
-                autor={item.autor}
-                replyCount={item.replyCount}
-                id={item.id}
+                title={item?.title}
+                describe={item?.describe}
+                likeCount={item?.likeCount}
+                currentUserIsLike={item?.currentUserIsLike}
+                autor={item?.autor}
+                replyCount={item?.replyCount}
+                id={item?.id}
+                newsId={item?.newsId}
                 isLastVisible={
                   index === visibleCount - 1 &&
                   visibleCount < commentDtos.length
@@ -156,6 +157,9 @@ const CommentDetails = ({ commentDtos, newsId }) => {
                 onShowMore={() =>
                   setVisibleCount((prev) => prev + incrementCount)
                 }
+                userId={userId}
+                roles={roles}
+                parentId={item?.parentId}
               />
             );
           })}
