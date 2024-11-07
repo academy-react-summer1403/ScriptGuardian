@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { TbBeach } from "react-icons/tb";
 
-const PreviewTab = ({ activeTab }) => {
+const PreviewTab = ({ activeTab, techs }) => {
   const [openSections, setOpenSections] = useState({
     chapter1: false,
     chapter2: false,
     chapter3: false,
     chapter4: false,
   });
-
+    //TODO
   const toggleSection = (section) => {
     setOpenSections((prevState) => ({
       ...prevState,
@@ -28,7 +29,11 @@ const PreviewTab = ({ activeTab }) => {
               >
                 <div className="flex items-center mr-3">
                   <span>
-                    {openSections.chapter1 ? <FaMinus className="sm:text-base text-xs"/> : <FaPlus className="sm:text-base text-xs" />}
+                    {openSections.chapter1 ? (
+                      <FaMinus className="sm:text-base text-xs" />
+                    ) : (
+                      <FaPlus className="sm:text-base text-xs" />
+                    )}
                   </span>
                   <p className="mr-1 sm:text-base text-xs">
                     {" "}
@@ -38,7 +43,8 @@ const PreviewTab = ({ activeTab }) => {
                 <div className="flex items-center ml-5 gap-x-2">
                   <p className="sm:text-base text-xs">56 mins</p>
                   <span>
-                    <svg className="sm:w-4 sm:h-4 w-3 h-3"
+                    <svg
+                      className="sm:w-4 sm:h-4 w-3 h-3"
                       viewBox="0 0 16 16"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -136,12 +142,10 @@ const PreviewTab = ({ activeTab }) => {
                       </div>
                     </div>
                   </div>
-
                 </>
               )}
             </div>
-
-
+            
           </div>
         </>
       )}

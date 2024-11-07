@@ -24,6 +24,8 @@ const StudentLayout = () => {
     console.log("Logged out");
     setIsModalOpen(false);
     localStorage.removeItem("token"); // توکن را حذف می‌کنیم
+    localStorage.removeItem("id"); // توکن را حذف می‌کنیم
+    localStorage.removeItem("roles"); // توکن را حذف می‌کنیم
     navigate("/");
   };
   //API

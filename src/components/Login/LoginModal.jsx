@@ -32,7 +32,9 @@ const LoginModal = ({
           if (data.success) {
             toast.success("ورود با موفقیت انجام شد");
             setItem("token", data.token);
-            console.log(data, "data");
+            setItem("id", data.id);
+            setItem("roles", data.roles);
+            console.log(data.roles, "data roles");
             toggleModal();
             navigate("./panel");
           } else {

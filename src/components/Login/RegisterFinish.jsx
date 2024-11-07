@@ -28,6 +28,8 @@ const RegisterFinish = ({ isOpen, toggleModal }) => {
         onSuccess: (data) => {
           if (data.success === true) {
             setItem("token", data.token);
+            setItem("id", data.id);
+            setItem("roles", data.roles);
             toast.success(data.message);
             toggleModal();
             navigate("/panel");

@@ -28,7 +28,7 @@ const CoursesDetails = () => {
               courseId={data?.courseId}
               userFavoriteId={data?.userFavoriteId}
             />
-            <AboutCourses title={data?.title} describe={data?.describe} />
+            <AboutCourses title={data?.title} describe={data?.describe}  />
 
             <RatingCourses
               currentUserDissLike={data?.currentUserDissLike}
@@ -41,7 +41,7 @@ const CoursesDetails = () => {
               userLikeId={data?.userLikeId}
             />
 
-            <Tabs />
+            <Tabs techs={data?.techs}/>
           </div>
           <DetailsLeft
             startTime={data?.startTime}

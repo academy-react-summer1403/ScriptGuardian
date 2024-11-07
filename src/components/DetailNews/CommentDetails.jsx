@@ -3,11 +3,49 @@ import { useParams } from "react-router-dom";
 import DetailsBigImage from "../../images/NewsDetails/Rectangle 34.png";
 import DetailsSmallImage from "../../images/NewsDetails/Rectangle 16.png";
 import Poster from "../../images/NewsDetails/Poster.png";
-import { Form, Formik } from "formik";
+import { Form, Formik, useFormik } from "formik";
 import commentProfile from "../../images/NewsDetails/Unsplash-Avatars_0005s_0017_harps-joseph-tAvpDE7fXgY-unsplash.png";
 import { Comment } from "./comment";
-const CommentDetails = ({ commentDtos }) => {
+import { getItem } from "../../core/services/storage/storage.services";
+import { useAddCommentForNews } from "../../core/services/api/DetailNews/handelNewsComment";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
+const CommentDetails = ({ commentDtos, newsId }) => {
+  const queryClient = useQueryClient();
+
   const [visibleCount, setVisibleCount] = useState(5);
+
+  //API
+  const { mutate: postComment } = useAddCommentForNews();
+  const id = getItem("id");
+  const roles = getItem("roles");
+  console.log(roles, "sssssss");
+  const formik = useFormik({
+    initialValues: {
+      newsId: newsId,
+      userIpAddress: "1",
+      title: "تست تست تست تست",
+      describe: "",
+      userId: id,
+    },
+    onSubmit: (values, { resetForm }) => {
+      postComment(values, {
+        onSuccess: (data) => {
+          if (data.success === true) {
+            if (roles.includes("Administrator") || roles.includes("Referee")) {
+              toast.success("کامنت با موفقیت ارسال شد", data);
+            } else {
+              toast.warning("کامنت ارسال شد در انتظار تایید", data);
+            }
+            queryClient.invalidateQueries("CoursesDetail");
+            resetForm();
+          } else {
+            toast.error("خطا در ارسال کامنت");
+          }
+        },
+      });
+    },
+  });
 
   // تعداد کامنت‌هایی که به‌ازای هر کلیک بیشتر نمایش داده می‌شوند
   const incrementCount = 5;
@@ -18,22 +56,22 @@ const CommentDetails = ({ commentDtos }) => {
         <h2 className="font-[700] md:text-[24px] text-[18px] text-[#263238] dark:text-gray-200 mt-[32px]">
           نظرکاربران درباره این مقالهي
         </h2>
-        <Formik>
-          <Form className="w-full flex justify-center  flex-col">
+        <form onSubmit={formik.handleSubmit}>
+          <div className="w-full flex justify-center  flex-col">
             <textarea
               className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
               placeholder="نظر خودتو بنویس..."
+              {...formik.getFieldProps("describe")}
             />
-
+              
             <button
               type="submit"
               className="w-[84px] h-[48px] mx-auto bg-[#2196F3] dark:bg-[#1565C0] text-white rounded-[80px] mt-4 "
             >
               ارسال
             </button>
-          </Form>
-        </Formik>
-
+          </div>
+        </form>
         <div className="xl:w-[778px] w-[95%] mt-[24px] flex flex-col">
           {/* Comment */}
           {/* <div className="w-full  sm:min-h-[92px] flex   flex-col">

@@ -51,6 +51,8 @@ const LoginButton = () => {
 
   const logOut = () => {
     localStorage.removeItem("token"); // توکن را حذف می‌کنیم
+    localStorage.removeItem("id"); // توکن را حذف می‌کنیم
+    localStorage.removeItem("roles"); // توکن را حذف می‌کنیم
     setIsToken(false); // مقدار isToken را به false تغییر می‌دهیم
     setMenuOpen(false); // بستن منو بعد از خروج
   };

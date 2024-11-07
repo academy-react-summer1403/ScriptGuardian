@@ -39,7 +39,7 @@ const DetailsNews = () => {
         currentUserIsDissLike={detailsNewsDto?.currentUserIsDissLike}
         likeId={detailsNewsDto?.likeId}
       />
-      <CommentDetails commentDtos={commentDtos} />
+      <CommentDetails commentDtos={commentDtos} newsId={id}/>
     </>
   );
 };

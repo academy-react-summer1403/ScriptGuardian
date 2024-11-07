@@ -48,7 +48,8 @@ const Layout = () => {
   //HandelToken
   // const [isLogIn , setIsLogIn] = useState(null);
   const Token = getItem("token");
-  console.log("Token" , Token)
+  const id = getItem("id");
+  console.log("Token", Token);
 
   return (
     <>

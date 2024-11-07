@@ -47,3 +47,36 @@ export const useReplayCommentNews = (id) => {
     enabled: !!id, // اجرای query فقط زمانی که id موجود باشد
   });
 };
+
+//Add Comment
+
+const AddCommentForNews = async ({
+  newsId,
+  userIpAddress,
+  title,
+  describe,
+  userId,
+}) => {
+  try {
+    const response = await http.post(ApiRoutes.NEWS_DETAILS_ADD_COMMENT_URL, {
+      newsId,
+      userIpAddress,
+      title,
+      describe,
+      userId,
+    });
+    return response;
+  } catch (error) {
+    console.log("This error For AddCommentForNews  ", error);
+    return false;
+  }
+};
+export const useAddCommentForNews = () => {
+  return useMutation({
+    mutationKey: ["AddCommentForNews"],
+    mutationFn: (data) => {
+      console.log("this is AddCommentForNews =", data);
+      return AddCommentForNews(data);
+    },
+  });
+};
