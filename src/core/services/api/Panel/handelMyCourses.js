@@ -38,7 +38,7 @@ export const useMyReservedCourses = () => {
   });
 };
 
-///handel Delete
+///handel Delete MyReservedCourses
 
 const DeleteMyReservedCourses = async (data) => {
   try {
@@ -63,5 +63,25 @@ export const useDeleteMyReservedCourses = () => {
       console.log("this is user data =", data);
       return DeleteMyReservedCourses(data);
     },
+  });
+};
+
+// handel MyFavoriteCourses
+
+const MyFavoriteCourses = async () => {
+  try {
+    const response = await http.get(
+      `${ApiRoutes.PANEL_MY_FAVORITE_COURSES_URL}`
+    );
+    return response.favoriteCourseDto;
+  } catch (error) {
+    console.log("This error For MyFavoriteCourses", error);
+    return false;
+  }
+};
+export const useMyFavoriteCourses = () => {
+  return useQuery({
+    queryKey: ["MyFavoriteCourses"],
+    queryFn: MyFavoriteCourses,
   });
 };

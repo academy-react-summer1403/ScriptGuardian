@@ -104,11 +104,11 @@ const MyReservedCourses = () => {
   const { mutate: DeleteReserve } = useDeleteMyReservedCourses();
 
   const handelDelete = (id) => {
-    DeleteReserve(id , {
-      onSuccess: () =>{
+    DeleteReserve(id, {
+      onSuccess: () => {
         queryClient.invalidateQueries("MyReservedCourses");
         toast.success("با موفقیت دوره رزرو شده ی شما حذف شد");
-      }
+      },
     });
     // alert(id)
   };
