@@ -57,16 +57,7 @@ export const useAddDissLikeCourses = () => {
 const DeleteLikeCourses = async (formData) => {
   console.log("this is Delete CourseLike ", formData);
   try {
-    const response = await http.delete(
-      ApiRoutes.DELETE_LIKE_COURSES_URL,
-
-      {
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const response = await http.delete(ApiRoutes.DELETE_LIKE_COURSES_URL , {data: formData});
     console.log(response.message, "this response Of  DeleteLikeCourses");
     return response;
   } catch (error) {

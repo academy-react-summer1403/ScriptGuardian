@@ -61,6 +61,9 @@ export const ApiRoutes = {
 
   //student panel Edit Profile
   PANEL_EDIT_PROFILE_URL: "/SharePanel/UpdateProfileInfo",
+  PANEL_ADD_PROFILE_IMAGE_URL: "/SharePanel/AddProfileImage",
+  PANEL_DELETE_PROFILE_IMAGE_URL: "/SharePanel/DeleteProfileImage",
+  PANEL_SELECT_PROFILE_IMAGE_URL: "/SharePanel/SelectProfileImage",
 
   //Student Panel Change pass
   PANEL_CHANGE_PASSWORD_URL: "/SharePanel/ChangePassword",

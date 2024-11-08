@@ -17,13 +17,16 @@ const DetailsLeft = ({
 }) => {
   const queryClient = useQueryClient();
 
-  //API
   const { mutate: AddReserve } = useAddReserveCourse();
   const handleAddReserve = () => {
     AddReserve(courseId, {
       onSuccess: () => {
-        toast.success("با موفقیت رزرو شده");
-        queryClient.invalidateQueries("CoursesDetail");
+        if (data.success === true) {
+          toast.success("با موفقیت رزرو شده");
+          queryClient.invalidateQueries("CoursesDetail");
+        }
+
+        //TODO
       },
     });
   };

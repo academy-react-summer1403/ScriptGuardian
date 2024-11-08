@@ -23,8 +23,13 @@ import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
 import { useGetStudentProfile } from "../../../core/services/api/Panel/GetProfile";
 import { useFormik } from "formik";
 import { useEditProfile } from "../../../core/services/api/Panel/editProfile";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
+import { HandelProfile } from "../../../components/panel/HandelProfile/HandelProfile";
 
 const StudentProfile = () => {
+  const queryClient = useQueryClient();
+
   //API GET PROFILE INFO
   const { data, isPending } = useGetStudentProfile();
   console.log(data, "Student profile data data");
@@ -41,25 +46,33 @@ const StudentProfile = () => {
       UserAbout: data?.userAbout ? data?.userAbout : "",
       LinkdinProfile: data?.linkdinProfile ? data?.linkdinProfile : "",
       TelegramLink: data?.telegramLink ? data?.telegramLink : "",
-      ReceiveMessageEvent: data?.receiveMessageEvent
-        ? "مایل به دریافتم "
-        : "مایل به دریافت نیستم",
+      ReceiveMessageEvent: data?.receiveMessageEvent ?? false,
       HomeAdderess: data?.homeAdderess ? data?.homeAdderess : "",
       NationalCode: data?.nationalCode ? data?.nationalCode : "",
-      Gender: data?.gender ? (data?.gender ? "مذکر" : "مونث") : "",
+      Gender: data?.gender ?? true,
+
       BirthDay:
         data?.birthDay && data?.birthDay !== "0001-01-01T00:00:00"
           ? data?.birthDay
           : "",
-      Latitude: data?.latitude ? data?.latitude : "",
-      Longitude: data?.longitude ? data?.longitude : "",
+      // Latitude: data?.latitude ? data?.latitude : "",
+      Latitude: "51.3890",
+      // Longitude: data?.longitude ? data?.longitude : "",
+      Longitude: "35.6892",
     },
     onSubmit: (data) => {
       const formData = new FormData();
       for (const key in data) {
         formData.append(key, data[key]);
       }
-      EditProfile();
+      EditProfile(formData, {
+        onSuccess: (data) => {
+          if (data.success === true) {
+            toast.success(data.message);
+            queryClient.invalidateQueries("GetStudentProfile");
+          }
+        },
+      });
     },
   });
 
@@ -193,15 +206,8 @@ const StudentProfile = () => {
             <FaShoppingCart className="text-xl" />
           </div>
         </div>
-
-        <div className="mt-10 flex flex-col sm:items-start item-center ">
-          <div className="w-[200px] h-[200px] rounded-full bg-gray-400">
-            <img src="" alt="" className="w-full h-full rounded-full" />
-          </div>
-          <h4 className="mx-auto mt-3 text-[#455A64] dark:text-gray-400">
-            ویرایش تصویر
-          </h4>
-        </div>
+            {/* HAndel */}
+            <HandelProfile data={data}/>
 
         <form onSubmit={formik?.handleSubmit}>
           <div className="flex flex-wrap sm:w-[95%] w-full gap-x-5 justify-center gap-y-7 mt-3">
@@ -292,14 +298,18 @@ const StudentProfile = () => {
               >
                 رویداد دریافت پیام
               </label>
-              <input
+              {/* <input
                 name="ReceiveMessageEvent"
                 type="text"
                 id="ReceiveMessageEvent"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 placeholder="مایل به دریافتید؟"
                 {...formik?.getFieldProps("ReceiveMessageEvent")}
-              />
+              /> */}
+              <select {...formik?.getFieldProps("ReceiveMessageEvent")}>
+                <option value="true">موافق</option>
+                <option value="false">مخالف</option>
+              </select>
             </div>
             <div className="w-[30%]">
               <label
@@ -342,14 +352,20 @@ const StudentProfile = () => {
               >
                 جنسیت{" "}
               </label>
-              <input
+              {/* <input
                 type="text"
                 id="Gender"
                 name="Gender"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 placeholder="جنسیت خود را وارد کنید"
                 {...formik?.getFieldProps("Gender")}
-              />
+              /> */}
+              <div>
+                <select {...formik?.getFieldProps("Gender")}>
+                  <option value="true">مرد</option>
+                  <option value="false">زن</option>
+                </select>
+              </div>
             </div>
 
             <div className="w-[30%]">
