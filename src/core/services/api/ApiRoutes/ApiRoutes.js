@@ -24,6 +24,13 @@ export const ApiRoutes = {
   DELETE_LIKE_COURSES_URL: "/Course/DeleteCourseLike",
   ADD_COURSES_FAVORITE_URL: "/Course/AddCourseFavorite",
   DELETE_COURSES_FAVORITE_URL: "/Course/DeleteCourseFavorite",
+  GET_COURSES_COMMENT_URL: "/Course/GetCourseCommnets/",
+  GET_REPLAY_COURSES_COMMENT_URL: "/Course/GetCourseReplyCommnets",
+  ADD_LIKE_COURSES_COMMENT_URL: "/Course/AddCourseCommentLike?",
+  ADD_DISS_LIKE_COURSES_COMMENT_URL: "/Course/AddCourseCommentDissLike?",
+  DELETE_LIKE_COURSES_COMMENT_URL: "/Course/DeleteCourseCommentLike?",
+  ADD_COURSES_COMMENT_URL: "/Course/AddCommentCourse",
+  ADD_COURSES_REPLAY_COMMENT_URL: "/Course/AddReplyCourseComment",
   //Details Of Courses
   DETAILS_COURSES_PAGE_URL: "/Home/GetCourseDetails?CourseId=",
   DETAILS_COURSES_ADD_TO_RESERVE_URL: "/CourseReserve/ReserveAdd",
