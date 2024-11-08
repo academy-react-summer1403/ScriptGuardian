@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import http from "../../../interceptors/interceptors";
 import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 
-//handel like
+//handel like Comment And DissLike
 
 const AddLikeCommentNews = async ({ commentId, LikeType }) => {
   console.log("this is Post Like ", commentId);
@@ -23,6 +23,34 @@ export const useAddLikeCommentNews = () => {
     mutationFn: (data) => {
       console.log("this is AddLikeCommentNews =", data);
       return AddLikeCommentNews(data);
+    },
+  });
+};
+
+//Delete
+const DeleteLikeCommentNews = async (deleteEntityId) => {
+  try {
+    const response = await http.delete(
+      ApiRoutes.DETAILS_NEWS_PAGE_DELETE_LIKE_COMMENT_URL,
+      {
+        data: {
+          deleteEntityId,
+        },
+      }
+    );
+    console.log(response.message, "this response Of DeleteLikeCommentNews");
+    return response;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const useDeleteLikeCommentNews = () => {
+  return useMutation({
+    mutationKey: ["DeleteLikeCommentNews"],
+    mutationFn: (data) => {
+      console.log("this is DeleteLikeCommentNews =", data);
+      return DeleteLikeCommentNews(data);
     },
   });
 };

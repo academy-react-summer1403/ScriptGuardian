@@ -35,6 +35,7 @@ export const ApiRoutes = {
   DETAILS_NEWS_PAGE_URL: "/News/",
   DETAILS_NEWS_PAGE_REPLAY_COMMENT_URL: "/News/GetRepliesComments?",
   DETAILS_NEWS_PAGE_LIKE_COMMENT_URL: "/News/CommentLike/",
+  DETAILS_NEWS_PAGE_DELETE_LIKE_COMMENT_URL: "/News/DeleteCommentLikeNews",
   DETAILS_ADD_LIKE_NEWS_URL: "/News/NewsLike/",
   DETAILS_ADD_DISS_LIKE_NEWS_URL: "/News/NewsDissLike/",
   DETAILS_DELETE_LIKE_NEWS_URL: "/News/DeleteLikeNews",

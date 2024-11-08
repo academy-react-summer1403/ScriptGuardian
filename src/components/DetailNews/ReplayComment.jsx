@@ -4,9 +4,11 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   useAddLikeCommentNews,
   useAddReplayCommentForNews,
+  useDeleteLikeCommentNews,
 } from "../../core/services/api/DetailNews/handelNewsComment";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 
 const ReplayComment = ({
   describe,
@@ -18,39 +20,99 @@ const ReplayComment = ({
   roles,
   userId,
   newsId,
+  currentUserIsDissLike,
+  currentUserLikeId,
+  dissLikeCount,
 }) => {
   const queryClient = useQueryClient();
 
+  // //API
+  // //handel Like Comment
+  // const { mutate: AddLike } = useAddLikeCommentNews();
+
+  // const handelLike = () => {
+  //   if (currentUserIsLike === true) {
+  //     AddLike(
+  //       { commentId: id, LikeType: false },
+  //       {
+  //         onSuccess: (data) => {
+  //           if (data.success) {
+  //             toast.success("کامنت با موفقیت لایکش برداشته شد");
+  //             queryClient.invalidateQueries("AddLikeCommentNews");
+  //           } else {
+  //             toast.error("خطا در برداشتن لایک کامنت");
+  //           }
+  //         },
+  //       }
+  //     );
+  //   } else {
+  //     AddLike(
+  //       { commentId: id, LikeType: true },
+
+  //       {
+  //         onSuccess: (data) => {
+  //           if (data.success) {
+  //             toast.success("کامنت با موفقیت لایک شد");
+  //             queryClient.invalidateQueries("AddLikeCommentNews");
+  //           } else {
+  //             toast.error("خطا در لایک کامنت");
+  //           }
+  //         },
+  //       }
+  //     );
+  //   }
+  // };
+
   //API
   //handel Like Comment
-  const { mutate: AddLike } = useAddLikeCommentNews();
+  const { mutate: AddLikeAndDissLike } = useAddLikeCommentNews();
+  const { mutate: DeleteLikeAndDissLike } = useDeleteLikeCommentNews();
 
   const handelLike = () => {
     if (currentUserIsLike === true) {
-      AddLike(
-        { commentId: id, LikeType: false },
-        {
-          onSuccess: (data) => {
-            if (data.success) {
-              toast.success("کامنت با موفقیت لایکش برداشته شد");
-              queryClient.invalidateQueries("AddLikeCommentNews");
-            } else {
-              toast.error("خطا در برداشتن لایک کامنت");
-            }
-          },
-        }
-      );
+      DeleteLikeAndDissLike(currentUserLikeId, {
+        onSuccess: () => {
+          toast.success("با موفقیت لایک  برداشته شد");
+          queryClient.invalidateQueries("DetailNews");
+        },
+      });
     } else {
-      AddLike(
+      AddLikeAndDissLike(
         { commentId: id, LikeType: true },
 
         {
           onSuccess: (data) => {
             if (data.success) {
               toast.success("کامنت با موفقیت لایک شد");
-              queryClient.invalidateQueries("AddLikeCommentNews");
+              queryClient.invalidateQueries("DetailNews");
             } else {
               toast.error("خطا در لایک کامنت");
+            }
+          },
+        }
+      );
+    }
+  };
+
+  const handelDissLike = () => {
+    if (currentUserIsDissLike === true) {
+      DeleteLikeAndDissLike(currentUserLikeId, {
+        onSuccess: () => {
+          toast.success("با موفقیت  دیس لایک  برداشته شد");
+          queryClient.invalidateQueries("DetailNews");
+        },
+      });
+    } else {
+      AddLikeAndDissLike(
+        { commentId: id, LikeType: false },
+
+        {
+          onSuccess: (data) => {
+            if (data.success) {
+              toast.success("کامنت با موفقیت دیس لایک شد");
+              queryClient.invalidateQueries("DetailNews");
+            } else {
+              toast.error("خطا در  دیس لایک لایک کامنت");
             }
           },
         }
@@ -125,7 +187,7 @@ const ReplayComment = ({
           {title} {describe}
         </p>
         <div className="flex items-center text-sm mt-3 sm:mr-4 mr-2">
-          <p className="text-[#F44336] dark:text-[#D32F2F] sm:text-[16px] text-xs">
+          {/* <p className="text-[#F44336] dark:text-[#D32F2F] sm:text-[16px] text-xs">
             {likeCount}
           </p>
           <span className="mr-1 sm:w-4 sm:h-4 w-3 h-3" onClick={handelLike}>
@@ -144,7 +206,34 @@ const ReplayComment = ({
                 strokeLinejoin="round"
               />
             </svg>
-          </span>
+          </span> */}
+
+          <div className="flex items-center gap-3">
+            <button className="flex items-center 0">
+              <span className="ml-1 text-xs dark:text-white">{likeCount}</span>
+              <FaThumbsUp
+                className={`text-sm ${
+                  currentUserIsLike
+                    ? "text-green-400 dark:text-green-600"
+                    : "text-black dark:text-white"
+                }`}
+                onClick={handelLike}
+              />
+            </button>
+            <button className="flex items-center ">
+              <FaThumbsDown
+                className={`text-sm  ${
+                  currentUserIsDissLike
+                    ? "text-red-400 dark:text-red-600"
+                    : "text-black dark:text-white"
+                }`}
+                onClick={handelDissLike}
+              />
+              <span className="mr-1 text-xs dark:text-white">
+                {dissLikeCount}
+              </span>
+            </button>
+          </div>
           <p
             className="text-[#455A64] dark:text-gray-400 mr-3 cursor-pointer "
             onClick={toggleReplyForm}

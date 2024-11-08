@@ -63,7 +63,7 @@ const CommentDetails = ({ commentDtos, newsId }) => {
               placeholder="نظر خودتو بنویس..."
               {...formik.getFieldProps("describe")}
             />
-              
+
             <button
               type="submit"
               className="w-[84px] h-[48px] mx-auto bg-[#2196F3] dark:bg-[#1565C0] text-white rounded-[80px] mt-4 "
@@ -160,6 +160,9 @@ const CommentDetails = ({ commentDtos, newsId }) => {
                 userId={userId}
                 roles={roles}
                 parentId={item?.parentId}
+                currentUserLikeId={item?.currentUserLikeId}
+                currentUserIsDissLike={item?.currentUserIsDissLike}
+                dissLikeCount={item?.dissLikeCount}
               />
             );
           })}

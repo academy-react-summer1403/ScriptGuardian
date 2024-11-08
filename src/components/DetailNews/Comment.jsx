@@ -3,12 +3,14 @@ import commentProfile from "../../images/NewsDetails/Unsplash-Avatars_0005s_0017
 import {
   useAddLikeCommentNews,
   useAddReplayCommentForNews,
+  useDeleteLikeCommentNews,
 } from "../../core/services/api/DetailNews/handelNewsComment";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { ReplayComment } from "./ReplayComment";
 import { useReplayCommentNews } from "../../core/services/api/DetailNews/handelNewsComment";
 import { useFormik } from "formik";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 
 const Comment = ({
   title,
@@ -24,39 +26,62 @@ const Comment = ({
   roles,
   userId,
   parentId,
+  currentUserLikeId,
+  currentUserIsDissLike,
+  dissLikeCount,
 }) => {
   const queryClient = useQueryClient();
 
   //API
   //handel Like Comment
-  const { mutate: AddLike } = useAddLikeCommentNews();
+  const { mutate: AddLikeAndDissLike } = useAddLikeCommentNews();
+  const { mutate: DeleteLikeAndDissLike } = useDeleteLikeCommentNews();
 
   const handelLike = () => {
     if (currentUserIsLike === true) {
-      AddLike(
-        { commentId: id, LikeType: false },
-        {
-          onSuccess: (data) => {
-            if (data.success) {
-              toast.success("کامنت با موفقیت لایکش برداشته شد");
-              queryClient.invalidateQueries("AddLikeCommentNews");
-            } else {
-              toast.error("خطا در برداشتن لایک کامنت");
-            }
-          },
-        }
-      );
+      DeleteLikeAndDissLike(currentUserLikeId, {
+        onSuccess: () => {
+          toast.success("با موفقیت لایک  برداشته شد");
+          queryClient.invalidateQueries("DetailNews");
+        },
+      });
     } else {
-      AddLike(
+      AddLikeAndDissLike(
         { commentId: id, LikeType: true },
 
         {
           onSuccess: (data) => {
             if (data.success) {
               toast.success("کامنت با موفقیت لایک شد");
-              queryClient.invalidateQueries("AddLikeCommentNews");
+              queryClient.invalidateQueries("DetailNews");
             } else {
               toast.error("خطا در لایک کامنت");
+            }
+          },
+        }
+      );
+    }
+  };
+
+  const handelDissLike = () => {
+    if (currentUserIsDissLike === true) {
+      DeleteLikeAndDissLike(currentUserLikeId, {
+        onSuccess: () => {
+          toast.success("با موفقیت  دیس لایک  برداشته شد");
+          queryClient.invalidateQueries("DetailNews");
+        },
+      });
+    } else {
+      AddLikeAndDissLike(
+        { commentId: id, LikeType: false },
+
+        {
+          onSuccess: (data) => {
+            if (data.success) {
+              toast.success("کامنت با موفقیت دیس لایک شد");
+              queryClient.invalidateQueries("DetailNews");
+            } else {
+              toast.error("خطا در  دیس لایک لایک کامنت");
             }
           },
         }
@@ -137,7 +162,7 @@ const Comment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            2 روز پیش 
+            2 روز پیش
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -145,7 +170,7 @@ const Comment = ({
         </p>
         <div className="flex justify-between items-center sm:text-sm text-xs mt-3">
           <div className="flex items-center">
-            <p className="text-[#F44336] dark:text-[#D32F2F]">{likeCount}</p>
+            {/* <p className="text-[#F44336] dark:text-[#D32F2F]">{likeCount}</p>
             <span className="mr-1 sm:w-4 sm:h-4 w-3 h-3" onClick={handelLike}>
               <svg
                 viewBox="0 0 16 16"
@@ -164,7 +189,36 @@ const Comment = ({
                   strokeLinejoin="round"
                 />
               </svg>
-            </span>
+            </span> */}
+
+            <div className="flex items-center gap-3">
+              <button className="flex items-center 0">
+                <span className="ml-1 text-xs dark:text-white">
+                  {likeCount}
+                </span>
+                <FaThumbsUp
+                  className={`text-sm ${
+                    currentUserIsLike
+                      ? "text-green-400 dark:text-green-600"
+                      : "text-black dark:text-white"
+                  }`}
+                  onClick={handelLike}
+                />
+              </button>
+              <button className="flex items-center ">
+                <FaThumbsDown
+                  className={`text-sm  ${
+                    currentUserIsDissLike
+                      ? "text-red-400 dark:text-red-600"
+                      : "text-black dark:text-white"
+                  }`}
+                  onClick={handelDissLike}
+                />
+                <span className="mr-1 text-xs dark:text-white">
+                  {dissLikeCount}
+                </span>
+              </button>
+            </div>
             <p
               className="text-[#455A64] dark:text-gray-400 mr-3 "
               onClick={toggleReplyForm}
@@ -241,9 +295,12 @@ const Comment = ({
                 likeCount={item?.likeCount}
                 id={item?.id}
                 currentUserIsLike={item?.currentUserIsLike}
-                newsId={item?.newsId }
+                newsId={item?.newsId}
                 roles={roles}
                 userId={userId}
+                currentUserIsDissLike={item?.currentUserIsDissLike}
+                currentUserLikeId={item?.currentUserLikeId}
+                dissLikeCount={item?.dissLikeCount}
               />
             );
           })}
