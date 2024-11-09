@@ -20,8 +20,8 @@ const DetailsLeft = ({
   const { mutate: AddReserve } = useAddReserveCourse();
   const handleAddReserve = () => {
     AddReserve(courseId, {
-      onSuccess: () => {
-        if (data.success === true) {
+      onSuccess: (data) => {
+        if (data.success == true) {
           toast.success("با موفقیت رزرو شده");
           queryClient.invalidateQueries("CoursesDetail");
         }
