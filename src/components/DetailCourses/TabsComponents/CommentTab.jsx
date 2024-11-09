@@ -9,7 +9,10 @@ import {
 import { CourseComment } from "./CommentChilderen/CourseComment";
 import { getItem } from "../../../core/services/storage/storage.services";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 const CommentTab = ({ activeTab }) => {
+  const queryClient = useQueryClient();
+
   const [visibleCount, setVisibleCount] = useState(5);
 
   // تعداد کامنت‌هایی که به‌ازای هر کلیک بیشتر نمایش داده می‌شوند
@@ -29,24 +32,27 @@ const CommentTab = ({ activeTab }) => {
       Title: "تست تست تست تست تست تست تست تست تست",
       Describe: "",
     },
-    onSubmit: (values, { resetForm }) => {
-      // const formData = new FormData();
-      // formData.append("CourseId", values.CourseId);
-      // formData.append("Title", values.Title);
-      // formData.append("Describe", values.Describe);
+    onSubmit: (values) => {
       const formData = new FormData();
-      for (const key in values) {
-        formData.append(key, values[key]);
-      }
+      formData.append("CourseId", values.CourseId);
+      formData.append("Title", values.Title);
+      formData.append("Describe", values.Describe);
+      // const formData = new FormData();
+      // for (const key in values) {
+      //   formData.append(key, values[key]);
+      // }
       AddComment(formData, {
         onSuccess: (data) => {
           if (data.success === true) {
-            if (roles.includes("Administrator") || roles.includes("Referee")) {
-              toast.success("ریپلای  با موفقیت ارسال شد", data);
-            } else {
-              toast.warning("ریپلای ارسال شد در انتظار تایید", data);
-            }
+            // if (roles.includes("Administrator") || roles.includes("Referee")) {
+
+            // }
+            toast.success("کامنت  با موفقیت ارسال شد");
             queryClient.invalidateQueries("CommentCourses");
+
+            // else {
+            //   toast.warning("کامنت ارسال شد در انتظار تایید", data);
+            // }
             resetForm();
           } else {
             toast.error("خطا در ارسال کامنت");
@@ -89,6 +95,7 @@ const CommentTab = ({ activeTab }) => {
                     }
                     author={item?.author}
                     title={item?.title}
+                    describe={item?.title}
                     pictureAddress={item?.pictureAddress}
                     acceptReplysCount={item?.acceptReplysCount}
                     index={index}
