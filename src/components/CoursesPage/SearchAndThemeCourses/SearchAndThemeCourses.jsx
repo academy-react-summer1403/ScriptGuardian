@@ -5,7 +5,11 @@ import { SearchCourses } from "./SearchCourses";
 import { DropDownCourses } from "./DropDownCourses";
 import { FaFilter } from "react-icons/fa";
 
-const SearchAndThemeCourses = ({handleClick}) => {
+const SearchAndThemeCourses = ({
+  handleClick,
+  handleSearchChange,
+  searchQuery,
+}) => {
   const [showContent, setShowContent] = useState(false);
 
   const handleFilter = () => {
@@ -17,11 +21,14 @@ const SearchAndThemeCourses = ({handleClick}) => {
         onClick={handleClick}
         className="sm:w-[50px] w-full sm:h-full h-[50px] lg:hidden bg-[#ECEFF1] dark:bg-[#1C1C1C] rounded-2xl  focus:outline-none flex items-center justify-center ease-in-out cursor-pointer "
       >
-            <FaFilter className="dark:text-white text-gray-900 md:text-base sm:text-sm text-xs"/>
+        <FaFilter className="dark:text-white text-gray-900 md:text-base sm:text-sm text-xs" />
       </div>
 
       <ThemeCourses />
-      <SearchCourses />
+      <SearchCourses
+        handleSearchChange={handleSearchChange}
+        searchQuery={searchQuery}
+      />
       <DropDownCourses />
     </div>
   );

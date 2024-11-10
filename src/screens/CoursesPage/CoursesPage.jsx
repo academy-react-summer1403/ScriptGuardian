@@ -52,37 +52,16 @@ import { useCourses } from "../../core/services/api/CoursesPage/GetAllCourses";
 const CoursesPage = () => {
   //API
 
-  const { data } = useCourses();
+  const [searchQuery, setSearchQuery] = useState(undefined);
+
+  const { data } = useCourses({
+    SearchQuery: searchQuery,
+  });
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+  };
   console.log(data, "CoursesPage");
-  // const [aa, setMap] = useState([
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  // ]);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -118,7 +97,11 @@ const CoursesPage = () => {
         <Filters showMenu={showMenu} handleClick={handleClick} />
         <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}
-          <SearchAndThemeCourses handleClick={handleClick} />
+          <SearchAndThemeCourses
+            handleClick={handleClick}
+            handleSearchChange={handleSearchChange}
+            searchQuery={searchQuery}
+          />
           <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
             {currentItems?.map((course, index) => (
               <Course
