@@ -1,44 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCourses/HereSectionCourses";
-
-// import { Filters } from "../../components/CoursesPage/FilterComponents/Filters";
-// import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThemeCourses/SearchAndThemeCourses";
-// import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
-// const CoursesPage = () => {
-
-//   const [map, setMap] = useState([
-//     {id : 1},
-//     {id : 2},
-//     {id : 3},
-//     {id : 4},
-//     {id : 5},
-//     {id : 6},
-//     {id : 7},
-//     {id : 8},
-//     {id : 9},
-//   ]);
-
-//   return (
-//     <>
-//       <HereSectionCourses />
-//       <div className="mt-10 flex container mx-auto gap-8">
-//         <Filters />
-//         <div className="flex flex-col ">
-//           {/* Top */}
-//           <SearchAndThemeCourses />
-//           <div className="w-[952px] min-h-[200px] mt-[32px]  flex flex-wrap gap-8">
-//           {map.map((course?, index) => (
-//             <LandingCourses key={index} />
-//           ))}
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export { CoursesPage };
-
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCourses/HereSectionCourses";
@@ -53,16 +12,23 @@ const CoursesPage = () => {
   //API
 
   const [searchQuery, setSearchQuery] = useState(undefined);
+  const [costDown, setCostDown] = useState(undefined);
+  const [costUp, setCostUp] = useState(undefined);
 
   const { data } = useCourses({
     SearchQuery: searchQuery,
+    CostDown: costDown,
+    CostUp: costUp,
   });
+  console.log(data, "CoursesPage");
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
   };
-  console.log(data, "CoursesPage");
 
+  // handle cost
+
+  //Page Iniate
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -94,7 +60,13 @@ const CoursesPage = () => {
       {/* TODO */}
       <HereSectionCourses />
       <div className="mt-10 flex xl:w-[1280px]  container lg:justify-start   sm:mx-auto lg:gap-8  justify-center">
-        <Filters showMenu={showMenu} handleClick={handleClick} />
+        <Filters
+          showMenu={showMenu}
+          handleClick={handleClick}
+          setCostDown={setCostDown}
+          setCostUp={setCostUp}
+          data={data}
+        />
         <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}
           <SearchAndThemeCourses

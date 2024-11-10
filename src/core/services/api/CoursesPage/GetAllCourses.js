@@ -18,9 +18,11 @@ import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 //   });
 // };
 
-const Courses = async ({ SearchQuery }) => {
+const Courses = async ({ SearchQuery, CostDown, CostUp }) => {
   const AllParams = {
     Query: SearchQuery ? SearchQuery : undefined,
+    CostDown: CostDown ? CostDown : "0",
+    CostUp: CostUp ? CostUp : undefined,
   };
   try {
     const response = await http.get(ApiRoutes.COURSES_PAGE_URL, {
@@ -34,9 +36,9 @@ const Courses = async ({ SearchQuery }) => {
 };
 
 //Custom Hook
-export const useCourses = ({ SearchQuery }) => {
+export const useCourses = ({ SearchQuery, CostDown, CostUp }) => {
   return useQuery({
-    queryKey: ["Courses", SearchQuery],
-    queryFn: () => Courses({ SearchQuery }),
+    queryKey: ["Courses", SearchQuery, CostDown, CostUp],
+    queryFn: () => Courses({ SearchQuery, CostDown, CostUp }),
   });
 };
