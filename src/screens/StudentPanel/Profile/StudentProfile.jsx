@@ -103,6 +103,13 @@ const StudentProfile = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  if (isPending === true) {
+    return (
+      <>
+        <p>درحال بررسی</p>
+      </>
+    );
+  }
   return (
     <>
       {/* hamburger */}
@@ -206,8 +213,8 @@ const StudentProfile = () => {
             <FaShoppingCart className="text-xl" />
           </div>
         </div>
-            {/* HAndel */}
-            <HandelProfile data={data}/>
+        {/* HAndel */}
+        <HandelProfile data={data} />
 
         <form onSubmit={formik?.handleSubmit}>
           <div className="flex flex-wrap sm:w-[95%] w-full gap-x-5 justify-center gap-y-7 mt-3">

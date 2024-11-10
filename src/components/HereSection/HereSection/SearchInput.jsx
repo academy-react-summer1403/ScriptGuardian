@@ -1,12 +1,14 @@
 import React from "react";
 
-const SearchInput = () => {
+const SearchInput = ({ handleSearchChange, searchQuery }) => {
   return (
     <div className="relative  mt-[48px] flex items-center md:w-[724px] w-[85%] h-[56px]">
       <input
         type="text"
         className="w-full px-[20px] py-[15.5px]  h-full border-gray-300 rounded-[16px] focus:outline-none dark:bg-gray-900 dark:caret-white dark:placeholder-white dark:text-white  z-0"
         placeholder="چی میخوای یادبگیری؟"
+        value={searchQuery ? searchQuery : ""}
+        onChange={handleSearchChange}
       />
 
       <svg
