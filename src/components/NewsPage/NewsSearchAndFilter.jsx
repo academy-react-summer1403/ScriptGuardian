@@ -4,22 +4,20 @@ import { SearchNews } from "./SearchNews";
 import { FilterNews } from "./FilterNews";
 import { DropDownNews } from "./DropDownNews";
 
-const NewsSearchAndFilter = () => {
-
-
-
+const NewsSearchAndFilter = ({ handleSearchChange, searchQuery }) => {
   return (
     <>
       <div className="flex xl:mt-0 mt-10 justify-between">
-        <SearchNews/>
+        <SearchNews
+          handleSearchChange={handleSearchChange}
+          searchQuery={searchQuery}
+        />
 
         {/* Filter */}
-        <FilterNews/>
-
+        <FilterNews />
 
         {/* DropDOwn */}
-        <DropDownNews/>
-
+        <DropDownNews />
       </div>
     </>
   );

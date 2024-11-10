@@ -17,3 +17,24 @@ export const useLandingNews = () => {
     queryFn: LandingNews,
   });
 };
+
+const PageNews = async ({ SearchQuery }) => {
+  const AllParams = {
+    Query: SearchQuery ? SearchQuery : undefined,
+  };
+  try {
+    const response = await http.get(ApiRoutes.LANDING_NEWS_URL, {
+      params: AllParams,
+    });
+    return response.news;
+  } catch (error) {
+    console.log("This error For LandingNews.js", error);
+    return false;
+  }
+};
+export const usePageNews = ({ SearchQuery }) => {
+  return useQuery({
+    queryKey: ["LandingNews", SearchQuery],
+    queryFn: () => PageNews({ SearchQuery }),
+  });
+};

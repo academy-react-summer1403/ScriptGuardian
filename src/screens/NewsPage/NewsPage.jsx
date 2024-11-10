@@ -4,44 +4,26 @@ import News from "../../images/NewsAndArticle/photo1.png";
 import { NewsSearchAndFilter } from "../../components/NewsPage/NewsSearchAndFilter";
 import { CardNewsPage } from "../../components/NewsPage/CardNewsPage";
 import ReactPaginate from "react-paginate";
-import { useLandingNews } from "../../core/services/api/Landing/LandingNews";
+import { useLandingNews, usePageNews } from "../../core/services/api/Landing/LandingNews";
 
 const NewsPage = () => {
-  const { data } = useLandingNews();
-  // const [map, setMap] = useState([
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  // ]);
+  //handel search
+  const [searchQuery, setSearchQuery] = useState(undefined);
+  const { data } = usePageNews({
+    SearchQuery: searchQuery,
+  });
 
+  //handel Search
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+  };
+
+  //handel page
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 8;
+  const itemsPerPage = 10;
 
   React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -59,7 +41,10 @@ const NewsPage = () => {
       <HereNewsSection />
 
       <div className="flex flex-col container xl:w-[1280px] mx-auto  ">
-        <NewsSearchAndFilter />
+        <NewsSearchAndFilter
+          searchQuery={searchQuery}
+          handleSearchChange={handleSearchChange}
+        />
 
         <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
           {currentItems?.map((item, index) => {
@@ -72,7 +57,7 @@ const NewsPage = () => {
                   miniDescribe={item.miniDescribe}
                   addUserProfileImage={item.addUserProfileImage}
                   currentView={item.currentView}
-                  currentRate ={item.currentRate}
+                  currentRate={item.currentRate}
                 />
               </>
             );
