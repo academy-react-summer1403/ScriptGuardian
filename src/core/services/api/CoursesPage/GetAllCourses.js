@@ -18,17 +18,25 @@ import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 //   });
 // };
 
-const Courses = async ({ SearchQuery, CostDown, CostUp }) => {
+const Courses = async ({
+  SearchQuery,
+  CostDown,
+  CostUp,
+  RowsOfPage,
+  PageNumber,
+}) => {
   const AllParams = {
     Query: SearchQuery ? SearchQuery : undefined,
     CostDown: CostDown ? CostDown : "0",
     CostUp: CostUp ? CostUp : undefined,
+    RowsOfPage: RowsOfPage ? RowsOfPage : 6,
+    PageNumber: PageNumber ? PageNumber : 1,
   };
   try {
     const response = await http.get(ApiRoutes.COURSES_PAGE_URL, {
       params: AllParams,
     });
-    return response.courseFilterDtos;
+    return response;
   } catch (error) {
     console.log("This error Four Get All Courses Courses.js", error);
     return false;
@@ -36,9 +44,23 @@ const Courses = async ({ SearchQuery, CostDown, CostUp }) => {
 };
 
 //Custom Hook
-export const useCourses = ({ SearchQuery, CostDown, CostUp }) => {
+export const useCourses = ({
+  SearchQuery,
+  CostDown,
+  CostUp,
+  RowsOfPage,
+  PageNumber,
+}) => {
   return useQuery({
-    queryKey: ["Courses", SearchQuery, CostDown, CostUp],
-    queryFn: () => Courses({ SearchQuery, CostDown, CostUp }),
+    queryKey: [
+      "Courses",
+      SearchQuery,
+      CostDown,
+      CostUp,
+      RowsOfPage,
+      PageNumber,
+    ],
+    queryFn: () =>
+      Courses({ SearchQuery, CostDown, CostUp, RowsOfPage, PageNumber }),
   });
 };

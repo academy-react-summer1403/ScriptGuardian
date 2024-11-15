@@ -15,11 +15,21 @@ const CoursesPage = () => {
   const [costDown, setCostDown] = useState(undefined);
   const [costUp, setCostUp] = useState(undefined);
 
-  const { data } = useCourses({
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 6;
+  const [currentPage, setCurrentPage] = useState(0); // State برای ذخیره شماره صفحه
+
+  const { data: DatacourseFilterDtos } = useCourses({
     SearchQuery: searchQuery,
     CostDown: costDown,
     CostUp: costUp,
+    RowsOfPage: itemsPerPage,
+    PageNumber: currentPage + 1,
   });
+  const data = DatacourseFilterDtos?.courseFilterDtos;
+  const Total = DatacourseFilterDtos?.totalCount;
   console.log(data, "CoursesPage");
 
   const handleSearchChange = (event) => {
@@ -29,19 +39,16 @@ const CoursesPage = () => {
   // handle cost
 
   //Page Iniate
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6;
 
   React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(data?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data?.length / itemsPerPage));
+    setPageCount(Math.ceil(Total / itemsPerPage));
   }, [itemOffset, itemsPerPage, data]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % data?.length;
+    const newOffset = (event.selected * itemsPerPage) % data.length;
+    setCurrentPage(event.selected);
     setItemOffset(newOffset);
   };
 
