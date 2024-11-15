@@ -29,7 +29,7 @@ const CommentTab = ({ activeTab }) => {
   const formik = useFormik({
     initialValues: {
       CourseId: id,
-      Title: "تست تست تست تست تست تست تست تست تست",
+      Title: "",
       Describe: "",
     },
     onSubmit: (values) => {
@@ -48,12 +48,13 @@ const CommentTab = ({ activeTab }) => {
 
             // }
             toast.success("کامنت  با موفقیت ارسال شد");
+            resetForm();
+
             queryClient.invalidateQueries("CommentCourses");
 
             // else {
             //   toast.warning("کامنت ارسال شد در انتظار تایید", data);
             // }
-            resetForm();
           } else {
             toast.error("خطا در ارسال کامنت");
           }
@@ -67,8 +68,13 @@ const CommentTab = ({ activeTab }) => {
         <div className="xl:w-[779px]  w-full  flex flex-col items-center mb-5">
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
+              <input
+                className="xl:w-[779px] w-full h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs mb-5 text-white"
+                placeholder="نظر خودتو بنویس..."
+                {...formik.getFieldProps("Title")}
+              />
               <textarea
-                className="xl:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs"
+                className="xl:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("Describe")}
               />
@@ -95,7 +101,7 @@ const CommentTab = ({ activeTab }) => {
                     }
                     author={item?.author}
                     title={item?.title}
-                    describe={item?.title}
+                    describe={item?.describe}
                     pictureAddress={item?.pictureAddress}
                     acceptReplysCount={item?.acceptReplysCount}
                     index={index}
@@ -105,6 +111,7 @@ const CommentTab = ({ activeTab }) => {
                     dissLikeCount={item?.disslikeCount}
                     currentUserEmotion={item?.currentUserEmotion}
                     roles={roles}
+                    currentUserLikeId={item?.currentUserLikeId}
                   />
                 </>
               );

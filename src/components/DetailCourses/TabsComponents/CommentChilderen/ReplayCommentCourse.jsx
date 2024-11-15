@@ -16,6 +16,7 @@ import {
   useDeleteLikeCommentCourse,
 } from "../../../../core/services/api/DetailCourses/handelCommentCourses";
 
+import noProfile from "../../../../images/NewsDetails/profile.png";
 const ReplayCommentCourse = ({
   describe,
   title,
@@ -33,6 +34,7 @@ const ReplayCommentCourse = ({
   CommentId,
   currentUserEmotion,
   courseId,
+  pictureAddress,
 }) => {
   const queryClient = useQueryClient();
 
@@ -218,7 +220,7 @@ const ReplayCommentCourse = ({
     initialValues: {
       CommentId: CommentId,
       CourseId: courseId,
-      Title: "تست تست تست تست تست تست تست تست تست",
+      Title: "",
       Describe: "",
     },
     onSubmit: (values, { resetForm }) => {
@@ -235,8 +237,10 @@ const ReplayCommentCourse = ({
           if (data.success === true) {
             if (roles.includes("Administrator") || roles.includes("Referee")) {
               toast.success("ریپلای  با موفقیت ارسال شد", data);
+              setIsReplyVisible(false);
             } else {
               toast.warning("ریپلای ارسال شد در انتظار تایید", data);
+              setIsReplyVisible(false);
             }
             queryClient.invalidateQueries("CommentCourses");
             resetForm();
@@ -255,7 +259,7 @@ const ReplayCommentCourse = ({
           <div className="flex items-center ">
             {" "}
             <img
-              src={commentProfile}
+              src={pictureAddress ? pictureAddress : noProfile}
               alt=""
               className="rounded-full sm:w-8 sm:h-8 w-6 h-6"
             />
@@ -335,8 +339,13 @@ const ReplayCommentCourse = ({
         <>
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
+              <input
+                className=" w-[85%] h-[100px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                placeholder="عنوان نظر خودتو بنویس..."
+                {...formik.getFieldProps("Title")}
+              />
               <textarea
-                className=" w-[85%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
+                className=" w-[85%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("Describe")}
               />

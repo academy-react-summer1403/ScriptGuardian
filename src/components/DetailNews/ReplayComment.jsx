@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import NoProf from "../../images/NewsDetails/profile.png";
 
 const ReplayComment = ({
   describe,
@@ -171,7 +172,7 @@ const ReplayComment = ({
           <div className="flex items-center ">
             {" "}
             <img
-              src={commentProfile}
+              src={NoProf}
               alt=""
               className="rounded-full sm:w-8 sm:h-8 w-6 h-6"
             />

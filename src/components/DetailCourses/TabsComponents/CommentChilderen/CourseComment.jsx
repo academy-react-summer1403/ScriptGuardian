@@ -109,12 +109,21 @@ const CourseComment = ({
     //   );
     // }
 
-    AddDissLike(CommentId, {
-      onSuccess: () => {
-        toast.success("با موفقیت دیس لایک  شد شد");
-        queryClient.invalidateQueries("CommentCourses");
-      },
-    });
+    if (currentUserEmotion === "-") {
+      AddDissLike(CommentId, {
+        onSuccess: () => {
+          toast.success("با موفقیت دیس لایک  شد شد");
+          queryClient.invalidateQueries("CommentCourses");
+        },
+      });
+    } else {
+      DeleteLikeAndDissLike(currentUserLikeId, {
+        onSuccess: () => {
+          toast.success("با موفقیت دیس لایک  شد شد");
+          queryClient.invalidateQueries("CommentCourses");
+        },
+      });
+    }
   };
 
   // API
@@ -146,7 +155,7 @@ const CourseComment = ({
     initialValues: {
       CommentId: CommentId,
       CourseId: courseId,
-      Title: "تست تست تست تست تست تست تست تست تست",
+      Title: "",
       Describe: "",
     },
     onSubmit: (values, { resetForm }) => {
@@ -163,8 +172,10 @@ const CourseComment = ({
           if (data.success === true) {
             if (roles.includes("Administrator") || roles.includes("Referee")) {
               toast.success("ریپلای  با موفقیت ارسال شد", data);
+              setIsReplyVisible(false);
             } else {
               toast.warning("ریپلای ارسال شد در انتظار تایید", data);
+              setIsReplyVisible(false);
             }
             queryClient.invalidateQueries("CommentCourses");
             resetForm();
@@ -180,6 +191,7 @@ const CourseComment = ({
   const nameOfReplay = author;
   return (
     <>
+    {currentUserLikeId}
       <div
         className={`w-full  sm:min-h-[92px] flex   flex-col ${
           showReplies && isReplyVisible === false ? "" : "mb-5 "
@@ -235,7 +247,7 @@ const CourseComment = ({
               </button>
             </div>
             <p
-              className="text-[#455A64] dark:text-gray-400 mr-3 "
+              className="text-[#455A64] dark:text-gray-400 mr-3  cursor-pointer"
               onClick={toggleReplyForm}
             >
               {" "}
@@ -264,7 +276,6 @@ const CourseComment = ({
               </svg>
             </span>
           </div>
-          {index}
           {acceptReplysCount ? (
             <div
               onClick={toggleReplies}
@@ -281,8 +292,13 @@ const CourseComment = ({
         <>
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
+              <input
+                className="xl:w-[779px] w-[95%] h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                placeholder=" عنوان نظر خودتو بنویس..."
+                {...formik.getFieldProps("Title")}
+              />
               <textarea
-                className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
+                className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 dark:text-white bg-slate-100  outline-none dark:caret-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("Describe")}
               />
@@ -319,6 +335,7 @@ const CourseComment = ({
                 nameOfReplay={nameOfReplay}
                 CommentId={item?.id}
                 currentUserEmotion={item?.currentUserEmotion}
+                pictureAddress={item?.pictureAddress}
               />
             );
           })}
