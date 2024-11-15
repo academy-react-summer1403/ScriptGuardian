@@ -9,8 +9,8 @@ const BottomDashBoard = () => {
   const navigate = useNavigate();
   //API COURSES
 
-  const { data } = useCourses({SearchQuery:undefined});
-  const lastTwoItems = data?.slice(-2);
+  const { data } = useCourses({ SearchQuery: undefined });
+  const lastTwoItems = data?.courseFilterDtos?.slice(-2);
   console.log(lastTwoItems, "lastTwoItems");
 
   //API NEWS

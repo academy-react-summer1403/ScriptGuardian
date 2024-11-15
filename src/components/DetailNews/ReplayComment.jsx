@@ -23,6 +23,7 @@ const ReplayComment = ({
   currentUserIsDissLike,
   currentUserLikeId,
   dissLikeCount,
+  autorBefore,
 }) => {
   const queryClient = useQueryClient();
 
@@ -137,7 +138,7 @@ const ReplayComment = ({
     initialValues: {
       newsId: newsId,
       userIpAddress: "1",
-      title: "تست تست تست تست",
+      title: "",
       describe: "",
       userId: userId,
       parentId: id,
@@ -148,8 +149,10 @@ const ReplayComment = ({
           if (data.success === true) {
             if (roles.includes("Administrator") || roles.includes("Referee")) {
               toast.success("ریپلای  با موفقیت ارسال شد", data);
+              setIsReplyVisible(false);
             } else {
               toast.warning("ریپلای ارسال شد در انتظار تایید", data);
+              setIsReplyVisible(false);
             }
             queryClient.invalidateQueries("CoursesDetail");
             resetForm();
@@ -172,7 +175,7 @@ const ReplayComment = ({
               alt=""
               className="rounded-full sm:w-8 sm:h-8 w-6 h-6"
             />
-            <span className="text-[#263238] dark:text-gray-200 mr-2">
+            <span className="text-[#263238] dark:text-gray-200 mr-2 ">
               {autor}
             </span>
           </div>
@@ -180,10 +183,10 @@ const ReplayComment = ({
             2 روز پیش
           </p>
         </div>
-        <p className="sm:text-sm text-xs  text-[#455A64] dark:text-gray-400 mt-2 sm:mr-4 mr-2">
-          <span className="text-[#2196F3] dark:text-[#1976D2]">
-            @محمد زمانی{" "}
-          </span>
+        <p className="sm:text-sm text-xs  text-[#455A64] dark:text-gray-400 mt-2 sm:mr-4 mr-2 flex">
+          <p className="text-[#2196F3] dark:text-[#1976D2] ml-1">
+            @{autorBefore}
+          </p>
           {title} {describe}
         </p>
         <div className="flex items-center text-sm mt-3 sm:mr-4 mr-2">
@@ -269,8 +272,13 @@ const ReplayComment = ({
         <>
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
+              <input
+                className=" w-[85%] h-[50px]  pr-3 border rounded-[10px] mx-auto dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                placeholder=" عنوان نظر خودتو بنویس..."
+                {...formik.getFieldProps("title")}
+              />
               <textarea
-                className=" w-[85%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
+                className=" w-[85%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("describe")}
               />

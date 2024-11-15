@@ -369,8 +369,8 @@ const StudentProfile = () => {
               /> */}
               <div>
                 <select {...formik?.getFieldProps("Gender")}>
-                  <option value="false">مرد</option>
-                  <option value="true">زن</option>
+                  <option value="true">مرد</option>
+                  <option value="false">زن</option>
                 </select>
               </div>
             </div>

@@ -27,7 +27,7 @@ const CommentDetails = ({ commentDtos, newsId }) => {
     initialValues: {
       newsId: newsId,
       userIpAddress: "1",
-      title: "تست تست تست تست",
+      title: "",
       describe: "",
       userId: userId,
     },
@@ -58,8 +58,18 @@ const CommentDetails = ({ commentDtos, newsId }) => {
         </h2>
         <form onSubmit={formik.handleSubmit}>
           <div className="w-full flex justify-center  flex-col">
+            <div className=" mt-[24px]  flex flex-col ">
+              {/* <label htmlFor="title" className="dark:text-white ">
+                عنوان کامنت
+              </label> */}
+              <input
+                className="xl:w-[779px] w-[95%] h-[50px]  pr-3 border rounded-[10px] mx-auto dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                placeholder=" عنوان نظر خودتو بنویس..."
+                {...formik.getFieldProps("title")}
+              />
+            </div>
             <textarea
-              className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
+              className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
               placeholder="نظر خودتو بنویس..."
               {...formik.getFieldProps("describe")}
             />

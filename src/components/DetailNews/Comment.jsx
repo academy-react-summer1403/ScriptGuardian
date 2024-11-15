@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import commentProfile from "../../images/NewsDetails/Unsplash-Avatars_0005s_0017_harps-joseph-tAvpDE7fXgY-unsplash.png";
+import NoProf from "../../images/NewsDetails/profile.png";
 import {
   useAddLikeCommentNews,
   useAddReplayCommentForNews,
@@ -118,7 +119,7 @@ const Comment = ({
     initialValues: {
       newsId: newsId,
       userIpAddress: "1",
-      title: "تست تست تست تست",
+      title: "",
       describe: "",
       userId: userId,
       parentId: id,
@@ -129,8 +130,10 @@ const Comment = ({
           if (data.success === true) {
             if (roles.includes("Administrator") || roles.includes("Referee")) {
               toast.success("ریپلای  با موفقیت ارسال شد", data);
+              setIsReplyVisible(false);
             } else {
               toast.warning("ریپلای ارسال شد در انتظار تایید", data);
+              setIsReplyVisible(false);
             }
             queryClient.invalidateQueries("CoursesDetail");
             resetForm();
@@ -153,7 +156,7 @@ const Comment = ({
           <div className="flex items-center ">
             {" "}
             <img
-              src={commentProfile}
+              src={NoProf}
               alt=""
               className="rounded-full sm:w-8 sm:h-8 w-6 h-6"
             />
@@ -220,7 +223,7 @@ const Comment = ({
               </button>
             </div>
             <p
-              className="text-[#455A64] dark:text-gray-400 mr-3 "
+              className="text-[#455A64] dark:text-gray-400 mr-3 cursor-pointer"
               onClick={toggleReplyForm}
             >
               {" "}
@@ -266,8 +269,13 @@ const Comment = ({
         <>
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
+              <input
+                className="xl:w-[779px] w-[95%] h-[50px]  pr-3 border rounded-[10px] mx-auto dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                placeholder=" عنوان نظر خودتو بنویس..."
+                {...formik.getFieldProps("title")}
+              />
               <textarea
-                className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white"
+                className="xl:w-[779px] w-[95%] h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("describe")}
               />
@@ -301,6 +309,7 @@ const Comment = ({
                 currentUserIsDissLike={item?.currentUserIsDissLike}
                 currentUserLikeId={item?.currentUserLikeId}
                 dissLikeCount={item?.dissLikeCount}
+                autorBefore={autor}
               />
             );
           })}
