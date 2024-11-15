@@ -34,6 +34,7 @@ const CoursesPage = () => {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+    setCurrentPage(0);
   };
 
   // handle cost

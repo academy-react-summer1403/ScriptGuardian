@@ -18,23 +18,25 @@ export const useLandingNews = () => {
   });
 };
 
-const PageNews = async ({ SearchQuery }) => {
+const PageNews = async ({ SearchQuery, RowsOfPage, PageNumber }) => {
   const AllParams = {
     Query: SearchQuery ? SearchQuery : undefined,
+    RowsOfPage: RowsOfPage ? RowsOfPage : 9,
+    PageNumber: PageNumber ? PageNumber : 1,
   };
   try {
     const response = await http.get(ApiRoutes.LANDING_NEWS_URL, {
       params: AllParams,
     });
-    return response.news;
+    return response;
   } catch (error) {
     console.log("This error For LandingNews.js", error);
     return false;
   }
 };
-export const usePageNews = ({ SearchQuery }) => {
+export const usePageNews = ({ SearchQuery, RowsOfPage, PageNumber }) => {
   return useQuery({
-    queryKey: ["LandingNews", SearchQuery],
-    queryFn: () => PageNews({ SearchQuery }),
+    queryKey: ["LandingNews", SearchQuery, RowsOfPage, PageNumber],
+    queryFn: () => PageNews({ SearchQuery, RowsOfPage, PageNumber }),
   });
 };

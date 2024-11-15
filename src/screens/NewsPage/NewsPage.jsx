@@ -4,36 +4,46 @@ import News from "../../images/NewsAndArticle/photo1.png";
 import { NewsSearchAndFilter } from "../../components/NewsPage/NewsSearchAndFilter";
 import { CardNewsPage } from "../../components/NewsPage/CardNewsPage";
 import ReactPaginate from "react-paginate";
-import { useLandingNews, usePageNews } from "../../core/services/api/Landing/LandingNews";
+import {
+  useLandingNews,
+  usePageNews,
+} from "../../core/services/api/Landing/LandingNews";
 
 const NewsPage = () => {
   //handel search
   const [searchQuery, setSearchQuery] = useState(undefined);
-  const { data } = usePageNews({
-    SearchQuery: searchQuery,
-  });
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 9;
+  const [current, setCurrentPage] = useState(0);
 
+  const { data: News } = usePageNews({
+    SearchQuery: searchQuery,
+    RowsOfPage: itemsPerPage,
+    PageNumber: current + 1,
+  });
+  const data = News?.news;
+  const Total = News?.totalCount;
   //handel Search
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+    setCurrentPage(0);
   };
 
   //handel page
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 10;
 
   React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(data?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data?.length / itemsPerPage));
+    setPageCount(Math.ceil(Total / itemsPerPage));
   }, [itemOffset, itemsPerPage, data]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data?.length;
     setItemOffset(newOffset);
+    setCurrentPage(event.selected);
   };
 
   return (
