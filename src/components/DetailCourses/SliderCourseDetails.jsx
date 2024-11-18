@@ -7,22 +7,10 @@ import { TbBackground } from "react-icons/tb";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Course } from "../LandingComponents/OurCourses/Course";
 import { CoursesCard } from "../CoursesPage/CourseCard/CourseCard";
+import { useLandingCourses } from "../../core/services/api/Landing/LandingCourses";
 
 const SliderCourseDetails = () => {
-  const [courses, setCourses] = useState([
-    { id: "1" },
-    { id: "2" },
-    { id: "3" },
-    { id: "4" },
-    { id: "5" },
-    { id: "6" },
-    { id: "7" },
-    { id: "8" },
-    { id: "9" },
-    { id: "10" },
-    { id: "11" },
-    { id: "12" },
-  ]);
+  const { data } = useLandingCourses();
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
@@ -82,7 +70,9 @@ const SliderCourseDetails = () => {
     rtl: true,
   };
 
-
+  const handleClickTitle = (e) => {
+    e.stopPropagation(); // جلوگیری از پیشرفت رویداد کلیک
+  };
   return (
     <div className="flex flex-col w-full    items-center">
       <h2 className="font-black text-[#263238] dark:text-gray-200 text-[40px] mt-20">
@@ -93,13 +83,28 @@ const SliderCourseDetails = () => {
         {...settings}
         className="xl:w-[1280px] gap-0 lg:w-full md:w-[95%]   justify-center w-[300px] lg:mt-0 mt-10 flex    "
       >
-        {courses.map((courses, index) => {
-          return <CoursesCard id={courses.id} key={index}  />;
-        })}
+        {data &&
+          data?.map((courses, index) => {
+            return (
+              <CoursesCard
+                key={index}
+                tumbImageAddress={courses?.tumbImageAddress}
+                title={courses?.title}
+                teacherName={courses?.teacherName}
+                handleClickTitle={handleClickTitle}
+                likeCount={courses?.likeCount}
+                cost={courses?.cost}
+                dissLikeCount={courses?.dissLikeCount}
+                isUserFavorite={courses?.isUserFavorite}
+                courseId={courses?.courseId}
+                userIsLiked={courses?.userIsLiked}
+                userLikeId={courses?.userLikeId}
+                userIsDissLiked={courses?.userIsDissLiked}
+                userFavoriteId={courses?.userFavoriteId}
+              />
+            );
+          })}
       </Slider>
-
-
-
     </div>
   );
 };

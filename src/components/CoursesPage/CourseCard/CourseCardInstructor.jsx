@@ -1,12 +1,12 @@
 import React from "react";
 
-const CourseCardInstructor = () => {
+const CourseCardInstructor = ({ teacherName }) => {
   return (
-    <div className="flex  font-[500] text-[14px] mt-[16px] mr-[16px] gap-x-[76px]   tracking-tight">
+    <div className="flex  font-[500] text-[14px] mt-[16px] mr-[16px]  justify-between tracking-tight">
       <p>
-        <span className="font-[700] ">مدرس</span> : دکتر بحرالعلوم
+        <span className="font-[700] ">مدرس</span> : {teacherName}
       </p>
-      <p>256 دانش آموز</p>
+      <p className="ml-5">256 دانش آموز</p>
     </div>
   );
 };

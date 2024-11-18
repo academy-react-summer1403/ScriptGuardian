@@ -91,7 +91,7 @@ const MyFavoriteNews = () => {
 
   React.useEffect(() => {
     const endOffset = itemOffset + pageSize;
-    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setCurrentItems(data && data?.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data?.length / pageSize));
   }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
 
@@ -158,20 +158,21 @@ const MyFavoriteNews = () => {
             <h2>مدیریت</h2>
           </div>
 
-          {currentItems?.map((item, index) => {
-            return (
-              <>
-                <ListFavoriteNews
-                  currentImageAddressTumb={item?.currentImageAddressTumb}
-                  title={item?.title}
-                  currentView={item?.currentView}
-                  currentRate={item?.currentRate}
-                  newsId={item?.newsId}
-                  favoriteId={item?.favoriteId}
-                />
-              </>
-            );
-          })}
+          {currentItems &&
+            currentItems?.map((item, index) => {
+              return (
+                <>
+                  <ListFavoriteNews
+                    currentImageAddressTumb={item?.currentImageAddressTumb}
+                    title={item?.title}
+                    currentView={item?.currentView}
+                    currentRate={item?.currentRate}
+                    newsId={item?.newsId}
+                    favoriteId={item?.favoriteId}
+                  />
+                </>
+              );
+            })}
         </div>
 
         <div className="flex justify-center mb-5">

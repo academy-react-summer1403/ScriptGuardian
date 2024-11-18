@@ -92,7 +92,7 @@ const MyFavoriteCourses = () => {
 
   React.useEffect(() => {
     const endOffset = itemOffset + pageSize;
-    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setCurrentItems(data && data?.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data?.length / pageSize));
   }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
 
@@ -160,21 +160,22 @@ const MyFavoriteCourses = () => {
             <h2>مدیریت</h2>
           </div>
 
-          {currentItems?.map((item, index) => {
-            return (
-              <>
-                <ListFavoritePanel
-                  key={index}
-                  tumbImageAddress={item?.tumbImageAddress}
-                  courseTitle={item?.courseTitle}
-                  typeName={item?.typeName}
-                  levelName={item?.levelName}
-                  courseId={item?.courseId}
-                  favoriteId={item?.favoriteId}
-                />
-              </>
-            );
-          })}
+          {currentItems &&
+            currentItems?.map((item, index) => {
+              return (
+                <>
+                  <ListFavoritePanel
+                    key={index}
+                    tumbImageAddress={item?.tumbImageAddress}
+                    courseTitle={item?.courseTitle}
+                    typeName={item?.typeName}
+                    levelName={item?.levelName}
+                    courseId={item?.courseId}
+                    favoriteId={item?.favoriteId}
+                  />
+                </>
+              );
+            })}
         </div>
 
         <div className="flex justify-center mb-5">

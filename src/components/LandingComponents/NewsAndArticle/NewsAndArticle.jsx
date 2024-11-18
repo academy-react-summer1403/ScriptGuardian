@@ -13,11 +13,11 @@ const NewsAndArticle = () => {
   };
 
   const { data, isPending } = useLandingNews();
-  console.log(data, "data News Landing");
+  // console.log(data, "data News Landing");
   if (isPending) {
     return <h1>Loading...</h1>;
   }
-  console.log(data, "this data Landing Courses in OurCourses Comp");
+  // console.log(data, "this data Landing Courses in OurCourses Comp");
   return (
     <>
       <div className="mt-[100px] container mx-auto xl:w-[1280px] w-full  flex flex-col ">
@@ -38,7 +38,7 @@ const NewsAndArticle = () => {
             />
           )}
           <div className="flex flex-col sm:mr-[40px] gap-y-[40px] xl:items-start items-center xl:mt-0 mt-10  ">
-            {data?.slice(1, 4).map((item, index) => {
+            {data && data?.slice(1, 4).map((item, index) => {
               return (
                 <News
                   key={index}

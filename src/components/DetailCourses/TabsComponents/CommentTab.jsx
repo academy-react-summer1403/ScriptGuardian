@@ -20,7 +20,7 @@ const CommentTab = ({ activeTab }) => {
   //API
   const { id } = useParams();
   const { data } = useCommentCourses(id);
-  console.log(data, " This Data Of Comment Course  ");
+  // console.log(data, " This Data Of Comment Course  ");
 
   const roles = localStorage.getItem("roles");
 
@@ -88,34 +88,36 @@ const CommentTab = ({ activeTab }) => {
             </div>
           </form>
           <div className="xl:w-[778px] w-full mt-[24px] flex flex-col">
-            {data?.slice(0, visibleCount).map((item, index) => {
-              return (
-                <>
-                  <CourseComment
-                    key={index}
-                    isLastVisible={
-                      index === visibleCount - 1 && visibleCount < data?.length
-                    }
-                    onShowMore={() =>
-                      setVisibleCount((prev) => prev + incrementCount)
-                    }
-                    author={item?.author}
-                    title={item?.title}
-                    describe={item?.describe}
-                    pictureAddress={item?.pictureAddress}
-                    acceptReplysCount={item?.acceptReplysCount}
-                    index={index}
-                    courseId={item?.courseId}
-                    CommentId={item?.id}
-                    likeCount={item?.likeCount}
-                    dissLikeCount={item?.disslikeCount}
-                    currentUserEmotion={item?.currentUserEmotion}
-                    roles={roles}
-                    currentUserLikeId={item?.currentUserLikeId}
-                  />
-                </>
-              );
-            })}
+            {data &&
+              data?.slice(0, visibleCount).map((item, index) => {
+                return (
+                  <>
+                    <CourseComment
+                      key={index}
+                      isLastVisible={
+                        index === visibleCount - 1 &&
+                        visibleCount < data?.length
+                      }
+                      onShowMore={() =>
+                        setVisibleCount((prev) => prev + incrementCount)
+                      }
+                      author={item?.author}
+                      title={item?.title}
+                      describe={item?.describe}
+                      pictureAddress={item?.pictureAddress}
+                      acceptReplysCount={item?.acceptReplysCount}
+                      index={index}
+                      courseId={item?.courseId}
+                      CommentId={item?.id}
+                      likeCount={item?.likeCount}
+                      dissLikeCount={item?.disslikeCount}
+                      currentUserEmotion={item?.currentUserEmotion}
+                      roles={roles}
+                      currentUserLikeId={item?.currentUserLikeId}
+                    />
+                  </>
+                );
+              })}
           </div>
         </div>
       )}

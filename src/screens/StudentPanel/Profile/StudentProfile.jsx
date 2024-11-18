@@ -32,6 +32,7 @@ const StudentProfile = () => {
 
   //API GET PROFILE INFO
   const { data, isPending } = useGetStudentProfile();
+
   console.log(data, "Student profile data data");
 
   //Handel Put Api
@@ -60,6 +61,7 @@ const StudentProfile = () => {
       // Longitude: data?.longitude ? data?.longitude : "",
       Longitude: "35.6892",
     },
+    enableReinitialize:true,
     onSubmit: (data) => {
       const formData = new FormData();
       for (const key in data) {

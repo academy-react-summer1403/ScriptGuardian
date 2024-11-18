@@ -85,7 +85,7 @@ const TeacherSlider = () => {
         </div>
 
         <Slider {...settings} className="xl:w-[1280px] w-[90%]    ">
-          {data?.map((item, index) => {
+          {data && data?.map((item, index) => {
             return (
               <div
                 className={`xl:w-[296px] h-[382px] flex flex-col ${

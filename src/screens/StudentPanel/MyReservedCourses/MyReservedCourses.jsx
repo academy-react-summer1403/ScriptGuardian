@@ -90,7 +90,7 @@ const MyReservedCourses = () => {
 
   React.useEffect(() => {
     const endOffset = itemOffset + pageSize;
-    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setCurrentItems(data && data?.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data?.length / pageSize));
   }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
 
@@ -170,64 +170,67 @@ const MyReservedCourses = () => {
             <h2 className="ml-5">وضعیت</h2>
           </div>
 
-          {currentItems?.map((item, index) => {
-            return (
-              <>
-                <div
-                  className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
-                  key={index}
-                >
-                  <div className="mr-5 min-w-[150px] ">{item?.courseName}</div>
-                  <div className="ml-[110px]">
-                    {item?.reserverDate ? item?.reserverDate : ""}
+          {currentItems &&
+            currentItems?.map((item, index) => {
+              return (
+                <>
+                  <div
+                    className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
+                    key={index}
+                  >
+                    <div className="mr-5 min-w-[150px] ">
+                      {item?.courseName}
+                    </div>
+                    <div className="ml-[110px]">
+                      {item?.reserverDate ? item?.reserverDate : ""}
+                    </div>
+                    {item?.accept ? (
+                      <div className="ml-5 gap-1 flex items-center">
+                        <FaEye
+                          className="cursor-pointer"
+                          onClick={() => {
+                            navigate(
+                              `/courses/${
+                                item?.courseId ? item.courseId : "no id"
+                              }`
+                            );
+                          }}
+                        />
+                        <p
+                          className="text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900 rounded-md text-xs  "
+                          onClick={() => {
+                            navigate(
+                              `/courses/${
+                                item?.courseId ? item.courseId : "no id"
+                              }`
+                            );
+                          }}
+                        >
+                          تایید شده
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="ml-5 gap-1 flex">
+                        <FaEye
+                          className="cursor-pointer"
+                          onClick={() => {
+                            navigate(
+                              `/courses/${
+                                item?.courseId ? item.courseId : "no id"
+                              }`
+                            );
+                          }}
+                        />
+                        <FaTrash
+                          className="text-red-600"
+                          onClick={() => handelDelete(item?.reserveId)}
+                        />
+                      </div>
+                    )}
                   </div>
-                  {item?.accept ? (
-                    <div className="ml-5 gap-1 flex items-center">
-                      <FaEye
-                        className="cursor-pointer"
-                        onClick={() => {
-                          navigate(
-                            `/courses/${
-                              item?.courseId ? item.courseId : "no id"
-                            }`
-                          );
-                        }}
-                      />
-                      <p
-                        className="text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900 rounded-md text-xs  "
-                        onClick={() => {
-                          navigate(
-                            `/courses/${
-                              item?.courseId ? item.courseId : "no id"
-                            }`
-                          );
-                        }}
-                      >
-                        تایید شده
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="ml-5 gap-1 flex">
-                      <FaEye
-                        className="cursor-pointer"
-                        onClick={() => {
-                          navigate(
-                            `/courses/${
-                              item?.courseId ? item.courseId : "no id"
-                            }`
-                          );
-                        }}
-                      />
-                      <FaTrash
-                        className="text-red-600"
-                        onClick={() => handelDelete(item?.reserveId)}
-                      />
-                    </div>
-                  )}
-                </div>
-              </>
-            );
-          })}
+                </>
+              );
+            })}
         </div>
 
         <div className="flex justify-center mb-5">

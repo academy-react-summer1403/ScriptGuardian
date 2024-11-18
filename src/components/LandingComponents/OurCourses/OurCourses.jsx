@@ -18,7 +18,7 @@ const OurCourses = () => {
   if (isPending) {
     return <h1>Loading...</h1>;
   }
-  console.log(data, "this data Landing Courses in OurCourses Comp");
+  // console.log(data, "this data Landing Courses in OurCourses Comp");
 
   //style
   const style = `w-[296px] h-[389px] flex flex-col  dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5    `;
@@ -34,7 +34,7 @@ const OurCourses = () => {
 
           {/* Content */}
           <div className="flex xl:flex-row flex-col xl:gap-x-[32px] gap-y-6 mt-[40px] sm:justify-between items-center">
-            {data?.map((courses, index) => {
+            {data && data?.map((courses, index) => {
               return (
                 <Course
                   key={index}

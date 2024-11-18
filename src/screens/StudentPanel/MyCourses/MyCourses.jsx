@@ -73,43 +73,13 @@ const MyCourses = () => {
 
   // page data
 
-  // const [map, setMap] = useState([
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  //   { id: 1 },
-  //   { id: 2 },
-  //   { id: 3 },
-  //   { id: 4 },
-  //   { id: 5 },
-  //   { id: 6 },
-  //   { id: 7 },
-  //   { id: 8 },
-  //   { id: 9 },
-  // ]);
-
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
   React.useEffect(() => {
     const endOffset = itemOffset + pageSize;
-    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setCurrentItems(data && data?.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data?.length / pageSize));
   }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
 
@@ -269,10 +239,11 @@ const MyCourses = () => {
             <h2>مدیریت</h2>
           </div>
 
-          {currentItems?.map((item, index) => {
-            return (
-              <>
-                {/* <div
+          {currentItems &&
+            currentItems?.map((item, index) => {
+              return (
+                <>
+                  {/* <div
                   key={index}
                   className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] md:justify-start justify-around"
                 >
@@ -306,17 +277,17 @@ const MyCourses = () => {
                     <FaTrash className="text-red-600" />
                   </div>
                 </div> */}
-                <ListPanel
-                  key={index}
-                  tumbImageAddress={item.tumbImageAddress}
-                  courseTitle={item.courseTitle}
-                  fullName={item.fullName}
-                  cost={item.cost}
-                  courseId={item.courseId}
-                />
-              </>
-            );
-          })}
+                  <ListPanel
+                    key={index}
+                    tumbImageAddress={item.tumbImageAddress}
+                    courseTitle={item.courseTitle}
+                    fullName={item.fullName}
+                    cost={item.cost}
+                    courseId={item.courseId}
+                  />
+                </>
+              );
+            })}
         </div>
 
         <div className="flex justify-center mb-5">
