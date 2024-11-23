@@ -14,6 +14,7 @@ const DetailsLeft = ({
   courseId,
   isCourseReseve,
   isCourseUser,
+  hidden,
 }) => {
   const queryClient = useQueryClient();
 
@@ -31,7 +32,9 @@ const DetailsLeft = ({
     });
   };
   return (
-    <div className="flex flex-col xl:w-[405px] lg:w-[305px] w-[95%] lg:mt-0 mt-5 ">
+    <div
+      className={`flex-col xl:w-[405px] lg:w-[355px] w-[100%]  lg:mt-0 mt-5   ${hidden}`}
+    >
       <div className="w-full items-center flex flex-col h-[501px] shadow-ّFirst-shadow bg-white dark:bg-gray-900 rounded-3xl">
         <h3 className="text-[#263238] dark:text-gray-200 font-[700] text-[24px] mt-8">
           مشخصات دوره

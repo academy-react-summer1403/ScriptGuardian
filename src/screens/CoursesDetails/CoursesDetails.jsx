@@ -28,7 +28,20 @@ const CoursesDetails = () => {
               courseId={data?.courseId}
               userFavoriteId={data?.userFavoriteId}
             />
-            <AboutCourses title={data?.title} describe={data?.describe}  />
+            <DetailsLeft
+              startTime={data?.startTime}
+              endTime={data?.endTime}
+              courseStatusName={data?.courseStatusName}
+              cost={data?.cost}
+              currentRegistrants={data?.currentRegistrants}
+              teacherName={data?.teacherName}
+              courseId={data?.courseId}
+              isCourseReseve={data?.isCourseReseve}
+              isCourseUser={data?.isCourseUser}
+              hidden={" flex lg:hidden"}
+            />
+
+            <AboutCourses title={data?.title} describe={data?.describe} />
 
             <RatingCourses
               currentUserDissLike={data?.currentUserDissLike}
@@ -41,7 +54,7 @@ const CoursesDetails = () => {
               userLikeId={data?.userLikeId}
             />
 
-            <Tabs techs={data?.techs}/>
+            <Tabs techs={data?.techs} />
           </div>
           <DetailsLeft
             startTime={data?.startTime}
@@ -53,6 +66,7 @@ const CoursesDetails = () => {
             courseId={data?.courseId}
             isCourseReseve={data?.isCourseReseve}
             isCourseUser={data?.isCourseUser}
+            hidden={"hidden md:hidden lg:flex "}
           />
         </div>
 

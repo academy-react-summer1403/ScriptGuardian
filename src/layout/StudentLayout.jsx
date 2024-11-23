@@ -73,7 +73,7 @@ const StudentLayout = () => {
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaUserCircle className="text-xl" />
-              <NavLink to="/panel/MyProfile">پروفایل</NavLink>
+              <NavLink to="/panel/MyProfile"> ویرایش پروفایل</NavLink>
             </div>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
@@ -97,9 +97,7 @@ const StudentLayout = () => {
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaRegNewspaper className="text-xl" />
-              <NavLink to="/panel/MyFavoriteNews">
-                خبر های مورد علاقه{" "}
-              </NavLink>
+              <NavLink to="/panel/MyFavoriteNews">خبر های مورد علاقه </NavLink>
             </div>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
