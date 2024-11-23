@@ -1,5 +1,6 @@
 import React from "react";
 import image from "../../../images/NewsDetails/default_image.png";
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 
 import { NewsImg } from "./NewsImg";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ const News = ({
   currentView,
   id,
   currentRate,
+  updateDate,
 }) => {
   const navigate = useNavigate();
   const goDetails = () => {
@@ -29,7 +31,11 @@ const News = ({
       onClick={goDetails}
     >
       <NewsImg
-        addUserProfileImage={addUserProfileImage && addUserProfileImage !== "Not-set" ? addUserProfileImage : image}
+        addUserProfileImage={
+          addUserProfileImage && addUserProfileImage !== "Not-set"
+            ? addUserProfileImage
+            : image
+        }
       />
       <div className="md:mr-[24px] mr-4 flex flex-col sm:w-[376px] sm:mt-0 mt-3 w-[212px] sm:text-right text-center">
         <h3 className="text-[20px] font-[700] text-[#263238] dark:text-gray-400">
@@ -143,7 +149,7 @@ const News = ({
                 />
               </svg>
             </span>
-            <p className="mr-1">1402/7/2</p>
+            <strong>{updateDate && convertIsoToJalali(updateDate)}</strong>
           </div>
           <div className="flex flex-row-reverse">
             {Array.from({ length: totalStars }).map((_, index) => (

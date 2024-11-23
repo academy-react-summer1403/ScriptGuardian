@@ -20,6 +20,7 @@ const Course = ({
   userIsDissLiked,
   userFavoriteId,
   tumbImageAddress,
+  lastUpdate,
 }) => {
   const navigate = useNavigate();
   const navigateDetails = () => {
@@ -37,12 +38,12 @@ const Course = ({
       style={{ direction: "rtl" }}
     >
       {/* Image */}
-      <ImageCourse  tumbImageAddress={tumbImageAddress}/>
+      <ImageCourse tumbImageAddress={tumbImageAddress} />
       {/* Content */}
 
       {/* TopicCourses */}
       <h3 className="font-[700] mt-2 mr-[16px] ">{title}</h3>
-      <CourseInfo />
+      <CourseInfo  lastUpdate={lastUpdate}/>
       <CourseInstructor teacherName={teacherName} />
       <PriceAndFavorites
         handleClickTitle={handleClickTitle}

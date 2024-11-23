@@ -35,6 +35,7 @@ import { StudentHamburger } from "../../../components/HamberGerStudentPanel/Stud
 import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 const MyReservedCourses = () => {
   const queryClient = useQueryClient();
 
@@ -182,7 +183,10 @@ const MyReservedCourses = () => {
                       {item?.courseName}
                     </div>
                     <div className="ml-[110px]">
-                      {item?.reserverDate ? item?.reserverDate : ""}
+                      <strong>
+                        {item?.reserverDate &&
+                          convertIsoToJalali(item?.reserverDate)}
+                      </strong>
                     </div>
                     {item?.accept ? (
                       <div className="ml-5 gap-1 flex items-center">

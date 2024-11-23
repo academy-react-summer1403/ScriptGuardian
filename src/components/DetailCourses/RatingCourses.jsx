@@ -119,9 +119,9 @@ const RatingCourses = ({
           <p className="sm:mr-3 text-[#263238] dark:text-gray-200 sm:text-base text-xs">
             امتیاز 20 نفر
           </p>
-          <button className="sm:mr-4 h-[32px]  sm:w-[81px] w-[61px] flex justify-center items-center bg-[#2196F3] dark:bg-[#1565C0] text-white shadow-Second-shadow rounded-[80px] sm:text-[12px] text-[10px]">
+          {/* <button className="sm:mr-4 h-[32px]  sm:w-[81px] w-[61px] flex justify-center items-center bg-[#2196F3] dark:bg-[#1565C0] text-white shadow-Second-shadow rounded-[80px] sm:text-[12px] text-[10px]">
             ثبت دیدگاه
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="flex items-center xl:justify-start justify-between">

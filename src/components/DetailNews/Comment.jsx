@@ -12,6 +12,7 @@ import { ReplayComment } from "./ReplayComment";
 import { useReplayCommentNews } from "../../core/services/api/DetailNews/handelNewsComment";
 import { useFormik } from "formik";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import { convertIsoToJalali } from "../../core/utils/dateUtils";
 
 const Comment = ({
   title,
@@ -30,6 +31,7 @@ const Comment = ({
   currentUserLikeId,
   currentUserIsDissLike,
   dissLikeCount,
+  inserDate,
 }) => {
   const queryClient = useQueryClient();
 
@@ -165,7 +167,7 @@ const Comment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            2 روز پیش
+            <strong>{inserDate && convertIsoToJalali(inserDate)}</strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -310,6 +312,7 @@ const Comment = ({
                 currentUserLikeId={item?.currentUserLikeId}
                 dissLikeCount={item?.dissLikeCount}
                 autorBefore={autor}
+                inserDate={item?.inserDate}
               />
             );
           })}

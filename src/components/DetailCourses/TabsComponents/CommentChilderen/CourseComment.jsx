@@ -20,6 +20,7 @@ import {
   useDeleteLikeCommentCourse,
   useReplayCommentCourses,
 } from "../../../../core/services/api/DetailCourses/handelCommentCourses";
+import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
 const CourseComment = ({
   title,
   describe,
@@ -43,6 +44,7 @@ const CourseComment = ({
   CommentId,
   courseId,
   currentUserEmotion,
+  insertDate,
 }) => {
   const queryClient = useQueryClient();
 
@@ -191,7 +193,6 @@ const CourseComment = ({
   const nameOfReplay = author;
   return (
     <>
-    {currentUserLikeId}
       <div
         className={`w-full  sm:min-h-[92px] flex   flex-col ${
           showReplies && isReplyVisible === false ? "" : "mb-5 "
@@ -210,7 +211,7 @@ const CourseComment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            2 روز پیش
+          <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -336,6 +337,7 @@ const CourseComment = ({
                 CommentId={item?.id}
                 currentUserEmotion={item?.currentUserEmotion}
                 pictureAddress={item?.pictureAddress}
+                insertDate={item?.insertDate}
               />
             );
           })}

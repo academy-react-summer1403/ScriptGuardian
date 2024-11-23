@@ -234,7 +234,7 @@ const MyCourses = () => {
             <h2 className="mr-5 md:block hidden">تصویر</h2>
             <h2>نام دوره</h2>
             <h2>مدرس</h2>
-            <h2>تاریخ شروع</h2>
+            <h2> آخرین آپدیت</h2>
             <h2>قیمت</h2>
             <h2>مدیریت</h2>
           </div>
@@ -284,6 +284,7 @@ const MyCourses = () => {
                     fullName={item.fullName}
                     cost={item.cost}
                     courseId={item.courseId}
+                    lastUpdate={item?.lastUpdate}
                   />
                 </>
               );

@@ -358,14 +358,10 @@ const MidDetails = ({
               </div>
 
               <p className="md:mr-3 text-[#263238] dark:text-gray-200">
-                امتیاز 20 نفر
+                امتیاز شما{" "}
               </p>
             </div>
-            <div className="flex items-center">
-              <button className="sm:mr-4 mr-2 h-[32px]  w-[81px] flex justify-center items-center bg-[#2196F3] dark:bg-[#1565C0] text-white shadow-Second-shadow rounded-[80px] text-[12px]">
-                ثبت دیدگاه
-              </button>
-            </div>
+            <div className="flex items-center"></div>
           </div>
 
           <div className="flex items-center  lg:w-auto w-full   sm:text-base text-xs lg:mt-0 mt-7 lg:justify-start justify-between">

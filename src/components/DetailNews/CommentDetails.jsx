@@ -108,6 +108,7 @@ const CommentDetails = ({ commentDtos, newsId }) => {
                 currentUserLikeId={item?.currentUserLikeId}
                 currentUserIsDissLike={item?.currentUserIsDissLike}
                 dissLikeCount={item?.dissLikeCount}
+                inserDate={item?.inserDate}
               />
             );
           })}

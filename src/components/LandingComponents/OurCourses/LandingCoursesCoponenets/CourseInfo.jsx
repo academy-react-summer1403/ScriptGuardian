@@ -1,6 +1,7 @@
 import React from "react";
+import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
 
-const CourseInfo = () => {
+const CourseInfo = ({ lastUpdate }) => {
   return (
     <div className="flex justify-center">
       <div className="w-[264px] h-[40px] bg-[#ECEFF1] dark:bg-[#1E1E1E] flex  rounded-[24px] text-[12px] font-[500] items-center gap-x-[24px] mt-3 tracking-tighter">
@@ -72,14 +73,14 @@ const CourseInfo = () => {
           >
             <path
               d="M4.66669 1.1665V2.9165"
-               className="stroke-[#263238] dark:stroke-white"
+              className="stroke-[#263238] dark:stroke-white"
               strokeMiterlimit="10"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M9.33331 1.1665V2.9165"
-               className="stroke-[#263238] dark:stroke-white"
+              className="stroke-[#263238] dark:stroke-white"
               strokeMiterlimit="10"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -93,14 +94,14 @@ const CourseInfo = () => {
             />
             <path
               d="M12.25 4.95817V9.9165C12.25 11.6665 11.375 12.8332 9.33333 12.8332H4.66667C2.625 12.8332 1.75 11.6665 1.75 9.9165V4.95817C1.75 3.20817 2.625 2.0415 4.66667 2.0415H9.33333C11.375 2.0415 12.25 3.20817 12.25 4.95817Z"
-               className="stroke-[#263238] dark:stroke-white"
+              className="stroke-[#263238] dark:stroke-white"
               strokeMiterlimit="10"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M6.99739 7.99186H7.00263"
-               className="stroke-[#263238] dark:stroke-white"
+              className="stroke-[#263238] dark:stroke-white"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -112,13 +113,13 @@ const CourseInfo = () => {
             />
             <path
               d="M4.83833 9.74186H4.84357"
-               className="stroke-[#263238] dark:stroke-white"
+              className="stroke-[#263238] dark:stroke-white"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
 
-          <span>11 اذر 1402</span>
+          <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
         </span>
       </div>
     </div>

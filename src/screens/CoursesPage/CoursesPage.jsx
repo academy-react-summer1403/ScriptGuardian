@@ -100,6 +100,7 @@ const CoursesPage = () => {
                 userIsDissLiked={course?.currentUserDissLike}
                 userFavoriteId={course?.userFavoriteId}
                 tumbImageAddress={course?.tumbImageAddress}
+                lastUpdate={course?.lastUpdate}
               />
             ))}
           </div>

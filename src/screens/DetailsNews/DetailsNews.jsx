@@ -31,6 +31,7 @@ const DetailsNews = () => {
         id={detailsNewsDto?.id}
         isCurrentUserFavorite={detailsNewsDto?.isCurrentUserFavorite}
         currentUserFavoriteId={detailsNewsDto?.currentUserFavoriteId}
+        insertDate={detailsNewsDto?.insertDate}
       />
       <MidDetails
         currentUserSetRate={detailsNewsDto?.currentUserSetRate}

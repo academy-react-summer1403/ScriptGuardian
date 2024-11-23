@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import NoProf from "../../images/NewsDetails/profile.png";
+import { convertIsoToJalali } from "../../core/utils/dateUtils";
 
 const ReplayComment = ({
   describe,
@@ -25,6 +26,7 @@ const ReplayComment = ({
   currentUserLikeId,
   dissLikeCount,
   autorBefore,
+  inserDate,
 }) => {
   const queryClient = useQueryClient();
 
@@ -181,7 +183,7 @@ const ReplayComment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            2 روز پیش
+            <strong>{inserDate && convertIsoToJalali(inserDate)}</strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs  text-[#455A64] dark:text-gray-400 mt-2 sm:mr-4 mr-2 flex">

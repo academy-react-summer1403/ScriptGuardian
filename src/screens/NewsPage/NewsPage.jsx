@@ -68,6 +68,7 @@ const NewsPage = () => {
                   addUserProfileImage={item.addUserProfileImage}
                   currentView={item.currentView}
                   currentRate={item.currentRate}
+                  updateDate={item?.updateDate}
                 />
               </>
             );

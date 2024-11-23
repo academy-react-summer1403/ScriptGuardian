@@ -1,13 +1,14 @@
 import React from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 const ListPanel = ({
   tumbImageAddress,
   courseTitle,
   fullName,
   cost,
   courseId,
+  lastUpdate,
 }) => {
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const ListPanel = ({
       </div>
       <div className="lg:mr-[7.5%] md:mr-[4%]  lg:w-[10%] md:w-[11.3%]  ">
         {" "}
-        1403/10/02
+        <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
       </div>
       <div className="lg:mr-[10%] md:mr-[5%]  lg:w-[13%] md:w-[13%] ">
         {cost} <span>تومان</span>

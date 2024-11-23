@@ -34,27 +34,29 @@ const OurCourses = () => {
 
           {/* Content */}
           <div className="flex xl:flex-row flex-col xl:gap-x-[32px] gap-y-6 mt-[40px] sm:justify-between items-center">
-            {data && data?.map((courses, index) => {
-              return (
-                <Course
-                  key={index}
-                  tumbImageAddress={courses.tumbImageAddress}
-                  courseId={courses.courseId}
-                  teacherName={courses.teacherName}
-                  cost={courses.cost}
-                  likeCount={courses.likeCount}
-                  dissLikeCount={courses.dissLikeCount}
-                  userIsLiked={courses.userIsLiked}
-                  style={style}
-                  title={courses.title}
-                  describe={courses.describe}
-                  isUserFavorite={courses.isUserFavorite}
-                  userLikeId={courses.userLikeId}
-                  userIsDissLiked={courses.userIsDissLiked}
-                  userFavoriteId={courses.userFavoriteId}
-                />
-              );
-            })}
+            {data &&
+              data?.map((courses, index) => {
+                return (
+                  <Course
+                    key={index}
+                    tumbImageAddress={courses.tumbImageAddress}
+                    courseId={courses.courseId}
+                    teacherName={courses.teacherName}
+                    cost={courses.cost}
+                    likeCount={courses.likeCount}
+                    dissLikeCount={courses.dissLikeCount}
+                    userIsLiked={courses.userIsLiked}
+                    style={style}
+                    title={courses.title}
+                    describe={courses.describe}
+                    isUserFavorite={courses.isUserFavorite}
+                    userLikeId={courses.userLikeId}
+                    userIsDissLiked={courses.userIsDissLiked}
+                    userFavoriteId={courses.userFavoriteId}
+                    lastUpdate={courses.lastUpdate}
+                  />
+                );
+              })}
           </div>
           <div className="flex  justify-center mt-[40px]">
             {" "}

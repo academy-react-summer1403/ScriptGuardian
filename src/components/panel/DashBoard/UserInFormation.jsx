@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useGetStudentProfile } from "../../../core/services/api/Panel/GetProfile";
-
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 const UserInFormation = () => {
   const { data, isPending } = useGetStudentProfile();
   return (
@@ -30,7 +30,7 @@ const UserInFormation = () => {
             {data?.birthDay === "0001-01-01T00:00:00" ? (
               <p className="text-xs">لطفا تاریخ تولد خود را وارد کنید</p>
             ) : (
-              <p>{data?.birthDay?.slice(0, 10)}</p>
+              <strong>{data && convertIsoToJalali(data?.birthDay)}</strong>
             )}{" "}
           </p>
         </div>

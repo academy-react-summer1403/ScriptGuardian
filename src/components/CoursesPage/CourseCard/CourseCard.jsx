@@ -20,6 +20,7 @@ const CoursesCard = ({
   userLikeId,
   userIsDissLiked,
   userFavoriteId,
+  lastUpdate,
 }) => {
   const navigate = useNavigate();
   const navigateDetails = () => {
@@ -37,7 +38,7 @@ const CoursesCard = ({
 
       {/* TopicCourses */}
       <h3 className="font-[700] mt-[16px] mr-[16px] ">{title} </h3>
-      <CourseCardInfo />
+      <CourseCardInfo lastUpdate={lastUpdate} />
       <CourseCardInstructor teacherName={teacherName} />
       <PriceAndFavoritesCard
         handleClickTitle={handleClickTitle}

@@ -17,6 +17,7 @@ import {
 } from "../../../../core/services/api/DetailCourses/handelCommentCourses";
 
 import noProfile from "../../../../images/NewsDetails/profile.png";
+import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
 const ReplayCommentCourse = ({
   describe,
   title,
@@ -35,6 +36,7 @@ const ReplayCommentCourse = ({
   currentUserEmotion,
   courseId,
   pictureAddress,
+  insertDate,
 }) => {
   const queryClient = useQueryClient();
 
@@ -268,7 +270,7 @@ const ReplayCommentCourse = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            2 روز پیش
+            <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs  text-[#455A64] dark:text-gray-400 mt-2 sm:mr-4 mr-2">
@@ -340,7 +342,7 @@ const ReplayCommentCourse = ({
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
               <input
-                className=" w-[85%] h-[100px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                className=" w-[85%] h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
                 placeholder="عنوان نظر خودتو بنویس..."
                 {...formik.getFieldProps("Title")}
               />

@@ -101,6 +101,7 @@ const SliderCourseDetails = () => {
                 userLikeId={courses?.userLikeId}
                 userIsDissLiked={courses?.userIsDissLiked}
                 userFavoriteId={courses?.userFavoriteId}
+                lastUpdate={courses?.lastUpdate}
               />
             );
           })}

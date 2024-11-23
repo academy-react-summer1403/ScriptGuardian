@@ -155,7 +155,7 @@ const MyFavoriteCourses = () => {
             <h2 className="mr-5 md:block hidden">تصویر</h2>
             <h2>نام دوره</h2>
             <h2>وضعیت</h2>
-            <h2>تاریخ شروع</h2>
+            <h2> آخرین آپدیت</h2>
             <h2>سطح</h2>
             <h2>مدیریت</h2>
           </div>
@@ -172,6 +172,7 @@ const MyFavoriteCourses = () => {
                     levelName={item?.levelName}
                     courseId={item?.courseId}
                     favoriteId={item?.favoriteId}
+                    lastUpdate={item?.lastUpdate}
                   />
                 </>
               );

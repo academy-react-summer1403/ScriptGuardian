@@ -10,6 +10,7 @@ import {
   useDeleteFavoriteNews,
 } from "../../core/services/api/DetailNews/handelNewsFavorite";
 import { toast } from "react-toastify";
+import { convertIsoToJalali } from "../../core/utils/dateUtils";
 const TopDetails = ({
   title,
   currentImageAddress,
@@ -19,6 +20,7 @@ const TopDetails = ({
   id,
   isCurrentUserFavorite,
   currentUserFavoriteId,
+  insertDate,
 }) => {
   const queryClient = useQueryClient();
 
@@ -205,7 +207,9 @@ const TopDetails = ({
                 />
               </svg>
             </span>
-            <p className="mr-1">1402/7/2</p>
+            <p className="mr-1">
+              <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
+            </p>
           </div>
           <div className="flex w-[186px] h-[64px] items-center bg-white  shadow-2xl mt-5 sm:mt-0 dark:bg-gray-900 rounded-2xl">
             <div className="w-10 h-10 rounded-2xl">

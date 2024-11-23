@@ -114,6 +114,7 @@ const CommentTab = ({ activeTab }) => {
                       currentUserEmotion={item?.currentUserEmotion}
                       roles={roles}
                       currentUserLikeId={item?.currentUserLikeId}
+                      insertDate={item?.insertDate}
                     />
                   </>
                 );

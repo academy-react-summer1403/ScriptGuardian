@@ -5,6 +5,7 @@ import Image from "../../../images/NewsDetails/default_image.png";
 import { useDeleteFavoriteCourses } from "../../../core/services/api/CoursesPage/handelCoursesFavorite";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 const ListFavoritePanel = ({
   tumbImageAddress,
   courseTitle,
@@ -12,6 +13,7 @@ const ListFavoritePanel = ({
   levelName,
   courseId,
   favoriteId,
+  lastUpdate,
 }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -53,7 +55,7 @@ const ListFavoritePanel = ({
       </div>
       <div className="lg:mr-[7.5%] md:mr-[4%]  lg:w-[10%] md:w-[11.3%]  ">
         {" "}
-        1403/10/02
+        <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
       </div>
       <div className="lg:mr-[10%] md:mr-[5%]  lg:w-[13%] md:w-[13%] ">
         {levelName ? levelName : ""}

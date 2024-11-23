@@ -4,6 +4,7 @@ import image from "../../images/StudentPanel/NavStudent/images.png";
 import { useAddReserveCourse } from "../../core/services/api/DetailCourses/handelReserve";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import { convertIsoToJalali } from "../../core/utils/dateUtils";
 const DetailsLeft = ({
   startTime,
   endTime,
@@ -232,7 +233,7 @@ const DetailsLeft = ({
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
               {/* 24 فروردین 1403 */}
-              {startTime?.slice(0, 10)}
+              <strong>{startTime && convertIsoToJalali(startTime)}</strong>
             </p>
           </div>
 
@@ -325,7 +326,7 @@ const DetailsLeft = ({
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
-              {endTime?.slice(0, 10)}{" "}
+              <strong>{endTime && convertIsoToJalali(endTime)}</strong>
             </p>
           </div>
         </div>

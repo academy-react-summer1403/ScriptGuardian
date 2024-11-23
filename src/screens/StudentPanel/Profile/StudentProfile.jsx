@@ -27,6 +27,10 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { HandelProfile } from "../../../components/panel/HandelProfile/HandelProfile";
 
+import DatePicker from "react-multi-date-picker";
+import DateObject from "react-date-object";
+import persian from "react-date-object/calendars/persian"; // برای تقویم شمسی
+import persian_fa from "react-date-object/locales/persian_fa"; // برای زبان فارسی
 const StudentProfile = () => {
   const queryClient = useQueryClient();
 
@@ -52,21 +56,49 @@ const StudentProfile = () => {
       NationalCode: data?.nationalCode ? data?.nationalCode : "",
       Gender: data?.gender ?? true,
 
-      BirthDay:
+      // BirthDay:
+      //   data?.birthDay && data?.birthDay !== "0001-01-01T00:00:00"
+      //     ? data?.birthDay
+      //     : "",
+
+      birthDay:
         data?.birthDay && data?.birthDay !== "0001-01-01T00:00:00"
-          ? data?.birthDay
-          : "",
+          ? new DateObject(data?.birthDay)
+              .convert("gregorian")
+              .format("YYYY-MM-DD")
+          : "", // مقدار پیش‌فرض خالی یا تاریخ اشتباه
       // Latitude: data?.latitude ? data?.latitude : "",
       Latitude: "51.3890",
       // Longitude: data?.longitude ? data?.longitude : "",
       Longitude: "35.6892",
     },
-    enableReinitialize:true,
+    enableReinitialize: true,
     onSubmit: (data) => {
+      // const formData = new FormData();
+      // for (const key in data) {
+      //   formData.append(key, data[key]);
+      // }
+
       const formData = new FormData();
+
+      // تبدیل تاریخ شمسی به میلادی (ISO)
+      const birthDayInGregorian = data.birthDay
+        ? new DateObject(data.birthDay)
+            .convert("gregorian")
+            .format("YYYY-MM-DD")
+        : "";
+
+      // اضافه کردن تاریخ میلادی به formData
+      formData.append("birthDay", birthDayInGregorian);
+
+      // اضافه کردن سایر فیلدهای فرم به formData
       for (const key in data) {
-        formData.append(key, data[key]);
+        if (key !== "birthDay") {
+          // تاریخ میلادی را قبلاً اضافه کرده‌ایم
+          formData.append(key, data[key]);
+        }
       }
+
       EditProfile(formData, {
         onSuccess: (data) => {
           if (data.success === true) {
@@ -307,14 +339,7 @@ const StudentProfile = () => {
               >
                 رویداد دریافت پیام
               </label>
-              {/* <input
-                name="ReceiveMessageEvent"
-                type="text"
-                id="ReceiveMessageEvent"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-                placeholder="مایل به دریافتید؟"
-                {...formik?.getFieldProps("ReceiveMessageEvent")}
-              /> */}
+
               <select {...formik?.getFieldProps("ReceiveMessageEvent")}>
                 <option value="true">موافق</option>
                 <option value="false">مخالف</option>
@@ -384,17 +409,23 @@ const StudentProfile = () => {
               >
                 روز تولد{" "}
               </label>
-              <input
+              {/* <input
                 type="text"
                 id="BirthDay"
                 name="BirthDay"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 placeholder="روز تولد خود را وارد کنید"
                 {...formik?.getFieldProps("BirthDay")}
+              /> */}
+
+              <DatePicker
+                value={formik.values.birthDay}
+                onChange={(date) => formik.setFieldValue("birthDay", date)}
+                calendar={persian} // تقویم شمسی
               />
             </div>
 
-            <div className="w-[30%]">
+            {/* <div className="w-[30%]">
               <label
                 htmlFor="Latitude"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -426,7 +457,7 @@ const StudentProfile = () => {
                 placeholder="طول جغرافیایی"
                 {...formik?.getFieldProps("Longitude")}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="flex sm:justify-between justify-center w-[95%] mt-12 mb-5">

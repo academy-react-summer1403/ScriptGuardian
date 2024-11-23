@@ -4,6 +4,7 @@ import { BigNews } from "./BigNews";
 import { News } from "./News";
 import { useNavigate } from "react-router-dom";
 import { useLandingNews } from "../../../core/services/api/Landing/LandingNews";
+
 const NewsAndArticle = () => {
   const navigate = useNavigate();
 
@@ -38,19 +39,21 @@ const NewsAndArticle = () => {
             />
           )}
           <div className="flex flex-col sm:mr-[40px] gap-y-[40px] xl:items-start items-center xl:mt-0 mt-10  ">
-            {data && data?.slice(1, 4).map((item, index) => {
-              return (
-                <News
-                  key={index}
-                  title={item?.title}
-                  addUserProfileImage={item?.addUserProfileImage}
-                  miniDescribe={item?.miniDescribe}
-                  currentView={item?.currentView}
-                  id={item?.id}
-                  currentRate={item?.currentRate}
-                />
-              );
-            })}
+            {data &&
+              data?.slice(1, 4).map((item, index) => {
+                return (
+                  <News
+                    key={index}
+                    title={item?.title}
+                    addUserProfileImage={item?.addUserProfileImage}
+                    miniDescribe={item?.miniDescribe}
+                    currentView={item?.currentView}
+                    id={item?.id}
+                    currentRate={item?.currentRate}
+                    updateDate={item?.updateDate}
+                  />
+                );
+              })}
           </div>
         </div>
         <div className="flex  justify-center mt-[40px] ">
