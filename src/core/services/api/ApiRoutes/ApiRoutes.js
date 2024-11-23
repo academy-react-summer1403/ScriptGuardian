@@ -59,6 +59,12 @@ export const ApiRoutes = {
   PANEL_MY_FAVORITE_COURSES_URL: "/SharePanel/GetMyFavoriteCourses",
   PANEL_MY_FAVORITE_NEWS_URL: "/SharePanel/GetMyFavoriteNews",
 
+  //StudentPanelMyComment
+
+  PANEL_MY_COMMENT_IN_COURSES_URL: "/SharePanel/GetMyCoursesComments",
+  PANEL_MY_COMMENT_IN_NEWS_URL: "/SharePanel/GetMyNewsComments",
+  PANEL_DELETE_MY_COMMENT_IN_COURSES_URL: "/Course/DeleteCourseComment?",
+
   //student panel Edit Profile
   PANEL_EDIT_PROFILE_URL: "/SharePanel/UpdateProfileInfo",
   PANEL_ADD_PROFILE_IMAGE_URL: "/SharePanel/AddProfileImage",

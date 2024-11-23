@@ -9,15 +9,16 @@ import { NavLink } from "react-router-dom";
 const BottomHeader = () => {
   //API
 
-  const [searchQuery, setSearchQuery] = useState(undefined);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { data } = useCourses({
     SearchQuery: searchQuery,
   });
+  console.log(data , "this best data for ever")
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
-  };
+  // const handleSearchChange = (event) => {
+  //   setSearchQuery(event.target.value) // به‌روزرسانی searchQuery با مقدار ورودی
+  // };
   return (
     <>
       <CodeIcons />
@@ -28,27 +29,28 @@ const BottomHeader = () => {
           {/* SearchInput */}
 
           <SearchInput
-            handleSearchChange={handleSearchChange}
+            handleSearchChange={(event)=>setSearchQuery(event.target.value) }
             searchQuery={searchQuery}
           />
           {searchQuery && (
             <>
               <div className="w-[724px] absolute min-h-[100px] bg-white flex flex-col top-[310px] rounded-2xl p-3 ">
-                {data?.map((item, index) => {
-                  return (
-                    <>
-                      <div className="border-b justify-between  flex items-center ">
-                        <p>{item?.title}</p>
-                        <NavLink
-                          to={`Courses/${item?.courseId}`}
-                          className="text-xs text-[#2196F3] dark:text-[#2b6ea6]"
-                        >
-                          دیدن دوره
-                        </NavLink>
-                      </div>
-                    </>
-                  );
-                })}
+                {data &&
+                  data?.courseFilterDtos.map((item) => {
+                    return (
+                      <>
+                        <div className="border-b justify-between  flex items-center ">
+                          <p>{item?.title}</p>
+                          <NavLink
+                            to={`Courses/${item?.courseId}`}
+                            className="text-xs text-[#2196F3] dark:text-[#2b6ea6]"
+                          >
+                            دیدن دوره
+                          </NavLink>
+                        </div>
+                      </>
+                    );
+                  })}
               </div>
             </>
           )}

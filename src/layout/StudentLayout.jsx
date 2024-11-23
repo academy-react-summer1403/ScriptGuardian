@@ -4,6 +4,7 @@ import {
   FaBookOpen,
   FaCalendarAlt,
   FaComment,
+  FaCommentAlt,
   FaHeart,
   FaHome,
   FaLock,
@@ -99,6 +100,11 @@ const StudentLayout = () => {
               <NavLink to="/panel/MyFavoriteNews">
                 خبر های مورد علاقه{" "}
               </NavLink>
+            </div>
+
+            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+              <FaCommentAlt className="text-xl" />
+              <NavLink to="/panel/MyCommentPage">کامنت های من </NavLink>
             </div>
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaLock className="text-xl" />

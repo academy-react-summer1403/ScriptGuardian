@@ -47,10 +47,10 @@ const CommentTab = ({ activeTab }) => {
             // if (roles.includes("Administrator") || roles.includes("Referee")) {
 
             // }
+            queryClient.invalidateQueries("CommentCourses");
+
             toast.success("کامنت  با موفقیت ارسال شد");
             resetForm();
-
-            queryClient.invalidateQueries("CommentCourses");
 
             // else {
             //   toast.warning("کامنت ارسال شد در انتظار تایید", data);

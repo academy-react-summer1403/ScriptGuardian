@@ -16,6 +16,7 @@ import { MyCourses } from "../screens/StudentPanel/MyCourses/MyCourses";
 import { MyReservedCourses } from "../screens/StudentPanel/MyReservedCourses/MyReservedCourses";
 import { MyFavoriteCourses } from "../screens/StudentPanel/MyFavoriteCourses/MyFavoriteCourses";
 import { MyFavoriteNews } from "../screens/StudentPanel/MyFavoriteNews/MyFavoriteNews";
+import { MyCommentPage } from "../screens/StudentPanel/MyComment/MyCommentPage";
 
 const App = createBrowserRouter([
   {
@@ -47,6 +48,7 @@ const App = createBrowserRouter([
       { path: "/panel/MyFavoriteCourses", element: <MyFavoriteCourses /> },
       { path: "/panel/MyFavoriteNews", element: <MyFavoriteNews /> },
       { path: "/panel/ChangePassword", element: <ChangePassWord /> },
+      { path: "/panel/MyCommentPage", element: <MyCommentPage /> },
       // {path:"/panel/Logout", element:<p>خروج</p>},
       { path: "/panel/MyComments", element: <p>کامنت های من</p> },
     ],
