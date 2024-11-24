@@ -23,6 +23,7 @@ import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
 import { usePanelChangePassword } from "../../../core/services/api/Panel/HandelChangePAss";
 import { useFormik, validateYupSchema } from "formik";
 import { validationEditPass } from "../../../core/services/validation/validationSchema/Panel";
+import { toast } from "react-toastify";
 
 const ChangePassWord = () => {
   //API
@@ -37,7 +38,15 @@ const ChangePassWord = () => {
     validationSchema: validationEditPass,
 
     onSubmit(values) {
-      ChangePassword(values);
+      ChangePassword(values, {
+        onSuccess: (data) => {
+          if (data.success == true) {
+            toast.success("رمز شما با موفقیت تغییر کرد");
+          } else {
+            toast.error("خطا در تغییر رمز");
+          }
+        },
+      });
     },
   });
 

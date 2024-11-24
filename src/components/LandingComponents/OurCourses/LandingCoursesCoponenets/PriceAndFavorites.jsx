@@ -158,8 +158,8 @@ const PriceAndFavorites = ({
           {isUserFavorite ? isFavorite : isFavoriteFalse}
         </span>
       </div>
-      {/* {userLikeId} */}
-      <div className="flex items-center gap-3">
+
+      <div className="xl:flex lg:hidden flex  items-center gap-3  ">
         <button className="flex items-center 0">
           <span className="ml-1 text-xs">{likeCount}</span>
           <FaThumbsUp
@@ -177,7 +177,7 @@ const PriceAndFavorites = ({
       </div>
       <p className="text-[#2196F3] dark:text-[#BBDEFB] font-[500] tracking-tight">
         {" "}
-        {cost}{" "}
+        {parseFloat(cost).toFixed(2) % 1 === 0 ? parseInt(cost) : cost}{" "}
         <span className="text-[12px] text-[#263238] dark:text-[#CFD8DC] ml-5">
           تومان
         </span>{" "}

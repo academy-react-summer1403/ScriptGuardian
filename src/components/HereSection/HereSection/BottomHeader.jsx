@@ -14,7 +14,7 @@ const BottomHeader = () => {
   const { data } = useCourses({
     SearchQuery: searchQuery,
   });
-  console.log(data , "this best data for ever")
+  console.log(data, "this best data for ever");
 
   // const handleSearchChange = (event) => {
   //   setSearchQuery(event.target.value) // به‌روزرسانی searchQuery با مقدار ورودی
@@ -29,7 +29,7 @@ const BottomHeader = () => {
           {/* SearchInput */}
 
           <SearchInput
-            handleSearchChange={(event)=>setSearchQuery(event.target.value) }
+            handleSearchChange={(event) => setSearchQuery(event.target.value)}
             searchQuery={searchQuery}
           />
           {searchQuery && (
@@ -55,7 +55,7 @@ const BottomHeader = () => {
             </>
           )}
           {/* Boxes */}
-          <div className="flex md:w-[724px] sm:flex-row flex-col  mt-[56px] gap-[32px] justify-center">
+          <div className="flex md:w-[724px] flex-row   mt-[56px] sm:gap-[32px] gap-x-[16px] justify-center sm:w-auto w-full">
             <InfoBoxes />
           </div>
         </div>

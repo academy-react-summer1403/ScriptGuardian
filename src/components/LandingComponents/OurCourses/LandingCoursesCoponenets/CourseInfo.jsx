@@ -4,14 +4,15 @@ import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
 const CourseInfo = ({ lastUpdate }) => {
   return (
     <div className="flex justify-center">
-      <div className="w-[264px] h-[40px] bg-[#ECEFF1] dark:bg-[#1E1E1E] flex  rounded-[24px] text-[12px] font-[500] items-center gap-x-[24px] mt-3 tracking-tighter">
-        <span className="flex items-center mr-4 gap-1 ">
+      <div className="xl:w-[264px] lg:w-[90%] w-[264px] h-[40px] bg-[#ECEFF1] dark:bg-[#1E1E1E] flex  rounded-[24px] text-[12px] font-[500] items-center gap-x-[24px] mt-3 tracking-tighter xl:justify-start lg:justify-around justify-start">
+        <span className="xl:flex items-center mr-4 gap-1  lg:hidden  flex">
           <svg
             width="14"
             height="14"
             viewBox="0 0 14 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="xl:block"
           >
             <path
               d="M12.635 6.0898L12.0633 8.52813C11.5733 10.634 10.605 11.4856 8.785 11.3106C8.49334 11.2873 8.17834 11.2348 7.84 11.1531L6.86 10.9198C4.4275 10.3423 3.675 9.14063 4.24667 6.7023L4.81834 4.25813C4.935 3.7623 5.075 3.33063 5.25 2.9748C5.9325 1.56313 7.09334 1.18397 9.04167 1.6448L10.0158 1.8723C12.46 2.44397 13.2067 3.65147 12.635 6.0898Z"

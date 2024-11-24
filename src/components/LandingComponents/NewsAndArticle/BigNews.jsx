@@ -27,7 +27,7 @@ const BigNews = ({
 
   return (
     <div
-      className="xl:w-[616px]   flex flex-col xl:mx-auto  md:w-full items-center xl:items-start w-[90%]"
+      className="xl:w-[616px]   xl:flex hidden flex-col xl:mx-auto  md:w-full items-center xl:items-start w-[90%]"
       onClick={goDetails}
     >
       <BigImgNews
@@ -164,7 +164,7 @@ const BigNews = ({
         {title ? title : ""}
       </h2>
       <p className="mt-[12px] text-[#455A64] dark:text-gray-200 font-[500] xl:w-auto sm:w-[516px] w-full xl:text-right text-center ">
-        {miniDescribe ?  miniDescribe : ""}
+        {miniDescribe ? miniDescribe : ""}
       </p>
     </div>
   );

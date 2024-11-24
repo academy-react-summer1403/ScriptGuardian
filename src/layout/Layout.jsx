@@ -67,7 +67,6 @@ const Layout = () => {
             <TopHeader />
           </div>
 
-          {/* برای بارگذاری مجدد Outlet با کلید location.pathname */}
           <div key={location.pathname}>
             <Outlet />
           </div>

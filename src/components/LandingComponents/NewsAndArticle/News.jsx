@@ -27,30 +27,32 @@ const News = ({
 
   return (
     <div
-      className="sm:w-[624px] sm:h-[161px]  flex sm:flex-row flex-col items-center  "
+      className="xl:w-[624px] lg:w-[90%] sm:w-[624px] w-[90%] sm:h-[161px]  flex sm:flex-row flex-col items-center  sm:mb-0 mb-5"
       onClick={goDetails}
     >
       <NewsImg
         addUserProfileImage={
-          addUserProfileImage && addUserProfileImage !== "Not-set"
+          addUserProfileImage &&
+          addUserProfileImage !== "Not-set" &&
+          !addUserProfileImage.startsWith("C:\\")
             ? addUserProfileImage
             : image
         }
       />
-      <div className="md:mr-[24px] mr-4 flex flex-col sm:w-[376px] sm:mt-0 mt-3 w-[212px] sm:text-right text-center">
+      <div className="md:mr-[24px] xl:mr-[24px] lg:mr-[60px] mr-4 flex flex-col sm:w-[376px] sm:mt-0 mt-3 w-[90%] sm:text-right text-center">
         <h3 className="text-[20px] font-[700] text-[#263238] dark:text-gray-400">
-          {title}
+          {title.length > 25 ? title.substring(0, 25) + "..." : title}
         </h3>
-        <p className="text-[14px] text-[#455A64] dark:text-gray-200 mt-[8px]  md:w-auto sm:w-[320px] ">
+        <p className="text-[14px] text-[#455A64] dark:text-gray-200 mt-[8px]  md:w-auto sm:w-[320px]  ">
           {miniDescribe}
         </p>
         <div
           className="mt-[18px] flex items-center text-[14px] text-[#2196F3] dark:text-[#1976D2] justify-between"
           onClick={handleClickTitle}
         >
-          <div className="flex items-center">
+          <div className="flex items-center ">
             {" "}
-            <span>
+            {/* <span>
               <svg
                 width="14"
                 height="14"
@@ -74,8 +76,8 @@ const News = ({
                 />
               </svg>
             </span>
-            <p className="mr-1">{currentView} بازدید</p>
-            <span className="mr-4">
+            <p className="mr-1">{currentView} بازدید</p> */}
+            {/* <span className="mr-4">
               <svg
                 width="6"
                 height="6"
@@ -85,8 +87,8 @@ const News = ({
               >
                 <rect width="6" height="6" rx="3" fill="#2196F3" />
               </svg>
-            </span>
-            <span className="mr-4">
+            </span> */}
+            <span className="sm:mr-4">
               <svg
                 width="14"
                 height="14"
@@ -151,12 +153,11 @@ const News = ({
             </span>
             <strong>{updateDate && convertIsoToJalali(updateDate)}</strong>
           </div>
-          <div className="flex flex-row-reverse">
+          <div className="flex flex-row-reverse xl:ml-0">
             {Array.from({ length: totalStars }).map((_, index) => (
               <span key={index}>
                 <svg
-                  width="24"
-                  height="24"
+                  className="sm:w-[24px] sm:h-[24px] w-[16px] h-[16px]  "
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

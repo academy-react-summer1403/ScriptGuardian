@@ -1,10 +1,13 @@
 import React from "react";
 
-const CourseInstructor = ({teacherName}) => {
+const CourseInstructor = ({ teacherName }) => {
   return (
     <div className="flex  font-[500] text-[14px] mt-[16px] mr-[16px]  justify-between tracking-tight">
-      <p>
-        <span className="font-[700] ">مدرس</span> :  {teacherName}
+      <p title={teacherName}>
+        <span className="font-[700] ">مدرس</span> :{" "}
+        {teacherName.length > 10
+          ? teacherName.substring(0, 10) + "..."
+          : teacherName}
       </p>
       <p className="ml-5">256 دانش آموز</p>
     </div>

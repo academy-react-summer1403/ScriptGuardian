@@ -42,8 +42,11 @@ const Course = ({
       {/* Content */}
 
       {/* TopicCourses */}
-      <h3 className="font-[700] mt-2 mr-[16px] ">{title}</h3>
-      <CourseInfo  lastUpdate={lastUpdate}/>
+      <h3 className="xl:font-[700] lg:font-[600] font-[700] mt-2 xl:mr-[16px] lg:mr-[10px] mr-[16px] ">
+        {" "}
+        {title.length > 30 ? title.substring(0, 27) + "..." : title}
+      </h3>
+      <CourseInfo lastUpdate={lastUpdate} />
       <CourseInstructor teacherName={teacherName} />
       <PriceAndFavorites
         handleClickTitle={handleClickTitle}

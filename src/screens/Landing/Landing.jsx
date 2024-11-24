@@ -7,9 +7,8 @@ import { TeacherSlider } from "../../components/LandingComponents/TeachersSlider
 import { NewsAndArticle } from "../../components/LandingComponents/NewsAndArticle/NewsAndArticle.jsx";
 
 const Landing = () => {
-
   return (
-    <div className="relative top-[-81px] xl:w-[1343px] mx-auto">
+    <div className="relative top-[-81px] xl:max-w-[1343px] mx-auto">
       {/* Landing Holder */}
       <HereSection />
       <OurServices />
