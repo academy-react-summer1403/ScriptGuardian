@@ -15,6 +15,7 @@ const Filters = ({
   data,
   setListTech,
   listTech,
+  setCurrentTeacher,
 }) => {
   return (
     <>
@@ -108,13 +109,13 @@ const Filters = ({
           />
           {/* Accordion3 */}
 
-          <FilterTopics />
+          {/* <FilterTopics /> */}
 
           {/* Accordion4 */}
 
-          <TimeRangeFilter />
+          {/* <TimeRangeFilter /> */}
           {/* Accordion5 */}
-          <TeacherFilter />
+          <TeacherFilter setCurrentTeacher={setCurrentTeacher} />
         </div>
       </div>
 
@@ -203,20 +204,24 @@ const Filters = ({
 
         {/*  Accordion1 */}
           <div className="w-full ">
-            <CategoryFilter />
+            <CategoryFilter setListTech={setListTech} listTech={listTech} />
 
             {/* Accordion2 */}
 
-            <PriceFilter />
+            <PriceFilter
+              setCostDown={setCostDown}
+              setCostUp={setCostUp}
+              data={data}
+            />
             {/* Accordion3 */}
 
-            <FilterTopics />
+            {/* <FilterTopics /> */}
 
             {/* Accordion4 */}
 
-            <TimeRangeFilter />
+            {/* <TimeRangeFilter /> */}
             {/* Accordion5 */}
-            <TeacherFilter />
+            <TeacherFilter setCurrentTeacher={setCurrentTeacher} />
           </div>
         </div>
       )}

@@ -15,6 +15,7 @@ const CoursesPage = () => {
   const [costDown, setCostDown] = useState(undefined);
   const [costUp, setCostUp] = useState(undefined);
   const [listTech, setListTech] = useState([]);
+  const [currentTeacher, setCurrentTeacher] = useState([]);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -31,6 +32,7 @@ const CoursesPage = () => {
     RowsOfPage: itemsPerPage,
     PageNumber: currentPage + 1,
     ListTech: listTech,
+    TeacherId: currentTeacher,
   });
   const data = DatacourseFilterDtos?.courseFilterDtos;
   const Total = DatacourseFilterDtos?.totalCount;
@@ -80,6 +82,7 @@ const CoursesPage = () => {
           data={data}
           setListTech={setListTech}
           listTech={listTech}
+          setCurrentTeacher={setCurrentTeacher}
         />
         <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}

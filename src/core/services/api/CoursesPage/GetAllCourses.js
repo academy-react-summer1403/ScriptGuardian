@@ -9,6 +9,7 @@ const Courses = async ({
   RowsOfPage,
   PageNumber,
   ListTech,
+  TeacherId,
 }) => {
   const AllParams = {
     Query: SearchQuery ? SearchQuery : undefined,
@@ -18,6 +19,7 @@ const Courses = async ({
     PageNumber: PageNumber ? PageNumber : 1,
     ...(ListTech?.length > 0 && { ListTech: ListTech.join(",") }),
     TechCount: ListTech?.length || 0,
+    TeacherId: TeacherId ? TeacherId : undefined,
   };
   try {
     const response = await http.get(ApiRoutes.COURSES_PAGE_URL, {
@@ -38,6 +40,7 @@ export const useCourses = ({
   RowsOfPage,
   PageNumber,
   ListTech,
+  TeacherId,
 }) => {
   return useQuery({
     queryKey: [
@@ -48,6 +51,7 @@ export const useCourses = ({
       RowsOfPage,
       PageNumber,
       ListTech,
+      TeacherId,
     ],
     queryFn: () =>
       Courses({
@@ -57,6 +61,7 @@ export const useCourses = ({
         RowsOfPage,
         PageNumber,
         ListTech,
+        TeacherId,
       }),
   });
 };
