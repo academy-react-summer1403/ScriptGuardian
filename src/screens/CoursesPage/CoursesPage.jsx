@@ -14,13 +14,15 @@ const CoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState(undefined);
   const [costDown, setCostDown] = useState(undefined);
   const [costUp, setCostUp] = useState(undefined);
-  const [listTech, setListTech] = useState(undefined);
+  const [listTech, setListTech] = useState([]);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(0); // State برای ذخیره شماره صفحه
+
+  console.log(listTech, "this list teach");
 
   const { data: DatacourseFilterDtos } = useCourses({
     SearchQuery: searchQuery,
@@ -76,6 +78,8 @@ const CoursesPage = () => {
           setCostDown={setCostDown}
           setCostUp={setCostUp}
           data={data}
+          setListTech={setListTech}
+          listTech={listTech}
         />
         <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}

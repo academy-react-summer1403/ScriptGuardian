@@ -7,7 +7,15 @@ import { TimeRangeFilter } from "./TimeRangeFilter";
 import { TeacherFilter } from "./TeacherFilter";
 import { FaClosedCaptioning } from "react-icons/fa";
 import { RiCloseLine } from "react-icons/ri";
-const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
+const Filters = ({
+  showMenu,
+  handleClick,
+  setCostDown,
+  setCostUp,
+  data,
+  setListTech,
+  listTech,
+}) => {
   return (
     <>
       <div className="lg:flex min-h-[779px] xl:w-[296px] lg:w-[249px] md:w-[209px]  border rounded-[24px] bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center xl:mr-0 mr-4  hidden ">
@@ -89,7 +97,7 @@ const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
 
         {/*  Accordion1 */}
         <div className="w-full lg:flex lg:flex-col hidden">
-          <CategoryFilter />
+          <CategoryFilter setListTech={setListTech} listTech={listTech} />
 
           {/* Accordion2 */}
 

@@ -53,6 +53,8 @@ export const ApiRoutes = {
   DETAILS_ADD_FAVORITE_NEWS_URL: "/News/AddFavoriteNews?",
   DETAILS_DELETE_FAVORITE_NEWS_URL: "/News/DeleteFavoriteNews",
 
+  //Filters:Technologies
+  GET_LIST_OF_TECHNOLOGIES_URL: "/Home/GetTechnologies",
   //StudentPanel DashBoard
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
 
