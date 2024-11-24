@@ -9,6 +9,7 @@ const SearchAndThemeCourses = ({
   handleClick,
   handleSearchChange,
   searchQuery,
+  setSortingCol,
 }) => {
   const [showContent, setShowContent] = useState(false);
 
@@ -29,7 +30,7 @@ const SearchAndThemeCourses = ({
         handleSearchChange={handleSearchChange}
         searchQuery={searchQuery}
       />
-      <DropDownCourses />
+      <DropDownCourses setSortingCol={setSortingCol} />
     </div>
   );
 };

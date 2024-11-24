@@ -16,6 +16,7 @@ const CoursesPage = () => {
   const [costUp, setCostUp] = useState(undefined);
   const [listTech, setListTech] = useState([]);
   const [currentTeacher, setCurrentTeacher] = useState([]);
+  const [sortingCol, setSortingCol] = useState(undefined);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -33,6 +34,7 @@ const CoursesPage = () => {
     PageNumber: currentPage + 1,
     ListTech: listTech,
     TeacherId: currentTeacher,
+    SortingCol: sortingCol,
   });
   const data = DatacourseFilterDtos?.courseFilterDtos;
   const Total = DatacourseFilterDtos?.totalCount;
@@ -90,6 +92,7 @@ const CoursesPage = () => {
             handleClick={handleClick}
             handleSearchChange={handleSearchChange}
             searchQuery={searchQuery}
+            setSortingCol={setSortingCol}
           />
           <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
             {currentItems?.map((course, index) => (
