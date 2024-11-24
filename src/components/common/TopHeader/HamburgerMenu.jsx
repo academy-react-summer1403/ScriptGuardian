@@ -1,12 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaSignInAlt, FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 const HamburgerMenu = () => {
+  // const [openMenu, setOpenMenu] = useState(false);
+  // const handelIsOpenMenu = () => {
+  //   setOpenMenu(!openMenu);
+  // };
+
   const [openMenu, setOpenMenu] = useState(false);
+  const menuRef = useRef(null);
+
   const handelIsOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenMenu(false);
+      }
+    };
+
+    if (openMenu) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [openMenu]);
   return (
     <div className="flex md:hidden  justify-center items-center mr-[5px] z-50">
       {/* چک‌باکس */}
@@ -21,7 +45,10 @@ const HamburgerMenu = () => {
 
       {/* منو */}
       {openMenu && (
-        <div className="fixed top-0 right-0 w-48 h-full bg-gray-800 dark:bg-gray-950 text-white ">
+        <div
+          ref={menuRef}
+          className="fixed top-0 right-0 w-48 h-full bg-gray-800 dark:bg-gray-950 text-white "
+        >
           <div className="flex justify-between items-center p-2">
             <Link className="flex gap-x-1 items-center" to={"/"}>
               <span className="xl:w-[44px] lg:w-[40px] w-[20px] sm:w-[28px] xl:h-[32px] lg:h-[30px] sm:h-[26px] h-[20px] flex items-center">
