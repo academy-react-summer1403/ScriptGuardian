@@ -1,9 +1,14 @@
 import React from "react";
-
+import { useLandingReport } from "../../../core/services/api/Landing/LandingReport";
 const InfoBoxes = () => {
+  const { data, isPending } = useLandingReport();
+
   return (
     <>
-      <div className="md:w-[220px] w-[150px] flex flex-col  items-center h-[211px] bg-[#ffffff] dark:bg-gray-900 bg-opacity-[60%] dark:bg-opacity-[90%] border-white transition duration-300 ease-in-out  hover:scale-[105%] rounded-[16px] dark:border-gray-900 border-[4px]">
+      <div
+        className="md:w-[220px] sm:w-[150px] flex flex-col  items-center h-[211px] sm:bg-[#ffffff] sm:dark:bg-gray-900 sm:bg-opacity-[60%] sm:dark:bg-opacity-[90%] sm:border-white transition duration-300 ease-in-out  hover:scale-[105%] rounded-[16px] sm:dark:border-gray-900 sm:border-[4px]"
+        title="مدرس مجرب"
+      >
         <div className="flex items-center justify-center bg-[#2196F3] dark:bg-blue-800  w-[64px] h-[64px] rounded-[16px] mt-[24px] ">
           <span className="">
             <svg
@@ -27,14 +32,17 @@ const InfoBoxes = () => {
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900] sm:text-[30px] text-[25px] text-[#263238] dark:text-gray-200">
-            167
+            {data && data.teacherCount}
           </h3>
-          <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
+          <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400 sm:block hidden">
             مدرس مجرب
           </p>
         </div>
       </div>
-      <div className="md:w-[220px] w-[150px]  flex flex-col  items-center h-[211px] bg-[#ffffff] bg-opacity-[60%] rounded-[16px] border-white border-[4px] transition duration-300 ease-in-out  hover:scale-[105%] dark:border-gray-900 dark:bg-gray-900 dark:bg-opacity-[90%]  ">
+      <div
+        className="md:w-[220px] sm:w-[150px] flex flex-col  items-center h-[211px] sm:bg-[#ffffff] sm:dark:bg-gray-900 sm:bg-opacity-[60%] sm:dark:bg-opacity-[90%] sm:border-white transition duration-300 ease-in-out  hover:scale-[105%] rounded-[16px] sm:dark:border-gray-900 sm:border-[4px]"
+        title="دوره با کیفیت"
+      >
         <div className="flex items-center justify-center bg-[#2196F3] dark:bg-blue-800  w-[64px] h-[64px] rounded-[16px] mt-[24px]  ">
           <span className="">
             <svg
@@ -59,15 +67,18 @@ const InfoBoxes = () => {
 
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900]  sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
-            408,228
+            {data && data.courseCount}
           </h3>
-          <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
-            دقیقه آموزش
+          <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400 sm:block hidden">
+            دوره با کیفیت
           </p>
         </div>
       </div>
 
-      <div className="md:w-[220px] w-[150px]  flex flex-col  items-center h-[211px] bg-[#ffffff] bg-opacity-[60%] rounded-[16px] border-white border-[4px] transition duration-300 ease-in-out  hover:scale-[105%] dark:border-gray-900 dark:bg-gray-900  dark:bg-opacity-[90%] ">
+      <div
+        title=" نفر دانشجو"
+        className="md:w-[220px] sm:w-[150px] flex flex-col  items-center h-[211px] sm:bg-[#ffffff] sm:dark:bg-gray-900 sm:bg-opacity-[60%] sm:dark:bg-opacity-[90%] sm:border-white transition duration-300 ease-in-out  hover:scale-[105%] rounded-[16px] sm:dark:border-gray-900 sm:border-[4px]"
+      >
         <div className="flex items-center justify-center bg-[#2196F3] dark:bg-blue-800  w-[64px] h-[64px] rounded-[16px] mt-[24px] ">
           <span>
             <svg
@@ -110,9 +121,9 @@ const InfoBoxes = () => {
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900] sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
-            460,798
+            {data && data.studentCount}
           </h3>
-          <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400">
+          <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400 sm:block hidden">
             نفر دانشجو
           </p>
         </div>

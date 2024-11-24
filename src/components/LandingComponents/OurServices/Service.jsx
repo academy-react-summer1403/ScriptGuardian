@@ -3,7 +3,7 @@ import React from "react";
 const Service = () => {
   return (
     <>
-      <div className="flex flex-col sm:w-[405px] w-[80%] h-[280px] border-[1px] border-[#ccc] dark:border-gray-600 items-center rounded-[24px] ">
+      <div className="flex flex-col xl:w-[400px] lg:w-[305px] md:w-[240px] sm:w-[405px] w-[80%] max-w-[405px] min-h-[280px] border-[1px] border-[#ccc] dark:border-gray-600 items-center rounded-[24px]   ">
         <span className="mt-[40px]">
           <svg
             width="80"
@@ -29,18 +29,18 @@ const Service = () => {
             />
           </svg>
         </span>
-        <div className="sm:w-[340px]  bg-pink text-center">
+        <div className="xl:w-[340px] w-[90%] bg-pink text-center xl:mb-0 mb-5">
           <h3 className="font-[900] text-[24px] mt-[16px] text-[#263238] dark:text-gray-200">
             سادگی خدمات{" "}
           </h3>
-          <p className=" mt-[8px] font-[700] text-[16px] text-[#455A64] dark:text-gray-400 tracking-[-0.01em] ">
+          <p className=" mt-[8px] font-[700] text-[16px] text-[#455A64] dark:text-gray-400 tracking-[-0.01em]  ">
             سهولت دسترسی و دریافت خدمات از همه ی نقاط کشور با کمترین تعرفه و
             بدون نیاز مراجعه حضوری در کل فرایند ثبت
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col sm:w-[405px] w-[80%] h-[280px]  items-center rounded-[24px] bg-white dark:bg-gray-800 shadow-ّFirst-shadow">
+      <div className="flex flex-col xl:w-[400px] lg:w-[305px] md:w-[240px] sm:w-[405px] w-[80%] max-w-[405px] min-h-[280px] border-[1px] border-[#ccc] dark:border-gray-600 items-center rounded-[24px]  ">
         <span className="mt-[40px]">
           <svg
             width="81"
@@ -60,7 +60,7 @@ const Service = () => {
             />
           </svg>
         </span>
-        <div className="sm:w-[340px] bg-pink text-center">
+        <div className="xl:w-[340px] w-[90%]   bg-pink text-center xl:mb-0 mb-5">
           <h3 className="font-[900] text-[24px] mt-[16px] text-[#263238] dark:text-gray-200">
             فرصت های شغلی
           </h3>
@@ -71,7 +71,7 @@ const Service = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:w-[405px] w-[80%] h-[280px] border-[1px] border-[#ccc] dark:border-gray-600 items-center rounded-[24px] ">
+      <div className="flex flex-col xl:w-[400px] lg:w-[305px] md:w-[240px] sm:w-[405px] w-[80%] max-w-[405px] min-h-[280px] border-[1px] border-[#ccc] dark:border-gray-600 items-center rounded-[24px] ">
         <span className="mt-[40px]">
           <svg
             width="80"
@@ -107,7 +107,7 @@ const Service = () => {
             />
           </svg>
         </span>
-        <div className="sm:w-[340px] bg-pink text-center">
+        <div className=" xl:w-[340px] w-[90%] xl:mb-0 mb-5    bg-pink text-center">
           <h3 className="font-[900] text-[24px] mt-[16px] text-[#263238] dark:text-gray-200">
             مدرک معتبر
           </h3>

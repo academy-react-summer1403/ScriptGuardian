@@ -7,7 +7,7 @@ import { TimeRangeFilter } from "./TimeRangeFilter";
 import { TeacherFilter } from "./TeacherFilter";
 import { FaClosedCaptioning } from "react-icons/fa";
 import { RiCloseLine } from "react-icons/ri";
-const Filters = ({ showMenu, handleClick }) => {
+const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
   return (
     <>
       <div className="lg:flex min-h-[779px] xl:w-[296px] lg:w-[249px] md:w-[209px]  border rounded-[24px] bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center xl:mr-0 mr-4  hidden ">
@@ -93,7 +93,11 @@ const Filters = ({ showMenu, handleClick }) => {
 
           {/* Accordion2 */}
 
-          <PriceFilter />
+          <PriceFilter
+            setCostDown={setCostDown}
+            setCostUp={setCostUp}
+            data={data}
+          />
           {/* Accordion3 */}
 
           <FilterTopics />
@@ -112,7 +116,7 @@ const Filters = ({ showMenu, handleClick }) => {
         <div className="lg:flex ease-in-out duration-100 min-h-[779px] w-[296px] fixed right-0 top-0   border  bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center  z-[10] ">
           {/* 1Com */}
           <div className="absolute left-6 top-2" onClick={handleClick}>
-            <RiCloseLine size={24} className="dark:text-white"/>
+            <RiCloseLine size={24} className="dark:text-white" />
           </div>
           <div className="xl:w-[272px] w-10/12 mx-auto mt-10 h-[48px] bg-[#ECEFF1] dark:bg-[#1C1C1C] rounded-[16px]  flex justify-between items-center">
             <div className="flex items-center mr-[16px] gap-[6px]">

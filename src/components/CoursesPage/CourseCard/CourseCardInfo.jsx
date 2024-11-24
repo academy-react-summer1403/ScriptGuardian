@@ -1,6 +1,7 @@
 import React from "react";
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 
-const CourseCardInfo = () => {
+const CourseCardInfo = ({ lastUpdate }) => {
   return (
     <div className="flex justify-center">
       <div className="w-[264px] h-[40px] bg-[#ECEFF1] dark:bg-[#1E1E1E] flex  rounded-[24px] text-[12px] font-[500] items-center gap-x-[24px] mt-3 tracking-tighter">
@@ -118,7 +119,10 @@ const CourseCardInfo = () => {
             />
           </svg>
 
-          <span>11 اذر 1402</span>
+          <span>
+            {" "}
+            <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
+          </span>
         </span>
       </div>
     </div>

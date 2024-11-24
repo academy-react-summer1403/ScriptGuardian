@@ -8,14 +8,42 @@ import { MidDetails } from "../../components/DetailNews/MidDetails";
 import { Formik } from "formik";
 import commentProfile from "../../images/NewsDetails/Unsplash-Avatars_0005s_0017_harps-joseph-tAvpDE7fXgY-unsplash.png";
 import { CommentDetails } from "../../components/DetailNews/CommentDetails";
+import { useDetailNews } from "../../core/services/api/DetailNews/DetailNews";
 const DetailsNews = () => {
   const { id } = useParams();
+
+  //API
+
+  const { data } = useDetailNews(id);
+  // console.log(data?.detailsNewsDto, "DetailNews");
+  const detailsNewsDto = data?.detailsNewsDto;
+  console.log(detailsNewsDto, "DetailNews2");
+  // console.log(data?.detailsNewsDto, "DetailNews");
+  const commentDtos = data?.commentDtos;
   return (
     <>
-      <TopDetails />
-      <MidDetails />
-      <CommentDetails/> 
-
+      <TopDetails
+        title={detailsNewsDto?.title}
+        currentImageAddress={detailsNewsDto?.currentImageAddress}
+        miniDescribe={detailsNewsDto?.miniDescribe}
+        currentView={detailsNewsDto?.currentView}
+        addUserFullName={detailsNewsDto?.addUserFullName}
+        id={detailsNewsDto?.id}
+        isCurrentUserFavorite={detailsNewsDto?.isCurrentUserFavorite}
+        currentUserFavoriteId={detailsNewsDto?.currentUserFavoriteId}
+        insertDate={detailsNewsDto?.insertDate}
+      />
+      <MidDetails
+        currentUserSetRate={detailsNewsDto?.currentUserSetRate}
+        currentUserRateNumber={detailsNewsDto?.currentUserRateNumber}
+        id={detailsNewsDto?.id}
+        currentLikeCount={detailsNewsDto?.currentLikeCount}
+        currentDissLikeCount={detailsNewsDto?.currentDissLikeCount}
+        currentUserIsLike={detailsNewsDto?.currentUserIsLike}
+        currentUserIsDissLike={detailsNewsDto?.currentUserIsDissLike}
+        likeId={detailsNewsDto?.likeId}
+      />
+      <CommentDetails commentDtos={commentDtos} newsId={id} />
     </>
   );
 };

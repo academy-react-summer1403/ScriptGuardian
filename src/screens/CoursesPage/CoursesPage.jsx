@@ -1,96 +1,57 @@
-// import React, { useEffect, useState } from "react";
-// import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCourses/HereSectionCourses";
-
-// import { Filters } from "../../components/CoursesPage/FilterComponents/Filters";
-// import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThemeCourses/SearchAndThemeCourses";
-// import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
-// const CoursesPage = () => {
-
-//   const [map, setMap] = useState([
-//     {id : 1},
-//     {id : 2},
-//     {id : 3},
-//     {id : 4},
-//     {id : 5},
-//     {id : 6},
-//     {id : 7},
-//     {id : 8},
-//     {id : 9},
-//   ]);
-
-//   return (
-//     <>
-//       <HereSectionCourses />
-//       <div className="mt-10 flex container mx-auto gap-8">
-//         <Filters />
-//         <div className="flex flex-col ">
-//           {/* Top */}
-//           <SearchAndThemeCourses />
-//           <div className="w-[952px] min-h-[200px] mt-[32px]  flex flex-wrap gap-8">
-//           {map.map((course, index) => (
-//             <LandingCourses key={index} />
-//           ))}
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export { CoursesPage };
-
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCourses/HereSectionCourses";
 import { Filters } from "../../components/CoursesPage/FilterComponents/Filters";
 import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThemeCourses/SearchAndThemeCourses";
-import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
+// import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
 import { CoursesCard } from "../../components/CoursesPage/CourseCard/CourseCard";
+import { Course } from "../../components/LandingComponents/OurCourses/Course";
+import { useCourses } from "../../core/services/api/CoursesPage/GetAllCourses";
 
 const CoursesPage = () => {
-  const [map, setMap] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-  ]);
+  //API
+
+  const [searchQuery, setSearchQuery] = useState(undefined);
+  const [costDown, setCostDown] = useState(undefined);
+  const [costUp, setCostUp] = useState(undefined);
+  const [listTech, setListTech] = useState(undefined);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 8;
+  const itemsPerPage = 6;
+  const [currentPage, setCurrentPage] = useState(0); // State برای ذخیره شماره صفحه
+
+  const { data: DatacourseFilterDtos } = useCourses({
+    SearchQuery: searchQuery,
+    CostDown: costDown,
+    CostUp: costUp,
+    RowsOfPage: itemsPerPage,
+    PageNumber: currentPage + 1,
+    ListTech: listTech,
+  });
+  const data = DatacourseFilterDtos?.courseFilterDtos;
+  const Total = DatacourseFilterDtos?.totalCount;
+  console.log(data, "CoursesPage");
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+    setCurrentPage(0);
+  };
+
+  // handle cost
+
+  //Page Iniate
 
   React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(map.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(map.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, map]);
+    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(Total / itemsPerPage));
+  }, [itemOffset, itemsPerPage, data]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % map.length;
+    const newOffset = (event.selected * itemsPerPage) % data.length;
+    setCurrentPage(event.selected);
     setItemOffset(newOffset);
   };
 
@@ -102,18 +63,47 @@ const CoursesPage = () => {
     setShowContent(!showMenu);
   };
 
+  const style =
+    "w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5 ";
   return (
     <>
       {/* TODO */}
       <HereSectionCourses />
       <div className="mt-10 flex xl:w-[1280px]  container lg:justify-start   sm:mx-auto lg:gap-8  justify-center">
-        <Filters  showMenu={showMenu}  handleClick={handleClick}/>
+        <Filters
+          showMenu={showMenu}
+          handleClick={handleClick}
+          setCostDown={setCostDown}
+          setCostUp={setCostUp}
+          data={data}
+        />
         <div className="flex flex-col sm:items-start items-center   ">
           {/* Top */}
-          <SearchAndThemeCourses handleClick={handleClick} />
+          <SearchAndThemeCourses
+            handleClick={handleClick}
+            handleSearchChange={handleSearchChange}
+            searchQuery={searchQuery}
+          />
           <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
-            {currentItems.map((course, index) => (
-              <CoursesCard key={course.id} id={course.id} />
+            {currentItems?.map((course, index) => (
+              <Course
+                style={style}
+                key={index}
+                courseId={course?.courseId}
+                teacherName={course?.teacherName}
+                cost={course?.cost}
+                likeCount={course?.likeCount}
+                dissLikeCount={course?.dissLikeCount}
+                userIsLiked={course?.userIsLiked}
+                title={course?.title}
+                describe={course?.describe}
+                isUserFavorite={course?.userFavorite}
+                userLikeId={course?.userLikedId}
+                userIsDissLiked={course?.currentUserDissLike}
+                userFavoriteId={course?.userFavoriteId}
+                tumbImageAddress={course?.tumbImageAddress}
+                lastUpdate={course?.lastUpdate}
+              />
             ))}
           </div>
           {/* Pagination Controls */}
@@ -173,8 +163,6 @@ const CoursesPage = () => {
           </div>
         </div>
       </div>
-
-
     </>
   );
 };

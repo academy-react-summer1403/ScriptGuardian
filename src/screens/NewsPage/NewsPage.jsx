@@ -4,52 +4,46 @@ import News from "../../images/NewsAndArticle/photo1.png";
 import { NewsSearchAndFilter } from "../../components/NewsPage/NewsSearchAndFilter";
 import { CardNewsPage } from "../../components/NewsPage/CardNewsPage";
 import ReactPaginate from "react-paginate";
+import {
+  useLandingNews,
+  usePageNews,
+} from "../../core/services/api/Landing/LandingNews";
 
 const NewsPage = () => {
-  const [map, setMap] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-  ]);
-
+  //handel search
+  const [searchQuery, setSearchQuery] = useState(undefined);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
+  const [current, setCurrentPage] = useState(0);
+
+  const { data: News } = usePageNews({
+    SearchQuery: searchQuery,
+    RowsOfPage: itemsPerPage,
+    PageNumber: current + 1,
+  });
+  const data = News?.news;
+  const Total = News?.totalCount;
+  //handel Search
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+    setCurrentPage(0);
+  };
+
+  //handel page
 
   React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(map.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(map.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, map]);
+    setCurrentItems(data?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(Total / itemsPerPage));
+  }, [itemOffset, itemsPerPage, data]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % map.length;
+    const newOffset = (event.selected * itemsPerPage) % data?.length;
     setItemOffset(newOffset);
+    setCurrentPage(event.selected);
   };
 
   return (
@@ -57,15 +51,27 @@ const NewsPage = () => {
       <HereNewsSection />
 
       <div className="flex flex-col container xl:w-[1280px] mx-auto  ">
-        <NewsSearchAndFilter />
+        <NewsSearchAndFilter
+          searchQuery={searchQuery}
+          handleSearchChange={handleSearchChange}
+        />
 
         <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
-          {currentItems.map((item , index) =>{
-            return(
+          {currentItems?.map((item, index) => {
+            return (
               <>
-                <CardNewsPage key={index} id={item.id}/>
+                <CardNewsPage
+                  key={index}
+                  id={item.id}
+                  title={item.title}
+                  miniDescribe={item.miniDescribe}
+                  addUserProfileImage={item.addUserProfileImage}
+                  currentView={item.currentView}
+                  currentRate={item.currentRate}
+                  updateDate={item?.updateDate}
+                />
               </>
-            )
+            );
           })}
         </div>
         <div className="flex justify-center">

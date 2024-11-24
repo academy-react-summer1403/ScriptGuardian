@@ -1,12 +1,62 @@
 import React from "react";
 import BigImage2 from "../../images/CoursesDetails/Rectangle 85.png";
+import image from "../../images/NewsDetails/default_image.png";
+import {
+  useAddFavoriteCourses,
+  useDeleteFavoriteCourses,
+} from "../../core/services/api/CoursesPage/handelCoursesFavorite";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
-const BigImage = () => {
+const BigImage = ({
+  imageAddress,
+  techs,
+  isUserFavorite,
+  courseId,
+  userFavoriteId,
+}) => {
+  // const handelimage = console.log(imageAddress, "imageAddress");
+  const queryClient = useQueryClient();
+
+  const { mutate: AddFavorite } = useAddFavoriteCourses();
+  const { mutate: DeleteFavorite } = useDeleteFavoriteCourses();
+  const handelFavorite = () => {
+    if (isUserFavorite === true) {
+      const formData = new FormData();
+      formData.append("CourseFavoriteId", userFavoriteId);
+      DeleteFavorite(formData, {
+        onSuccess: () => {
+          toast.success("با موفقیت از  لیست علاقه مندی ها حذف شد");
+
+          queryClient.invalidateQueries("CoursesDetail");
+        },
+      });
+    } else {
+      AddFavorite(courseId, {
+        onSuccess: () => {
+          toast.success("با موفقیت به  لیست علاقه مندی ها اضافه شد");
+
+          queryClient.invalidateQueries("CoursesDetail");
+        },
+      });
+    }
+  };
+
   return (
     <div className="w-full xl:h-[548px] relative ">
-      <img src={BigImage2} alt="" />
+      <img
+        src={imageAddress && imageAddress !== "null" ? imageAddress : image}
+        alt=""
+        className="w-full h-full rounded-2xl "
+        onError={(e) => {
+          e.target.src = image;
+        }} // اگر لود نشد، تصویر پیش‌فرض
+      />
       <div className="absolute sm:w-[78px] w-[58px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 cursor-pointer flex sm:top-8 sm:right-8 top-4 right-4">
-        <span className="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]">
+        <span
+          className="sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
+          onClick={handelFavorite}
+        >
           {" "}
           <svg
             viewBox="0 0 24 24"
@@ -15,16 +65,15 @@ const BigImage = () => {
           >
             <path
               d="M12.62 20.8101C12.28 20.9301 11.72 20.9301 11.38 20.8101C8.48 19.8201 2 15.6901 2 8.6901C2 5.6001 4.49 3.1001 7.56 3.1001C9.38 3.1001 10.99 3.9801 12 5.3401C13.01 3.9801 14.63 3.1001 16.44 3.1001C19.51 3.1001 22 5.6001 22 8.6901C22 15.6901 15.52 19.8201 12.62 20.8101Z"
-              className="fill-[#F44336] stroke-[#F44336] dark:fill-[#D32F2F] dark:stroke-[#D32F2F]"
+              className={` stroke-[#F44336]  dark:stroke-[#D32F2F] ${
+                isUserFavorite ? "dark:fill-[#D32F2F] fill-[#F44336]" : ""
+              }`}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </span>
-        <p className="text-[#F44336] dark:text-[#D32F2F] sm:text-2xl text-lg mr-[6px]">
-          3
-        </p>
       </div>
 
       <div className="absolute sm:w-[117px] w-[87px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 flex sm:bottom-8 bottom-2 left-2 sm:left-8">
@@ -50,7 +99,9 @@ const BigImage = () => {
             />
           </svg>
         </span>
-        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">14 ساعت</p>
+        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">
+          14 ساعت
+        </p>
       </div>
       <div className="absolute sm:w-[119px] w-[89px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 flex sm:bottom-8 bottom-2  sm:left-[165px] left-[100px]">
         <span className="sm:w-[24px] sm:h-[24px] w-5 h-5">
@@ -89,7 +140,9 @@ const BigImage = () => {
             />
           </svg>
         </span>
-        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">202 درس</p>
+        <p className="text-[#263238] dark:text-gray-200  sm:mr-[6px] mr-1 sm:text-base text-xs">
+          {techs?.length} درس
+        </p>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { Outlet, useLocation } from "react-router-dom"; // useLocation برای 
 import { Footer } from "../components/common/Footer/Footer";
 import { FaArrowUp } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
+import { getItem } from "../core/services/storage/storage.services";
 
 const Layout = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -44,6 +45,12 @@ const Layout = () => {
     return () => clearTimeout(timer);
   }, [location]); // هر بار که location تغییر کند، بارگذاری دوباره آغاز می‌شود
 
+  //HandelToken
+  // const [isLogIn , setIsLogIn] = useState(null);
+  const Token = getItem("token");
+  const id = getItem("id");
+  console.log("Token", Token);
+
   return (
     <>
       {loading ? (
@@ -60,7 +67,6 @@ const Layout = () => {
             <TopHeader />
           </div>
 
-          {/* برای بارگذاری مجدد Outlet با کلید location.pathname */}
           <div key={location.pathname}>
             <Outlet />
           </div>
