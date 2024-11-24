@@ -25,6 +25,7 @@ const Courses = async ({
   RowsOfPage,
   PageNumber,
   ListTech,
+  TechCount,
 }) => {
   const AllParams = {
     Query: SearchQuery ? SearchQuery : undefined,
@@ -33,6 +34,7 @@ const Courses = async ({
     RowsOfPage: RowsOfPage ? RowsOfPage : 6,
     PageNumber: PageNumber ? PageNumber : 1,
     ListTech: ListTech ? ListTech : undefined,
+    TechCount: ListTech?.length ? ListTech?.length : undefined,
   };
   try {
     const response = await http.get(ApiRoutes.COURSES_PAGE_URL, {

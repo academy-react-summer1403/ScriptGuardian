@@ -15,7 +15,7 @@ const ForGetPassStepTwo = ({ setIsForgetPassLastStep }) => {
   //handelstep two
   const { id } = useParams();
   const { data: StepTwo } = useForgetPassStepTwoGet(id && id);
-//   console.log(StepTwo.id, "this step two for use forget pass");
+  //   console.log(StepTwo.id, "this step two for use forget pass");
 
   useEffect(() => {
     if (StepTwo) {
@@ -32,7 +32,7 @@ const ForGetPassStepTwo = ({ setIsForgetPassLastStep }) => {
   //   console.log("thisloction", window.location.href);
   const formik = useFormik({
     initialValues: {
-      userId: "40323",
+      userId: StepTwo && StepTwo?.id,
       newPassword: "",
       resetValue: id && id,
     },
