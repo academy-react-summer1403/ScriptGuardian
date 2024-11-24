@@ -23,7 +23,7 @@ const App = createBrowserRouter([
     path: "",
     element: <Layout />,
     children: [
-      { path: "/", element: <Landing /> },
+      { path: "/:id?", element: <Landing /> },
       { path: "/Courses", element: <CoursesPage /> },
       { path: "/Courses/:id", element: <CoursesDetails /> },
       {

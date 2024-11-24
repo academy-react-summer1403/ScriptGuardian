@@ -8,10 +8,14 @@ import { RegisterCodeVerification } from "../../Login/RegisterCodeVerification";
 import { RegisterFinish } from "../../Login/RegisterFinish";
 import { getItem } from "../../../core/services/storage/storage.services";
 import { useNavigate } from "react-router-dom";
+import { ForGetPass } from "../../Login/ForGetPass";
+import { ForGetPassStepTwo } from "../../Login/forGetPassStepTwo";
 const LoginButton = () => {
   const navigate = useNavigate();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isLoginVerificationOpen, setIsLoginVerification] = useState(false);
+  const [isForgetPassOpen, setIsForgetPass] = useState(false);
+  const [isForgetPassOpenLastStep, setIsForgetPassLastStep] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isRegisterVerificationOpen, setIsRegisterVerification] =
     useState(false);
@@ -25,6 +29,13 @@ const LoginButton = () => {
     setIsLoginVerification(!isLoginVerificationOpen);
   };
 
+  const toggleForGetPassModal = () => {
+    setIsForgetPass(!isForgetPassOpen);
+  };
+
+  const toggleForGetPassModalStepLast = () => {
+    setIsForgetPassLastStep(false);
+  };
   const toggleRegisterModal = () => {
     setIsRegisterOpen(!isRegisterOpen);
   };
@@ -63,6 +74,15 @@ const LoginButton = () => {
     navigate("/panel");
   };
 
+  //handel forget pass
+  const path = window.location.pathname;
+  const id = path.startsWith("/") ? path.split("/").pop() : null;
+
+  useEffect(() => {
+    if (id && id.length > 10) {
+      setIsForgetPassLastStep(true);
+    }
+  }, []);
   return (
     <>
       {/* <div className="" onClick={logOut}>
@@ -118,6 +138,7 @@ const LoginButton = () => {
             toggleModal={toggleLoginModal}
             openVerification={toggleLoginVerificationModal}
             openRegister={toggleRegisterModal}
+            openForgetPass={toggleForGetPassModal}
           />
           <LoginCodeVerification
             isOpen={isLoginVerificationOpen}
@@ -138,6 +159,22 @@ const LoginButton = () => {
             isOpen={isRegisterFinishOpen}
             toggleModal={toggleRegisterFinishModal}
           />
+
+          {isForgetPassOpen && (
+            <>
+              <ForGetPass
+                toggleForGetPassModal={toggleForGetPassModal}
+                setIsForgetPass={setIsForgetPass}
+              />
+            </>
+          )}
+
+          {/* ForgetPass */}
+          {isForgetPassOpenLastStep && (
+            <ForGetPassStepTwo
+              setIsForgetPassLastStep={setIsForgetPassLastStep}
+            />
+          )}
         </>
       )}
     </>

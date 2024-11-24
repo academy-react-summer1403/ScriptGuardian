@@ -7,6 +7,10 @@ export const ApiRoutes = {
   REGISTER_CODE_URL: "/Sign/SendVerifyMessage",
   REGISTER_CODE_VERIFICATION_URL: "/Sign/VerifyMessage",
   REGISTER_CODE_FINISH: "/Sign/Register",
+  //forgetPass
+  REGISTER_CODE_FORGET_PASS_STEP_ONE: "/Sign/ForgetPassword",
+  REGISTER_CODE_FORGET_PASS_STEP_TWO: "/Sign/Reset/",
+  REGISTER_CODE_FORGET_PASS_STEP_THIRD: "/Sign/Reset",
 
   //Landing
   LANDING_REPORT_URL: "/Home/LandingReport",

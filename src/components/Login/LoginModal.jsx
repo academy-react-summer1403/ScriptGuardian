@@ -13,6 +13,7 @@ const LoginModal = ({
   isOpen,
   openVerification,
   openRegister,
+  openForgetPass,
 }) => {
   const navigate = useNavigate();
 
@@ -141,9 +142,15 @@ const LoginModal = ({
                     من را به خاطر بسپار
                   </p>
                 </div>
-                <NavLink className="text-[#2196F3] dark:text-[#1565C0] ml-[32px] underline p-">
+                <p
+                  className="text-[#2196F3] dark:text-[#1565C0] ml-[32px] underline p-"
+                  onClick={() => {
+                    openForgetPass();
+                    toggleModal();
+                  }}
+                >
                   رمز عبور را فراموش کردم
-                </NavLink>
+                </p>
               </div>
 
               <div className="flex justify-center mt-[48px]">

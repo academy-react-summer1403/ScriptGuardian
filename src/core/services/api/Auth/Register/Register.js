@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import http from "../../../../interceptors/interceptors";
 import { ApiRoutes } from "../../ApiRoutes/ApiRoutes";
 
@@ -70,6 +70,83 @@ export const useRegisterFinish = () => {
     mutationFn: (data) => {
       console.log("this is user RegisterFinish data =", data);
       return RegisterFinish(data);
+    },
+  });
+};
+
+//setup First ForForgetPass
+
+const ForgetPassStepOne = async (user) => {
+  console.log("this is user", user);
+  try {
+    const response = await http.post(
+      ApiRoutes.REGISTER_CODE_FORGET_PASS_STEP_ONE,
+      user
+    );
+    console.log(response.message, "this response Of ForgetPassStepOne Code");
+    return response;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const useForgetPassStepOne = () => {
+  return useMutation({
+    mutationKey: ["ForgetPassStepOne"],
+    mutationFn: (data) => {
+      console.log("this is user ForgetPassStepOne data =", data);
+      return ForgetPassStepOne(data);
+    },
+  });
+};
+
+const ForgetPassStepTwoGet = async (id) => {
+  try {
+    const response = await http.get(
+      `${ApiRoutes.REGISTER_CODE_FORGET_PASS_STEP_TWO}${id}`
+    );
+    return response;
+  } catch (error) {
+    console.log("This error For   ForgetPassStepTwoGet ", error);
+    return false;
+  }
+};
+export const useForgetPassStepTwoGet = (id) => {
+  return useQuery({
+    queryKey: ["ForgetPassStepTwoGet"],
+    queryFn: () => ForgetPassStepTwoGet(id),
+  });
+};
+
+//setup Third ForForgetPass
+
+const ForgetPassStepThird = async (user) => {
+  console.log("this is user  unicccccccccccccccccc", user);
+
+
+  try {
+    const response = await http.post(
+      ApiRoutes.REGISTER_CODE_FORGET_PASS_STEP_THIRD,
+      user,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response.message, "this response Of ForgetPassStepThird Code");
+    return response;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const useForgetPassStepThird = () => {
+  return useMutation({
+    mutationKey: ["ForgetPassStepThird"],
+    mutationFn: (data) => {
+      console.log("this is user ForgetPassStepThird data =", data);
+      return ForgetPassStepThird(data);
     },
   });
 };
