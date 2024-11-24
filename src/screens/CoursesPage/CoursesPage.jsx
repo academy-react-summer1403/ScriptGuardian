@@ -14,6 +14,7 @@ const CoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState(undefined);
   const [costDown, setCostDown] = useState(undefined);
   const [costUp, setCostUp] = useState(undefined);
+  const [listTech, setListTech] = useState(undefined);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -27,6 +28,7 @@ const CoursesPage = () => {
     CostUp: costUp,
     RowsOfPage: itemsPerPage,
     PageNumber: currentPage + 1,
+    ListTech: listTech,
   });
   const data = DatacourseFilterDtos?.courseFilterDtos;
   const Total = DatacourseFilterDtos?.totalCount;
