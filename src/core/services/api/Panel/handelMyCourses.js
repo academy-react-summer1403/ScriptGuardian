@@ -2,19 +2,26 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import http from "../../../interceptors/interceptors";
 import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 
-const MyCourses = async () => {
+const MyCourses = async ({ PageNumber }) => {
+  const AllParams = {
+    Query: SearchQuery ? SearchQuery : undefined,
+    RowsOfPage: RowsOfPage ? RowsOfPage : 6,
+    PageNumber: PageNumber ? PageNumber : 1,
+  };
   try {
-    const response = await http.get(`${ApiRoutes.PANEL_MY_COURSES_URL}`);
+    const response = await http.get(`${ApiRoutes.PANEL_MY_COURSES_URL}`, {
+      params: AllParams,
+    });
     return response.listOfMyCourses;
   } catch (error) {
     console.log("This error For MyCourses.js", error);
     return false;
   }
 };
-export const useMyCourses = () => {
+export const useMyCourses = ({ PageNumber }) => {
   return useQuery({
-    queryKey: ["MyCourses"],
-    queryFn: MyCourses,
+    queryKey: ["MyCourses", PageNumber],
+    queryFn: () => MyCourses({ PageNumber }),
   });
 };
 

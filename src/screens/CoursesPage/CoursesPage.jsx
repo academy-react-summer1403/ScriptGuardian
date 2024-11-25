@@ -23,8 +23,7 @@ const CoursesPage = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(0); // State برای ذخیره شماره صفحه
-
+  const [currentPage, setCurrentPage] = useState(0);
   console.log(listTech, "this list teach");
 
   const { data: DatacourseFilterDtos } = useCourses({
@@ -73,8 +72,7 @@ const CoursesPage = () => {
   const style =
     "w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5 ";
 
-
-    const loaderStyle = "flex justify-center items-center mx-auto";
+  const loaderStyle = "flex justify-center items-center mx-auto";
   return (
     <>
       {/* TODO */}
@@ -100,7 +98,7 @@ const CoursesPage = () => {
           />
           <div className="xl:w-[952px] lg:w-[722px] md:w-full md:mr-0 lg:mr-3 sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-12 sm:gap-x-[18px] gap-x-[5%]  gap-y-8 sm:mr-3  w-full lg:justify-start md:justify-center sm:justify-start justify-center ">
             {!currentItems ? (
-              <CustomSpinner  style={loaderStyle}/>
+              <CustomSpinner style={loaderStyle} />
             ) : currentItems.length === 0 ? (
               <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
                 داده‌ای یافت نشد

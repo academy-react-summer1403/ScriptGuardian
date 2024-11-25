@@ -27,6 +27,7 @@ import Test from "../../../images/StudentPanel/MyCourses/images.png";
 import ReactPaginate from "react-paginate";
 import { useMyCourses } from "../../../core/services/api/Panel/handelMyCourses";
 import { ListPanel } from "../../../components/common/ListPanl/ListPanel";
+import { Search } from "../../../components/common/Search/Search";
 const MyCourses = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,7 +56,7 @@ const MyCourses = () => {
 
   //dropdown
 
-  const [pageSize, setPageSize] = useState(2);
+  const [pageSize, setPageSize] = useState(1);
 
   const handlePageSizeChange = (event) => {
     setPageSize(Number(event.target.value));
@@ -63,8 +64,12 @@ const MyCourses = () => {
     console.log("Page Size:", event.target.value);
   };
 
+  const [currentPage, setCurrentPage] = useState(0);
+
   //API
-  const { data, isPending } = useMyCourses();
+  const { data, isPending } = useMyCourses({
+    PageNumber: currentPage + 1,
+  });
 
   // page data
 
@@ -80,6 +85,7 @@ const MyCourses = () => {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * pageSize) % data?.length;
+    setCurrentPage(event.selected);
     setItemOffset(newOffset);
   };
 
@@ -203,34 +209,7 @@ const MyCourses = () => {
             </button>
           </div> */}
 
-          <div className="relative z-0 shadow-Second-shadow   flex items-center  sm:w-[90%] w-[80%] h-[40px]   bg-gray-100 dark:bg-gray-800 rounded-md   ">
-            <input
-              type="text"
-              className="w-full sm:px-[20px] xl:py-0  h-full border-gray-300 sm:rounded-[16px] focus:outline-none dark:caret-white dark:placeholder-white   z-0 sm:placeholder:text-base placeholder:text-[10px] pr-3 bg-gray-100 dark:bg-gray-800 "
-              placeholder="جستجو کنید..."
-              // value={searchQuery ? searchQuery : ""}
-              // onChange={handleSearchChange}
-            />
-
-            <span className="flex items-center ">
-              <svg
-                viewBox="0 0 24 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute sm:left-3 left-1 sm:w-[24px] sm:h-[25px] w-[14px] h-[15px] text-gray-500"
-              >
-                <path
-                  opacity="0.4"
-                  d="M11.5 21.5C16.7467 21.5 21 17.2467 21 12C21 6.75329 16.7467 2.5 11.5 2.5C6.25329 2.5 2 6.75329 2 12C2 17.2467 6.25329 21.5 11.5 21.5Z"
-                  fill="#2196F3"
-                />
-                <path
-                  d="M21.3001 22.5001C21.1201 22.5001 20.9401 22.4301 20.8101 22.3001L18.9501 20.4401C18.6801 20.1701 18.6801 19.7301 18.9501 19.4501C19.2201 19.1801 19.6601 19.1801 19.9401 19.4501L21.8001 21.3101C22.0701 21.5801 22.0701 22.0201 21.8001 22.3001C21.6601 22.4301 21.4801 22.5001 21.3001 22.5001Z"
-                  fill="#2196F3"
-                />
-              </svg>
-            </span>
-          </div>
+          <Search />
 
           {/* DropDown */}
           <div className="flex items-center sm:w-[8%] w-[13%] sm:max-w-none max-w-[60px] relative ">
@@ -246,6 +225,7 @@ const MyCourses = () => {
             >
               <option value="2">2</option>
               <option value="4">4</option>
+              <option value="6">6</option>
               <option value="8">8</option>
               <option value="16">16</option>
               <option value="32">32</option>
@@ -254,8 +234,8 @@ const MyCourses = () => {
           </div>
         </div>
 
-        <div className="flex flex-col w-[95%] bg-white dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
-          <div className="flex lg:gap-x-[13.5%] items-center text-white h-[50px] bg-purple-700 dark:bg-purple-900 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
+        <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
+          <div className="flex lg:gap-x-[13.5%] items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
             <h2 className="mr-5 md:block hidden">تصویر</h2>
             <h2>نام دوره</h2>
             <h2>مدرس</h2>
