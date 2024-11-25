@@ -8,7 +8,7 @@ import {
 } from "../../../../core/services/api/Panel/handelUserProfile";
 import { toast } from "react-toastify";
 
-const Gallery = ({ gallery, HandelGalleryModal }) => {
+const Gallery = ({ gallery, HandelGalleryModal, setIsGalleryModalOpen }) => {
   const queryClient = useQueryClient();
 
   // State برای ذخیره آیدی تصویر انتخاب شده
@@ -40,6 +40,7 @@ const Gallery = ({ gallery, HandelGalleryModal }) => {
       onSuccess: (data) => {
         if (data.success == true) {
           toast.success("با موفقیت انتخاب شد");
+          setIsGalleryModalOpen(false)
           setTakeId(null);
           setSelectedImage(null);
           queryClient.invalidateQueries("GetStudentProfile");
@@ -111,9 +112,21 @@ const Gallery = ({ gallery, HandelGalleryModal }) => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col">
-            <button onClick={handelDelete}>حذف</button>
-            <button onClick={selectImage}>انتخاب برای پروفایل</button>
+
+          <div className="flex  gap-x-4 mt-4 ">
+            <button
+              onClick={selectImage}
+              className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              انتخاب برای پروفایل
+            </button>
+
+            <button
+              onClick={handelDelete}
+              className="px-6 py-3 bg-red-500 text-white font-medium rounded-lg shadow-md hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              حذف
+            </button>
           </div>
         </div>
       </div>

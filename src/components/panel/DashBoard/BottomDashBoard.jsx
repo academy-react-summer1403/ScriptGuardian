@@ -24,7 +24,7 @@ const BottomDashBoard = () => {
       <div className="flex flex-col sm:w-[47.5%] ">
         <div className="flex items-center text-xl gap-x-1 ">
           {" "}
-          <FaMinus className="text-xl text-purple-600 dark:text-purple-800" />
+          <FaMinus className="text-xl text-[#8cc9fa] dark:text-[#1e3e57]" />
           <h3 className="text-[#263238] dark:text-gray-200 font-bold">
             {" "}
             اخرین دوره ثبت شده
@@ -38,7 +38,7 @@ const BottomDashBoard = () => {
               return (
                 <>
                   <div
-                    className="flex w-full bg-white dark:bg-gray-900 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
+                    className="flex w-full bg-white dark:bg-gray-800 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
                     key={index}
                     onClick={() => {
                       navigate(
@@ -68,7 +68,7 @@ const BottomDashBoard = () => {
                         </p>
 
                         <p className="text-sm ml-3">
-                          <span className="text-purple-700 dark:text-purple-500">
+                          <span className="text-[#1e3e57] dark:text-[#8cc9fa]">
                             {item?.cost ? item?.cost : ""}
                           </span>{" "}
                           تومان
@@ -87,7 +87,7 @@ const BottomDashBoard = () => {
       <div className="flex flex-col sm:w-[47.5%] sm:mt-0 mt-5 mb-5">
         <div className="flex items-center text-xl gap-x-1 ">
           {" "}
-          <FaMinus className="text-xl text-purple-600 dark:text-purple-800" />
+          <FaMinus className="text-xl text-[#8cc9fa] dark:text-[#1e3e57]" />
           <h3 className="text-[#263238] dark:text-gray-200 font-bold">
             {" "}
             آخرین اخبار ثبت شده{" "}
@@ -100,7 +100,7 @@ const BottomDashBoard = () => {
               return (
                 <>
                   <div
-                    className="flex w-full bg-white dark:bg-gray-900 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
+                    className="flex w-full bg-white dark:bg-gray-800 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
                     key={index}
                     onClick={() => {
                       navigate(`/News/${item?.id ? item?.id : "no ID"}`);
@@ -126,13 +126,6 @@ const BottomDashBoard = () => {
                           {" "}
                           {item?.addUserFullName ? item?.addUserFullName : ""}
                         </p>
-
-                        {/* <p className="text-sm ml-3">
-                        <span className="text-purple-700 dark:text-purple-500">
-                          500,000
-                        </span>{" "}
-                        تومان
-                      </p> */}
                       </div>
                     </div>
                   </div>

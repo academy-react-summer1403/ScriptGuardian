@@ -29,8 +29,8 @@ import { HandelProfile } from "../../../components/panel/HandelProfile/HandelPro
 
 import DatePicker from "react-multi-date-picker";
 import DateObject from "react-date-object";
-import persian from "react-date-object/calendars/persian"; // برای تقویم شمسی
-import persian_fa from "react-date-object/locales/persian_fa"; // برای زبان فارسی
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 const StudentProfile = () => {
   const queryClient = useQueryClient();
 
@@ -137,13 +137,6 @@ const StudentProfile = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  if (isPending === true) {
-    return (
-      <>
-        <p>درحال بررسی</p>
-      </>
-    );
-  }
   return (
     <>
       {/* hamburger */}
@@ -222,7 +215,7 @@ const StudentProfile = () => {
                 <FaBars />
               </button>
             </div>
-            <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
+            <FaMinus className="text-[#8cc9fa] dark:text-[#1e3e57] sm:mr-0 mr-1 text-xl" />
             <h2 className="text-[20px] mr-2 text-[#263238] dark:text-white">
               {" "}
               ویرایش پروفایل
@@ -305,7 +298,7 @@ const StudentProfile = () => {
                 htmlFor="LinkdinProfile"
                 className="block mb-2   text-[#455A64] dark:text-white"
               >
-                لینک پروفایل لینک دین
+                پروفایل لینکدین
               </label>
               <input
                 type="text"
@@ -337,10 +330,13 @@ const StudentProfile = () => {
                 htmlFor="ReceiveMessageEvent"
                 className="block mb-2   text-[#455A64] dark:text-white"
               >
-                رویداد دریافت پیام
+                رویداد پیام
               </label>
 
-              <select {...formik?.getFieldProps("ReceiveMessageEvent")}>
+              <select
+                {...formik?.getFieldProps("ReceiveMessageEvent")}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+              >
                 <option value="true">موافق</option>
                 <option value="false">مخالف</option>
               </select>
@@ -379,7 +375,7 @@ const StudentProfile = () => {
               />
             </div>
 
-            <div className="w-[30%]">
+            <div className="sm:w-[30%] w-[65%]">
               <label
                 htmlFor="Gender"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -395,14 +391,17 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("Gender")}
               /> */}
               <div>
-                <select {...formik?.getFieldProps("Gender")}>
+                <select
+                  {...formik?.getFieldProps("Gender")}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  "
+                >
                   <option value="true">مرد</option>
                   <option value="false">زن</option>
                 </select>
               </div>
             </div>
 
-            <div className="w-[30%]">
+            <div className="sm:w-[30%]  w-[65%] ">
               <label
                 htmlFor="BirthDay"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -421,7 +420,8 @@ const StudentProfile = () => {
               <DatePicker
                 value={formik.values.birthDay}
                 onChange={(date) => formik.setFieldValue("birthDay", date)}
-                calendar={persian} // تقویم شمسی
+                calendar={persian}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
               />
             </div>
 
@@ -460,8 +460,8 @@ const StudentProfile = () => {
             </div> */}
           </div>
 
-          <div className="flex sm:justify-between justify-center w-[95%] mt-12 mb-5">
-            <button className="bg-blue-500 dark:bg-blue-600 hover:bg-blue-700 text-white font-bold py-3  xl:mr-8 px-8 rounded">
+          <div className="flex sm:justify-between justify-center w-[95%] mt-12 mb-5 mr-3">
+            <button className=" bg-[#2196F3] hover:bg-blue-700 dark:bg-blue-800  dark:hover:bg-blue-900 text-white font-bold py-3  xl:mr-8 px-8 rounded">
               ثبت اطلاعات
             </button>
           </div>

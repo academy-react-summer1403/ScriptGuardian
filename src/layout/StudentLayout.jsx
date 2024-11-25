@@ -37,7 +37,7 @@ const StudentLayout = () => {
   return (
     <>
       <div className="flex container   md:mt-5 min-h-[600px] gap-x-7     mx-auto  ">
-        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#7665E7]  dark:bg-[#5C4DAC] rounded-xl  hidden">
+        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#8cc9fa]  dark:bg-[#1e3e57] rounded-xl  hidden">
           <div className="flex">
             {" "}
             <Link to="/">
