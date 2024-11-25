@@ -28,6 +28,7 @@ import ReactPaginate from "react-paginate";
 import { useMyCourses } from "../../../core/services/api/Panel/handelMyCourses";
 import { ListPanel } from "../../../components/common/ListPanl/ListPanel";
 import { Search } from "../../../components/common/Search/Search";
+import { CustomSpinner } from "../../../components/animation/CustomSpinner";
 const MyCourses = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,7 +57,7 @@ const MyCourses = () => {
 
   //dropdown
 
-  const [pageSize, setPageSize] = useState(1);
+  const [pageSize, setPageSize] = useState(6);
 
   const handlePageSizeChange = (event) => {
     setPageSize(Number(event.target.value));
@@ -65,29 +66,43 @@ const MyCourses = () => {
   };
 
   const [currentPage, setCurrentPage] = useState(0);
-
-  //API
-  const { data, isPending } = useMyCourses({
-    PageNumber: currentPage + 1,
-  });
-
-  // page data
-
+  const [searchQuery, setSearchQuery] = useState(undefined);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
+  //API
+  const { data: Data, isPending } = useMyCourses({
+    PageNumber: currentPage + 1,
+    RowsOfPage: pageSize,
+    SearchQuery: searchQuery,
+  });
+
+  const data = Data && Data.listOfMyCourses;
+  const Total = Data && Data?.totalCount;
+
   React.useEffect(() => {
     const endOffset = itemOffset + pageSize;
     setCurrentItems(data && data?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data?.length / pageSize));
-  }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
+    setPageCount(Math.ceil(Total / pageSize));
+  }, [itemOffset, pageSize, data]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * pageSize) % data?.length;
     setCurrentPage(event.selected);
     setItemOffset(newOffset);
   };
+
+  //Search
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(0);
+  };
+
+  //Style
+
+  const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
 
   return (
     <>
@@ -209,7 +224,10 @@ const MyCourses = () => {
             </button>
           </div> */}
 
-          <Search />
+          <Search
+            handleSearchChange={handleSearchChange}
+            searchQuery={searchQuery}
+          />
 
           {/* DropDown */}
           <div className="flex items-center sm:w-[8%] w-[13%] sm:max-w-none max-w-[60px] relative ">
@@ -239,12 +257,35 @@ const MyCourses = () => {
             <h2 className="mr-5 md:block hidden">تصویر</h2>
             <h2>نام دوره</h2>
             <h2>مدرس</h2>
-            <h2> آخرین آپدیت</h2>
+            <h2 className="sm:block hidden"> آخرین آپدیت</h2>
             <h2>قیمت</h2>
             <h2>مدیریت</h2>
           </div>
 
-          {currentItems &&
+          {/* <CustomSpinner /> */}
+
+          {!currentItems ? (
+            <CustomSpinner style={loaderStyle} />
+          ) : currentItems.length === 0 ? (
+            <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+              داده‌ای یافت نشد
+            </p>
+          ) : (
+            <>
+              {currentItems?.map((item, index) => (
+                <ListPanel
+                  key={index}
+                  tumbImageAddress={item.tumbImageAddress}
+                  courseTitle={item.courseTitle}
+                  fullName={item.fullName}
+                  cost={item.cost}
+                  courseId={item.courseId}
+                  lastUpdate={item?.lastUpdate}
+                />
+              ))}
+            </>
+          )}
+          {/* {currentItems &&
             currentItems?.map((item, index) => {
               return (
                 <>
@@ -259,7 +300,7 @@ const MyCourses = () => {
                   />
                 </>
               );
-            })}
+            })} */}
         </div>
 
         <div className="flex justify-center mb-5">
