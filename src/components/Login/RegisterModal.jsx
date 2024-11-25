@@ -12,6 +12,7 @@ const RegisterModal = ({
   toggleModal,
   openVerification,
   openLogin,
+  menuRef,
 }) => {
   // if (isOpen === true) {
   //   console.log("true Register Modal");
@@ -60,7 +61,10 @@ const RegisterModal = ({
         }}
       >bigtest</div> */}
       {isOpen && (
-        <div className="sm:w-[420px] sm:h-[380px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col">
+        <div
+          ref={menuRef}
+          className="sm:w-[420px] sm:h-[380px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col"
+        >
           <div className="flex justify-between ">
             <h2 className="mt-[30px] mr-[32px] text-[#263238] dark:text-gray-200 font-[700] text-[32px] tracking-tight">
               ساخت حساب کاربری

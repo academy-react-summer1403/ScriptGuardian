@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { validationRegisterCode } from "../../core/services/validation/validationSchema/Auth";
 import { toast } from "react-toastify";
 
-const ForGetPass = ({ toggleForGetPassModal, setIsForgetPass }) => {
+const ForGetPass = ({ toggleForGetPassModal, setIsForgetPass, menuRef }) => {
   const { mutate: ForGetPass, isError, data } = useForgetPassStepOne();
   //   console.log("thisloction", window.location.href);
   const formik = useFormik({
@@ -36,7 +36,10 @@ const ForGetPass = ({ toggleForGetPassModal, setIsForgetPass }) => {
     },
   });
   return (
-    <div className="sm:w-[420px] sm:h-[380px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col">
+    <div
+      ref={menuRef}
+      className="sm:w-[420px] sm:h-[380px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col"
+    >
       <div className="flex justify-between ">
         <h2 className="mt-[30px] mr-[32px] text-[#263238] dark:text-gray-200 font-[700] text-[32px] tracking-tight">
           فراموشی رمز{" "}
@@ -98,11 +101,11 @@ const ForGetPass = ({ toggleForGetPassModal, setIsForgetPass }) => {
             type="submit"
             className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
           >
-            دریافت کد تایید
+            دریافت پیام ویرایش رمز{" "}
           </button>
         </div>
 
-        <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
+        {/* <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
           <p className="text-[#455A64] dark:text-gray-200">
             حساب کاربری دارید؟{" "}
           </p>
@@ -117,7 +120,7 @@ const ForGetPass = ({ toggleForGetPassModal, setIsForgetPass }) => {
           >
             وارد شوید
           </p>
-        </div>
+        </div> */}
       </form>
     </div>
   );
