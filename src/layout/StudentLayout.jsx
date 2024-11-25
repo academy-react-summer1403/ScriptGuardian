@@ -22,12 +22,11 @@ const StudentLayout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogout = () => {
-    // در اینجا کد خروج از حساب را اضافه کنید
     console.log("Logged out");
     setIsModalOpen(false);
-    localStorage.removeItem("token"); // توکن را حذف می‌کنیم
-    localStorage.removeItem("id"); // توکن را حذف می‌کنیم
-    localStorage.removeItem("roles"); // توکن را حذف می‌کنیم
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("roles");
     navigate("/");
   };
   //API
@@ -90,15 +89,13 @@ const StudentLayout = () => {
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaHeart className="text-xl" />
-              <NavLink to="/panel/MyFavoriteCourses">
-                دوره های مورد علاقه{" "}
-              </NavLink>
+              <NavLink to="/panel/MyFavoriteCourses">مورد علاقه </NavLink>
             </div>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            {/* <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaRegNewspaper className="text-xl" />
               <NavLink to="/panel/MyFavoriteNews">خبر های مورد علاقه </NavLink>
-            </div>
+            </div> */}
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaCommentAlt className="text-xl" />
@@ -108,11 +105,6 @@ const StudentLayout = () => {
               <FaLock className="text-xl" />
               <NavLink to="/panel/ChangePassword">تغییر رمز عبور</NavLink>
             </div>
-
-            {/* <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaComment className="text-xl" />
-              <NavLink to="/panel/MyComments">نظرات ثبت شده</NavLink>
-            </div> */}
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <div className="relative">

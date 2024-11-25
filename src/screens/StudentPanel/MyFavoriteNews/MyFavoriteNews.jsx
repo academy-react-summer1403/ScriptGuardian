@@ -49,12 +49,10 @@ const MyFavoriteNews = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // وضعیت اولیه دارک مود بر اساس localStorage
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
-  // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -65,21 +63,18 @@ const MyFavoriteNews = () => {
     }
   }, [isDarkMode]);
 
-  // تغییر حالت دارک مود هنگام کلیک
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
 
   //dropdown
 
-  // ایجاد state برای ذخیره مقدار انتخاب شده
-  const [pageSize, setPageSize] = useState(4); // مقدار پیش‌فرض
+  const [pageSize, setPageSize] = useState(6);
 
-  // تابع برای به‌روزرسانی مقدار انتخاب شده
   const handlePageSizeChange = (event) => {
     setPageSize(Number(event.target.value));
-    setItemOffset(0); // شروع از اول لیست بعد از تغییر سایز صفحه
-    console.log("Page Size:", event.target.value); // مقدار جدید در کنسول
+    setItemOffset(0);
+    console.log("Page Size:", event.target.value);
   };
 
   //API
@@ -93,7 +88,7 @@ const MyFavoriteNews = () => {
     const endOffset = itemOffset + pageSize;
     setCurrentItems(data && data?.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data?.length / pageSize));
-  }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
+  }, [itemOffset, pageSize, data]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * pageSize) % data?.length;

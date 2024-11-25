@@ -37,6 +37,8 @@ import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonS
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ListFavoritePanel } from "../../../components/common/ListPanl/ListFavoritePanel";
+import { FavoriteCourse } from "../../../components/panel/Favorite/FavoriteCourse";
+import { FavoriteNews } from "../../../components/panel/Favorite/FavoriteNews";
 const MyFavoriteCourses = () => {
   const queryClient = useQueryClient();
 
@@ -47,12 +49,10 @@ const MyFavoriteCourses = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // وضعیت اولیه دارک مود بر اساس localStorage
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
-  // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -63,43 +63,17 @@ const MyFavoriteCourses = () => {
     }
   }, [isDarkMode]);
 
-  // تغییر حالت دارک مود هنگام کلیک
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  //dropdown
+  //handel Tabs
 
-  // ایجاد state برای ذخیره مقدار انتخاب شده
-  const [pageSize, setPageSize] = useState(4); // مقدار پیش‌فرض
+  const [openTab, setOpenTab] = useState(1);
 
-  // تابع برای به‌روزرسانی مقدار انتخاب شده
-  const handlePageSizeChange = (event) => {
-    setPageSize(Number(event.target.value));
-    setItemOffset(0); // شروع از اول لیست بعد از تغییر سایز صفحه
-    console.log("Page Size:", event.target.value); // مقدار جدید در کنسول
-  };
-
-  //API
-  const { data, isPending } = useMyFavoriteCourses();
-  console.log(data, "this data of course is pending now now");
-
-  // page data
-
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-
-  React.useEffect(() => {
-    const endOffset = itemOffset + pageSize;
-    setCurrentItems(data && data?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data?.length / pageSize));
-  }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * pageSize) % data?.length;
-    setItemOffset(newOffset);
-  };
+  const activeClasses =
+    "border dark:border-white border-gray-950 rounded-t text-blue-700";
+  const inactiveClasses = "text-blue-500 hover:text-blue-700";
 
   return (
     <>
@@ -112,127 +86,51 @@ const MyFavoriteCourses = () => {
           toggleMenu={toggleMenu}
           toggleDarkMode={toggleDarkMode}
           isDarkMode={isDarkMode}
-          title={"دوره های مورد علاقه ی من"}
+          title={"دوره ها و اخبار  مورد علاقه ی من"}
         />
 
-        <div className="flex  justify-between w-[95%]  mt-5">
-          {/* Search */}
-          <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-md p-2 shadow-md  sm:w-[90%] w-[80%]">
-            <input
-              type="text"
-              placeholder="جستجو کنید..."
-              className="bg-transparent outline-none text-gray-700 dark:placeholder:text-white w-full px-2"
-            />
-            <button className="text-gray-500 hover:text-gray-700 transition-colors duration-150">
-              <FiSearch size={20} className="dark:text-white" />
-            </button>
-          </div>
-
-          {/* DropDown */}
-          <div className="flex items-center sm:w-[8%] w-[13%] sm:max-w-none max-w-[60px] relative ">
-            <FiChevronDown
-              className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-transform duration-200 md:text-base sm:text-sm text-xs `}
-            />
-
-            <select
-              id="pageSize"
-              className="bg-gray-100 dark:bg-gray-800 rounded-md w-full h-full text-gray-700 dark:text-gray-100 outline-none text-center appearance-none md:pr-8 pr-4 md:text-base sm:text-sm text-xs "
-              value={pageSize} // مقدار انتخاب شده
-              onChange={handlePageSizeChange}
+        {/* Unic */}
+        <div className=" mt-5 ">
+          <ul className="flex sm:gap-x-5 gap-x-1">
+            <li
+              onClick={() => setOpenTab(1)}
+              className={`-mb-px mr-1 ${openTab === 1 ? "-mb-px" : ""}`}
             >
-              <option value="2">2</option>
-              <option value="4">4</option>
-              <option value="8">8</option>
-              <option value="16">16</option>
-              <option value="32">32</option>
-              <option value="64">64</option>
-            </select>
-          </div>
+              <p
+                className={`bg-white dark:bg-gray-950 inline-block py-2 sm:px-4 px-2 font-semibold ${
+                  openTab === 1 ? activeClasses : inactiveClasses
+                }`}
+              >
+                دوره های مورد علاقه من{" "}
+              </p>
+            </li>
+            <li
+              onClick={() => setOpenTab(2)}
+              className={`mr-1 ${openTab === 2 ? "-mb-px" : ""}`}
+            >
+              <p
+                className={`bg-white inline-block  dark:bg-gray-950  py-2 sm:px-4 px-2 font-semibold ${
+                  openTab === 2 ? activeClasses : inactiveClasses
+                }`}
+              >
+                اخبار مورد علاقه من{" "}
+              </p>
+            </li>
+          </ul>
+          <div className="w-full"></div>
         </div>
 
-        <div className="flex flex-col w-[95%] bg-white dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
-          <div className="flex lg:gap-x-[13.5%] items-center text-white h-[50px] bg-purple-700 dark:bg-purple-900 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
-            <h2 className="mr-5 md:block hidden">تصویر</h2>
-            <h2>نام دوره</h2>
-            <h2>وضعیت</h2>
-            <h2> آخرین آپدیت</h2>
-            <h2>سطح</h2>
-            <h2>مدیریت</h2>
-          </div>
+        {openTab === 1 && (
+          <>
+            <FavoriteCourse />
+          </>
+        )}
 
-          {currentItems &&
-            currentItems?.map((item, index) => {
-              return (
-                <>
-                  <ListFavoritePanel
-                    key={index}
-                    tumbImageAddress={item?.tumbImageAddress}
-                    courseTitle={item?.courseTitle}
-                    typeName={item?.typeName}
-                    levelName={item?.levelName}
-                    courseId={item?.courseId}
-                    favoriteId={item?.favoriteId}
-                    lastUpdate={item?.lastUpdate}
-                  />
-                </>
-              );
-            })}
-        </div>
-
-        <div className="flex justify-center mb-5">
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel=<div className="w-[32px] h-[32px] bg-[#ECEFF1] dark:bg-[#37474F] rounded-full flex items-center justify-center ">
-              <span>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10.0333 13.2802L5.68667 8.93355C5.17333 8.42021 5.17333 7.58022 5.68667 7.06688L10.0333 2.72021"
-                    className="stroke-[#263238] dark:stroke-[#ECEFF1]"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </div>
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={pageCount}
-            previousLabel=<div className="w-[32px] h-[32px] bg-[#2196F3] dark:bg-[#1565C0]  rounded-full flex items-center justify-center">
-              <span>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5.96666 2.71978L10.3133 7.06645C10.8267 7.57978 10.8267 8.41978 10.3133 8.93312L5.96666 13.2798"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </div>
-            renderOnZeroPageCount={null}
-            containerClassName={"pagination"}
-            activeClassName={
-              "w-[32px] h-[32px] bg-[#2196F3] dark:bg-[#1565C0] rounded-full flex items-center justify-center text-white "
-            }
-            className="flex gap-5 mt-[48px] justify-center items-center text-[#263238] dark:text-gray-300"
-          />
-        </div>
+        {openTab === 2 && (
+          <>
+            <FavoriteNews />
+          </>
+        )}
       </div>
     </>
   );

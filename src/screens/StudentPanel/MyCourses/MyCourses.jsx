@@ -1,29 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
-  FaBars,
-  FaBell,
   FaBookOpen,
-  FaCloudscale,
   FaComment,
-  FaEye,
-  FaHamburger,
   FaHome,
   FaLock,
-  FaMinus,
-  FaMoon,
-  FaShoppingCart,
   FaSignOutAlt,
-  FaSun,
-  FaTrash,
   FaUserCircle,
 } from "react-icons/fa";
-import { FaShop } from "react-icons/fa6";
 import { HiX } from "react-icons/hi";
-import { MdDashboard, MdShoppingCart } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
-import { FiChevronDown, FiSearch } from "react-icons/fi";
-import Test from "../../../images/StudentPanel/MyCourses/images.png";
+import { FiChevronDown } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import { useMyCourses } from "../../../core/services/api/Panel/handelMyCourses";
 import { ListPanel } from "../../../components/common/ListPanl/ListPanel";

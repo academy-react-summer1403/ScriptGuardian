@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TopHeader } from "../components/common/TopHeader/TopHeader";
-import { Outlet, useLocation } from "react-router-dom"; // useLocation برای دریافت تغییرات مسیر
+import { Outlet, useLocation } from "react-router-dom";
 import { Footer } from "../components/common/Footer/Footer";
 import { FaArrowUp } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -9,9 +9,8 @@ import { getItem } from "../core/services/storage/storage.services";
 const Layout = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-  const location = useLocation(); // دریافت موقعیت فعلی
+  const location = useLocation();
 
-  // تابعی برای اسکرول به بالای صفحه
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -19,7 +18,6 @@ const Layout = () => {
     });
   };
 
-  // بررسی وضعیت اسکرول و نمایش یا مخفی کردن دکمه
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);
@@ -36,17 +34,15 @@ const Layout = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(true); // فعال‌سازی حالت بارگذاری
+    setLoading(true);
 
     const timer = setTimeout(() => {
-      setLoading(false); // غیرفعال کردن حالت بارگذاری پس از ۳ ثانیه
+      setLoading(false);
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [location]); // هر بار که location تغییر کند، بارگذاری دوباره آغاز می‌شود
+  }, [location]);
 
-  //HandelToken
-  // const [isLogIn , setIsLogIn] = useState(null);
   const Token = getItem("token");
   const id = getItem("id");
   console.log("Token", Token);
@@ -72,7 +68,6 @@ const Layout = () => {
           </div>
 
           <Footer />
-          {/* دکمه اسکرول به بالا */}
           {isVisible && (
             <button
               onClick={scrollToTop}

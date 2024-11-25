@@ -50,7 +50,7 @@ const CommentTab = ({ activeTab }) => {
             queryClient.invalidateQueries("CommentCourses");
 
             toast.success("کامنت  با موفقیت ارسال شد");
-            resetForm();
+            formik.resetForm();
 
             // else {
             //   toast.warning("کامنت ارسال شد در انتظار تایید", data);
@@ -69,12 +69,12 @@ const CommentTab = ({ activeTab }) => {
           <form onSubmit={formik.handleSubmit} className="w-full">
             <div className="w-full flex justify-center  flex-col">
               <input
-                className="xl:w-[779px] w-full h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs mb-5 text-white"
+                className="xl:w-[779px] w-full h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs mb-5 dark:text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("Title")}
               />
               <textarea
-                className="xl:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs text-white"
+                className="xl:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs dark:text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("Describe")}
               />

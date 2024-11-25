@@ -211,7 +211,7 @@ const CourseComment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-          <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
+            <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -294,7 +294,7 @@ const CourseComment = ({
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
               <input
-                className="xl:w-[779px] w-[95%] h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                className="xl:w-[779px] w-[95%] h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white text-black"
                 placeholder=" عنوان نظر خودتو بنویس..."
                 {...formik.getFieldProps("Title")}
               />
