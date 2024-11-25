@@ -23,6 +23,7 @@ import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
 import CourseImg from "../../../images/StudentPanel/DashBoard/Untitled.jpg";
 import { UserInFormation } from "../../../components/panel/DashBoard/UserInFormation";
 import { BottomDashBoard } from "../../../components/panel/DashBoard/BottomDashBoard";
+import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
 
 const DashBoard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -122,48 +123,20 @@ const DashBoard = () => {
 
       <div className="flex flex-col items-center ">
         {/* Common */}
-        <div className="h-[50px] border-b border-white dark:border-gray-950 w-[95%] flex justify-between items-center ">
-          <div className="flex items-center">
-            {/* OpenMenu */}
-            <div className="xl:hidden flex">
-              {/* open-btn*/}
-              <button onClick={toggleMenu} className="text-gray-500">
-                <FaBars />
-              </button>
-            </div>
-            <FaMinus className="text-[#8cc9fa] dark:text-[#1e3e57] sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-100">
-              {" "}
-              داشبورد
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
-            {isDarkMode ? (
-              <FaMoon
-                className="text-gray-800"
-                size={20}
-                onClick={toggleDarkMode}
-              />
-            ) : (
-              <FaSun
-                className="text-yellow-500"
-                size={20}
-                onClick={toggleDarkMode}
-              />
-            )}
-            <FaBell className="text-xl" />
-            <FaShoppingCart className="text-xl" />
-          </div>
-        </div>
+        <CommonStudent
+          toggleMenu={toggleMenu}
+          toggleDarkMode={toggleDarkMode}
+          isDarkMode={isDarkMode}
+          title={"داشبورد"}
+        />
 
         {/* Unic */}
 
         {/* UserInform */}
         <UserInFormation />
-          
+
         {/* UserCourses */}
-          <BottomDashBoard/>
+        <BottomDashBoard />
       </div>
     </>
   );

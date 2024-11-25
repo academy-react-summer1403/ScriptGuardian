@@ -38,7 +38,7 @@ const BottomDashBoard = () => {
               return (
                 <>
                   <div
-                    className="flex w-full bg-white dark:bg-gray-800 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
+                    className="flex w-full bg-white dark:bg-gray-950 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
                     key={index}
                     onClick={() => {
                       navigate(
@@ -100,7 +100,7 @@ const BottomDashBoard = () => {
               return (
                 <>
                   <div
-                    className="flex w-full bg-white dark:bg-gray-800 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
+                    className="flex w-full bg-white dark:bg-gray-950 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
                     key={index}
                     onClick={() => {
                       navigate(`/News/${item?.id ? item?.id : "no ID"}`);

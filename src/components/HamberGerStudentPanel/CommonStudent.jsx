@@ -19,7 +19,7 @@ const CommonStudent = ({ toggleMenu, toggleDarkMode, isDarkMode, title }) => {
             <FaBars />
           </button>
         </div>
-        <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
+        <FaMinus className="text-[#8cc9fa] dark:text-[#1e3e57] sm:mr-0 mr-1 text-xl" />
         <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-200">
           {title}{" "}
         </h2>

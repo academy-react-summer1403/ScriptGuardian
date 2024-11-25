@@ -29,6 +29,7 @@ import { useMyCourses } from "../../../core/services/api/Panel/handelMyCourses";
 import { ListPanel } from "../../../components/common/ListPanl/ListPanel";
 import { Search } from "../../../components/common/Search/Search";
 import { CustomSpinner } from "../../../components/animation/CustomSpinner";
+import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
 const MyCourses = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -174,41 +175,12 @@ const MyCourses = () => {
 
       <div className="flex flex-col items-center ">
         {/* Common */}
-        <div className="h-[50px] border-b border-white dark:border-gray-950 w-[95%] flex justify-between items-center ">
-          <div className="flex items-center">
-            {/* OpenMenu */}
-            <div className="xl:hidden flex">
-              {/* open-btn*/}
-              <button onClick={toggleMenu} className="text-gray-500">
-                <FaBars />
-              </button>
-            </div>
-            <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
-            <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-200">
-              {" "}
-              دوره های من
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
-            {isDarkMode ? (
-              <FaMoon
-                className="text-gray-800"
-                size={20}
-                onClick={toggleDarkMode}
-              />
-            ) : (
-              <FaSun
-                className="text-yellow-500"
-                size={20}
-                onClick={toggleDarkMode}
-              />
-            )}
-            <FaBell className="text-xl" />
-            <FaShoppingCart className="text-xl" />
-          </div>
-        </div>
-
+        <CommonStudent
+          toggleMenu={toggleMenu}
+          toggleDarkMode={toggleDarkMode}
+          isDarkMode={isDarkMode}
+          title={"دوره های من"}
+        />
         {/* Unic */}
 
         <div className="flex  justify-between w-[95%]  mt-5">
