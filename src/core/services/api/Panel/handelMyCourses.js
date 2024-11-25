@@ -4,8 +4,8 @@ import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 
 const MyCourses = async ({ PageNumber }) => {
   const AllParams = {
-    Query: SearchQuery ? SearchQuery : undefined,
-    RowsOfPage: RowsOfPage ? RowsOfPage : 6,
+    // Query: SearchQuery ? SearchQuery : undefined,
+    // RowsOfPage: RowsOfPage ? RowsOfPage : 6,
     PageNumber: PageNumber ? PageNumber : 1,
   };
   try {
@@ -21,7 +21,10 @@ const MyCourses = async ({ PageNumber }) => {
 export const useMyCourses = ({ PageNumber }) => {
   return useQuery({
     queryKey: ["MyCourses", PageNumber],
-    queryFn: () => MyCourses({ PageNumber }),
+    queryFn: () =>
+      MyCourses({
+        PageNumber,
+      }),
   });
 };
 
