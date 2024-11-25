@@ -32,7 +32,9 @@ const CardNewsPage = ({
       <div className=" h-[280px] lg:w-[405px]">
         <img
           src={
-            addUserProfileImage && addUserProfileImage !== "Not-set"
+            addUserProfileImage &&
+            addUserProfileImage !== "Not-set" &&
+            !addUserProfileImage?.startsWith("C:\\")
               ? addUserProfileImage
               : image
           }

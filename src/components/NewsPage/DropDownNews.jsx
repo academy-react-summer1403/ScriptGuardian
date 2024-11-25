@@ -17,7 +17,7 @@ const DropDownNews = ({ setSortingCol }) => {
       <select
         value={selectedFilter}
         onChange={handleSelect}
-        className="flex items-center justify-center w-[130px] h-full rounded-md border border-gray-300 dark:border-gray-950 shadow-sm bg-white dark:bg-gray-900 dark:hover:bg-gray-950 text-gray-700 dark:text-gray-200 hover:bg-gray-50 py-[15px] focus:outline-none"
+        className="flex items-center justify-center max-w-[130px]    sm:max-w-none h-full rounded-md border border-gray-300 dark:border-gray-950 shadow-sm bg-white dark:bg-gray-900 dark:hover:bg-gray-950 text-gray-700 dark:text-gray-200 hover:bg-gray-50 py-[15px] focus:outline-none"
         aria-label="Sorting options"
       >
         <option

@@ -2,7 +2,7 @@ import React from "react";
 
 const HereNewsSection = () => {
   return (
-    <div className="xl:w-[1323px] xl:h-[485px]  sm:h-[180px] h-[150px]  mb-5  mr-2  mt-[40px] flex xl:mx-auto  ">
+    <div className="xl:max-w-[1323px]  xl:h-[485px]  sm:h-[180px] h-[150px]  mb-5  mr-2  mt-[40px] flex xl:mx-auto  ">
     {/* TODO */}
       <div className="container flex  mx-auto xl:gap-x-[130px] relative justify-between items-center">
         <div className="xl:w-[526px] xl:mt-[156px] xl:mr-0 sm:mr-3 z-[1]">
@@ -15,7 +15,7 @@ const HereNewsSection = () => {
             کامپیوتری را ایجاد و توسعه دهند.
           </p>
         </div>
-        <div className="xl:w-[584px] block lg:w-[284px]  w-full  h-full   xl:h-[485px] bg-heroNews  bg-no-repeat  bg-contain sm:bg-center  sm:static absolute  top-0 right-0 z-0 sm:opacity-100 sm:dark:opacity-100 opacity-60 dark:opacity-30  md:mr-[130px] lg:mr-0"></div>
+        <div className="xl:w-[584px] block lg:max-w-[340px] mt-5  w-full  h-full   xl:h-[485px] lg:h-[250px] bg-heroNews  bg-no-repeat  bg-contain sm:bg-center  sm:static absolute  top-0 right-0 z-0 sm:opacity-100 sm:dark:opacity-100 opacity-60 dark:opacity-30  md:mr-[130px] lg:mr-0"></div>
       </div>
     </div>
   );
