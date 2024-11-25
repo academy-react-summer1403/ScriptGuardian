@@ -15,10 +15,7 @@ const TopHeader = () => {
       className={` flex w-full h-[50px]  mt-8 items-center justify-between relative  z-[10] object-cover    `}
     >
       {/* Content */}
-      <div
-
-        className="flex items-center justify-center xl:mr-[0px] mr-[10px]  xl:gap-x-[8px]  "
-      >
+      <div className="flex items-center justify-center xl:mr-[0px] mr-[10px]  xl:gap-x-[8px]  ">
         <Logo />
         <Name />
         {/* Hamburger Menu */}

@@ -78,7 +78,11 @@ const MyFavoriteCourses = () => {
   return (
     <>
       {/* hamburger */}
-      <StudentHamburger toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+      <StudentHamburger
+        toggleMenu={toggleMenu}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
 
       <div className="flex flex-col items-center ">
         {/* Common */}

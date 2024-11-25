@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import {
   FaBookOpen,
@@ -20,6 +20,27 @@ import { useGetStudentProfile } from "../core/services/api/Panel/GetProfile";
 const StudentLayout = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  //handel close
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isModalOpen]);
 
   const handleLogout = () => {
     console.log("Logged out");
@@ -118,7 +139,10 @@ const StudentLayout = () => {
 
                 {isModalOpen && (
                   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white rounded-lg p-6 max-w-sm w-full">
+                    <div
+                      ref={menuRef}
+                      className="bg-white rounded-lg p-6 max-w-sm w-full"
+                    >
                       <h2 className="text-lg font-semibold text-gray-800 mb-4">
                         آیا مطمئن هستید که می‌خواهید از حساب خود خارج شوید؟
                       </h2>
