@@ -127,7 +127,7 @@ const DropDownCourses = ({ setSortingCol }) => {
   };
 
   return (
-    <div className="flex sm:h-full sm:w-auto w-full order-2">
+    <div className="flex sm:h-full sm:w-auto w-[69%] order-2">
       <div className="relative sm:w-auto w-full inline-block text-left h-full">
         <select
           // value={selectedFilter}

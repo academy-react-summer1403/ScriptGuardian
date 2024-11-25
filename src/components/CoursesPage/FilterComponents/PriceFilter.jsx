@@ -34,22 +34,22 @@ const PriceFilter = ({ setCostDown, setCostUp }) => {
               <Slider
                 value={value}
                 onChange={handleChange}
-                valueLabelDisplay="auto" // برای نمایش مقدار فعلی
-                min={0} // حداقل مقدار
-                max={10000000} // حداکثر مقدار
+                valueLabelDisplay="auto"
+                min={1000}
+                max={10000000}
                 aria-labelledby="range-slider"
                 sx={{
-                  width: 238, // عرض اسلایدر
-                  height: 8, // ارتفاع اسلایدر
-                  color: "#60B764", // رنگ اسلایدر
+                  width: 238,
+                  height: 8,
+                  color: "#60B764",
                   "& .MuiSlider-thumb": {
-                    backgroundColor: "#60B764", // رنگ دکمه (thumb)
+                    backgroundColor: "#60B764",
                   },
                   "& .MuiSlider-track": {
-                    backgroundColor: "#60B764", // رنگ نوار پر شده (track)
+                    backgroundColor: "#60B764",
                   },
                   "& .MuiSlider-rail": {
-                    backgroundColor: "#C8E6C9", // رنگ نوار خالی (rail)
+                    backgroundColor: "#C8E6C9",
                   },
                 }}
               />

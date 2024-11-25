@@ -21,16 +21,15 @@ const ThemeCourses = () => {
     setIsLeftActive(false);
   };
   return (
-    <div className="sm:w-[100px]  w-full sm:h-full h-[50px] flex bg-[#ECEFF1] dark:bg-[#1C1C1C] justify-center items-center gap-1 rounded-2xl sm:order-none order-1 ">
+    <div className="sm:w-[100px]  w-full sm:h-full h-[50px] sm:flex hidden bg-[#ECEFF1] dark:bg-[#1C1C1C] justify-center items-center gap-1 rounded-2xl sm:order-none order-1 ">
       <div
         className={`w-[40px]  h-[40px] flex justify-center items-center rounded-2xl  ${
           isLeftActive ? `bg-white dark:bg-gray-900` : ``
         }`}
         onClick={handleLeftClick}
       >
-        <span  className="w-6 h-6 ">
+        <span className="w-6 h-6 ">
           <svg
-
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +80,6 @@ const ThemeCourses = () => {
       >
         <span className="w-6 h-6 ">
           <svg
-
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

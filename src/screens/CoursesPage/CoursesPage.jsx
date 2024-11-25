@@ -75,7 +75,7 @@ const CoursesPage = () => {
     <>
       {/* TODO */}
       <HereSectionCourses />
-      <div className="mt-10 flex xl:w-[1280px]  container lg:justify-start   sm:mx-auto lg:gap-8  justify-center">
+      <div className="mt-10 flex xl:w-[1280px]   container lg:justify-start   sm:mx-auto lg:gap-8  justify-center">
         <Filters
           showMenu={showMenu}
           handleClick={handleClick}
@@ -86,7 +86,7 @@ const CoursesPage = () => {
           listTech={listTech}
           setCurrentTeacher={setCurrentTeacher}
         />
-        <div className="flex flex-col sm:items-start items-center   ">
+        <div className="flex flex-col sm:items-start items-center sm:w-auto w-full sm:justify-start justify-center  ">
           {/* Top */}
           <SearchAndThemeCourses
             handleClick={handleClick}
@@ -94,7 +94,7 @@ const CoursesPage = () => {
             searchQuery={searchQuery}
             setSortingCol={setSortingCol}
           />
-          <div className="xl:w-[952px] lg:w-[722px] sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-[14.3%] gap-x-[5%]  gap-y-8 sm:mr-3  w-full sm:justify-start justify-center ">
+          <div className="xl:w-[952px] lg:w-[722px] md:w-full md:mr-0 lg:mr-3 sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-12 sm:gap-x-[18px] gap-x-[5%]  gap-y-8 sm:mr-3  w-full lg:justify-start md:justify-center sm:justify-start justify-center ">
             {currentItems?.map((course, index) => (
               <Course
                 style={style}
@@ -168,7 +168,7 @@ const CoursesPage = () => {
               activeClassName={
                 "w-[32px] h-[32px] bg-[#2196F3] dark:bg-[#1565C0] rounded-full flex items-center justify-center text-white "
               }
-              className="flex gap-5 mt-[48px] justify-center items-center text-[#263238] dark:text-gray-300"
+              className="flex gap-5 mt-[48px] justify-center items-center text-[#263238] dark:text-gray-300 flex-wrap sm:w-auto w-[90%] "
             />
           </div>
         </div>

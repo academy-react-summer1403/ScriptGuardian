@@ -122,7 +122,7 @@ const Filters = ({
       {/* MD */}
 
       {showMenu && (
-        <div className="lg:flex ease-in-out duration-100 min-h-[779px] w-[296px] fixed right-0 top-0   border  bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center  z-[10] ">
+        <div className="lg:flex ease-in-out duration-100 h- min-h-[779px] w-[296px] fixed right-0 top-0   border  bg-white  dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center  z-[10] ">
           {/* 1Com */}
           <div className="absolute left-6 top-2" onClick={handleClick}>
             <RiCloseLine size={24} className="dark:text-white" />
