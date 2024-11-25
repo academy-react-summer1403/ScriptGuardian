@@ -5,10 +5,18 @@ import { MdCheck } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 const TeacherFilter = ({ setCurrentTeacher }) => {
   const [isOpenFifth, setIsOpenFifth] = useState(false);
+  const [selectedTeacherId, setSelectedTeacherId] = useState(null);
+
   const { data: Technologies } = useLandingTeachers();
 
   const handleCheckboxChange = (id) => {
-    setCurrentTeacher(id);
+    if (selectedTeacherId === id) {
+      setSelectedTeacherId(null);
+      setCurrentTeacher(null);
+    } else {
+      setSelectedTeacherId(id);
+      setCurrentTeacher(id);
+    }
   };
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
@@ -45,11 +53,12 @@ const TeacherFilter = ({ setCurrentTeacher }) => {
                           </label>
                           <input
                             id={`default-checkbox-${item?.teacherId}`}
-                            type="radio"
+                            type="checkbox"
                             name="same"
                             value={item?.teacherId}
                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                             key={index}
+                            checked={selectedTeacherId === item.teacherId}
                             onChange={() =>
                               handleCheckboxChange(item.teacherId)
                             }
