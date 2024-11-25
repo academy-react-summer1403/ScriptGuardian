@@ -40,7 +40,7 @@ const DetailsLeft = ({
         <h3 className="text-[#263238] dark:text-gray-200 font-[700] text-[24px] mt-8">
           مشخصات دوره
         </h3>
-        <div className="border-y-[1px] dark:border-y-gray-950 xl:w-[341px] w-[95%] h-[288px] mt-6 flex flex-col">
+        <div className="border-y-[1px] dark:border-y-gray-950 xl:w-[341px] w-[90%] h-[288px] mt-6 flex flex-col">
           <div className="flex justify-between w-full h-[72px] border-b dark:border-b-gray-950 items-center">
             <div className="flex items-center">
               <div className="w-[40px] h-[40px] bg-[#2196F3] dark:bg-[#1E88E5] rounded-full  flex items-center justify-center">
@@ -330,7 +330,7 @@ const DetailsLeft = ({
             </p>
           </div>
         </div>
-        <div className="xl:w-[341px] w-[95%] h-[56px] mt-8 flex items-center justify-between">
+        <div className="xl:w-[341px] w-[90%] h-[56px] mt-8 flex items-center justify-between">
           {isCourseUser != 1 ? (
             <>
               {isCourseReseve != 1 ? (

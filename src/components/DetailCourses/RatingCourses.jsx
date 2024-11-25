@@ -90,7 +90,7 @@ const RatingCourses = ({
     <div className="w-full xl:h-[48px] flex xl:flex-row flex-col justify-between mt-4 xl:gap-y-0 gap-y-5">
       <div className="flex items-center xl:justify-start justify-between">
         {/* Stars */}
-        <div className="flex flex-row-reverse">
+        <div className="flex flex-row-reverse cursor-pointer">
           {Array.from({ length: totalStars }).map((_, index) => (
             <span key={index} onClick={() => handelRate(index)}>
               <svg

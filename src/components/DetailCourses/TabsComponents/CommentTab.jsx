@@ -66,7 +66,7 @@ const CommentTab = ({ activeTab }) => {
     <>
       {activeTab === "comments" && (
         <div className="xl:w-[779px]  w-full  flex flex-col items-center mb-5">
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={formik.handleSubmit} className="w-full">
             <div className="w-full flex justify-center  flex-col">
               <input
                 className="xl:w-[779px] w-full h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs mb-5 text-white"
