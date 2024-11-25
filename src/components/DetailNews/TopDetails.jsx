@@ -211,7 +211,7 @@ const TopDetails = ({
               <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
             </p>
           </div>
-          <div className="flex w-[186px] h-[64px] items-center bg-white  shadow-2xl mt-5 sm:mt-0 dark:bg-gray-900 rounded-2xl">
+          <div className="flex sm:w-[186px] w-[90%] h-[64px] items-center bg-white  shadow-2xl mt-5 sm:mt-0 dark:bg-gray-900 rounded-2xl">
             <div className="w-10 h-10 rounded-2xl">
               {" "}
               <img

@@ -39,7 +39,7 @@ const CardNewsPage = ({
               : image
           }
           alt=""
-          className="w-full h-full"
+          className="w-full h-full rounded-2xl"
         />
       </div>
       <div className="flex flex-col text-[] lg:w-[405px]">

@@ -56,7 +56,7 @@ const CommentDetails = ({ commentDtos, newsId }) => {
         <h2 className="font-[700] md:text-[24px] text-[18px] text-[#263238] dark:text-gray-200 mt-[32px]">
           نظرکاربران درباره این مقالهي
         </h2>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} className="w-full">
           <div className="w-full flex justify-center  flex-col">
             <div className=" mt-[24px]  flex flex-col ">
               {/* <label htmlFor="title" className="dark:text-white ">
