@@ -35,12 +35,10 @@ const MyCourses = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // وضعیت اولیه دارک مود بر اساس localStorage
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
-  // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -51,21 +49,18 @@ const MyCourses = () => {
     }
   }, [isDarkMode]);
 
-  // تغییر حالت دارک مود هنگام کلیک
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
 
   //dropdown
 
-  // ایجاد state برای ذخیره مقدار انتخاب شده
-  const [pageSize, setPageSize] = useState(2); // مقدار پیش‌فرض
+  const [pageSize, setPageSize] = useState(2);
 
-  // تابع برای به‌روزرسانی مقدار انتخاب شده
   const handlePageSizeChange = (event) => {
     setPageSize(Number(event.target.value));
-    setItemOffset(0); // شروع از اول لیست بعد از تغییر سایز صفحه
-    console.log("Page Size:", event.target.value); // مقدار جدید در کنسول
+    setItemOffset(0);
+    console.log("Page Size:", event.target.value);
   };
 
   //API
@@ -194,9 +189,10 @@ const MyCourses = () => {
         </div>
 
         {/* Unic */}
+
         <div className="flex  justify-between w-[95%]  mt-5">
           {/* Search */}
-          <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-md p-2 shadow-md  sm:w-[90%] w-[80%]">
+          {/* <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-md p-2 shadow-md  sm:w-[90%] w-[80%]">
             <input
               type="text"
               placeholder="جستجو کنید..."
@@ -205,6 +201,35 @@ const MyCourses = () => {
             <button className="text-gray-500 hover:text-gray-700 transition-colors duration-150">
               <FiSearch size={20} className="dark:text-white" />
             </button>
+          </div> */}
+
+          <div className="relative z-0 shadow-Second-shadow   flex items-center  sm:w-[90%] w-[80%] h-[40px]   bg-gray-100 dark:bg-gray-800 rounded-md   ">
+            <input
+              type="text"
+              className="w-full sm:px-[20px] xl:py-0  h-full border-gray-300 sm:rounded-[16px] focus:outline-none dark:caret-white dark:placeholder-white   z-0 sm:placeholder:text-base placeholder:text-[10px] pr-3 bg-gray-100 dark:bg-gray-800 "
+              placeholder="جستجو کنید..."
+              // value={searchQuery ? searchQuery : ""}
+              // onChange={handleSearchChange}
+            />
+
+            <span className="flex items-center ">
+              <svg
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute sm:left-3 left-1 sm:w-[24px] sm:h-[25px] w-[14px] h-[15px] text-gray-500"
+              >
+                <path
+                  opacity="0.4"
+                  d="M11.5 21.5C16.7467 21.5 21 17.2467 21 12C21 6.75329 16.7467 2.5 11.5 2.5C6.25329 2.5 2 6.75329 2 12C2 17.2467 6.25329 21.5 11.5 21.5Z"
+                  fill="#2196F3"
+                />
+                <path
+                  d="M21.3001 22.5001C21.1201 22.5001 20.9401 22.4301 20.8101 22.3001L18.9501 20.4401C18.6801 20.1701 18.6801 19.7301 18.9501 19.4501C19.2201 19.1801 19.6601 19.1801 19.9401 19.4501L21.8001 21.3101C22.0701 21.5801 22.0701 22.0201 21.8001 22.3001C21.6601 22.4301 21.4801 22.5001 21.3001 22.5001Z"
+                  fill="#2196F3"
+                />
+              </svg>
+            </span>
           </div>
 
           {/* DropDown */}
@@ -243,40 +268,6 @@ const MyCourses = () => {
             currentItems?.map((item, index) => {
               return (
                 <>
-                  {/* <div
-                  key={index}
-                  className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] md:justify-start justify-around"
-                >
-                  <div className="lg:mr-[1%] sm:w-[6%] lg:w-[15%] md:w-[12%] md:mr-[6%] max-w-[60px] h-full    items-center md:flex  hidden">
-                    <img
-                      src={item.tumbImageAddress}
-                      alt=""
-                      className="w-full object-cover h-[80%] rounded block"
-                    />
-                  </div>
-                  <div className="lg:mr-[12%] md:mr-[6%]   lg:w-[10%] md:w-[10%]   ">
-                    {item.courseTitle}
-                  </div>
-                  <div className="lg:mr-[6%] md:mr-[5%]  lg:w-[12%] md:w-[15%] b">
-                    {item.fullName}
-                  </div>
-                  <div className="lg:mr-[7.5%] md:mr-[4%]  lg:w-[10%] md:w-[11.3%]  ">
-                    {" "}
-                    1403/10/02
-                  </div>
-                  <div className="lg:mr-[10%] md:mr-[5%]  lg:w-[13%] md:w-[13%] ">
-                    {item.cost} <span>تومان</span>
-                  </div>
-                  <div className="flex items-center gap-x-1 sm:mr-[6%]">
-                    <FaEye
-                      className="cursor-pointer"
-                      onClick={() => {
-                        navigate(`/courses/${item?.courseId}`);
-                      }}
-                    />
-                    <FaTrash className="text-red-600" />
-                  </div>
-                </div> */}
                   <ListPanel
                     key={index}
                     tumbImageAddress={item.tumbImageAddress}
