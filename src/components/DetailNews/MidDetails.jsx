@@ -331,7 +331,7 @@ const MidDetails = ({
           <div className="flex items-center lg:justify-start justify-between lg:w-auto  w-full   sm:text-base text-xs">
             {/* Stars */}
             <div className="flex gap-x-2 items-center  ">
-              <div className="flex flex-row-reverse">
+              <div className="flex flex-row-reverse cursor-pointer">
                 {Array.from({ length: totalStars }).map((_, index) => (
                   <span key={index} onClick={() => addRate(index)}>
                     <svg
