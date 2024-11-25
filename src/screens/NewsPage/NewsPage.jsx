@@ -8,6 +8,7 @@ import {
   useLandingNews,
   usePageNews,
 } from "../../core/services/api/Landing/LandingNews";
+import { CustomSpinner } from "../../components/animation/CustomSpinner";
 
 const NewsPage = () => {
   //handel search
@@ -48,6 +49,8 @@ const NewsPage = () => {
     setCurrentPage(event.selected);
   };
 
+  const loaderStyle = "flex justify-center items-center mx-auto ";
+
   return (
     <>
       <HereNewsSection />
@@ -60,22 +63,26 @@ const NewsPage = () => {
         />
 
         <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
-          {currentItems?.map((item, index) => {
-            return (
-              <>
-                <CardNewsPage
-                  key={index}
-                  id={item.id}
-                  title={item.title}
-                  miniDescribe={item.miniDescribe}
-                  addUserProfileImage={item.addUserProfileImage}
-                  currentView={item.currentView}
-                  currentRate={item.currentRate}
-                  updateDate={item?.updateDate}
-                />
-              </>
-            );
-          })}
+          {!currentItems ? (
+            <CustomSpinner style={loaderStyle} />
+          ) : currentItems.length === 0 ? (
+            <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+              داده‌ای یافت نشد
+            </p>
+          ) : (
+            currentItems.map((item, index) => (
+              <CardNewsPage
+                key={index}
+                id={item.id}
+                title={item.title}
+                miniDescribe={item.miniDescribe}
+                addUserProfileImage={item.addUserProfileImage}
+                currentView={item.currentView}
+                currentRate={item.currentRate}
+                updateDate={item?.updateDate}
+              />
+            ))
+          )}
         </div>
         <div className="flex justify-center">
           <ReactPaginate

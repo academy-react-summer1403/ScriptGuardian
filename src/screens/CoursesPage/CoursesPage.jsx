@@ -7,6 +7,7 @@ import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThe
 import { CoursesCard } from "../../components/CoursesPage/CourseCard/CourseCard";
 import { Course } from "../../components/LandingComponents/OurCourses/Course";
 import { useCourses } from "../../core/services/api/CoursesPage/GetAllCourses";
+import { CustomSpinner } from "../../components/animation/CustomSpinner";
 
 const CoursesPage = () => {
   //API
@@ -71,6 +72,9 @@ const CoursesPage = () => {
 
   const style =
     "w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5 ";
+
+
+    const loaderStyle = "flex justify-center items-center mx-auto";
   return (
     <>
       {/* TODO */}
@@ -95,26 +99,36 @@ const CoursesPage = () => {
             setSortingCol={setSortingCol}
           />
           <div className="xl:w-[952px] lg:w-[722px] md:w-full md:mr-0 lg:mr-3 sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-12 sm:gap-x-[18px] gap-x-[5%]  gap-y-8 sm:mr-3  w-full lg:justify-start md:justify-center sm:justify-start justify-center ">
-            {currentItems?.map((course, index) => (
-              <Course
-                style={style}
-                key={index}
-                courseId={course?.courseId}
-                teacherName={course?.teacherName}
-                cost={course?.cost}
-                likeCount={course?.likeCount}
-                dissLikeCount={course?.dissLikeCount}
-                userIsLiked={course?.userIsLiked}
-                title={course?.title}
-                describe={course?.describe}
-                isUserFavorite={course?.userFavorite}
-                userLikeId={course?.userLikedId}
-                userIsDissLiked={course?.currentUserDissLike}
-                userFavoriteId={course?.userFavoriteId}
-                tumbImageAddress={course?.tumbImageAddress}
-                lastUpdate={course?.lastUpdate}
-              />
-            ))}
+            {!currentItems ? (
+              <CustomSpinner  style={loaderStyle}/>
+            ) : currentItems.length === 0 ? (
+              <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+                داده‌ای یافت نشد
+              </p>
+            ) : (
+              <>
+                {currentItems?.map((course, index) => (
+                  <Course
+                    style={style}
+                    key={index}
+                    courseId={course?.courseId}
+                    teacherName={course?.teacherName}
+                    cost={course?.cost}
+                    likeCount={course?.likeCount}
+                    dissLikeCount={course?.dissLikeCount}
+                    userIsLiked={course?.userIsLiked}
+                    title={course?.title}
+                    describe={course?.describe}
+                    isUserFavorite={course?.userFavorite}
+                    userLikeId={course?.userLikedId}
+                    userIsDissLiked={course?.currentUserDissLike}
+                    userFavoriteId={course?.userFavoriteId}
+                    tumbImageAddress={course?.tumbImageAddress}
+                    lastUpdate={course?.lastUpdate}
+                  />
+                ))}
+              </>
+            )}
           </div>
           {/* Pagination Controls */}
           <div className="flex w-full justify-center">
