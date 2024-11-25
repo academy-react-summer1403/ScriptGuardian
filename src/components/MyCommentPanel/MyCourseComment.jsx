@@ -83,7 +83,7 @@ const MyCourseComment = () => {
     const endOffset = itemOffset + pageSize;
     setCurrentItems(data && data?.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(data?.length / pageSize));
-  }, [itemOffset, pageSize, data]); // اضافه کردن pageSize به وابستگی‌ها
+  }, [itemOffset, pageSize, data]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * pageSize) % data?.length;
@@ -110,10 +110,10 @@ const MyCourseComment = () => {
 
   return (
     <>
-      <div className="flex flex-col w-[95%] bg-white dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
-        <div className="flex  items-center text-white h-[50px] bg-purple-700 dark:bg-purple-900 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs  justify-between">
+      <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
+        <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540]  w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs  justify-between">
           <h2 className="mr-5">عنوان کامنت</h2>
-          <h2 className="mr-5">توضیحات کامنت</h2>
+          <h2 className="mr-5 sm:block hidden">توضیحات کامنت</h2>
           <h2 className="">وضعیت</h2>
           <h2 className="ml-5">اقدامات</h2>
         </div>
@@ -123,44 +123,51 @@ const MyCourseComment = () => {
             return (
               <>
                 <div
-                  className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
+                  className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57] w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
                   key={index}
                 >
                   <div
-                    className="mr-5 min-w-[150px] bg-black"
+                    className="mr-5 w-[150px] text-wrap md:text-base text-xs"
                     title={item?.title}
                   >
                     {item?.title?.length > 15
                       ? item.title.slice(0, 15) + "..."
                       : item.title}
                   </div>
-                  <div className=" min-w-[150px] " title={item?.describe}>
+                  <div
+                    className=" min-w-[150px] md:text-base sm:text-xs sm:block hidden"
+                    title={item?.describe}
+                  >
                     {item?.describe?.length > 20
                       ? item.describe.slice(0, 20) + "..."
                       : item.describe}
                   </div>
 
-                  <div className=" min-w-[150px] ">
+                  <div className=" w-[150px] sm:mr-0 mr-[4%] md:text-base text-xs ">
                     {item?.accept ? (
-                      <span className="text-green-500">پذیرفته شده</span>
+                      <span className="text-green-500 bg-green-700 py-1 px-1">
+                        پذیرفته شده
+                      </span>
                     ) : (
-                      <span className="text-red-500">پذیرفته نشده</span>
+                      <span className="text-red-500 bg-red-700 p-1">
+                        پذیرفته نشده
+                      </span>
                     )}
                   </div>
 
-                  <div className="ml-5 gap-1 flex items-center">
+                  <div className="ml-8 gap-1 flex items-center">
                     <FaEye
-                      className="cursor-pointer"
+                      className="cursor-pointer text-lg"
                       onClick={() => {
                         navigate(
                           `/courses/${item?.courseId ? item.courseId : "no id"}`
                         );
                       }}
                     />
-                    <FaTrash
+                    {/* <FaTrash
                       className="text-red-600"
                       onClick={() => handelDelete(item?.commentId)}
-                    />
+                    /> */}
                   </div>
                 </div>
               </>

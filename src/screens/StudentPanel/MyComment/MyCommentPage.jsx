@@ -89,13 +89,13 @@ const MyCommentPage = () => {
 
         {/* Unic */}
         <div className=" mt-5 ">
-          <ul className="flex gap-x-5">
+          <ul className="flex sm:gap-x-5 gap-x-1">
             <li
               onClick={() => setOpenTab(1)}
               className={`-mb-px mr-1 ${openTab === 1 ? "-mb-px" : ""}`}
             >
               <p
-                className={`bg-white dark:bg-gray-950 inline-block py-2 px-4 font-semibold ${
+                className={`bg-white dark:bg-gray-950 inline-block py-2 sm:px-4 px-1 sm:text-base text-sm  font-semibold ${
                   openTab === 1 ? activeClasses : inactiveClasses
                 }`}
               >
@@ -107,7 +107,7 @@ const MyCommentPage = () => {
               className={`mr-1 ${openTab === 2 ? "-mb-px" : ""}`}
             >
               <p
-                className={`bg-white inline-block  dark:bg-gray-950  py-2 px-4 font-semibold ${
+                className={`bg-white inline-block  dark:bg-gray-950  py-2 sm:px-4 px-1 sm:text-base text-sm font-semibold ${
                   openTab === 2 ? activeClasses : inactiveClasses
                 }`}
               >

@@ -97,9 +97,9 @@ const MyNewsComment = () => {
   return (
     <>
       <div className="flex flex-col w-[95%] bg-white dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
-        <div className="flex  items-center text-white h-[50px] bg-purple-700 dark:bg-purple-900 w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs  justify-between">
+        <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540]  w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs  justify-between">
           <h2 className="mr-5">عنوان کامنت</h2>
-          <h2 className="mr-5">توضیحات کامنت</h2>
+          <h2 className="mr-5 sm:block hidden">توضیحات کامنت</h2>
           <h2 className="">وضعیت</h2>
           <h2 className="ml-5">اقدامات</h2>
         </div>
@@ -109,24 +109,27 @@ const MyNewsComment = () => {
             return (
               <>
                 <div
-                  className="flex items-center text-white h-[50px] bg-purple-400 dark:bg-purple-600 w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
+                  className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57] w-full rounded-xl mb-2 sm:text-base   text-[10px] justify-between"
                   key={index}
                 >
                   <div
-                    className="mr-5 min-w-[150px] bg-black"
+                    className="mr-5 w-[150px] sm:text-base text-xs "
                     title={item?.title}
                   >
                     {item?.title?.length > 15
                       ? item.title.slice(0, 15) + "..."
                       : item.title}
                   </div>
-                  <div className=" min-w-[150px] " title={item?.describe}>
+                  <div
+                    className=" w-[150px] sm:block hidden "
+                    title={item?.describe}
+                  >
                     {item?.describe?.length > 20
                       ? item.describe.slice(0, 20) + "..."
                       : item.describe}
                   </div>
 
-                  <div className=" min-w-[150px] ">
+                  <div className=" w-[150px] sm:mr-0  ">
                     {item?.accept ? (
                       <span className="text-green-500">پذیرفته شده</span>
                     ) : (
@@ -136,7 +139,7 @@ const MyNewsComment = () => {
 
                   <div className="ml-5 gap-1 flex items-center">
                     <FaEye
-                      className="cursor-pointer ml-2"
+                      className="cursor-pointer ml-2 sm:text-lg text-md"
                       onClick={() => {
                         navigate(
                           `/News/${item?.newsId ? item.newsId : "no id"}`
