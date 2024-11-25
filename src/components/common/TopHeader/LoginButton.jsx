@@ -79,7 +79,12 @@ const LoginButton = () => {
   const id = path.startsWith("/") ? path.split("/").pop() : null;
 
   useEffect(() => {
-    if (id && id.length > 10) {
+    if (
+      id &&
+      id.length > 10 &&
+      !path.includes("/Courses/") &&
+      !path.includes("/News/")
+    ) {
       setIsForgetPassLastStep(true);
     }
   }, []);
