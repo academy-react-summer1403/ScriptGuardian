@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCourses/HereSectionCourses";
 import { Filters } from "../../components/CoursesPage/FilterComponents/Filters";
@@ -65,6 +65,26 @@ const CoursesPage = () => {
 
   const [showMenu, setShowContent] = useState(false);
 
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowContent(false);
+      }
+    };
+
+    if (showMenu) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [showMenu]);
+
   const handleClick = () => {
     setShowContent(!showMenu);
   };
@@ -87,6 +107,7 @@ const CoursesPage = () => {
           setListTech={setListTech}
           listTech={listTech}
           setCurrentTeacher={setCurrentTeacher}
+          menuRef={menuRef}
         />
         <div className="flex flex-col sm:items-start items-center sm:w-auto w-full sm:justify-start justify-center  ">
           {/* Top */}

@@ -127,12 +127,12 @@ const DropDownCourses = ({ setSortingCol }) => {
   };
 
   return (
-    <div className="flex sm:h-full sm:w-auto w-[69%] order-2">
+    <div className="flex sm:h-full sm:w-auto   w-[66%] order-2">
       <div className="relative sm:w-auto w-full inline-block text-left h-full">
         <select
           // value={selectedFilter}
           onChange={handleSelect}
-          className="flex items-center justify-center md:w-[200px] sm:w-[150px] w-full sm:max-w-none sm:h-full h-[50px] rounded-md border border-gray-300 dark:border-gray-950 shadow-sm bg-white dark:bg-gray-900 dark:hover:bg-gray-950 text-gray-700 dark:text-gray-200 hover:bg-gray-50 focus:outline-none sm:text-base text-xs"
+          className="flex items-center justify-center md:w-[200px] sm:w-[150px] w-full sm:max-w-none sm:h-full h-[50px] rounded-2xl border border-gray-300 dark:border-gray-950 shadow-sm bg-white dark:bg-gray-900 dark:hover:bg-gray-950 text-gray-700 dark:text-gray-200 hover:bg-gray-50 focus:outline-none sm:text-base text-xs"
         >
           <option
             value={"همه"}

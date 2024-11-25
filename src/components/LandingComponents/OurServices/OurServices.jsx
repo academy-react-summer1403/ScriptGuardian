@@ -7,7 +7,7 @@ const OurServices = () => {
       <div className="flex flex-col xl:w-[1280px] mx-auto container justify-center items-center    ">
         {/* Topic */}
         <div className="flex ">
-          <h2 className="text-[#263238] dark:text-white mt-[80px] font-[900] text-[40px] border-b-[4px] ">
+          <h2 className="text-[#263238] dark:text-white sm:mt-[80px] font-[900] text-[40px] border-b-[4px] ">
             خدمات ما
           </h2>
         </div>
