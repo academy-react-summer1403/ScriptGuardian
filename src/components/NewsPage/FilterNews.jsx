@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const FilterNews = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
-  useEffect(() => {
-    const savedIndex = localStorage.getItem("activeIndex");
-    if (savedIndex !== null) {
-      setActiveIndex(parseInt(savedIndex));
-    }
-  }, []);
+const FilterNews = ({ setSortingCol }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleActive = (index) => {
+  const handleActive = ({ index, value }) => {
     setActiveIndex(index);
-    localStorage.setItem("activeIndex", index);
+    setSortingCol(value && value != "all" ? value : undefined);
   };
   return (
     <div className="w-[526px] h-[56px] rounded-[16px] border mr-[32px] shadow-Second-shadow xl:flex bg-white dark:bg-gray-900 dark:border-gray-950 items-center hidden">
@@ -21,7 +15,7 @@ const FilterNews = () => {
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"
         }`}
-        onClick={() => handleActive(0)}
+        onClick={() => handleActive({ index: 0, value: "all" })}
       >
         همه
       </div>
@@ -31,7 +25,7 @@ const FilterNews = () => {
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"
         }`}
-        onClick={() => handleActive(1)}
+        onClick={() => handleActive({ index: 1, value: "currentRate" })}
       >
         محبوب‌ترین‌ها
       </div>
@@ -41,7 +35,7 @@ const FilterNews = () => {
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"
         }`}
-        onClick={() => handleActive(2)}
+        onClick={() => handleActive({ index: 2, value: "currentView" })}
       >
         پربازدیدترین‌ها
       </div>
@@ -51,7 +45,7 @@ const FilterNews = () => {
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"
         }`}
-        onClick={() => handleActive(3)}
+        onClick={() => handleActive({ index: 3, value: "updateDate" })}
       >
         جدیدترین‌ها
       </div>

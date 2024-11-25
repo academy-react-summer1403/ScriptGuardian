@@ -4,7 +4,11 @@ import { SearchNews } from "./SearchNews";
 import { FilterNews } from "./FilterNews";
 import { DropDownNews } from "./DropDownNews";
 
-const NewsSearchAndFilter = ({ handleSearchChange, searchQuery }) => {
+const NewsSearchAndFilter = ({
+  handleSearchChange,
+  searchQuery,
+  setSortingCol,
+}) => {
   return (
     <>
       <div className="flex xl:mt-0 mt-10 justify-between">
@@ -14,10 +18,10 @@ const NewsSearchAndFilter = ({ handleSearchChange, searchQuery }) => {
         />
 
         {/* Filter */}
-        <FilterNews />
+        <FilterNews setSortingCol={setSortingCol} />
 
         {/* DropDOwn */}
-        <DropDownNews />
+        <DropDownNews setSortingCol={setSortingCol} />
       </div>
     </>
   );

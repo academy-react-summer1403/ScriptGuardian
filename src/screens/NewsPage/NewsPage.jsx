@@ -12,6 +12,7 @@ import {
 const NewsPage = () => {
   //handel search
   const [searchQuery, setSearchQuery] = useState(undefined);
+  const [sortingCol, setSortingCol] = useState(undefined);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -22,6 +23,7 @@ const NewsPage = () => {
     SearchQuery: searchQuery,
     RowsOfPage: itemsPerPage,
     PageNumber: current + 1,
+    SortingCol: sortingCol,
   });
   const data = News?.news;
   const Total = News?.totalCount;
@@ -54,6 +56,7 @@ const NewsPage = () => {
         <NewsSearchAndFilter
           searchQuery={searchQuery}
           handleSearchChange={handleSearchChange}
+          setSortingCol={setSortingCol}
         />
 
         <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
