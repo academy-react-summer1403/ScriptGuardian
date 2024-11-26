@@ -19,13 +19,13 @@ const NewsAndArticle = () => {
   // console.log(data, "this data Landing Courses in OurCourses Comp");
   return (
     <>
-      <div className="mt-[100px] container mx-auto xl:w-[1280px] w-full  flex flex-col ">
+      <div className="mt-[100px] container mx-auto xl:w-[1280px] w-full bg- flex flex-col ">
         <div className="flex justify-center ">
           <h2 className="font-[900] text-[40px] text-[#263238] dark:text-gray-400">
             اخبار و مقالات
           </h2>
         </div>
-        <div className="flex lg:flex-row flex-col sm:mt-[40px] mt-5 items-center   ">
+        <div className="flex lg:flex-row flex-col sm:mt-[40px] mt-5 items-center    ">
           {data && data[0] && (
             <BigNews
               title={data[0]?.title}
@@ -37,7 +37,7 @@ const NewsAndArticle = () => {
               updateDate={data[0]?.updateDate}
             />
           )}
-          <div className="flex flex-col sm:mr-[40px] gap-y-[40px] xl:items-start items-center xl:mt-0 mt-10    w-full">
+          <div className="flex flex-col lg:mr-[40px] gap-y-[40px] xl:items-start items-center xl:mt-0 mt-10   w-full">
             {data &&
               data?.slice(1, 4).map((item, index) => {
                 return (

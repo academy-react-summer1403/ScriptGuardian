@@ -13,7 +13,7 @@ const OurServices = () => {
         </div>
 
         {/* Content */}
-        <div className="flex md:flex-row flex-col xl:flex xl:gap-x-[32px] lg:gap-x-[24px] md:gap-x-[18px] gap-y-6 mt-[40px] xl:justify-center sm:justify-between items-center  xl:w-full  ">
+        <div className="flex md:flex-row flex-col xl:flex xl:gap-x-[32px] lg:gap-x-[24px] md:gap-x-[16px] gap-y-6 mt-[40px] xl:justify-center sm:justify-between items-center  xl:w-full  ">
           <Service />
         </div>
       </div>

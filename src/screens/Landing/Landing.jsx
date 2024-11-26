@@ -8,7 +8,7 @@ import { NewsAndArticle } from "../../components/LandingComponents/NewsAndArticl
 
 const Landing = () => {
   return (
-    <div className="relative top-[-81px] xl:max-w-[1343px] mx-auto">
+    <div className="relative top-[-81px] xl:max-w-[1343px] mx-auto  overflow-x-hidden">
       {/* Landing Holder */}
       <HereSection />
       <OurServices />
