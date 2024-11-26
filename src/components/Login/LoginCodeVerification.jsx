@@ -6,16 +6,20 @@ import {
   useLoginWithTwoStep,
   useRegisterVerification,
 } from "../../core/services/api/Auth/Register/Register";
-import { validationRegisterVerification, validationRegisterVerificationLoginStepTwo } from "../../core/services/validation/validationSchema/Auth";
+import {
+  validationRegisterVerification,
+  validationRegisterVerificationLoginStepTwo,
+} from "../../core/services/validation/validationSchema/Auth";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { setItem } from "../../core/services/storage/storage.services";
+import { CustomSpinner } from "../animation/CustomSpinner";
 
 const LoginCodeVerification = ({ isOpen, toggleModal }) => {
   const navigate = useNavigate();
   const authState = useSelector((state) => state.auth);
 
-  const { mutate: LoginCode, isError, data } = useLoginWithTwoStep();
+  const { mutate: LoginCode, isError, data, isPending } = useLoginWithTwoStep();
   const formik = useFormik({
     initialValues: {
       // phoneNumber: phoneNumber,
@@ -105,13 +109,23 @@ const LoginCodeVerification = ({ isOpen, toggleModal }) => {
               کد به شماره {authState.phoneOrGmail}+ ارسال شد،
             </div>
             <form onSubmit={formik.handleSubmit}>
-              <div className="flex relative mt-[24px] mx-auto w-[356px] justify-between">
+              <div className="flex relative mt-[24px] mx-auto w-[356px] justify-between flex-row-reverse">
                 <input
                   name="verifyCode1"
                   type="text"
                   maxLength="1"
                   className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
                   {...formik.getFieldProps("verifyCode1")}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    formik.handleChange(e);
+                    if (value.length === e.target.maxLength) {
+                      const nextInput = e.target.nextElementSibling;
+                      if (nextInput && nextInput.tagName === "INPUT") {
+                        nextInput.focus();
+                      }
+                    }
+                  }}
                 />
                 {formik.errors.verifyCode1 && (
                   <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
@@ -125,6 +139,16 @@ const LoginCodeVerification = ({ isOpen, toggleModal }) => {
                   maxLength="1"
                   className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
                   {...formik.getFieldProps("verifyCode2")}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    formik.handleChange(e);
+                    if (value.length === e.target.maxLength) {
+                      const nextInput = e.target.nextElementSibling;
+                      if (nextInput && nextInput.tagName === "INPUT") {
+                        nextInput.focus();
+                      }
+                    }
+                  }}
                 />
                 {formik.errors.verifyCode1 && (
                   <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
@@ -138,6 +162,16 @@ const LoginCodeVerification = ({ isOpen, toggleModal }) => {
                   maxLength="1"
                   className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
                   {...formik.getFieldProps("verifyCode3")}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    formik.handleChange(e);
+                    if (value.length === e.target.maxLength) {
+                      const nextInput = e.target.nextElementSibling;
+                      if (nextInput && nextInput.tagName === "INPUT") {
+                        nextInput.focus();
+                      }
+                    }
+                  }}
                 />
                 {formik.errors.verifyCode1 && (
                   <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
@@ -151,6 +185,16 @@ const LoginCodeVerification = ({ isOpen, toggleModal }) => {
                   maxLength="1"
                   className="w-[62px] h-[62px] text-center border border-gray-300 rounded-3xl   block"
                   {...formik.getFieldProps("verifyCode4")}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    formik.handleChange(e);
+                    if (value.length === e.target.maxLength) {
+                      const nextInput = e.target.nextElementSibling;
+                      if (nextInput && nextInput.tagName === "INPUT") {
+                        nextInput.focus();
+                      }
+                    }
+                  }}
                 />
                 {formik.errors.verifyCode1 && (
                   <div className="dark:text-red-800 text-red-600 absolute top-[70px] right-[120px]">
@@ -173,18 +217,31 @@ const LoginCodeVerification = ({ isOpen, toggleModal }) => {
               </div>
 
               <div className="flex justify-center mt-[48px]">
-                <button
-                  onClick={() => {
-                    // toggleModal();
-                    // OpenRegisterFinish();
-                  }}
-                  type="submit"
-                  className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-                >
-                  ارسال کد{" "}
-                </button>
+                {isPending ? (
+                  <button
+                    onClick={() => {
+                      // toggleModal();
+                      // OpenRegisterFinish();
+                    }}
+                    type="submit"
+                    className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                  >
+                    <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      // toggleModal();
+                      // OpenRegisterFinish();
+                    }}
+                    type="submit"
+                    className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                  >
+                    ارسال کد{" "}
+                  </button>
+                )}
               </div>
-              <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
+              {/* <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
                 <p className="text-[#455A64] dark:text-gray-200">
                   کد ارسال نشد؟{" "}
                 </p>
@@ -195,7 +252,7 @@ const LoginCodeVerification = ({ isOpen, toggleModal }) => {
                 >
                   ارسال دوباره
                 </NavLink>
-              </div>
+              </div> */}
             </form>
           </div>
         </>

@@ -131,7 +131,7 @@ const CoursesPage = () => {
           />
           <div className="xl:w-[952px] lg:w-[722px] md:w-full md:mr-0 lg:mr-3 sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-12 sm:gap-x-[18px] gap-x-[5%]  gap-y-8 sm:mr-3  w-full lg:justify-start md:justify-center sm:justify-start justify-center ">
             {!currentItems ? (
-              <CustomSpinner style={loaderStyle} />
+              <CustomSpinner style={loaderStyle}  color={"#2196F3"}/>
             ) : currentItems.length === 0 ? (
               <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
                 داده‌ای یافت نشد

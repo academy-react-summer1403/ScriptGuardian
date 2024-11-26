@@ -7,9 +7,20 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { validationRegisterCode } from "../../core/services/validation/validationSchema/Auth";
 import { toast } from "react-toastify";
+import { CustomSpinner } from "../animation/CustomSpinner";
 
-const ForGetPass = ({ toggleForGetPassModal, setIsForgetPass, menuRef }) => {
-  const { mutate: ForGetPass, isError, data } = useForgetPassStepOne();
+const ForGetPass = ({
+  toggleForGetPassModal,
+  setIsForgetPass,
+  menuRef,
+  openLogin,
+}) => {
+  const {
+    mutate: ForGetPass,
+    isError,
+    data,
+    isPending,
+  } = useForgetPassStepOne();
   //   console.log("thisloction", window.location.href);
   const formik = useFormik({
     initialValues: {
@@ -93,16 +104,46 @@ const ForGetPass = ({ toggleForGetPassModal, setIsForgetPass, menuRef }) => {
         )}
 
         <div className="flex justify-center mt-[48px]">
-          <button
+          {isPending ? (
+            <button
+              onClick={() => {
+                // toggleModal();
+                // openVerification();
+              }}
+              type="submit"
+              className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+            >
+              <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                // toggleModal();
+                // openVerification();
+              }}
+              type="submit"
+              className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+            >
+              دریافت پیام ویرایش رمز{" "}
+            </button>
+          )}
+        </div>
+
+        <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
+          <p className="text-[#455A64] dark:text-gray-200">
+            حساب کاربری دارید؟{" "}
+          </p>
+          <p
             onClick={() => {
-              // toggleModal();
-              // openVerification();
+              toggleForGetPassModal();
+              openLogin();
             }}
-            type="submit"
-            className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+            className={
+              "underline text-[#2196F3] dark:text-[#1565C0] cursor-pointer mr-[3px]"
+            }
           >
-            دریافت پیام ویرایش رمز{" "}
-          </button>
+            وارد شوید
+          </p>
         </div>
 
         {/* <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">

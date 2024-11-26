@@ -14,6 +14,7 @@ import {
   setPhoneOrGmail,
   setRememberMe,
 } from "../../redux/slice/authSlice";
+import { CustomSpinner } from "../animation/CustomSpinner";
 
 const LoginModal = ({
   toggleModal,
@@ -25,7 +26,7 @@ const LoginModal = ({
 }) => {
   const navigate = useNavigate();
 
-  const { mutate: login, isError, data } = useLogin();
+  const { mutate: login, isError, data, isPending } = useLogin();
   console.log("this use login Data", data);
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -36,8 +37,12 @@ const LoginModal = ({
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      dispatch(setPassword(values.password));
+      dispatch(setRememberMe(values.rememberMe));
       login(values, {
         onSuccess: (data) => {
+          dispatch(setPhoneOrGmail(data?.phoneNumber));
+
           if (data.success) {
             if (data.token != null) {
               toast.success("ورود با موفقیت انجام شد");
@@ -56,14 +61,11 @@ const LoginModal = ({
             toast.error("ورود ناموفق بود");
           }
         },
+
         // onError: (error) => {
 
         // },
       });
-
-      dispatch(setPhoneOrGmail(values.phoneOrGmail));
-      dispatch(setPassword(values.password));
-      dispatch(setRememberMe(values.rememberMe));
     },
   });
 
@@ -174,16 +176,29 @@ const LoginModal = ({
               </div>
 
               <div className="flex justify-center mt-[48px]">
-                <button
-                  onClick={() => {
-                    // toggleModal();
-                    // openVerification();
-                  }}
-                  type="submit"
-                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-                >
-                  ورود به حساب{" "}
-                </button>
+                {isPending ? (
+                  <button
+                    onClick={() => {
+                      // toggleModal();
+                      // openVerification();
+                    }}
+                    // type="submit"
+                    className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                  >
+                    <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      // toggleModal();
+                      // openVerification();
+                    }}
+                    type="submit"
+                    className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                  >
+                    ورود به حساب{" "}
+                  </button>
+                )}
               </div>
               <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
                 <p className="text-[#455A64] dark:text-gray-200">

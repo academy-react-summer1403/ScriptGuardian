@@ -6,6 +6,7 @@ import { useRegisterCode } from "../../core/services/api/Auth/Register/Register"
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setPhoneNumber } from "../../redux/slice/phoneNumberSlice";
+import { CustomSpinner } from "../animation/CustomSpinner";
 
 const RegisterModal = ({
   isOpen,
@@ -14,19 +15,11 @@ const RegisterModal = ({
   openLogin,
   menuRef,
 }) => {
-  // if (isOpen === true) {
-  //   console.log("true Register Modal");
-  //   history.pushState(null, "", "/Register");
-  // } else {
-  //   console.log("false Register Modal");
-  //   history.pushState(null, "", "/");
-  // }
-
   //HandelFormik
 
   const dispatch = useDispatch();
 
-  const { mutate: RegisterCode, isError, data } = useRegisterCode();
+  const { mutate: RegisterCode, isError, data, isPending } = useRegisterCode();
   console.log("this use RegisterCode Data", data);
   const formik = useFormik({
     initialValues: {
@@ -118,16 +111,29 @@ const RegisterModal = ({
             )}
 
             <div className="flex justify-center mt-[48px]">
-              <button
-                onClick={() => {
-                  // toggleModal();
-                  // openVerification();
-                }}
-                type="submit"
-                className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-              >
-                دریافت کد تایید
-              </button>
+              {isPending ? (
+                <button
+                  onClick={() => {
+                    // toggleModal();
+                    // openVerification();
+                  }}
+                  type="submit"
+                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    // toggleModal();
+                    // openVerification();
+                  }}
+                  type="submit"
+                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  دریافت کد تایید
+                </button>
+              )}
             </div>
 
             <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">

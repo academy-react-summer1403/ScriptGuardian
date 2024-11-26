@@ -187,6 +187,7 @@ const LoginButton = () => {
           <RegisterFinish
             isOpen={isRegisterFinishOpen}
             toggleModal={toggleRegisterFinishModal}
+            openLogin={toggleLoginModal}
           />
 
           {isForgetPassOpen && (
@@ -195,6 +196,7 @@ const LoginButton = () => {
                 toggleForGetPassModal={toggleForGetPassModal}
                 setIsForgetPass={setIsForgetPass}
                 menuRef={menuRef}
+                openLogin={toggleLoginModal}
               />
             </>
           )}
