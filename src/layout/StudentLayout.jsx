@@ -86,46 +86,94 @@ const StudentLayout = () => {
           </div>
 
           <div className="flex flex-col border-t-[1px] mt-1 w-[90%] mx-auto ">
-            <div className="flex items-center gap-x-2 text-white mt-3 py-2  w-full">
+            <NavLink
+              to="/panel"
+              end
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <MdDashboard className="text-xl" />
-              <NavLink to="/panel">داشبورد</NavLink>
-            </div>
+              داشبورد
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+              to="/panel/MyProfile"
+            >
               <FaUserCircle className="text-xl" />
-              <NavLink to="/panel/MyProfile"> ویرایش پروفایل</NavLink>
-            </div>
+              ویرایش پروفایل
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyCourses"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaBookOpen className="text-xl" />
-              <NavLink to="/panel/MyCourses">دوره های من</NavLink>
-            </div>
+              دوره های من
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyReservedCourses"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaCalendarAlt className="text-xl" />
-              <NavLink to="/panel/MyReservedCourses">
-                دوره های رزرو شده{" "}
-              </NavLink>
-            </div>
+              دوره های رزرو شده{" "}
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyFavoriteCourses"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaHeart className="text-xl" />
-              <NavLink to="/panel/MyFavoriteCourses">مورد علاقه </NavLink>
-            </div>
+              مورد علاقه
+            </NavLink>
 
             {/* <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <FaRegNewspaper className="text-xl" />
               <NavLink to="/panel/MyFavoriteNews">خبر های مورد علاقه </NavLink>
             </div> */}
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyCommentPage"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaCommentAlt className="text-xl" />
-              <NavLink to="/panel/MyCommentPage">کامنت های من </NavLink>
-            </div>
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+              کامنت های من
+            </NavLink>
+            <NavLink
+              to="/panel/ChangePassword"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaLock className="text-xl" />
-              <NavLink to="/panel/ChangePassword">تغییر رمز عبور</NavLink>
-            </div>
+              تغییر رمز عبور
+            </NavLink>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <div className="relative">
@@ -168,7 +216,7 @@ const StudentLayout = () => {
           </div>
         </div>
 
-        <div className="w-full bg-gray-200 dark:bg-gray-900    md:rounded-xl">
+        <div className="w-full  bg-gray-200 dark:bg-gray-900     md:rounded-xl">
           <Outlet />
         </div>
       </div>

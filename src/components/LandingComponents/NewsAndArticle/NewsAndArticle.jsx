@@ -34,6 +34,7 @@ const NewsAndArticle = () => {
               currentView={data[0]?.currentView}
               id={data[0]?.id}
               currentRate={data[0]?.currentRate}
+              updateDate={data[0]?.updateDate}
             />
           )}
           <div className="flex flex-col sm:mr-[40px] gap-y-[40px] xl:items-start items-center xl:mt-0 mt-10    w-full">

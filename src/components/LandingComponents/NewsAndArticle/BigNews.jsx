@@ -2,6 +2,7 @@ import React from "react";
 import { BigImgNews } from "./BigImgNews";
 import { useNavigate } from "react-router-dom";
 import image from "../../../images/NewsDetails/default_image.png";
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 
 const BigNews = ({
   title,
@@ -10,6 +11,7 @@ const BigNews = ({
   currentView,
   id,
   currentRate,
+  updateDate,
 }) => {
   const navigate = useNavigate();
   const goDetails = () => {
@@ -27,7 +29,7 @@ const BigNews = ({
 
   return (
     <div
-      className="xl:w-[616px]   xl:flex hidden flex-col xl:mx-auto  md:w-full items-center xl:items-start w-[90%]"
+      className="xl:w-[616px]   xl:flex hidden flex-col xl:mx-auto  md:w-full items-center xl:items-start w-[90%] "
       onClick={goDetails}
     >
       <BigImgNews
@@ -130,7 +132,7 @@ const BigNews = ({
                 />
               </svg>
             </span>
-            1402/7/2
+            <strong>{updateDate && convertIsoToJalali(updateDate)}</strong>{" "}
           </div>
         </div>
         <div className="flex flex-row-reverse">
