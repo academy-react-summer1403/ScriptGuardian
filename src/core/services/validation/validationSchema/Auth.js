@@ -45,6 +45,24 @@ export const validationRegisterVerification = Yup.object().shape({
     .required("این فیلد اجباری است"),
 });
 
+export const validationRegisterVerificationLoginStepTwo = Yup.object().shape({
+  verifyCode1: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode2: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode3: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode4: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode5: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+});
+
 //Register Finish
 
 export const validationRegisterFinish = Yup.object().shape({

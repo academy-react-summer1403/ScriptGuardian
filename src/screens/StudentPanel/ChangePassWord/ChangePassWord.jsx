@@ -26,34 +26,9 @@ import { validationEditPass } from "../../../core/services/validation/validation
 import { toast } from "react-toastify";
 import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
 import { StudentHamburger } from "../../../components/HamberGerStudentPanel/Studenthamburger";
+import { ChangePassComp } from "../../../components/panel/SecComp/ChangePassComp";
+import Security from "../../../components/panel/SecComp/Security";
 const ChangePassWord = () => {
-  //API
-
-  const { mutate: ChangePassword } = usePanelChangePassword();
-
-  const formik = useFormik({
-    initialValues: {
-      oldPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-    },
-    validationSchema: validationEditPass,
-
-    onSubmit(values) {
-      const { confirmPassword, ...dataToSend } = values;
-      ChangePassword(dataToSend, {
-        onSuccess: (data) => {
-          if (data.success == true) {
-            toast.success("رمز شما با موفقیت تغییر کرد");
-            formik.resetForm();
-          } else {
-            toast.error("خطا در تغییر رمز");
-          }
-        },
-      });
-    },
-  });
-
   //handel menu
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,6 +54,12 @@ const ChangePassWord = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const [openTab, setOpenTab] = useState(1);
+
+  const activeClasses =
+    "border dark:border-white border-gray-950 rounded-t text-blue-700";
+  const inactiveClasses = "text-blue-500 hover:text-blue-700";
+
   return (
     <>
       {/* hamburger */}
@@ -97,69 +78,47 @@ const ChangePassWord = () => {
         />
 
         {/* Unic */}
-
-        <div className="flex flex-col  mt-20  sm:w-[43%] w-[50%]  ">
-          <form className="" onSubmit={formik.handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-200">
-                رمز عبور فعلی
-              </label>
-              <input
-                type="password"
-                className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full"
-                placeholder="رمز عبور فعلی"
-                name="oldPassword"
-                id="oldPassword"
-                {...formik.getFieldProps("oldPassword")}
-              />
-              {formik.touched.oldPassword && formik.errors.oldPassword ? (
-                <div className="text-red-500">{formik.errors.oldPassword}</div>
-              ) : null}
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-200">
-                رمز عبور جدید
-              </label>
-              <input
-                type="password"
-                className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full "
-                placeholder="رمز عبور جدید"
-                name="newPassword"
-                id="newPassword"
-                {...formik.getFieldProps("newPassword")}
-              />
-              {formik.touched.newPassword && formik.errors.newPassword ? (
-                <div className="text-red-500">{formik.errors.newPassword}</div>
-              ) : null}
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-200">
-                تکرار رمز عبور جدید
-              </label>
-              <input
-                type="password"
-                className="mt-1 p-2 border  border-gray-300 dark:border-gray-950 dark:bg-gray-800  rounded w-full"
-                placeholder="تکرار رمز عبور جدید"
-                {...formik.getFieldProps("confirmPassword")}
-              />
-              {formik.touched.confirmPassword &&
-              formik.errors.confirmPassword ? (
-                <div className="text-red-500">
-                  {formik.errors.confirmPassword}
-                </div>
-              ) : null}
-            </div>
-
-            <button
-              type="submit"
-              className="lg:w-[33.333%] sm:w-[50%]  bg-blue-500 dark:hover:bg-blue-700 dark:bg-blue-600 text-white p-2 rounded hover:bg-blue-600 transition mx-auto block"
+        <div className=" mt-5 ">
+          <ul className="flex sm:gap-x-5 gap-x-1">
+            <li
+              onClick={() => setOpenTab(1)}
+              className={`-mb-px mr-1 ${openTab === 1 ? "-mb-px" : ""}`}
             >
-              ثبت اطلاعات عبور
-            </button>
-          </form>
+              <p
+                className={`bg-white dark:bg-gray-950 inline-block py-2 sm:px-4 px-1 sm:text-base text-sm  font-semibold ${
+                  openTab === 1 ? activeClasses : inactiveClasses
+                }`}
+              >
+                ویرایش رمز عبور{" "}
+              </p>
+            </li>
+            <li
+              onClick={() => setOpenTab(2)}
+              className={`mr-1 ${openTab === 2 ? "-mb-px" : ""}`}
+            >
+              <p
+                className={`bg-white inline-block  dark:bg-gray-950  py-2 sm:px-4 px-1 sm:text-base text-sm font-semibold ${
+                  openTab === 2 ? activeClasses : inactiveClasses
+                }`}
+              >
+                امنیت{" "}
+              </p>
+            </li>
+          </ul>
+          <div className="w-full"></div>
         </div>
+
+        {openTab === 1 && (
+          <>
+            <ChangePassComp />
+          </>
+        )}
+
+        {openTab === 2 && (
+          <>
+            <Security />{" "}
+          </>
+        )}
       </div>
     </>
   );

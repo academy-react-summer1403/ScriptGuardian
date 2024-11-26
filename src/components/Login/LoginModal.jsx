@@ -8,6 +8,13 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { setItem } from "../../core/services/storage/storage.services";
 import { validationSchema } from "../../core/services/validation/validationSchema/Auth";
+import { useDispatch } from "react-redux";
+import {
+  setPassword,
+  setPhoneOrGmail,
+  setRememberMe,
+} from "../../redux/slice/authSlice";
+
 const LoginModal = ({
   toggleModal,
   isOpen,
@@ -20,7 +27,7 @@ const LoginModal = ({
 
   const { mutate: login, isError, data } = useLogin();
   console.log("this use login Data", data);
-
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       phoneOrGmail: "",
@@ -32,13 +39,19 @@ const LoginModal = ({
       login(values, {
         onSuccess: (data) => {
           if (data.success) {
-            toast.success("ورود با موفقیت انجام شد");
-            setItem("token", data.token);
-            setItem("id", data.id);
-            setItem("roles", data.roles);
-            console.log(data.roles, "data roles");
-            toggleModal();
-            navigate("./panel");
+            if (data.token != null) {
+              toast.success("ورود با موفقیت انجام شد");
+              setItem("token", data.token);
+              setItem("id", data.id);
+              setItem("roles", data.roles);
+              console.log(data.roles, "data roles");
+              toggleModal();
+              navigate("./panel");
+            } else {
+              toggleModal();
+              openVerification();
+              toast.success("کد تایید را وارد کنید");
+            }
           } else {
             toast.error("ورود ناموفق بود");
           }
@@ -47,6 +60,10 @@ const LoginModal = ({
 
         // },
       });
+
+      dispatch(setPhoneOrGmail(values.phoneOrGmail));
+      dispatch(setPassword(values.password));
+      dispatch(setRememberMe(values.rememberMe));
     },
   });
 

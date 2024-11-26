@@ -178,7 +178,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
               }
             >
               <FaLock className="text-xl" />
-              تغییر رمز عبور
+              امنیت{" "}
             </NavLink>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-1  w-full">

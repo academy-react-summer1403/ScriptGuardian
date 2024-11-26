@@ -4,6 +4,7 @@ export const LandingReport = "/Home/LandingReport";
 export const ApiRoutes = {
   //Auth
   LOGIN_URL: "/sign/login",
+  LOGIN_STEP_URL: "/Sign/LoginTwoStep?",
   REGISTER_CODE_URL: "/Sign/SendVerifyMessage",
   REGISTER_CODE_VERIFICATION_URL: "/Sign/VerifyMessage",
   REGISTER_CODE_FINISH: "/Sign/Register",
@@ -79,4 +80,6 @@ export const ApiRoutes = {
 
   //Student Panel Change pass
   PANEL_CHANGE_PASSWORD_URL: "/SharePanel/ChangePassword",
+  PANEL_GET_SECURITY_URL: "/SharePanel/GetSecurityInfo",
+  PANEL_UPDATE_SECURITY_URL: "/SharePanel/EditSecurity",
 };

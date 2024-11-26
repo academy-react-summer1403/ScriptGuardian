@@ -123,7 +123,6 @@ export const useForgetPassStepTwoGet = (id) => {
 const ForgetPassStepThird = async (user) => {
   console.log("this is user  unicccccccccccccccccc", user);
 
-
   try {
     const response = await http.post(
       ApiRoutes.REGISTER_CODE_FORGET_PASS_STEP_THIRD,
@@ -147,6 +146,33 @@ export const useForgetPassStepThird = () => {
     mutationFn: (data) => {
       console.log("this is user ForgetPassStepThird data =", data);
       return ForgetPassStepThird(data);
+    },
+  });
+};
+
+// handel Login 2 marhaleyi
+
+const LoginWithTwoStep = async ({ FinalValues, body }) => {
+  try {
+    const response = await http.post(
+      `${ApiRoutes.LOGIN_STEP_URL}VrifyCode=${FinalValues.verifyCode}`,
+      body
+    );
+    return response;
+  } catch (error) {
+    console.log("This error For   ForgetPassStepTwoGet ", error);
+    return false;
+  }
+};
+export const useLoginWithTwoStep = () => {
+  return useMutation({
+    mutationKey: ["LoginWithTwoStep"],
+    mutationFn: ({ FinalValues, body }) => {
+      console.log("this is user LoginWithTwoStep data =", {
+        FinalValues,
+        body,
+      });
+      return LoginWithTwoStep({ FinalValues, body });
     },
   });
 };
