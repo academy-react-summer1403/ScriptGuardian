@@ -35,14 +35,17 @@ const ChangePassWord = () => {
     initialValues: {
       oldPassword: "",
       newPassword: "",
+      confirmPassword: "",
     },
     validationSchema: validationEditPass,
 
     onSubmit(values) {
-      ChangePassword(values, {
+      const { confirmPassword, ...dataToSend } = values;
+      ChangePassword(dataToSend, {
         onSuccess: (data) => {
           if (data.success == true) {
             toast.success("رمز شما با موفقیت تغییر کرد");
+            formik.resetForm();
           } else {
             toast.error("خطا در تغییر رمز");
           }
