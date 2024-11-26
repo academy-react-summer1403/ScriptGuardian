@@ -1,10 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Element } from "react-scroll";
 
 const Footer = () => {
   return (
     <footer className=" h-[553px] bg-[#252641] dark:bg-[#1C1D33] mt-[100px] xl:w-full max-w-[1360px]  mx-auto">
-      <div className="container flex flex-col  items-center mx-auto">
+      <Element
+        id="footer"
+        className="container flex flex-col  items-center mx-auto"
+      >
         <div className=" h-[30.68px] flex mt-[56px] gap-[8px] items-center">
           <span>
             <svg
@@ -253,7 +257,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Element>
     </footer>
   );
 };

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useLandingTeachers } from "../../../core/services/api/Landing/LandingTeachers";
+import { Element } from "react-scroll";
 const TeacherSlider = () => {
   //API
   const { data, isPending } = useLandingTeachers();
@@ -63,7 +64,11 @@ const TeacherSlider = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center z-[10] lg dark:">
+    {/* Div */}
+      <Element
+        className="flex flex-col items-center z-[10] lg dark:"
+        id="slider"
+      >
         <div className=" mt-[64px] flex justify-center">
           <h2 className="font-[900] text-[40px] text-[#263238] dark:text-gray-400  mb-10">
             اساتید ما{" "}
@@ -102,7 +107,7 @@ const TeacherSlider = () => {
               );
             })}
         </Slider>
-      </div>
+      </Element>
     </>
   );
 };
