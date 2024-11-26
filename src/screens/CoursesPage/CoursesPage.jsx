@@ -13,6 +13,9 @@ const CoursesPage = () => {
   //API
 
   const [searchQuery, setSearchQuery] = useState(undefined);
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(undefined);
+
+  //
   const [costDown, setCostDown] = useState(undefined);
   const [costUp, setCostUp] = useState(undefined);
   const [listTech, setListTech] = useState([]);
@@ -27,7 +30,7 @@ const CoursesPage = () => {
   console.log(listTech, "this list teach");
 
   const { data: DatacourseFilterDtos } = useCourses({
-    SearchQuery: searchQuery,
+    SearchQuery: debouncedSearchQuery,
     CostDown: costDown,
     CostUp: costUp,
     RowsOfPage: itemsPerPage,
@@ -36,10 +39,19 @@ const CoursesPage = () => {
     TeacherId: currentTeacher,
     SortingCol: sortingCol,
   });
+
   const data = DatacourseFilterDtos?.courseFilterDtos;
   const Total = DatacourseFilterDtos?.totalCount;
   console.log(data, "CoursesPage");
 
+  //Search
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
     setCurrentPage(0);

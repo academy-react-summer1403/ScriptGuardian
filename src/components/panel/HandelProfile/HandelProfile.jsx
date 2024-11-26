@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "../../../images/StudentPanel/NavStudent/images.png";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -39,15 +39,33 @@ const HandelProfile = ({ data }) => {
   //handel Gallery
 
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+  const menuRef = useRef(null);
 
-  // تابع برای باز کردن مدال گالری
   const HandelGalleryModal = () => {
     setIsGalleryModalOpen(!isGalleryModalOpen);
   };
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsGalleryModalOpen(false);
+      }
+    };
+
+    if (isGalleryModalOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isGalleryModalOpen]);
+
   return (
     <>
-      <div className="mt-10 flex flex-col sm:items-start item-center justify-center  ">
+      <div className="mt-10 flex flex-col sm:items-start item-center justify-center ">
         <div className="w-[200px] h-[200px]">
           {" "}
           <img
@@ -113,6 +131,7 @@ const HandelProfile = ({ data }) => {
           gallery={data}
           HandelGalleryModal={HandelGalleryModal}
           setIsGalleryModalOpen={setIsGalleryModalOpen}
+          menuRef={menuRef}
         />
       )}
     </>

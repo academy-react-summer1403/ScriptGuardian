@@ -20,7 +20,7 @@ const Filters = ({
 }) => {
   return (
     <>
-      <div className="lg:flex min-h-[779px] xl:w-[296px] lg:w-[249px] md:w-[209px]  border rounded-[24px] bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center xl:mr-0 mr-4  hidden ">
+      <div className="lg:flex min-h-[779px] xl:w-[296px] lg:w-[249px] md:w-[209px]  border rounded-2xl  bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center xl:mr-0 mr-4  hidden  ">
         {/* 1Com */}
         <div className="xl:w-[272px] w-10/12 h-[48px] bg-[#ECEFF1] dark:bg-[#1C1C1C] rounded-[16px] mt-[12px] flex justify-between items-center">
           <div className="flex items-center mr-[16px] gap-[6px]">

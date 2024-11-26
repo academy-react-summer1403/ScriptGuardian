@@ -13,6 +13,8 @@ import { CustomSpinner } from "../../components/animation/CustomSpinner";
 const NewsPage = () => {
   //handel search
   const [searchQuery, setSearchQuery] = useState(undefined);
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(undefined);
+
   const [sortingCol, setSortingCol] = useState(undefined);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -21,17 +23,24 @@ const NewsPage = () => {
   const [current, setCurrentPage] = useState(0);
 
   const { data: News } = usePageNews({
-    SearchQuery: searchQuery,
+    SearchQuery: debouncedSearchQuery,
     RowsOfPage: itemsPerPage,
     PageNumber: current + 1,
     SortingCol: sortingCol,
   });
   const data = News?.news;
   const Total = News?.totalCount;
-  //handel Search
 
+  //Search
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
   const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+    setSearchQuery(event.target.value);
     setCurrentPage(0);
   };
 

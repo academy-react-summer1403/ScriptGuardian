@@ -8,7 +8,12 @@ import {
 } from "../../../../core/services/api/Panel/handelUserProfile";
 import { toast } from "react-toastify";
 
-const Gallery = ({ gallery, HandelGalleryModal, setIsGalleryModalOpen }) => {
+const Gallery = ({
+  gallery,
+  HandelGalleryModal,
+  setIsGalleryModalOpen,
+  menuRef,
+}) => {
   const queryClient = useQueryClient();
 
   // State برای ذخیره آیدی تصویر انتخاب شده
@@ -40,7 +45,7 @@ const Gallery = ({ gallery, HandelGalleryModal, setIsGalleryModalOpen }) => {
       onSuccess: (data) => {
         if (data.success == true) {
           toast.success("با موفقیت انتخاب شد");
-          setIsGalleryModalOpen(false)
+          setIsGalleryModalOpen(false);
           setTakeId(null);
           setSelectedImage(null);
           queryClient.invalidateQueries("GetStudentProfile");
@@ -72,7 +77,10 @@ const Gallery = ({ gallery, HandelGalleryModal, setIsGalleryModalOpen }) => {
   return (
     <>
       <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center mb-5">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] sm:w-[60%] max-h-[80%] overflow-auto">
+        <div
+          ref={menuRef}
+          className="bg-white p-6 rounded-lg shadow-lg w-[90%] sm:w-[60%] max-h-[80%] overflow-auto"
+        >
           <div className="flex justify-between items-center">
             <h3 className="text-[#455A64] dark:text-gray-400 text-xl">گالری</h3>
             <button

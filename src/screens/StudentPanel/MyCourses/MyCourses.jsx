@@ -56,7 +56,10 @@ const MyCourses = () => {
   };
 
   const [currentPage, setCurrentPage] = useState(0);
+
   const [searchQuery, setSearchQuery] = useState(undefined);
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(undefined);
+
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -65,7 +68,7 @@ const MyCourses = () => {
   const { data: Data, isPending } = useMyCourses({
     PageNumber: currentPage + 1,
     RowsOfPage: pageSize,
-    SearchQuery: searchQuery,
+    SearchQuery: debouncedSearchQuery,
   });
 
   const data = Data && Data.listOfMyCourses;
@@ -84,6 +87,13 @@ const MyCourses = () => {
   };
 
   //Search
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
