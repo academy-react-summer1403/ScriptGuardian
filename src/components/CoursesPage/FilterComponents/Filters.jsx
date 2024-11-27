@@ -17,6 +17,8 @@ const Filters = ({
   listTech,
   setCurrentTeacher,
   menuRef,
+  setListCourseType,
+  setCourseLevelId,
 }) => {
   return (
     <>
@@ -110,11 +112,11 @@ const Filters = ({
           />
           {/* Accordion3 */}
 
-          {/* <FilterTopics /> */}
+          <FilterTopics setListCourseType={setListCourseType} />
 
           {/* Accordion4 */}
 
-          {/* <TimeRangeFilter /> */}
+          <TimeRangeFilter setCourseLevelId={setCourseLevelId} />
           {/* Accordion5 */}
           <TeacherFilter setCurrentTeacher={setCurrentTeacher} />
         </div>
@@ -219,11 +221,11 @@ const Filters = ({
             />
             {/* Accordion3 */}
 
-            {/* <FilterTopics /> */}
+            <FilterTopics setListCourseType={setListCourseType} />
 
             {/* Accordion4 */}
 
-            {/* <TimeRangeFilter /> */}
+            <TimeRangeFilter setCourseLevelId={setCourseLevelId} />
             {/* Accordion5 */}
             <TeacherFilter setCurrentTeacher={setCurrentTeacher} />
           </div>

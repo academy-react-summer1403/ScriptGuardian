@@ -16,11 +16,26 @@ const CoursesPage = () => {
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(undefined);
 
   //
+  const [rest, setRest] = useState(false);
   const [costDown, setCostDown] = useState(undefined);
   const [costUp, setCostUp] = useState(undefined);
   const [listTech, setListTech] = useState([]);
+  const [listCourseType, setListCourseType] = useState(undefined);
   const [currentTeacher, setCurrentTeacher] = useState([]);
   const [sortingCol, setSortingCol] = useState(undefined);
+  const [CourseLevelId, setCourseLevelId] = useState(undefined);
+
+  const resetFilters = () => {
+    setCostDown(undefined);
+    setCostUp(undefined);
+    setListTech([]);
+    setListCourseType(undefined);
+    setCurrentTeacher([]);
+    setSortingCol(undefined);
+    setCourseLevelId(undefined);
+    //
+    setRest(true)
+  };
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -38,6 +53,8 @@ const CoursesPage = () => {
     ListTech: listTech,
     TeacherId: currentTeacher,
     SortingCol: sortingCol,
+    CourseTypeId: listCourseType,
+    courseLevelId: CourseLevelId,
   });
 
   const data = DatacourseFilterDtos?.courseFilterDtos;
@@ -119,7 +136,12 @@ const CoursesPage = () => {
           setListTech={setListTech}
           listTech={listTech}
           setCurrentTeacher={setCurrentTeacher}
+          setListCourseType={setListCourseType}
+          setCourseLevelId={setCourseLevelId}
           menuRef={menuRef}
+          resetFilters={resetFilters}
+          setRest={setRest}
+          rest={rest}
         />
         <div className="flex flex-col sm:items-start items-center sm:w-auto w-full sm:justify-start justify-center  ">
           {/* Top */}
@@ -131,7 +153,7 @@ const CoursesPage = () => {
           />
           <div className="xl:w-[952px] lg:w-[722px] md:w-full md:mr-0 lg:mr-3 sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-12 sm:gap-x-[18px] gap-x-[5%]  gap-y-8 sm:mr-3  w-full lg:justify-start md:justify-center sm:justify-start justify-center ">
             {!currentItems ? (
-              <CustomSpinner style={loaderStyle}  color={"#2196F3"}/>
+              <CustomSpinner style={loaderStyle} color={"#2196F3"} />
             ) : currentItems.length === 0 ? (
               <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
                 داده‌ای یافت نشد

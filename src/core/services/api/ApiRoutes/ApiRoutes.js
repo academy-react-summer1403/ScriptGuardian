@@ -56,6 +56,8 @@ export const ApiRoutes = {
 
   //Filters:Technologies
   GET_LIST_OF_TECHNOLOGIES_URL: "/Home/GetTechnologies",
+  GET_LIST_OF_COURSE_TYPE_URL: "/CourseType/GetCourseTypes",
+  GET_LIST_OF_COURSE_LEVEL_URL: "/CourseLevel/GetAllCourseLevel",
   //StudentPanel DashBoard
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
 
