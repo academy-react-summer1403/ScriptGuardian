@@ -90,7 +90,7 @@ const MyCourses = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebouncedSearchQuery(searchQuery);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
@@ -165,13 +165,14 @@ const MyCourses = () => {
         </div>
 
         <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
-          <div className="flex lg:gap-x-[13.5%] items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
-            <h2 className="mr-5 md:block hidden">تصویر</h2>
-            <h2>نام دوره</h2>
-            <h2>مدرس</h2>
-            <h2 className="sm:block hidden"> آخرین آپدیت</h2>
-            <h2>قیمت</h2>
-            <h2>مدیریت</h2>
+          <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
+            <h2 className="xl:mr-5 md:block hidden">تصویر</h2>
+            <h2 className="xl:mr-[130px]">نام دوره</h2>
+            <h2 className="xl:mr-[130px]">مدرس</h2>
+            <h2 className="xl:mr-[136px] sm:block hidden"> آخرین آپدیت</h2>
+            <h2 className="xl:mr-[75px]">قیمت</h2>
+            <h2 className="xl:mr-[70px]">وضعیت پرداخت</h2>
+            <h2 className="xl:mr-[40px]">مدیریت</h2>
           </div>
 
           {/* <CustomSpinner /> */}
@@ -193,6 +194,7 @@ const MyCourses = () => {
                   cost={item.cost}
                   courseId={item.courseId}
                   lastUpdate={item?.lastUpdate}
+                  paymentStatus={item?.paymentStatus}
                 />
               ))}
             </>

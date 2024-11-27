@@ -82,4 +82,9 @@ export const ApiRoutes = {
   PANEL_CHANGE_PASSWORD_URL: "/SharePanel/ChangePassword",
   PANEL_GET_SECURITY_URL: "/SharePanel/GetSecurityInfo",
   PANEL_UPDATE_SECURITY_URL: "/SharePanel/EditSecurity",
+
+  //Buy Courses
+  PANEL_ADD_COURSE_PAYMENT_STEP_ONE_URL: "/CoursePayment/StudentAddPeyment",
+  PANEL_ADD_COURSE_PAYMENT_STEP_TWO_URL:
+    "/CoursePayment/StudentAddPeymentImage",
 };

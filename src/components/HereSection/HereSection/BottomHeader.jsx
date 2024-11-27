@@ -22,7 +22,7 @@ const BottomHeader = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebouncedSearchQuery(searchQuery);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
