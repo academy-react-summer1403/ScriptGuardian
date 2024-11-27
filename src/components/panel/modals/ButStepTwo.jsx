@@ -28,7 +28,7 @@ const ButStepTwo = ({ menuRef2, Click2, PaymentId, setImageStepTwo }) => {
         onSuccess: (data) => {
           if (data.success === true) {
             toast.success(data.message);
-            queryClient.invalidateQueries("MyCourses");
+            queryClient.invalidateQueries("MyCourses", "MyPaymentCourses");
             setImageStepTwo(false);
           } else {
             toast.error("خطا در بارگزاری");

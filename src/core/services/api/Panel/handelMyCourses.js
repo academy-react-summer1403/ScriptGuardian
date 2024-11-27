@@ -115,3 +115,21 @@ export const useMyFavoriteNews = () => {
     queryFn: MyFavoriteNews,
   });
 };
+
+//handel my Courses payMent List
+
+const MyPaymentCourses = async () => {
+  try {
+    const response = await http.get(`${ApiRoutes.PANEL_MY_PAYMENT_LIST_URL}`);
+    return response;
+  } catch (error) {
+    console.log("This error For MyCourses.js", error);
+    return false;
+  }
+};
+export const useMyPaymentCourses = () => {
+  return useQuery({
+    queryKey: ["MyPaymentCourses"],
+    queryFn: () => MyPaymentCourses(),
+  });
+};

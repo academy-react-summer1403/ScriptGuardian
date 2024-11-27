@@ -1,44 +1,29 @@
 import React, { useEffect, useState } from "react";
 import {
-  FaBars,
-  FaBell,
   FaBookOpen,
-  FaCloudscale,
   FaComment,
-  FaEye,
-  FaHamburger,
   FaHome,
   FaLock,
-  FaMinus,
-  FaMoon,
-  FaShoppingCart,
   FaSignOutAlt,
-  FaSun,
-  FaTrash,
   FaUserCircle,
 } from "react-icons/fa";
-import { FaShop } from "react-icons/fa6";
 import { HiX } from "react-icons/hi";
-import { MdDashboard, MdShoppingCart } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
-import { FiChevronDown, FiSearch } from "react-icons/fi";
-import Test from "../../../images/StudentPanel/MyCourses/images.png";
+import { FiChevronDown } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import {
-  useDeleteMyReservedCourses,
   useMyCourses,
-  useMyReservedCourses,
+  useMyPaymentCourses,
 } from "../../../core/services/api/Panel/handelMyCourses";
 import { ListPanel } from "../../../components/common/ListPanl/ListPanel";
-import { StudentHamburger } from "../../../components/HamberGerStudentPanel/Studenthamburger";
+import { Search } from "../../../components/common/Search/Search";
+import { CustomSpinner } from "../../../components/animation/CustomSpinner";
 import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
-import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import { convertIsoToJalali } from "../../../core/utils/dateUtils";
-const MyReservedCourses = () => {
-  const queryClient = useQueryClient();
-
+import { StudentHamburger } from "../../../components/HamberGerStudentPanel/Studenthamburger";
+import { ListPayment } from "../../../components/common/ListPanl/ListPayment";
+const MyPaymentCourses = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -74,40 +59,33 @@ const MyReservedCourses = () => {
     console.log("Page Size:", event.target.value);
   };
 
-  //API
-  const { data, isPending } = useMyReservedCourses();
-  console.log(data, "this data of course is pending now now");
+  const [currentPage, setCurrentPage] = useState(0);
 
-  // page data
+  const [searchQuery, setSearchQuery] = useState(undefined);
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(undefined);
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
+  //API
+  const { data, isPending } = useMyPaymentCourses();
+
   React.useEffect(() => {
     const endOffset = itemOffset + pageSize;
     setCurrentItems(data && data?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data?.length / pageSize));
+    setPageCount(Math.ceil(data / pageSize));
   }, [itemOffset, pageSize, data]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * pageSize) % data?.length;
+    const newOffset = (event.selected * pageSize) % data && data?.length;
+    setCurrentPage(event.selected);
     setItemOffset(newOffset);
   };
 
-  //API DELETE RESERVE
+  //Style
 
-  const { mutate: DeleteReserve } = useDeleteMyReservedCourses();
-
-  const handelDelete = (id) => {
-    DeleteReserve(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries("MyReservedCourses");
-        toast.success("با موفقیت دوره رزرو شده ی شما حذف شد");
-      },
-    });
-    // alert(id)
-  };
+  const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
 
   return (
     <>
@@ -124,81 +102,61 @@ const MyReservedCourses = () => {
           toggleMenu={toggleMenu}
           toggleDarkMode={toggleDarkMode}
           isDarkMode={isDarkMode}
-          title={"دوره های رزرو شده ی من"}
+          title={"پرداخت های من"}
         />
+        {/* Unic */}
 
-        <div className="flex flex-col w-[95%]   h-[400px] mt-5 overflow-hidden">
-          <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs  justify-between">
-            <h2 className="mr-5">نام دوره</h2>
-            <h2 className="ml-5">تاریخ رزرو</h2>
-            <h2 className="ml-5">وضعیت</h2>
+        <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
+          <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs justify-around ">
+            <h2 className="sm:text-base text-[8px]">تا الان پرداخت شد</h2>
+            <h2 className="lg:block hidden ">تاریخ پرداخت</h2>
+            <h2 className="lg:block hidden">تاریخ شروع</h2>
+            <h2 className="sm:text-base text-[8px]">تصویر آخرین پرداخت</h2>
+            <h2 className="sm:text-base text-[8px]">وضعیت آخرین پرداخت</h2>
+            <h2 className="sm:text-base text-[8px]">مدیریت</h2>
           </div>
 
-          {currentItems &&
+          {/* <CustomSpinner /> */}
+
+          {!currentItems ? (
+            <CustomSpinner style={loaderStyle} />
+          ) : currentItems.length === 0 ? (
+            <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+              داده‌ای یافت نشد
+            </p>
+          ) : (
+            <>
+              {currentItems?.map((item, index) => (
+                <ListPayment
+                  key={index}
+                  paid={item?.paid}
+                  peymentDate={item?.peymentDate}
+                  paymentInvoiceImage={item?.paymentInvoiceImage}
+                  insertDate={item?.insertDate}
+                  groupName={item?.groupName}
+                  PaymentId={item?.paymentId}
+                  accept={item?.accept}
+                  courseId={item?.courseId}
+                />
+              ))}
+            </>
+          )}
+          {/* {currentItems &&
             currentItems?.map((item, index) => {
               return (
                 <>
-                  <div
-                    className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
+                  <ListPanel
                     key={index}
-                  >
-                    <div className="mr-5 min-w-[150px] ">
-                      {item?.courseName}
-                    </div>
-                    <div className="ml-[110px]">
-                      <strong>
-                        {item?.reserverDate &&
-                          convertIsoToJalali(item?.reserverDate)}
-                      </strong>
-                    </div>
-                    {item?.accept ? (
-                      <div className="ml-5 gap-2 flex items-center">
-                        <p
-                          className="text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900 rounded-md sm:text-xs  sm:px-2 "
-                          onClick={() => {
-                            navigate(
-                              `/courses/${
-                                item?.courseId ? item.courseId : "no id"
-                              }`
-                            );
-                          }}
-                        >
-                          تایید شده
-                        </p>
-
-                        <FaEye
-                          className="cursor-pointer"
-                          onClick={() => {
-                            navigate(
-                              `/courses/${
-                                item?.courseId ? item.courseId : "no id"
-                              }`
-                            );
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <div className="ml-5 gap-1 flex">
-                        <FaEye
-                          className="cursor-pointer"
-                          onClick={() => {
-                            navigate(
-                              `/courses/${
-                                item?.courseId ? item.courseId : "no id"
-                              }`
-                            );
-                          }}
-                        />
-                        <FaTrash
-                          className="text-red-600"
-                          onClick={() => handelDelete(item?.reserveId)}
-                        />
-                      </div>
-                    )}
-                  </div>
+                    tumbImageAddress={item.tumbImageAddress}
+                    courseTitle={item.courseTitle}
+                    fullName={item.fullName}
+                    cost={item.cost}
+                    courseId={item.courseId}
+                    lastUpdate={item?.lastUpdate}
+                  />
                 </>
               );
-            })}
+            })} */}
         </div>
 
         <div className="flex justify-center mb-5">
@@ -260,4 +218,4 @@ const MyReservedCourses = () => {
   );
 };
 
-export { MyReservedCourses };
+export { MyPaymentCourses };

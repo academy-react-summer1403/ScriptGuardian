@@ -5,6 +5,7 @@ import {
   FaCalendarAlt,
   FaComment,
   FaCommentAlt,
+  FaDollarSign,
   FaHeart,
   FaHome,
   FaLock,
@@ -121,6 +122,18 @@ const StudentLayout = () => {
             >
               <FaBookOpen className="text-xl" />
               دوره های من
+            </NavLink>
+
+            <NavLink
+              to="/panel/MyCoursesPayment"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
+              <FaDollarSign className="text-xl" />
+              پرداخت های من{" "}
             </NavLink>
 
             <NavLink
