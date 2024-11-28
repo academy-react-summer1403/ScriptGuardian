@@ -11,6 +11,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ListFavoritePanel } from "../../../components/common/ListPanl/ListFavoritePanel";
 import { ListFavoriteNews } from "../../../components/common/ListPanl/ListFavoriteNews";
+import { CustomSpinner } from "../../../components/animation/CustomSpinner";
+
 const FavoriteNews = () => {
   const queryClient = useQueryClient();
 
@@ -60,6 +62,11 @@ const FavoriteNews = () => {
     const newOffset = (event.selected * pageSize) % data?.length;
     setItemOffset(newOffset);
   };
+
+  //style
+
+  const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
+
   return (
     <>
       <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
@@ -88,7 +95,7 @@ const FavoriteNews = () => {
             );
           })} */}
 
-        {currentItems && currentItems.length > 0 ? (
+        {/* {currentItems && currentItems.length > 0 ? (
           currentItems.map((item, index) => (
             <ListFavoriteNews
               key={index}
@@ -104,6 +111,28 @@ const FavoriteNews = () => {
           <p className="mx-auto mt-[130px] dark:text-white">
             خبر مورد علاقه‌ای وجود ندارد
           </p>
+        )} */}
+
+        {!currentItems ? (
+          <CustomSpinner style={loaderStyle} />
+        ) : currentItems.length === 0 ? (
+          <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+            خبر مورد علاقه‌ای وجود ندارد
+          </p>
+        ) : (
+          <>
+            {currentItems.map((item, index) => (
+              <ListFavoriteNews
+                key={index}
+                currentImageAddressTumb={item?.currentImageAddressTumb}
+                title={item?.title}
+                currentView={item?.currentView}
+                currentRate={item?.currentRate}
+                newsId={item?.newsId}
+                favoriteId={item?.favoriteId}
+              />
+            ))}
+          </>
         )}
       </div>
 

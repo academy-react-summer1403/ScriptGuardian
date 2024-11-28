@@ -31,6 +31,7 @@ import {
   useMyCommentInNews,
 } from "../../core/services/api/MyCommentPanel/handelMyComment";
 import { toast } from "react-toastify";
+import { CustomSpinner } from "../../components/animation/CustomSpinner";
 
 const MyNewsComment = () => {
   const queryClient = useQueryClient();
@@ -94,6 +95,9 @@ const MyNewsComment = () => {
   //API DELETE RESERVE
   //TODO : handel More All Of this Pages Comment
 
+  //styles
+  const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
+
   return (
     <>
       <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
@@ -104,7 +108,7 @@ const MyNewsComment = () => {
           <h2 className="ml-5">اقدامات</h2>
         </div>
 
-        {currentItems &&
+        {/* {currentItems &&
           currentItems?.map((item, index) => {
             return (
               <>
@@ -150,7 +154,62 @@ const MyNewsComment = () => {
                 </div>
               </>
             );
-          })}
+          })} */}
+
+        {!currentItems ? (
+          <CustomSpinner style={loaderStyle} />
+        ) : currentItems.length === 0 ? (
+          <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+            کامنتی در خبر وجود نداره{" "}
+          </p>
+        ) : (
+          currentItems?.map((item, index) => {
+            return (
+              <>
+                <div
+                  className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57] w-full rounded-xl mb-2 sm:text-base   text-[10px] justify-between"
+                  key={index}
+                >
+                  <div
+                    className="mr-5 w-[150px] sm:text-base text-xs "
+                    title={item?.title}
+                  >
+                    {item?.title?.length > 15
+                      ? item.title.slice(0, 15) + "..."
+                      : item.title}
+                  </div>
+                  <div
+                    className=" w-[150px] sm:block hidden "
+                    title={item?.describe}
+                  >
+                    {item?.describe?.length > 20
+                      ? item.describe.slice(0, 20) + "..."
+                      : item.describe}
+                  </div>
+
+                  <div className=" w-[150px] sm:mr-0  ">
+                    {item?.accept ? (
+                      <span className="text-green-500">پذیرفته شده</span>
+                    ) : (
+                      <span className="text-red-500">پذیرفته نشده</span>
+                    )}
+                  </div>
+
+                  <div className="ml-5 gap-1 flex items-center">
+                    <FaEye
+                      className="cursor-pointer ml-2 sm:text-lg text-md"
+                      onClick={() => {
+                        navigate(
+                          `/News/${item?.newsId ? item.newsId : "no id"}`
+                        );
+                      }}
+                    />
+                  </div>
+                </div>
+              </>
+            );
+          })
+        )}
       </div>
 
       <div className="flex justify-center mb-5">

@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import { useMyFavoriteCourses } from "../../../core/services/api/Panel/handelMyCourses";
 import { useQueryClient } from "@tanstack/react-query";
 import { ListFavoritePanel } from "../../../components/common/ListPanl/ListFavoritePanel";
+import { CustomSpinner } from "../../../components/animation/CustomSpinner";
 
 const FavoriteCourse = () => {
   const queryClient = useQueryClient();
@@ -33,6 +34,10 @@ const FavoriteCourse = () => {
     setItemOffset(newOffset);
   };
 
+  //style
+
+  const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
+
   return (
     <>
       <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
@@ -44,7 +49,7 @@ const FavoriteCourse = () => {
           <h2>سطح</h2>
           <h2>مدیریت</h2>
         </div>
-
+{/* 
         {currentItems &&
           currentItems?.map((item, index) => {
             return (
@@ -61,7 +66,35 @@ const FavoriteCourse = () => {
                 />
               </>
             );
-          })}
+          })} */}
+
+        {!currentItems ? (
+          <CustomSpinner style={loaderStyle} />
+        ) : currentItems.length === 0 ? (
+          <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+            دوره مورد علاقه‌ای وجود ندارد
+          </p>
+        ) : (
+          <>
+            {currentItems &&
+              currentItems?.map((item, index) => {
+                return (
+                  <>
+                    <ListFavoritePanel
+                      key={index}
+                      tumbImageAddress={item?.tumbImageAddress}
+                      courseTitle={item?.courseTitle}
+                      typeName={item?.typeName}
+                      levelName={item?.levelName}
+                      courseId={item?.courseId}
+                      favoriteId={item?.favoriteId}
+                      lastUpdate={item?.lastUpdate}
+                    />
+                  </>
+                );
+              })}
+          </>
+        )}
       </div>
 
       <div className="flex justify-center mb-5">

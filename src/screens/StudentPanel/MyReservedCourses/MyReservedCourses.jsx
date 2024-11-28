@@ -36,6 +36,7 @@ import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonS
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { convertIsoToJalali } from "../../../core/utils/dateUtils";
+import { CustomSpinner } from "../../../components/animation/CustomSpinner";
 const MyReservedCourses = () => {
   const queryClient = useQueryClient();
 
@@ -109,6 +110,9 @@ const MyReservedCourses = () => {
     // alert(id)
   };
 
+  //style
+  const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
+
   return (
     <>
       {/* hamburger */}
@@ -134,7 +138,7 @@ const MyReservedCourses = () => {
             <h2 className="ml-5">وضعیت</h2>
           </div>
 
-          {currentItems &&
+          {/* {currentItems &&
             currentItems?.map((item, index) => {
               return (
                 <>
@@ -198,7 +202,76 @@ const MyReservedCourses = () => {
                   </div>
                 </>
               );
-            })}
+            })} */}
+
+          {!currentItems ? (
+            <CustomSpinner style={loaderStyle} />
+          ) : currentItems.length === 0 ? (
+            <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+              رزروی یافت نشد
+            </p>
+          ) : (
+            <>
+              {currentItems?.map((item, index) => (
+                <div
+                  className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
+                  key={index}
+                >
+                  <div className="mr-5 min-w-[150px] ">{item?.courseName}</div>
+                  <div className="ml-[110px]">
+                    <strong>
+                      {item?.reserverDate &&
+                        convertIsoToJalali(item?.reserverDate)}
+                    </strong>
+                  </div>
+                  {item?.accept ? (
+                    <div className="ml-5 gap-2 flex items-center">
+                      <p
+                        className="text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900 rounded-md sm:text-xs  sm:px-2 "
+                        onClick={() => {
+                          navigate(
+                            `/courses/${
+                              item?.courseId ? item.courseId : "no id"
+                            }`
+                          );
+                        }}
+                      >
+                        تایید شده
+                      </p>
+
+                      <FaEye
+                        className="cursor-pointer"
+                        onClick={() => {
+                          navigate(
+                            `/courses/${
+                              item?.courseId ? item.courseId : "no id"
+                            }`
+                          );
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="ml-5 gap-1 flex">
+                      <FaEye
+                        className="cursor-pointer"
+                        onClick={() => {
+                          navigate(
+                            `/courses/${
+                              item?.courseId ? item.courseId : "no id"
+                            }`
+                          );
+                        }}
+                      />
+                      <FaTrash
+                        className="text-red-600"
+                        onClick={() => handelDelete(item?.reserveId)}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </>
+          )}
         </div>
 
         <div className="flex justify-center mb-5">

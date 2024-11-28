@@ -30,7 +30,9 @@ import {
   useMyCommentInCourses,
 } from "../../core/services/api/MyCommentPanel/handelMyComment";
 import { toast } from "react-toastify";
+import { CustomSpinner } from "../../components/animation/CustomSpinner";
 
+//styles
 const MyCourseComment = () => {
   const queryClient = useQueryClient();
 
@@ -108,6 +110,8 @@ const MyCourseComment = () => {
     // alert(id)
   };
 
+  const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
+
   return (
     <>
       <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
@@ -118,7 +122,66 @@ const MyCourseComment = () => {
           <h2 className="ml-5">اقدامات</h2>
         </div>
 
-        {currentItems &&
+        {/* {currentItems &&
+          currentItems?.map((item, index) => {
+            return (
+              <>
+                <div
+                  className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57] w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
+                  key={index}
+                >
+                  <div
+                    className="mr-5 w-[150px] text-wrap md:text-base text-xs"
+                    title={item?.title}
+                  >
+                    {item?.title?.length > 15
+                      ? item.title.slice(0, 15) + "..."
+                      : item.title}
+                  </div>
+                  <div
+                    className=" min-w-[150px] md:text-base sm:text-xs sm:block hidden"
+                    title={item?.describe}
+                  >
+                    {item?.describe?.length > 20
+                      ? item.describe.slice(0, 20) + "..."
+                      : item.describe}
+                  </div>
+
+                  <div className=" w-[150px] sm:mr-0 mr-[4%] md:text-base text-xs ">
+                    {item?.accept ? (
+                      <span className="text-green-500 bg-green-700 py-1 px-1">
+                        پذیرفته شده
+                      </span>
+                    ) : (
+                      <span className="text-red-500 bg-red-700 p-1">
+                        پذیرفته نشده
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="ml-8 gap-1 flex items-center">
+                    <FaEye
+                      className="cursor-pointer text-lg"
+                      onClick={() => {
+                        navigate(
+                          `/courses/${item?.courseId ? item.courseId : "no id"}`
+                        );
+                      }}
+                    />
+                  </div>
+                </div>
+              </>
+            );
+          })} */}
+
+        {!currentItems ? (
+          <CustomSpinner style={loaderStyle} />
+        ) : currentItems.length === 0 ? (
+          <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+            کامنتی در دوره وجود نداره{" "}
+          </p>
+        ) : (
+          currentItems &&
           currentItems?.map((item, index) => {
             return (
               <>
@@ -172,7 +235,8 @@ const MyCourseComment = () => {
                 </div>
               </>
             );
-          })}
+          })
+        )}
       </div>
 
       <div className="flex justify-center mb-5">
