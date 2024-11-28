@@ -142,10 +142,8 @@ const CourseComment = ({
 
   //handel replay
 
-  // تعریف یک یوز استیت برای نمایش یا عدم نمایش فرم ریپلای
   const [isReplyVisible, setIsReplyVisible] = useState(false);
 
-  // تابعی برای تغییر وضعیت نمایش فرم
   const toggleReplyForm = () => {
     setIsReplyVisible(!isReplyVisible);
   };

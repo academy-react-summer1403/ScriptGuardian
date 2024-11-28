@@ -44,17 +44,14 @@ const CommentTab = ({ activeTab }) => {
       AddComment(formData, {
         onSuccess: (data) => {
           if (data.success === true) {
-            // if (roles.includes("Administrator") || roles.includes("Referee")) {
-
-            // }
+            if (roles.includes("Administrator") || roles.includes("Referee")) {
+              toast.success("کامنت  با موفقیت ارسال شد", data);
+            } else {
+              toast.warning("کامنت ارسال شد در انتظار تایید", data);
+            }
             queryClient.invalidateQueries("CommentCourses");
 
-            toast.success("کامنت  با موفقیت ارسال شد");
             formik.resetForm();
-
-            // else {
-            //   toast.warning("کامنت ارسال شد در انتظار تایید", data);
-            // }
           } else {
             toast.error("خطا در ارسال کامنت");
           }

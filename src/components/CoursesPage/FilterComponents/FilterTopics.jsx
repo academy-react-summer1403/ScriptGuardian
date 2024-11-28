@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useCourseTypes } from "../../../core/services/api/handelFilters/CourseFilter";
-const FilterTopics = ({ setListCourseType }) => {
+const FilterTopics = ({
+  setListCourseType,
+  setStatusCourseType,
+  statusCourseType,
+}) => {
   const [isOpenThird, setIsOpenThird] = useState(false);
-  const [selectedTeacherId, setSelectedTeacherId] = useState(null);
+  // const [statusCourseType, setStatusCourseType] = useState(null);
 
   const { data: Technologies } = useCourseTypes();
 
   const handleCheckboxChange = (id) => {
-    if (selectedTeacherId === id) {
-      setSelectedTeacherId(null);
+    if (statusCourseType === id) {
+      setStatusCourseType(null);
       setListCourseType(null);
     } else {
-      setSelectedTeacherId(id);
+      setStatusCourseType(id);
       setListCourseType(id);
     }
   };
@@ -39,10 +43,10 @@ const FilterTopics = ({ setListCourseType }) => {
                 Technologies.map((item, index) => {
                   return (
                     <>
-                      <div className="gap-x-2 flex">
+                      <div className="gap-x-2 flex ">
                         <label
                           for={`default-checkbox-${item?.id}`}
-                          class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
                         >
                           {item.typeName}
                         </label>
@@ -50,10 +54,10 @@ const FilterTopics = ({ setListCourseType }) => {
                           id={`default-checkbox-${item?.id}`}
                           type="checkbox"
                           value={item?.id}
-                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
                           key={index}
                           onChange={() => handleCheckboxChange(item.id)}
-                          checked={selectedTeacherId === item.id}
+                          checked={statusCourseType === item.id}
                         />
                       </div>
                     </>

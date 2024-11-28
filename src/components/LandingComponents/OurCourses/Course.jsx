@@ -33,7 +33,7 @@ const Course = ({
 
   return (
     <div
-      className={style}
+      className={`${style} cursor-pointer`}
       onClick={navigateDetails}
       style={{ direction: "rtl" }}
     >
@@ -42,7 +42,7 @@ const Course = ({
       {/* Content */}
 
       {/* TopicCourses */}
-      <h3 className="xl:font-[700] lg:font-[600] font-[700] mt-2 xl:mr-[16px] lg:mr-[10px] mr-[16px] ">
+      <h3 className="xl:font-[700] lg:font-[600] font-[700] mt-2 xl:mr-[16px] lg:mr-[10px] mr-[16px]  ">
         {" "}
         {title.length > 30 ? title.substring(0, 27) + "..." : title}
       </h3>

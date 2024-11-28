@@ -17,24 +17,33 @@ const CoursesPage = () => {
 
   //
   const [rest, setRest] = useState(false);
-  const [costDown, setCostDown] = useState(undefined);
-  const [costUp, setCostUp] = useState(undefined);
-  const [listTech, setListTech] = useState([]);
-  const [listCourseType, setListCourseType] = useState(undefined);
-  const [currentTeacher, setCurrentTeacher] = useState([]);
+  const [costDown, setCostDown] = useState(undefined); //main
+  const [costUp, setCostUp] = useState(undefined); //main
+  const [price, setPrice] = useState([1000, 10000000]); //filter
+  const [listTech, setListTech] = useState([]); //main
+  const [selectedIds, setSelectedIds] = useState([]); //filter
+  const [listCourseType, setListCourseType] = useState(undefined); //main
+  const [statusCourseType, setStatusCourseType] = useState(null); //filter
+
+  const [currentTeacher, setCurrentTeacher] = useState([]); //main
+  const [selectedTeacherId, setSelectedTeacherId] = useState(null); //filter
+
   const [sortingCol, setSortingCol] = useState(undefined);
-  const [CourseLevelId, setCourseLevelId] = useState(undefined);
+  const [CourseLevelId, setCourseLevelId] = useState(undefined); //main
+  const [courseLevelChecked, setCourseLevelChecked] = useState(null); //filter
 
   const resetFilters = () => {
+    setCurrentTeacher(undefined);
+    setSelectedTeacherId(undefined);
+    setCourseLevelId(undefined);
+    setCourseLevelChecked(undefined);
+    setListCourseType(undefined);
+    setStatusCourseType(undefined);
     setCostDown(undefined);
     setCostUp(undefined);
+    setPrice([1000, 10000000]);
     setListTech([]);
-    setListCourseType(undefined);
-    setCurrentTeacher([]);
-    setSortingCol(undefined);
-    setCourseLevelId(undefined);
-    //
-    setRest(true)
+    setSelectedIds([]);
   };
 
   const [currentItems, setCurrentItems] = useState([]);
@@ -137,11 +146,29 @@ const CoursesPage = () => {
           listTech={listTech}
           setCurrentTeacher={setCurrentTeacher}
           setListCourseType={setListCourseType}
-          setCourseLevelId={setCourseLevelId}
           menuRef={menuRef}
-          resetFilters={resetFilters}
+          setCourseLevelId={setCourseLevelId}
           setRest={setRest}
           rest={rest}
+          //filters
+
+          //1
+          setSelectedIds={setSelectedIds}
+          selectedIds={selectedIds}
+          //2
+          setPrice={setPrice}
+          price={price}
+          //3
+          setStatusCourseType={setStatusCourseType}
+          statusCourseType={statusCourseType}
+          //4
+          setCourseLevelChecked={setCourseLevelChecked}
+          courseLevelChecked={courseLevelChecked}
+          //5
+          setSelectedTeacherId={setSelectedTeacherId}
+          selectedTeacherId={selectedTeacherId}
+          //delete filters
+          resetFilters={resetFilters}
         />
         <div className="flex flex-col sm:items-start items-center sm:w-auto w-full sm:justify-start justify-center  ">
           {/* Top */}

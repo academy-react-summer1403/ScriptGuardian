@@ -5,19 +5,23 @@ import {
   useCourseLevels,
   useCourseTypes,
 } from "../../../core/services/api/handelFilters/CourseFilter";
-const TimeRangeFilter = ({ setCourseLevelId }) => {
+const TimeRangeFilter = ({
+  setCourseLevelId,
+  courseLevelChecked,
+  setCourseLevelChecked,
+}) => {
   const [isOpenFourth, setIsOpenFourth] = useState(false);
 
-  const [selectedTeacherId, setSelectedTeacherId] = useState(null);
+  // const [courseLevelChecked, setCourseLevelChecked] = useState(null);
 
   const { data: Technologies } = useCourseLevels();
 
   const handleCheckboxChange = (id) => {
-    if (selectedTeacherId === id) {
-      setSelectedTeacherId(null);
+    if (courseLevelChecked === id) {
+      setCourseLevelChecked(null);
       setCourseLevelId(null);
     } else {
-      setSelectedTeacherId(id);
+      setCourseLevelChecked(id);
       setCourseLevelId(id);
     }
   };
@@ -58,7 +62,7 @@ const TimeRangeFilter = ({ setCourseLevelId }) => {
                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                           key={index}
                           onChange={() => handleCheckboxChange(item.id)}
-                          checked={selectedTeacherId === item.id}
+                          checked={courseLevelChecked === item.id}
                         />
                       </div>
                     </>

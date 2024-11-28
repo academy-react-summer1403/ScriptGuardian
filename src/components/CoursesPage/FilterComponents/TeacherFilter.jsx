@@ -3,9 +3,13 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useLandingTeachers } from "../../../core/services/api/Landing/LandingTeachers";
 import { MdCheck } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-const TeacherFilter = ({ setCurrentTeacher }) => {
+const TeacherFilter = ({
+  setCurrentTeacher,
+  setSelectedTeacherId,
+  selectedTeacherId,
+}) => {
   const [isOpenFifth, setIsOpenFifth] = useState(false);
-  const [selectedTeacherId, setSelectedTeacherId] = useState(null);
+  // const [selectedTeacherId, setSelectedTeacherId] = useState(null);
 
   const { data: Technologies } = useLandingTeachers();
 
@@ -17,6 +21,11 @@ const TeacherFilter = ({ setCurrentTeacher }) => {
       setSelectedTeacherId(id);
       setCurrentTeacher(id);
     }
+  };
+
+  const handleClearAll = () => {
+    setSelectedTeacherId(null);
+    setCurrentTeacher(null);
   };
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
@@ -33,7 +42,6 @@ const TeacherFilter = ({ setCurrentTeacher }) => {
             </span>
           </button>
         </div>
-
         {isOpenFifth && (
           <div className="flex flex-col xl:w-[248px] w-10/12">
             <div className="flex items-center mb-4  flex-wrap gap-x-2 gap-y-3 mt-5">

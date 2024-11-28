@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useTechnologies } from "../../../core/services/api/handelFilters/CourseFilter";
-const CategoryFilter = ({ setListTech }) => {
+const CategoryFilter = ({ setListTech, setSelectedIds, selectedIds }) => {
   const [isOpenFirst, setIsOpenFirst] = useState(false);
   const { data: Technologies } = useTechnologies();
-  const [selectedIds, setSelectedIds] = useState([]);
+  // const [selectedIds, setSelectedIds] = useState([]);
   const handleCheckboxChange = (id) => {
     setSelectedIds((prev) => {
       const updatedIds = prev.includes(id)
@@ -49,6 +49,7 @@ const CategoryFilter = ({ setListTech }) => {
                           id={`default-checkbox-${item?.id}`}
                           type="checkbox"
                           value={item?.id}
+                          checked={selectedIds.includes(item.id)}
                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                           key={index}
                           onChange={() => handleCheckboxChange(item.id)}

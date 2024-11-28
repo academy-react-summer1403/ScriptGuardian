@@ -105,7 +105,7 @@ const RegisterModal = ({
               {...formik.getFieldProps("phoneNumber")}
             />
             {formik.errors.phoneNumber && (
-              <div className="dark:text-red-800 text-red-600 absolute top-[110px] right-11">
+              <div className="dark:text-red-800 text-red-600 absolute top-[190px] right-11">
                 {formik.errors.phoneNumber}
               </div>
             )}

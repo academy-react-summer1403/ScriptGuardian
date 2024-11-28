@@ -40,7 +40,7 @@ const Security = () => {
       >
         <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-200">
-            رمز عبور فعلی
+            جیمیل بازیابی{" "}
           </label>
           <input
             type="text"

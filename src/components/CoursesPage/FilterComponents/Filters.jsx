@@ -19,6 +19,17 @@ const Filters = ({
   menuRef,
   setListCourseType,
   setCourseLevelId,
+  setSelectedTeacherId,
+  selectedTeacherId,
+  resetFilters,
+  courseLevelChecked,
+  setCourseLevelChecked,
+  setStatusCourseType,
+  statusCourseType,
+  setPrice,
+  price,
+  setSelectedIds,
+  selectedIds,
 }) => {
   return (
     <>
@@ -47,7 +58,10 @@ const Filters = ({
             </span>
             <p className="text-[#263238] dark:text-gray-400">فیلتر</p>
           </div>
-          <div className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center">
+          <div
+            className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center cursor-pointer"
+            onClick={resetFilters}
+          >
             <span>
               {" "}
               <svg
@@ -101,7 +115,12 @@ const Filters = ({
 
         {/*  Accordion1 */}
         <div className="w-full lg:flex lg:flex-col hidden">
-          <CategoryFilter setListTech={setListTech} listTech={listTech} />
+          <CategoryFilter
+            setListTech={setListTech}
+            listTech={listTech}
+            setSelectedIds={setSelectedIds}
+            selectedIds={selectedIds}
+          />
 
           {/* Accordion2 */}
 
@@ -109,16 +128,30 @@ const Filters = ({
             setCostDown={setCostDown}
             setCostUp={setCostUp}
             data={data}
+            setPrice={setPrice}
+            price={price}
           />
           {/* Accordion3 */}
 
-          <FilterTopics setListCourseType={setListCourseType} />
+          <FilterTopics
+            setListCourseType={setListCourseType}
+            setStatusCourseType={setStatusCourseType}
+            statusCourseType={statusCourseType}
+          />
 
           {/* Accordion4 */}
 
-          <TimeRangeFilter setCourseLevelId={setCourseLevelId} />
+          <TimeRangeFilter
+            setCourseLevelId={setCourseLevelId}
+            courseLevelChecked={courseLevelChecked}
+            setCourseLevelChecked={setCourseLevelChecked}
+          />
           {/* Accordion5 */}
-          <TeacherFilter setCurrentTeacher={setCurrentTeacher} />
+          <TeacherFilter
+            setCurrentTeacher={setCurrentTeacher}
+            setSelectedTeacherId={setSelectedTeacherId}
+            selectedTeacherId={selectedTeacherId}
+          />
         </div>
       </div>
 
@@ -225,9 +258,17 @@ const Filters = ({
 
             {/* Accordion4 */}
 
-            <TimeRangeFilter setCourseLevelId={setCourseLevelId} />
+            <TimeRangeFilter
+              setCourseLevelId={setCourseLevelId}
+              courseLevelChecked={courseLevelChecked}
+              setCourseLevelChecked={setCourseLevelChecked}
+            />
             {/* Accordion5 */}
-            <TeacherFilter setCurrentTeacher={setCurrentTeacher} />
+            <TeacherFilter
+              setCurrentTeacher={setCurrentTeacher}
+              setSelectedTeacherId={setSelectedTeacherId}
+              selectedTeacherId={selectedTeacherId}
+            />
           </div>
         </div>
       )}

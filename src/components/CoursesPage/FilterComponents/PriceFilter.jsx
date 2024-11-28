@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
-const PriceFilter = ({ setCostDown, setCostUp }) => {
+const PriceFilter = ({ setCostDown, setCostUp, setPrice, price }) => {
   const [isOpenSecond, setIsOpenSecond] = useState(false);
-  const [value, setValue] = useState([0, 10000000]); // مقادیر پیش‌فرض برای حداقل و حداکثر
+  // const [price, setPrice] = useState([1000, 10000000]);
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    setCostDown(newValue[0]); // ارسال پایین‌ترین قیمت به setCostDown
-    setCostUp(newValue[1]); // ارسال بالاترین قیمت به setCostUp
+    setPrice(newValue);
+    setCostDown(newValue[0]);
+    setCostUp(newValue[1]);
   };
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
@@ -29,10 +29,10 @@ const PriceFilter = ({ setCostDown, setCostUp }) => {
           <div className="flex flex-col xl:w-[248px] w-10/12">
             <div style={{ width: 300, margin: "auto" }}>
               <Typography gutterBottom>
-                محدوده قیمت: {value[1]} - {value[0]}
+                محدوده قیمت: {price[1]} - {price[0]}
               </Typography>
               <Slider
-                value={value}
+                value={price}
                 onChange={handleChange}
                 valueLabelDisplay="auto"
                 min={1000}

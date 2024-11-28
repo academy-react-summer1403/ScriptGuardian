@@ -5,7 +5,7 @@ import {
 } from "../../core/services/api/Auth/Register/Register";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { validationRegisterCode } from "../../core/services/validation/validationSchema/Auth";
+import { validationForgetPass, validationRegisterCode } from "../../core/services/validation/validationSchema/Auth";
 import { toast } from "react-toastify";
 import { CustomSpinner } from "../animation/CustomSpinner";
 
@@ -27,7 +27,7 @@ const ForGetPass = ({
       email: "",
       baseUrl: "http://localhost:5173",
     },
-    // validationSchema: validationRegisterCode,
+    validationSchema: validationForgetPass,
     onSubmit: (values) => {
       ForGetPass(values, {
         onSuccess: (data) => {
@@ -97,9 +97,9 @@ const ForGetPass = ({
           name="NumberPhone"
           {...formik.getFieldProps("email")}
         />
-        {formik.errors.phoneNumber && (
-          <div className="dark:text-red-800 text-red-600 absolute top-[110px] right-11">
-            {formik.errors.phoneNumber}
+        {formik.errors.email && (
+          <div className="dark:text-red-800 text-red-600 absolute top-[190px] right-11">
+            {formik.errors.email}
           </div>
         )}
 

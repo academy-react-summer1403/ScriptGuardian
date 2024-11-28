@@ -51,8 +51,6 @@ const MyPaymentCourses = () => {
 
   //dropdown
 
-  const [pageSize, setPageSize] = useState(6);
-
   const handlePageSizeChange = (event) => {
     setPageSize(Number(event.target.value));
     setItemOffset(0);
@@ -64,6 +62,7 @@ const MyPaymentCourses = () => {
   const [searchQuery, setSearchQuery] = useState(undefined);
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(undefined);
 
+  const [pageSize, setPageSize] = useState(6);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -74,12 +73,12 @@ const MyPaymentCourses = () => {
   React.useEffect(() => {
     const endOffset = itemOffset + pageSize;
     setCurrentItems(data && data?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data / pageSize));
+    setPageCount(Math.ceil(data && data.length / pageSize));
   }, [itemOffset, pageSize, data]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * pageSize) % data && data?.length;
-    setCurrentPage(event.selected);
+    const newOffset = (event.selected * pageSize) % data?.length;
+    // setCurrentPage(event.selected);
     setItemOffset(newOffset);
   };
 

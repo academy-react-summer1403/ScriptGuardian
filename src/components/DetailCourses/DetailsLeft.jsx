@@ -5,6 +5,7 @@ import { useAddReserveCourse } from "../../core/services/api/DetailCourses/hande
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { convertIsoToJalali } from "../../core/utils/dateUtils";
+import { getItem } from "../../core/services/storage/storage.services";
 const DetailsLeft = ({
   startTime,
   endTime,
@@ -21,16 +22,21 @@ const DetailsLeft = ({
 
   const { mutate: AddReserve } = useAddReserveCourse();
   const handleAddReserve = () => {
-    AddReserve(courseId, {
-      onSuccess: (data) => {
-        if (data.success == true) {
-          toast.success("با موفقیت رزرو شده");
-          queryClient.invalidateQueries("CoursesDetail");
-        }
+    const token = getItem("token");
+    if (token) {
+      AddReserve(courseId, {
+        onSuccess: (data) => {
+          if (data.success == true) {
+            toast.success("با موفقیت رزرو شده");
+            queryClient.invalidateQueries("CoursesDetail");
+          }
 
-        //TODO
-      },
-    });
+          //TODO
+        },
+      });
+    } else {
+      toast.error("برای رزرو دوره ابتدا وارد شوید");
+    }
   };
   return (
     <div
