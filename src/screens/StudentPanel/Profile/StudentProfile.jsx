@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FaBars,
   FaBell,
@@ -28,11 +28,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import { HandelProfile } from "../../../components/panel/HandelProfile/HandelProfile";
 
 import DatePicker from "react-multi-date-picker";
+import { Calendar } from "react-multi-date-picker";
 import DateObject from "react-date-object";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import persian_en from "react-date-object/locales/persian_en";
 import { StudentHamburger } from "../../../components/HamberGerStudentPanel/Studenthamburger";
 import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
+import { convertIsoToJalali, convertJalaliToIso } from "../../../core/utils/dateUtils";
 const StudentProfile = () => {
   const queryClient = useQueryClient();
 
@@ -58,17 +61,18 @@ const StudentProfile = () => {
       NationalCode: data?.nationalCode ? data?.nationalCode : "",
       Gender: data?.gender ?? true,
 
-      // BirthDay:
+      BirthDay:
+        data?.birthDay && data?.birthDay !== "0001-01-01T00:00:00"
+          ? data?.birthDay
+          : "",
+
+      // birthDay:
       //   data?.birthDay && data?.birthDay !== "0001-01-01T00:00:00"
-      //     ? data?.birthDay
+      //     ? new DateObject(data?.birthDay)
+      //         .convert("gregorian")
+      //         .format("YYYY-MM-DD")
       //     : "",
 
-      birthDay:
-        data?.birthDay && data?.birthDay !== "0001-01-01T00:00:00"
-          ? new DateObject(data?.birthDay)
-              .convert("gregorian")
-              .format("YYYY-MM-DD")
-          : "", // مقدار پیش‌فرض خالی یا تاریخ اشتباه
       // Latitude: data?.latitude ? data?.latitude : "",
       Latitude: "51.3890",
       // Longitude: data?.longitude ? data?.longitude : "",
@@ -84,21 +88,18 @@ const StudentProfile = () => {
       const formData = new FormData();
 
       // تبدیل تاریخ شمسی به میلادی (ISO)
-      const birthDayInGregorian = data.birthDay
-        ? new DateObject(data.birthDay)
-            .convert("gregorian")
-            .format("YYYY-MM-DD")
-        : "";
+      // const birthDayInGregorian = data.birthDay
+      //   ? new DateObject(data.birthDay)
+      //       .convert("gregorian")
+      //       .format("YYYY-MM-DD")
+      //   : "";
 
       // اضافه کردن تاریخ میلادی به formData
-      formData.append("birthDay", birthDayInGregorian);
+      // formData.append("birthDay", birthDayInGregorian);
 
       // اضافه کردن سایر فیلدهای فرم به formData
       for (const key in data) {
-        if (key !== "birthDay") {
-          // تاریخ میلادی را قبلاً اضافه کرده‌ایم
-          formData.append(key, data[key]);
-        }
+        formData.append(key, data[key]);
       }
 
       EditProfile(formData, {
@@ -118,12 +119,10 @@ const StudentProfile = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  // وضعیت اولیه دارک مود بر اساس localStorage
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
-  // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -134,11 +133,46 @@ const StudentProfile = () => {
     }
   }, [isDarkMode]);
 
-  // تغییر حالت دارک مود هنگام کلیک
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const [calendar, setCalendar] = useState(false);
+  const CalenderRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (CalenderRef.current && !CalenderRef.current.contains(event.target)) {
+        setCalendar(false);
+      }
+    };
+
+    if (calendar) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [calendar]);
+
+  console.log(formik.values.BirthDay, "formik.values.birthDay");
+
+  //date
+
+  const handelChangeData = (dateOfDatePiker) => {
+    const convert = `${
+      dateOfDatePiker
+        ? dateOfDatePiker.convert(persian, persian_en).format()
+        : ""
+    }`;
+
+    const Iso = convertJalaliToIso(convert);
+
+    formik.setFieldValue("BirthDay", Iso);
+  };
   return (
     <>
       {/* hamburger */}
@@ -323,21 +357,36 @@ const StudentProfile = () => {
               >
                 روز تولد{" "}
               </label>
-              {/* <input
+              <input
                 type="text"
                 id="BirthDay"
                 name="BirthDay"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 placeholder="روز تولد خود را وارد کنید"
-                {...formik?.getFieldProps("BirthDay")}
-              /> */}
-
-              <DatePicker
-                value={formik.values.birthDay}
-                onChange={(date) => formik.setFieldValue("birthDay", date)}
-                calendar={persian}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                {...formik?.getFieldProps("birthDay")}
+                value={
+                  formik.values.BirthDay
+                  ? convertIsoToJalali(formik.values.BirthDay)
+                  : ""
+                }
+                onFocus={() => {
+                  setCalendar(true);
+                }}
               />
+
+              {calendar && (
+                <Calendar
+                  ref={CalenderRef}
+                  // value={
+                  //   formik.values.birthDay &&
+                  //   convertIsoToJalali(formik?.values?.birthDay)
+                  // }
+                  onChange={handelChangeData}
+                  calendar={persian}
+                  locale={persian_fa}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                />
+              )}
             </div>
 
             {/* <div className="w-[30%]">
