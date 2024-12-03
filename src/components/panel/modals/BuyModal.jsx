@@ -33,15 +33,15 @@ const BuyModal = ({
       StepOne(formData, {
         onSuccess: (data) => {
           if (data.success === true) {
-            setPaymentId(data.id);
-            toast.success(data.message);
-            queryClient.invalidateQueries("MyCourses");
             setImageStepTwo(true);
             setIsOpen(false);
+            toast.success(data.message);
+            setPaymentId(data.id);
+            queryClient.invalidateQueries("MyCourses");
           } else {
             // toast.error(data.ErrorMessage?.[0]);
             // toast.error(data.ErrorMessage);
-            console.log(!!data , "this log of data")
+            console.log(!!data, "this log of data");
           }
         },
       });
@@ -125,7 +125,7 @@ const BuyModal = ({
                   type="submit"
                   className=" bg-[#2196F3] hover:bg-blue-700 dark:bg-blue-800  dark:hover:bg-blue-900 text-white font-bold py-3 h-[50px]  xl:mr-8 px-8 rounded items-center justify-center flex"
                 >
-                  <CustomSpinner color={"#FFF"} size={30} style={"flex"}  />
+                  <CustomSpinner color={"#FFF"} size={30} style={"flex"} />
                 </button>
               ) : (
                 <button

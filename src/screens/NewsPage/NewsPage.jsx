@@ -71,7 +71,7 @@ const NewsPage = () => {
           setSortingCol={setSortingCol}
         />
 
-        <div className="flex  mt-[48px] w-full flex-wrap xl:gap-x-[32px] lg:gap-x-0  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] xl:justify-start lg:justify-around justify-center">
+        <div className="flex  mt-[48px] w-full flex-wrap xl:gap-x-[32px] lg:gap-x-0  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] xl:justify-start lg:justify-around justify-center mb-10">
           {!currentItems ? (
             <CustomSpinner style={loaderStyle} />
           ) : currentItems.length === 0 ? (

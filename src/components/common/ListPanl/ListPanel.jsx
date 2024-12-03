@@ -75,8 +75,8 @@ const ListPanel = ({
 
   return (
     <>
-      <div className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] md:justify-start justify-around">
-        <div className="lg:mr-[1%] sm:w-[6%] lg:w-[15%] md:w-[12%] md:mr-[6%] max-w-[60px] h-full    items-center md:flex  hidden">
+      <div className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px]  justify-around">
+        <div className="h-full w-[70px]    items-center md:flex  hidden">
           <img
             src={
               tumbImageAddress && tumbImageAddress != "Not-set"
@@ -87,36 +87,36 @@ const ListPanel = ({
             className="w-full object-cover h-[80%] rounded block"
           />
         </div>
-        <div
-          className="lg:mr-[12%] md:mr-[6%]   lg:w-[10%] md:w-[10%]   "
-          title={courseTitle}
-        >
+        <div className="w-[66px]" title={courseTitle}>
           {courseTitle.length > 10
             ? courseTitle.slice(0, 10) + "..."
             : courseTitle}
         </div>
-        <div
-          className="lg:mr-[6%] md:mr-[5%]  lg:w-[12%] md:w-[15%] b"
-          title={fullName}
-        >
+        <div className="w-[120px]" title={fullName}>
           {fullName.length > 10 ? fullName.slice(0, 10) + "..." : fullName}
         </div>
-        <div className="lg:mr-[7.5%] md:mr-[4%]  lg:w-[10%] md:w-[11.3%]  ">
+        <div className="w-[80px]">
           {" "}
           <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
         </div>
-        <div className="lg:mr-[5%] md:mr-[5%]  lg:w-[10%] md:w-[13%]  text-xs ">
+        <div className="text-xs w-[80px]">
           {/* {parseFloat(cost).toString()}  */}
-          <span className="sm:block hidden">تومان</span>
-          {cost.length > 6
-            ? parseFloat(cost).toString().slice(0, 6) + "..."
-            : parseFloat(cost).toString().slice(0, 6)}
+
+          {cost.length > 6 ? (
+            <>
+              {parseFloat(cost).toString().slice(0, 6) + "..."}
+              <span className="  ">تومان</span>
+            </>
+          ) : (
+            <>
+              {parseFloat(cost).toString().slice(0, 6)}
+              <span className="  ">تومان</span>
+            </>
+          )}
         </div>
 
-        <div className="lg:mr-[2%] md:mr-[5%]  lg:w-[8%] md:w-[13%]  text-xs ">
-          {paymentStatus && paymentStatus}
-        </div>
-        <div className="flex items-center gap-x-1 sm:mr-[6%] xl:mr-[4%]">
+        <div className="w-[102px]">{paymentStatus && paymentStatus}</div>
+        <div className="w-[50px] flex gap-x-1">
           <FaEye
             className="cursor-pointer"
             onClick={() => {

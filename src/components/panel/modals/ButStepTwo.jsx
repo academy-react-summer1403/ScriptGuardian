@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const ButStepTwo = ({ menuRef2, Click2, PaymentId, setImageStepTwo }) => {
   const queryClient = useQueryClient();
 
-  const { data, mutate: StepOne, isPending } = usePayMentStepTwo();
+  const { data, mutate: StepTwo, isPending } = usePayMentStepTwo();
   const formik = useFormik({
     initialValues: {
       PaymentId: PaymentId,
@@ -24,7 +24,7 @@ const ButStepTwo = ({ menuRef2, Click2, PaymentId, setImageStepTwo }) => {
         formData.append(key, data[key]);
       }
 
-      StepOne(formData, {
+      StepTwo(formData, {
         onSuccess: (data) => {
           if (data.success === true) {
             toast.success(data.message);

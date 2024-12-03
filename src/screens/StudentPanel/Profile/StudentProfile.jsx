@@ -35,7 +35,11 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import persian_en from "react-date-object/locales/persian_en";
 import { StudentHamburger } from "../../../components/HamberGerStudentPanel/Studenthamburger";
 import { CommonStudent } from "../../../components/HamberGerStudentPanel/CommonStudent";
-import { convertIsoToJalali, convertJalaliToIso } from "../../../core/utils/dateUtils";
+import {
+  convertIsoToJalali,
+  convertJalaliToIso,
+} from "../../../core/utils/dateUtils";
+import { MyMap } from "../../../components/common/map/MyMap";
 const StudentProfile = () => {
   const queryClient = useQueryClient();
 
@@ -46,6 +50,36 @@ const StudentProfile = () => {
 
   //Handel Put Api
   const { mutate: EditProfile } = useEditProfile();
+
+  //map
+
+  // const [markerPosition, setMarkerPosition] = useState({
+  //   initialLongitude: data?.longitude ? data.longitude : "27.270483353583394",
+  //   initialLatitude: data?.latitude ? data.latitude : "25.48295117535531",
+  // });
+
+  const [markerPosition, setMarkerPosition] = useState({
+    initialLongitude: data?.longitude
+      ? parseFloat(data.longitude)
+      : 53.062779689376896,
+    initialLatitude: data?.latitude
+      ? parseFloat(data.latitude)
+      : 36.54660435610101,
+  });
+
+  // بررسی و تنظیم داده‌ها وقتی که داده‌های API بارگذاری شوند
+  useEffect(() => {
+    if (data?.latitude && data?.longitude) {
+      setMarkerPosition({
+        initialLongitude: parseFloat(data.longitude),
+        initialLatitude: parseFloat(data.latitude),
+      });
+    }
+  }, [data]); // وقتی که داده‌ها تغییر کردند، این useEffect اجرا می‌شود
+  console.log(
+    markerPosition.initialLatitude,
+    "initialLongitudeinitialLongitudeinitialLongitude"
+  );
 
   // use Formik
 
@@ -74,9 +108,13 @@ const StudentProfile = () => {
       //     : "",
 
       // Latitude: data?.latitude ? data?.latitude : "",
-      Latitude: "51.3890",
+      // Longitude: data?.longitude ? data?.longitude : "51.3890",
+      // latitude: data?.latitude ? data?.latitude : "51.3890",
+
+      Longitude: markerPosition?.initialLongitude,
+      latitude: markerPosition?.initialLatitude,
+      // Latitude: "51.3890",
       // Longitude: data?.longitude ? data?.longitude : "",
-      Longitude: "35.6892",
     },
     enableReinitialize: true,
     onSubmit: (data) => {
@@ -137,6 +175,7 @@ const StudentProfile = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  //calender
   const [calendar, setCalendar] = useState(false);
   const CalenderRef = useRef(null);
 
@@ -160,8 +199,6 @@ const StudentProfile = () => {
 
   console.log(formik.values.BirthDay, "formik.values.birthDay");
 
-  //date
-
   const handelChangeData = (dateOfDatePiker) => {
     const convert = `${
       dateOfDatePiker
@@ -172,6 +209,7 @@ const StudentProfile = () => {
     const Iso = convertJalaliToIso(convert);
 
     formik.setFieldValue("BirthDay", Iso);
+    setCalendar(false);
   };
   return (
     <>
@@ -366,8 +404,8 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("birthDay")}
                 value={
                   formik.values.BirthDay
-                  ? convertIsoToJalali(formik.values.BirthDay)
-                  : ""
+                    ? convertIsoToJalali(formik.values.BirthDay)
+                    : ""
                 }
                 onFocus={() => {
                   setCalendar(true);
@@ -422,6 +460,11 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("Longitude")}
               />
             </div> */}
+
+            <MyMap
+              setMarkerPosition={setMarkerPosition}
+              markerPosition={markerPosition}
+            />
           </div>
 
           <div className="flex sm:justify-between justify-center w-[95%] mt-12 mb-5 mr-3">

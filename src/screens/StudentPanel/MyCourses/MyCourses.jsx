@@ -165,14 +165,14 @@ const MyCourses = () => {
         </div>
 
         <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
-          <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs lg:justify-start justify-around">
-            <h2 className="xl:mr-5 md:block hidden">تصویر</h2>
-            <h2 className="xl:mr-[130px]">نام دوره</h2>
-            <h2 className="xl:mr-[130px]">مدرس</h2>
-            <h2 className="xl:mr-[136px] sm:block hidden"> آخرین آپدیت</h2>
-            <h2 className="xl:mr-[75px]">قیمت</h2>
-            <h2 className="xl:mr-[70px]">وضعیت پرداخت</h2>
-            <h2 className="xl:mr-[40px]">مدیریت</h2>
+          <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs justify-around">
+            <h2 className="w-[70px]"> تصویر دوره </h2>
+            <h2 className="w-[66px]">نام دوره</h2>
+            <h2 className="w-[120px]">مدرس</h2>
+            <h2 className="w-[80px]"> آخرین آپدیت</h2>
+            <h2 className="w-[80px]">قیمت</h2>
+            <h2 className="w-[102px]">وضعیت پرداخت</h2>
+            <h2 className="w-[50px]">مدیریت</h2>
           </div>
 
           {/* <CustomSpinner /> */}

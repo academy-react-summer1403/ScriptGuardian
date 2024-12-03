@@ -196,7 +196,7 @@ const ListPayment = ({
                 setImageStepTwo={setImageStepTwo}
                 setIsOpen={setIsOpen}
                 courseId={courseId}
-                // setPaymentId={setPaymentId}
+                setPaymentId={""}//
               />
             </>
           )}
