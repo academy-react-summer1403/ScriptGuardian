@@ -1,6 +1,6 @@
 import React from "react";
 
-const RightEducationalPacks = () => {
+const RightEducationalPacks = ({ data }) => {
   return (
     <div className=" flex mr-[132px] w-[688px]">
       <div className="flex flex-col">
@@ -39,12 +39,11 @@ const RightEducationalPacks = () => {
             </span>
           </div>
           <h3 className="font-[900] text-[24px] mt-[24px] text-[#263238] dark:text-gray-200">
-            تحلیل داده
+            {data?.[0].techName}{" "}
           </h3>
           <div className="flex justify-center text-center w-[248px] ">
             <p className="font-[500] mt-[8px] text-[#455A64] dark:text-gray-400">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-              استفاده از طراحان گرافیک است
+              {data?.[0].describe}{" "}
             </p>
           </div>
         </div>
@@ -110,12 +109,11 @@ const RightEducationalPacks = () => {
             </span>
           </div>
           <h3 className="font-[900] text-[24px] mt-[24px]   text-[#263238] dark:text-gray-200">
-            امنیت شبکه
+            {data?.[1].techName}{" "}
           </h3>
           <div className="flex justify-center text-center w-[248px] ">
             <p className="font-[500] mt-[8px] text-[#455A64] dark:text-gray-400">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-              استفاده از طراحان گرافیک است
+              {data?.[1].describe}{" "}
             </p>
           </div>
         </div>
@@ -165,12 +163,11 @@ const RightEducationalPacks = () => {
             </span>
           </div>
           <h3 className="font-[900] text-[24px] mt-[24px]  text-[#263238] dark:text-gray-200">
-            بازی
+            {data?.[2].techName}{" "}
           </h3>
           <div className="flex justify-center text-center w-[248px] ">
             <p className="font-[500] mt-[8px] text-[#455A64] dark:text-gray-400">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-              استفاده از طراحان گرافیک است
+              {data?.[2].describe}{" "}
             </p>
           </div>
         </div>
@@ -220,12 +217,11 @@ const RightEducationalPacks = () => {
             </span>
           </div>
           <h3 className="font-[900] text-[24px] mt-[24px]  text-[#263238] dark:text-gray-200">
-            وب دیزاین
+            {data?.[3].techName}{" "}
           </h3>
           <div className="flex justify-center text-center w-[248px] ">
             <p className="font-[500] mt-[8px] text-[#455A64] dark:text-gray-400">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-              استفاده از طراحان گرافیک است
+              {data?.[3].describe}{" "}
             </p>
           </div>
         </div>
