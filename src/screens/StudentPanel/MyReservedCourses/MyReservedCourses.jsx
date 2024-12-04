@@ -133,9 +133,9 @@ const MyReservedCourses = () => {
 
         <div className="flex flex-col w-[95%]   h-[400px] mt-5 overflow-hidden">
           <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs  justify-between">
-            <h2 className="mr-5">نام دوره</h2>
-            <h2 className="ml-5">تاریخ رزرو</h2>
-            <h2 className="ml-5">وضعیت</h2>
+            <h2 className="mr-5 w-[160px]">نام دوره</h2>
+            <h2 className="ml-5 w-[80px]">تاریخ رزرو</h2>
+            <h2 className="ml-5 w-[90px]">وضعیت</h2>
           </div>
 
           {/* {currentItems &&
@@ -217,15 +217,21 @@ const MyReservedCourses = () => {
                   className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-between"
                   key={index}
                 >
-                  <div className="mr-5 min-w-[150px] ">{item?.courseName}</div>
-                  <div className="ml-[110px]">
+                  <div className="mr-5 w-[160px] ">
+                    <span>
+                      {item?.courseName && item.courseName.length > 15
+                        ? `${item.courseName.substring(0, 15)}...`
+                        : item?.courseName}
+                    </span>
+                  </div>
+                  <div className=" ml-5 w-[80px]">
                     <strong>
                       {item?.reserverDate &&
                         convertIsoToJalali(item?.reserverDate)}
                     </strong>
                   </div>
                   {item?.accept ? (
-                    <div className="ml-5 gap-2 flex items-center">
+                    <div className="ml-5 gap-2 w-[90px] flex items-center">
                       <p
                         className="text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900 rounded-md sm:text-xs  sm:px-2 "
                         onClick={() => {
@@ -251,7 +257,11 @@ const MyReservedCourses = () => {
                       />
                     </div>
                   ) : (
-                    <div className="ml-5 gap-1 flex">
+                    <div className="ml-5 gap-1 flex w-[90px]">
+                      <FaTrash
+                        className="text-red-600 cursor-pointer"
+                        onClick={() => handelDelete(item?.reserveId)}
+                      />
                       <FaEye
                         className="cursor-pointer"
                         onClick={() => {
@@ -261,10 +271,6 @@ const MyReservedCourses = () => {
                             }`
                           );
                         }}
-                      />
-                      <FaTrash
-                        className="text-red-600"
-                        onClick={() => handelDelete(item?.reserveId)}
                       />
                     </div>
                   )}

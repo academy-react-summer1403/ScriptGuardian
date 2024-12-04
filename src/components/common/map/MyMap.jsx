@@ -6,7 +6,7 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
-import "leaflet/dist/leaflet.css"; // برای استایل‌های پیش‌فرض Leaflet
+import "leaflet/dist/leaflet.css";
 const ChangeMarkerPosition = ({ setMarkerPosition }) => {
   useMapEvents({
     click(event) {

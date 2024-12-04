@@ -59,7 +59,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
             : " translate-x-[100%] opacity-0 hidden"
         }`}
       >
-        <div className="flex flex-col h-screen  w-full  bg-[#8cc9fa]  dark:bg-[#1e3e57]  ">
+        <div className="flex flex-col h-screen  w-full  bg-[#65c0a0] dark:bg-[#1e3e57]  ">
           <div className="flex justify-between">
             {" "}
             <Link to="/">
@@ -97,7 +97,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
               end
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3  px-3  w-full"
               }
             >
@@ -108,7 +108,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
             <NavLink
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-1 px-3  w-full"
               }
               to="/panel/MyProfile"
@@ -121,7 +121,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
               to="/panel/MyCourses"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-1 px-3  w-full"
               }
             >
@@ -133,7 +133,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
               to="/panel/MyReservedCourses"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-1 px-3  w-full"
               }
             >
@@ -145,7 +145,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
               to="/panel/MyFavoriteCourses"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-1 px-3  w-full"
               }
             >
@@ -162,7 +162,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
               to="/panel/MyCommentPage"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-1 px-3  w-full"
               }
             >
@@ -173,7 +173,7 @@ const StudentHamburger = ({ toggleMenu, isMenuOpen, setIsMenuOpen }) => {
               to="/panel/ChangePassword"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-1 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-1 px-3  w-full"
               }
             >

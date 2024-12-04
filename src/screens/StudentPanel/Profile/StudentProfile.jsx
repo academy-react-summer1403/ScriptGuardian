@@ -67,7 +67,6 @@ const StudentProfile = () => {
       : 36.54660435610101,
   });
 
-  // بررسی و تنظیم داده‌ها وقتی که داده‌های API بارگذاری شوند
   useEffect(() => {
     if (data?.latitude && data?.longitude) {
       setMarkerPosition({
@@ -75,11 +74,7 @@ const StudentProfile = () => {
         initialLatitude: parseFloat(data.latitude),
       });
     }
-  }, [data]); // وقتی که داده‌ها تغییر کردند، این useEffect اجرا می‌شود
-  console.log(
-    markerPosition.initialLatitude,
-    "initialLongitudeinitialLongitudeinitialLongitude"
-  );
+  }, [data]);
 
   // use Formik
 
@@ -100,42 +95,13 @@ const StudentProfile = () => {
           ? data?.birthDay
           : "",
 
-      // birthDay:
-      //   data?.birthDay && data?.birthDay !== "0001-01-01T00:00:00"
-      //     ? new DateObject(data?.birthDay)
-      //         .convert("gregorian")
-      //         .format("YYYY-MM-DD")
-      //     : "",
-
-      // Latitude: data?.latitude ? data?.latitude : "",
-      // Longitude: data?.longitude ? data?.longitude : "51.3890",
-      // latitude: data?.latitude ? data?.latitude : "51.3890",
-
       Longitude: markerPosition?.initialLongitude,
       latitude: markerPosition?.initialLatitude,
-      // Latitude: "51.3890",
-      // Longitude: data?.longitude ? data?.longitude : "",
     },
     enableReinitialize: true,
     onSubmit: (data) => {
-      // const formData = new FormData();
-      // for (const key in data) {
-      //   formData.append(key, data[key]);
-      // }
-
       const formData = new FormData();
 
-      // تبدیل تاریخ شمسی به میلادی (ISO)
-      // const birthDayInGregorian = data.birthDay
-      //   ? new DateObject(data.birthDay)
-      //       .convert("gregorian")
-      //       .format("YYYY-MM-DD")
-      //   : "";
-
-      // اضافه کردن تاریخ میلادی به formData
-      // formData.append("birthDay", birthDayInGregorian);
-
-      // اضافه کردن سایر فیلدهای فرم به formData
       for (const key in data) {
         formData.append(key, data[key]);
       }
@@ -388,7 +354,7 @@ const StudentProfile = () => {
               </div>
             </div>
 
-            <div className="sm:w-[30%]  w-[65%] ">
+            <div className="sm:w-[30%]  w-[65%] relative ">
               <label
                 htmlFor="BirthDay"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -422,44 +388,10 @@ const StudentProfile = () => {
                   onChange={handelChangeData}
                   calendar={persian}
                   locale={persian_fa}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                  className="bg-gray-50 border absolute top-[-256px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 />
               )}
             </div>
-
-            {/* <div className="w-[30%]">
-              <label
-                htmlFor="Latitude"
-                className="block mb-2   text-[#455A64] dark:text-white"
-              >
-                عرض جغرافیایی{" "}
-              </label>
-              <input
-                type="text"
-                id="Latitude"
-                name="Latitude"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-                placeholder="عرض جغرافیایی"
-                {...formik?.getFieldProps("Latitude")}
-              />
-            </div>
-
-            <div className="w-[30%]">
-              <label
-                htmlFor="Longitude"
-                className="block mb-2   text-[#455A64] dark:text-white"
-              >
-                طول جغرافیایی{" "}
-              </label>
-              <input
-                type="text"
-                id="Longitude"
-                name="Longitude"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-                placeholder="طول جغرافیایی"
-                {...formik?.getFieldProps("Longitude")}
-              />
-            </div> */}
 
             <MyMap
               setMarkerPosition={setMarkerPosition}

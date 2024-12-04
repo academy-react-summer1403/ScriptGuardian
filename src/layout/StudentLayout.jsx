@@ -58,7 +58,7 @@ const StudentLayout = () => {
   return (
     <>
       <div className="flex container   md:mt-5 min-h-[600px] gap-x-7     mx-auto  ">
-        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#8cc9fa]  dark:bg-[#1e3e57] rounded-xl  hidden">
+        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#65c0a0]  dark:bg-[#1e3e57] rounded-xl  hidden">
           <div className="flex">
             {" "}
             <Link to="/">
@@ -92,7 +92,7 @@ const StudentLayout = () => {
               end
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
             >
@@ -103,7 +103,7 @@ const StudentLayout = () => {
             <NavLink
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
               to="/panel/MyProfile"
@@ -116,7 +116,7 @@ const StudentLayout = () => {
               to="/panel/MyCourses"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
             >
@@ -128,7 +128,7 @@ const StudentLayout = () => {
               to="/panel/MyCoursesPayment"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
             >
@@ -140,7 +140,7 @@ const StudentLayout = () => {
               to="/panel/MyReservedCourses"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
             >
@@ -152,7 +152,7 @@ const StudentLayout = () => {
               to="/panel/MyFavoriteCourses"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
             >
@@ -160,16 +160,11 @@ const StudentLayout = () => {
               مورد علاقه
             </NavLink>
 
-            {/* <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaRegNewspaper className="text-xl" />
-              <NavLink to="/panel/MyFavoriteNews">خبر های مورد علاقه </NavLink>
-            </div> */}
-
             <NavLink
               to="/panel/MyCommentPage"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]   rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
             >
@@ -180,7 +175,7 @@ const StudentLayout = () => {
               to="/panel/ChangePassword"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
                   : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
               }
             >
@@ -229,7 +224,7 @@ const StudentLayout = () => {
           </div>
         </div>
 
-        <div className="w-full  bg-gray-200 dark:bg-gray-900     md:rounded-xl">
+        <div className="w-full  bg-[#E3F2FD] dark:bg-gray-900     md:rounded-xl">
           <Outlet />
         </div>
       </div>

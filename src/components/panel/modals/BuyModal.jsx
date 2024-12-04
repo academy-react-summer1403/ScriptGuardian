@@ -1,9 +1,20 @@
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { usePayMentStepOne } from "../../../core/services/api/Panel/handelBuy";
 import { useQueryClient } from "@tanstack/react-query";
 import { CustomSpinner } from "../../animation/CustomSpinner";
+
+import DatePicker from "react-multi-date-picker";
+import { Calendar } from "react-multi-date-picker";
+import DateObject from "react-date-object";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import persian_en from "react-date-object/locales/persian_en";
+import {
+  convertIsoToJalali,
+  convertJalaliToIso,
+} from "../../../core/utils/dateUtils";
 
 const BuyModal = ({
   menuRef,
@@ -19,7 +30,7 @@ const BuyModal = ({
   const formik = useFormik({
     initialValues: {
       CourseId: courseId,
-      PeymentDate: "2024/04/12",
+      PeymentDate: "",
       Paid: "",
       PaymentInvoiceNumber: "",
     },
@@ -48,6 +59,43 @@ const BuyModal = ({
     },
   });
 
+  //calender
+  const [calendar, setCalendar] = useState(false);
+  const CalenderRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (CalenderRef.current && !CalenderRef.current.contains(event.target)) {
+        setCalendar(false);
+      }
+    };
+
+    if (calendar) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [calendar]);
+
+  console.log(formik.values.PeymentDate, "formik.values.PeymentDate");
+
+  const handelChangeData = (dateOfDatePiker) => {
+    const convert = `${
+      dateOfDatePiker
+        ? dateOfDatePiker.convert(persian, persian_en).format()
+        : ""
+    }`;
+
+    const Iso = convertJalaliToIso(convert);
+
+    formik.setFieldValue("PeymentDate", Iso);
+    setCalendar(false);
+  };
+
   return (
     <>
       <div className="fixed inset-0 bg-gray-700 bg-opacity-50 z-40 flex justify-center items-center">
@@ -57,7 +105,6 @@ const BuyModal = ({
           ref={menuRef}
           className="bg-white dark:bg-gray-950 rounded-lg shadow-lg p-6 w-96"
         >
-          {/* Modal Header */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
               فرم پرداخت
@@ -83,7 +130,6 @@ const BuyModal = ({
             </button>
           </div>
 
-          {/* Modal Body */}
           <form className="space-y-4" onSubmit={formik.handleSubmit}>
             <div className="w-full">
               <label
@@ -118,7 +164,46 @@ const BuyModal = ({
                 {...formik?.getFieldProps("PaymentInvoiceNumber")}
               />
             </div>
-            {/* Submit Button */}
+
+            <div className="w-full relative ">
+              <label
+                htmlFor="PeymentDate"
+                className="block mb-2   text-[#455A64] dark:text-white"
+              >
+                تاریخ پرداخت{" "}
+              </label>
+              <input
+                type="text"
+                id="PeymentDate"
+                name="PeymentDate"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                placeholder="تاریخ پرداخت خود را وارد کنید"
+                {...formik?.getFieldProps("PeymentDate")}
+                readOnly
+                value={
+                  formik.values.PeymentDate
+                    ? convertIsoToJalali(formik.values.PeymentDate)
+                    : ""
+                }
+                onFocus={() => {
+                  setCalendar(true);
+                }}
+              />
+
+              {calendar && (
+                <Calendar
+                  ref={CalenderRef}
+                  // value={
+                  //   formik.values.birthDay &&
+                  //   convertIsoToJalali(formik?.values?.birthDay)
+                  // }
+                  onChange={handelChangeData}
+                  calendar={persian}
+                  locale={persian_fa}
+                  className="bg-gray-50 border absolute top-[-256px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                />
+              )}
+            </div>
             <div className="mt-4 flex justify-end">
               {isPending ? (
                 <button
