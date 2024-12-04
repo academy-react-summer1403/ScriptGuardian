@@ -29,7 +29,7 @@ const TopHeader = () => {
         <DarkButton />
         {/* CartButton */}
 
-        <CartButton />
+        {/* <CartButton /> */}
 
         {/*LoginButton */}
         <LoginButton />

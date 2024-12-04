@@ -42,7 +42,7 @@ const BottomHeader = () => {
           />
           {debouncedSearchQuery && (
             <>
-              <div className="w-[724px] absolute min-h-[100px] bg-white dark:bg-gray-900 flex flex-col top-[310px] rounded-2xl p-3 z-50 ">
+              <div className=" md:w-[724px] w-[85%] absolute min-h-[100px] bg-white dark:bg-gray-900 flex flex-col top-[310px] rounded-2xl p-3 z-50 ">
                 {data && data.courseFilterDtos.length > 0 ? (
                   data.courseFilterDtos.map((item) => (
                     <div

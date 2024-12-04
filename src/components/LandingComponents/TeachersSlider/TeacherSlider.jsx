@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import ImageSLider from "../../../images/landing/TeachersSlider/BGIMAGE.jfif";
 import noProfile from "../../../images/NewsDetails/profile.png";
+import noProfile2 from "../../../images/landing/NOPROFILE2.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+
 import { useLandingTeachers } from "../../../core/services/api/Landing/LandingTeachers";
 import { Element } from "react-scroll";
 const TeacherSlider = () => {
@@ -13,16 +16,22 @@ const TeacherSlider = () => {
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
-      <div onClick={onClick} className="absolute top-[210px] left-0 z-[100]">
-        <FaArrowLeft className="text-white " />
+      <div
+        onClick={onClick}
+        className="absolute top-[210px] left-[-28px] z-[100]"
+      >
+        <AiOutlineLeft className="dark:text-white text-[#263238] text-[60px]" />
       </div>
     );
   };
 
   const NextArrow = ({ className, style, onClick }) => {
     return (
-      <div onClick={onClick} className="absolute top-[210px] right-0">
-        <FaArrowRight className="text-white" />
+      <div
+        onClick={onClick}
+        className="absolute top-[210px] right-0 cursor-pointer"
+      >
+        <AiOutlineRight className="dark:text-white text-[#263238] text-[60px]" />
       </div>
     );
   };
@@ -38,13 +47,13 @@ const TeacherSlider = () => {
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1025,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 830,
         settings: {
           slidesToShow: 2,
         },
@@ -64,7 +73,7 @@ const TeacherSlider = () => {
 
   return (
     <>
-    {/* Div */}
+      {/* Div */}
       <Element
         className="flex flex-col items-center z-[10] lg dark:"
         id="slider"
@@ -78,6 +87,8 @@ const TeacherSlider = () => {
         <Slider {...settings} className="xl:w-[1280px] w-[90%]    ">
           {data &&
             data?.map((item, index) => {
+              if (!item.fullName) return null;
+
               return (
                 <div
                   className={`xl:w-[296px] md:w-[230px] md:max-w-[296px] h-[382px]  lg:mr-0 md:mr-[30px] flex flex-col items-center justify-center mb-5 ${
@@ -90,7 +101,7 @@ const TeacherSlider = () => {
                       src={
                         item.pictureAddress && item.pictureAddress != "Not-set"
                           ? item.pictureAddress
-                          : noProfile
+                          : noProfile2
                       }
                       className="w-full h-full rounded-[24px]"
                     />

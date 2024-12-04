@@ -25,7 +25,7 @@ const NewsAndArticle = () => {
             اخبار و مقالات
           </h2>
         </div>
-        <div className="flex lg:flex-row flex-col sm:mt-[40px] mt-5 items-center    ">
+        <div className="flex lg:flex-row flex-col sm:mt-[40px] xl:mt-0 mt-5 items-center justify-center    ">
           {data && data[0] && (
             <BigNews
               title={data[0]?.title}
@@ -37,7 +37,7 @@ const NewsAndArticle = () => {
               updateDate={data[0]?.updateDate}
             />
           )}
-          <div className="flex flex-col lg:mr-[40px] gap-y-[40px] xl:items-start items-center xl:mt-0 mt-10   w-full">
+          <div className="flex flex-col lg:mr-[40px] gap-y-[40px] xl:items-start items-center  mt-10   w-full">
             {data &&
               data?.slice(1, 4).map((item, index) => {
                 return (
@@ -55,7 +55,7 @@ const NewsAndArticle = () => {
               })}
           </div>
         </div>
-        <div className="flex  justify-center mt-[40px] ">
+        <div className="flex  justify-center mt-[80px] ">
           {" "}
           <button
             className="w-[131px] h-[48px]  text-white bg-[#2196F3]  rounded-[80px] shadow-Second-shadow  hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] dark:bg-[#1565C0]  ease-in-out duration-300 xl:mt-0  mt-10"

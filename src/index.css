@@ -54,3 +54,10 @@ body {
   opacity: 0;
   transition: opacity 300ms;
 }
+
+.slick-slide {
+  min-width: 0 !important;
+}
+.slick-list {
+  overflow: hidden !important;
+}
