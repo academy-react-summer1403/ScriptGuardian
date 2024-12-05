@@ -336,7 +336,7 @@ const DetailsLeft = ({
             </p>
           </div>
         </div>
-        <div className="xl:w-[341px] w-[90%] h-[56px] mt-8 flex items-center justify-between">
+        <div className="xl:w-[341px] w-[90%] sm:h-[56px] h-[46px] mt-8 flex items-center justify-between">
           {isCourseUser != 1 ? (
             <>
               {isCourseReseve != 1 ? (
@@ -358,7 +358,7 @@ const DetailsLeft = ({
             </button>
           )}
 
-          <p className="text-[#2196F3] dark:text-[#1E88E5]">
+          <p className="text-[#2196F3] dark:text-[#1E88E5] sm:text-base text-xs">
             {" "}
             {cost}
             <span className="text-[#263238] dark:text-gray-200">تومان</span>

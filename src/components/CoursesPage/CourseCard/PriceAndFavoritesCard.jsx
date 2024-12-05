@@ -11,8 +11,15 @@ import { toast } from "react-toastify";
 //   useAddFavoriteCourses,
 //   useDeleteFavoriteCourses,
 // } from "../../../../core/services/api/CoursesPage/handelCoursesFavorite";
-import { useAddDissLikeCourses, useAddLikeCourses, useDeleteLikeCourses } from "../../../core/services/api/CoursesPage/handelCourseLike";
-import { useAddFavoriteCourses, useDeleteFavoriteCourses } from "../../../core/services/api/CoursesPage/handelCoursesFavorite";
+import {
+  useAddDissLikeCourses,
+  useAddLikeCourses,
+  useDeleteLikeCourses,
+} from "../../../core/services/api/CoursesPage/handelCourseLike";
+import {
+  useAddFavoriteCourses,
+  useDeleteFavoriteCourses,
+} from "../../../core/services/api/CoursesPage/handelCoursesFavorite";
 const PriceAndFavoritesCard = ({
   handleClickTitle,
   likeCount,
@@ -51,16 +58,6 @@ const PriceAndFavoritesCard = ({
         {};
     }
   };
-
-  // const handleDissLike = () => {
-  //   DissLike(courseId, {
-  //     onSuccess: () => {
-  //       toast.success("با موفقیت دیس لایک شد");
-
-  //       queryClient.invalidateQueries("LandingCourses", "CoursesDetail");
-  //     },
-  //   });
-  // };
 
   const handleDissLike = () => {
     if (userIsDissLiked === true) {
@@ -149,7 +146,6 @@ const PriceAndFavoritesCard = ({
     </svg>
   );
 
-  console.log(isUserFavorite, "isUserFavorite");
   return (
     <div
       className="flex  mt-[14px] justify-between  items-center"
@@ -179,7 +175,7 @@ const PriceAndFavoritesCard = ({
       </div>
       <p className="text-[#2196F3] dark:text-[#BBDEFB] font-[500] tracking-tight">
         {" "}
-        {cost}{" "}
+        {parseFloat(cost).toFixed(2) % 1 === 0 ? parseInt(cost) : cost}{" "}
         <span className="text-[12px] text-[#263238] dark:text-[#CFD8DC] ml-5">
           تومان
         </span>{" "}

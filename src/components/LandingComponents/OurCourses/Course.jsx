@@ -28,7 +28,7 @@ const Course = ({
   };
 
   const handleClickTitle = (e) => {
-    e.stopPropagation(); // جلوگیری از پیشرفت رویداد کلیک
+    e.stopPropagation();
   };
 
   return (

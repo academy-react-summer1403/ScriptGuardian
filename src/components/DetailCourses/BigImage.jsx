@@ -50,7 +50,7 @@ const BigImage = ({
         className="w-full h-full rounded-2xl "
         onError={(e) => {
           e.target.src = image;
-        }} // اگر لود نشد، تصویر پیش‌فرض
+        }}
       />
       <div className="absolute sm:w-[78px] w-[58px] rounded-3xl justify-center items-center  h-[48px] bg-white dark:bg-gray-900 cursor-pointer flex sm:top-8 sm:right-8 top-4 right-4">
         <span
