@@ -43,7 +43,7 @@ const TimeRangeFilter = ({
         </div>
         {isOpenFourth && (
           <div className="flex flex-col xl:w-[248px] w-10/12">
-            <div class="flex flex-col  mb-4  flex-wrap gap-x-2 gap-y-3 mt-5">
+            <div className="flex flex-col  mb-4  flex-wrap gap-x-2 gap-y-3 mt-5">
               {Technologies &&
                 Technologies.map((item, index) => {
                   return (
@@ -51,7 +51,7 @@ const TimeRangeFilter = ({
                       <div className="gap-x-2 flex">
                         <label
                           for={`default-checkbox-${item?.id}`}
-                          class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
                         >
                           {item.levelName}
                         </label>
@@ -59,7 +59,7 @@ const TimeRangeFilter = ({
                           id={`default-checkbox-${item?.id}`}
                           type="checkbox"
                           value={item?.id}
-                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 cursor-pointer dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                           key={index}
                           onChange={() => handleCheckboxChange(item.id)}
                           checked={courseLevelChecked === item.id}

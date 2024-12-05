@@ -189,7 +189,10 @@ const Filters = ({
               </span>
               <p className="text-[#263238] dark:text-gray-400">فیلتر</p>
             </div>
-            <div className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center">
+            <div
+              className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center"
+              onClick={resetFilters}
+            >
               <span>
                 {" "}
                 <svg
@@ -243,7 +246,12 @@ const Filters = ({
 
         {/*  Accordion1 */}
           <div className="w-full ">
-            <CategoryFilter setListTech={setListTech} listTech={listTech} />
+            <CategoryFilter
+              setListTech={setListTech}
+              listTech={listTech}
+              setSelectedIds={setSelectedIds}
+              selectedIds={selectedIds}
+            />
 
             {/* Accordion2 */}
 
@@ -251,10 +259,16 @@ const Filters = ({
               setCostDown={setCostDown}
               setCostUp={setCostUp}
               data={data}
+              setPrice={setPrice}
+              price={price}
             />
             {/* Accordion3 */}
 
-            <FilterTopics setListCourseType={setListCourseType} />
+            <FilterTopics
+              setListCourseType={setListCourseType}
+              setStatusCourseType={setStatusCourseType}
+              statusCourseType={statusCourseType}
+            />
 
             {/* Accordion4 */}
 

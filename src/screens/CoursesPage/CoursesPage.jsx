@@ -178,7 +178,7 @@ const CoursesPage = () => {
             searchQuery={searchQuery}
             setSortingCol={setSortingCol}
           />
-          <div className="xl:w-[952px] lg:w-[722px] md:w-full md:mr-0 lg:mr-3 sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap  lg:gap-8 md:gap-x-12 sm:gap-x-[18px] gap-x-[5%]  gap-y-8 sm:mr-3  w-full lg:justify-start md:justify-center sm:justify-start justify-center ">
+          <div className="xl:w-[952px] lg:w-[722px] md:w-full md:mr-0 lg:mr-3 sm:w-auto     min-h-[231px] mt-[32px] flex flex-wrap xl:gap-8 lg:gap-10 md:gap-x-12 sm:gap-x-[18px] gap-x-[5%]  gap-y-8 sm:mr-3  w-full lg:justify-start md:justify-center sm:justify-start justify-center ">
             {!currentItems ? (
               <CustomSpinner style={loaderStyle} color={"#2196F3"} />
             ) : currentItems.length === 0 ? (

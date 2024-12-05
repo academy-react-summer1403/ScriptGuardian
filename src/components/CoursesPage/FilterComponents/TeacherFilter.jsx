@@ -53,7 +53,7 @@ const TeacherFilter = ({
                         <div className="gap-x-2 flex">
                           <label
                             for={`default-checkbox-${item?.teacherId}`}
-                            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
                           >
                             {item.fullName.length > 30
                               ? `${item.fullName.slice(0, 30)}...`
@@ -64,7 +64,7 @@ const TeacherFilter = ({
                             type="checkbox"
                             name="same"
                             value={item?.teacherId}
-                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
                             key={index}
                             checked={selectedTeacherId === item.teacherId}
                             onChange={() =>
