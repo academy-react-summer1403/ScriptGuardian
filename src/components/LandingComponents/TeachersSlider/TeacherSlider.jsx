@@ -29,7 +29,7 @@ const TeacherSlider = () => {
     return (
       <div
         onClick={onClick}
-        className="absolute top-[210px] right-0 cursor-pointer"
+        className="absolute top-[210px] xl:right-0 right-[-30px] cursor-pointer"
       >
         <AiOutlineRight className="dark:text-white text-[#263238] text-[60px]" />
       </div>
@@ -91,7 +91,7 @@ const TeacherSlider = () => {
 
               return (
                 <div
-                  className={`xl:w-[296px] md:w-[230px] md:max-w-[296px] h-[382px]  lg:mr-0 md:mr-[30px] flex flex-col items-center justify-center mb-5 ${
+                  className={`xl:w-[296px] md:w-[230px] md:max-w-[296px] h-[382px]  lg:mr-0 md:mr-[30px] flex flex-col items-center justify-center mb-5  ${
                     index % 2 !== 0 ? "sm:mt-[64px] " : ""
                   }`}
                   key={index}
@@ -103,12 +103,17 @@ const TeacherSlider = () => {
                           ? item.pictureAddress
                           : noProfile2
                       }
-                      className="w-full h-full rounded-[24px]"
+                      className="w-full h-full block rounded-[24px]"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <h3 className="text-[#263238] dark:text-gray-400 mt-[16px] font-[700] xl:text-[24px] text-[20px] md:mr-0 sm:mr-[50px]">
-                      {item.fullName}
+                    <h3
+                      className="text-[#263238] dark:text-gray-400 mt-[16px] font-[700] xl:text-[24px] text-[20px] lg:mr-0 md:mr-15 sm:mr-[50px]"
+                      title={item?.fullName}
+                    >
+                      {item.fullName.length > 20
+                        ? "..." + item.fullName?.slice(0, 20)
+                        : item.fullName}
                     </h3>
                     {/* <p className="text-[#455A64] dark:text-gray-200 mt-[4px] xl:text-[16px] text-[14px]">
                       بکند, node js, .netcore, database

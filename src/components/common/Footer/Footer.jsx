@@ -155,7 +155,7 @@ const Footer = () => {
                 />
               </svg>
             </span>
-            <p className="text-white ">
+            <p className="text-white sm:mx-0 mx-auto">
               تمام حقوق مادی و معنوی این مجموعه متعلق به script.ir میباشد
             </p>
           </div>

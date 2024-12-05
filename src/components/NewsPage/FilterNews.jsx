@@ -10,7 +10,7 @@ const FilterNews = ({ setSortingCol }) => {
   return (
     <div className="w-[526px] h-[56px] rounded-[16px] border mr-[32px] shadow-Second-shadow xl:flex bg-white dark:bg-gray-900 dark:border-gray-950 items-center hidden">
       <div
-        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center px-6 ${
+        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center px-6 cursor-pointer ${
           activeIndex === 0
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"
@@ -20,7 +20,7 @@ const FilterNews = ({ setSortingCol }) => {
         همه
       </div>
       <div
-        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center px-6 ${
+        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center cursor-pointer px-6 ${
           activeIndex === 1
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"
@@ -30,7 +30,7 @@ const FilterNews = ({ setSortingCol }) => {
         محبوب‌ترین‌ها
       </div>
       <div
-        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center px-6 ${
+        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center cursor-pointer px-6 ${
           activeIndex === 2
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"
@@ -40,7 +40,7 @@ const FilterNews = ({ setSortingCol }) => {
         پربازدیدترین‌ها
       </div>
       <div
-        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center px-6 ${
+        className={`h-[40px] text-white rounded-[12px] mr-2 flex justify-center items-center cursor-pointer px-6 ${
           activeIndex === 3
             ? "bg-[#2196F3] dark:bg-[#1565C0]"
             : "bg-gray-400 dark:bg-gray-600"

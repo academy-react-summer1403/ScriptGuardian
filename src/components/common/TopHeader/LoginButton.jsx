@@ -112,22 +112,16 @@ const LoginButton = () => {
   }, [isLoginOpen || isForgetPassOpen || isRegisterOpen]);
   return (
     <>
-      {/* <div className="" onClick={logOut}>
-        DeleteToken
-      </div> */}
       {isToken ? (
         <>
           <div className="relative">
-            {/* دکمه گرد */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center"
+              className="xl:w-[48px] lg:w-[40px] sm:w-[36px] w-[30px] xl:h-[48px] lg:h-[40px] sm:h-[36px] h-[30px]  rounded-[100%] bg-white dark:bg-gray-900 flex justify-center items-center"
             >
-              {/* آیکون یا نام */}
               <span>👤</span>
             </button>
 
-            {/* منوی کشویی */}
             {menuOpen && (
               <div className="absolute right-[-150px] mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
                 <button

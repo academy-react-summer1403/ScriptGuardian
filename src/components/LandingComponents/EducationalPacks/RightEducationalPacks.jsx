@@ -39,11 +39,11 @@ const RightEducationalPacks = ({ data }) => {
             </span>
           </div>
           <h3 className="font-[900] text-[24px] mt-[24px] text-[#263238] dark:text-gray-200">
-            {data?.[0].techName}{" "}
+            {data && data?.[0].techName}{" "}
           </h3>
           <div className="flex justify-center text-center w-[248px] ">
             <p className="font-[500] mt-[8px] text-[#455A64] dark:text-gray-400">
-              {data?.[0].describe}{" "}
+              {data && data?.[0].describe}{" "}
             </p>
           </div>
         </div>
@@ -163,11 +163,11 @@ const RightEducationalPacks = ({ data }) => {
             </span>
           </div>
           <h3 className="font-[900] text-[24px] mt-[24px]  text-[#263238] dark:text-gray-200">
-            {data?.[2].techName}{" "}
+            {data && data?.[2].techName}{" "}
           </h3>
           <div className="flex justify-center text-center w-[248px] ">
             <p className="font-[500] mt-[8px] text-[#455A64] dark:text-gray-400">
-              {data?.[2].describe}{" "}
+              {data && data?.[2].describe}{" "}
             </p>
           </div>
         </div>
@@ -217,11 +217,11 @@ const RightEducationalPacks = ({ data }) => {
             </span>
           </div>
           <h3 className="font-[900] text-[24px] mt-[24px]  text-[#263238] dark:text-gray-200">
-            {data?.[3].techName}{" "}
+            {data && data?.[3].techName}{" "}
           </h3>
           <div className="flex justify-center text-center w-[248px] ">
             <p className="font-[500] mt-[8px] text-[#455A64] dark:text-gray-400">
-              {data?.[3].describe}{" "}
+              {data && data?.[3].describe}{" "}
             </p>
           </div>
         </div>
