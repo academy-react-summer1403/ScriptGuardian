@@ -7,6 +7,7 @@ import {
   useSelectProfileImage,
 } from "../../../../core/services/api/Panel/handelUserProfile";
 import { toast } from "react-toastify";
+import { CustomSpinner } from "../../../animation/CustomSpinner";
 
 const Gallery = ({
   gallery,
@@ -16,17 +17,14 @@ const Gallery = ({
 }) => {
   const queryClient = useQueryClient();
 
-  // State برای ذخیره آیدی تصویر انتخاب شده
   const [selectedImage, setSelectedImage] = useState(null);
   const [takeID, setTakeId] = useState(null);
 
-  // تابع برای انتخاب تصویر
   const handleSelectImage = ({ index, DeleteEntityId }) => {
     setSelectedImage(index);
     setTakeId(DeleteEntityId);
   };
 
-  // تابع برای لغو انتخاب تصویر
   const handleDeselectImage = () => {
     setSelectedImage(null);
     setTakeId(null);
@@ -34,10 +32,9 @@ const Gallery = ({
 
   //API
 
-  // State برای ذخیره تصویر انتخاب شده
   //API
   //Select
-  const { mutate: SelectImage } = useSelectProfileImage();
+  const { mutate: SelectImage, isPending } = useSelectProfileImage();
   const selectImage = () => {
     const formData = new FormData();
     formData.append("ImageId", takeID);
@@ -57,7 +54,8 @@ const Gallery = ({
   };
 
   //Delete
-  const { mutate: DeleteImage } = useDeleteProfileImage();
+  const { mutate: DeleteImage, isPending: deletePending } =
+    useDeleteProfileImage();
   const handelDelete = () => {
     const formData = new FormData();
     formData.append("DeleteEntityId", takeID);
@@ -91,50 +89,84 @@ const Gallery = ({
             </button>
           </div>
 
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {/* Map through images and display them */}
-            {gallery?.userImage?.map((item, index) => (
-              <div key={index} className="relative group">
-                <img
-                  src={item?.puctureAddress}
-                  alt={`Gallery Image ${index + 1}`}
-                  onClick={() => {
-                    handleSelectImage({
-                      index: index,
-                      DeleteEntityId: item?.id,
-                    });
-                  }}
-                  className={`w-full h-full object-cover rounded-md shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-105 ${
-                    selectedImage === index ? "border-4 border-blue-500" : ""
-                  }`}
-                />
-                {/* دکمه لغو انتخاب */}
-                {selectedImage === index && (
-                  <button
-                    onClick={handleDeselectImage}
-                    className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-3 py-1 rounded-lg mt-2 text-sm"
-                  >
-                    لغو انتخاب
-                  </button>
-                )}
-              </div>
-            ))}
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4  min-h-[200px]">
+            {gallery?.userImage != 0 ? (
+              gallery?.userImage?.map((item, index) => {
+                return (
+                  <div key={index} className="relative group cursor-pointer">
+                    <img
+                      src={item?.puctureAddress}
+                      alt={`Gallery Image ${index + 1}`}
+                      onClick={() => {
+                        handleSelectImage({
+                          index: index,
+                          DeleteEntityId: item?.id,
+                        });
+                      }}
+                      className={`w-full h-full object-cover rounded-md shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-105 ${
+                        selectedImage === index
+                          ? "border-4 border-blue-500"
+                          : ""
+                      }`}
+                    />
+                    {selectedImage === index && (
+                      <button
+                        onClick={handleDeselectImage}
+                        className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-3 py-1 rounded-lg mt-2 text-sm"
+                      >
+                        لغو انتخاب
+                      </button>
+                    )}
+                  </div>
+                );
+              })
+            ) : (
+              <h2 className="text-[30px] text-nowrap mr-[180px] mt-[100px]">
+                هیچ عکسی در گالری اتان وجود ندارد!!
+              </h2>
+            )}
           </div>
 
           <div className="flex  gap-x-4 mt-4 ">
-            <button
-              onClick={selectImage}
-              className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
-            >
-              انتخاب برای پروفایل
-            </button>
+            {isPending ? (
+              <button
+                onClick={selectImage}
+                className={`w-[168px] h-[48px] bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-300 ease-in-out justify-center flex items-center transform hover:scale-105 ${
+                  takeID ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <CustomSpinner color={"FFF"} size={34} />
+              </button>
+            ) : (
+              <button
+                onClick={selectImage}
+                className={`px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105 ${
+                  takeID ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                انتخاب برای پروفایل
+              </button>
+            )}
 
-            <button
-              onClick={handelDelete}
-              className="px-6 py-3 bg-red-500 text-white font-medium rounded-lg shadow-md hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105"
-            >
-              حذف
-            </button>
+            {deletePending ? (
+              <button
+                onClick={handelDelete}
+                className={`px-6 h-[48px] bg-red-500 justify-center flex items-center text-white font-medium rounded-lg shadow-md hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105 ${
+                  takeID ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <CustomSpinner color={"FFF"} size={28} />
+              </button>
+            ) : (
+              <button
+                onClick={handelDelete}
+                className={`px-6 py-3 bg-red-500 text-white font-medium rounded-lg shadow-md hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105 ${
+                  takeID ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                حذف
+              </button>
+            )}
           </div>
         </div>
       </div>

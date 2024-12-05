@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useAddProfileImage } from "../../../core/services/api/Panel/handelUserProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { Gallery } from "./child/Gallery";
+import { CustomSpinner } from "../../animation/CustomSpinner";
 
 const HandelProfile = ({ data }) => {
   const queryClient = useQueryClient();
@@ -13,7 +14,7 @@ const HandelProfile = ({ data }) => {
   const [showSend, setShowSend] = useState(false);
 
   //API
-  const { mutate: AddProfile } = useAddProfileImage();
+  const { mutate: AddProfile, isPending } = useAddProfileImage();
   const formik = useFormik({
     initialValues: {
       formFile: null,
@@ -144,18 +145,19 @@ const HandelProfile = ({ data }) => {
           />
         </div>
 
-        <div className="w-full flex flex-row items-center justify-between gap-4">
+        <form
+          onSubmit={formik.handleSubmit}
+          className="w-full flex flex-row items-center justify-between gap-4"
+        >
           <button
+            type="button"
             onClick={HandelGalleryModal}
-            className="px-6 py-3 bg-[#4CAF50] text-white font-medium rounded-lg shadow-md hover:bg-[#45A049] dark:bg-[#388E3C] dark:hover:bg-[#2C6F3F] transition duration-300 ease-in-out transform hover:scale-105"
+            className="px-6 py-3 bg-[#4CAF50] text-white font-medium rounded-lg shadow-md hover:bg-green-950 dark:bg-green-900 dark:hover:bg-[#2C6F3F] transition duration-300 ease-in-out transform hover:scale-105"
           >
             گالری
           </button>
 
-          <form
-            onSubmit={formik.handleSubmit}
-            className="flex items-center justify-center"
-          >
+          <div className="flex items-center justify-center">
             <label
               htmlFor="formFile"
               className="text-[#455A64] dark:text-gray-400 cursor-pointer font-medium px-5 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 hover:shadow-md dark:hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105"
@@ -174,17 +176,28 @@ const HandelProfile = ({ data }) => {
                 setShowSend(true);
               }}
             />
-          </form>
+          </div>
 
           {showSend && (
-            <button
-              type="submit"
-              className="px-6 py-3 rounded-lg bg-[#2196F3] text-white font-semibold shadow-md hover:bg-[#1E88E5] hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-            >
-              ارسال
-            </button>
+            <>
+              {isPending ? (
+                <button
+                  type="submit"
+                  className="px-6 h-[48px] rounded-lg bg-blue-500 dark:bg-blue-700 text-white font-semibold shadow-md hover:bg-[#1E88E5] hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+                >
+                  <CustomSpinner color={"FFF"} size={24} />
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="px-6 py-3 rounded-lg bg-blue-500 dark:bg-blue-700 text-white font-semibold shadow-md hover:bg-[#1E88E5] hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+                >
+                  ارسال
+                </button>
+              )}
+            </>
           )}
-        </div>
+        </form>
       </div>
 
       {isGalleryModalOpen && (

@@ -40,6 +40,7 @@ import {
   convertJalaliToIso,
 } from "../../../core/utils/dateUtils";
 import { MyMap } from "../../../components/common/map/MyMap";
+import { CustomSpinner } from "../../../components/animation/CustomSpinner";
 const StudentProfile = () => {
   const queryClient = useQueryClient();
 
@@ -49,7 +50,7 @@ const StudentProfile = () => {
   console.log(data, "Student profile data data");
 
   //Handel Put Api
-  const { mutate: EditProfile } = useEditProfile();
+  const { mutate: EditProfile, isPending: PendProf } = useEditProfile();
 
   //map
 
@@ -415,9 +416,15 @@ const StudentProfile = () => {
           </div>
 
           <div className="flex sm:justify-between justify-center w-[95%] mt-12 mb-5 mr-3">
-            <button className=" bg-[#2196F3] hover:bg-blue-700 dark:bg-blue-800  dark:hover:bg-blue-900 text-white font-bold py-3  xl:mr-8 px-8 rounded">
-              ثبت اطلاعات
-            </button>
+            {PendProf ? (
+              <button className=" bg-[#2196F3] hover:bg-blue-700 dark:bg-blue-800  dark:hover:bg-blue-900 text-white font-bold h-[48px]  xl:mr-8 w-[136px] rounded">
+                <CustomSpinner color={"FFF"} size={28} />
+              </button>
+            ) : (
+              <button className=" bg-[#2196F3] hover:bg-blue-700 dark:bg-blue-800  dark:hover:bg-blue-900 text-white font-bold py-3  xl:mr-8 px-8 rounded">
+                ثبت اطلاعات
+              </button>
+            )}
           </div>
         </form>
       </div>
