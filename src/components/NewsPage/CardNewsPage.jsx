@@ -26,7 +26,7 @@ const CardNewsPage = ({
 
   return (
     <div
-      className=" lg:w-[405px]  w-[90%] sm:h-[447px] last:mb-5 cursor-pointer "
+      className=" lg:w-[405px]  w-[90%] sm:min-h-[447px]  last:mb-5 cursor-pointer "
       onClick={navigateDetails}
     >
       <div className=" h-[280px] lg:w-[405px]">
@@ -42,11 +42,11 @@ const CardNewsPage = ({
           className="w-full h-full rounded-2xl"
         />
       </div>
-      <div className="flex flex-col text-[] lg:w-[405px]">
+      <div className="flex flex-col text-[] lg:w-[405px] min-h-[100px] bg-w">
         <h2 className="mt-[24px] text-[#263238] dark:text-gray-200 font-[700] text-[20px]">
           {title}
         </h2>
-        <p className="mt-2 text-[#455A64] dark:text-gray-400 flex flex-wrap xl:w-[400px] break-words overflow break-all whitespace-x">
+        <p className="mt-2 text-[#455A64] dark:text-gray-400 flex flex-wrap xl:w-[400px] break-words overflow break-all whitespace-x min-h-[80px]">
           {miniDescribe}
         </p>
 
