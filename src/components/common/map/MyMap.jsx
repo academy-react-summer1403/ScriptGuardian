@@ -27,14 +27,8 @@ const MyMap = ({ markerPosition, setMarkerPosition }) => {
   return (
     <MapContainer
       center={[markerPosition.initialLatitude, markerPosition.initialLongitude]}
-      zoom={6}
-      style={{
-        height: "200px",
-        width: "940px",
-        borderRadius: "8px",
-        direction: "rtl",
-        marginRight:"8px"
-      }}
+      zoom={10}
+      className="rounded-[8px] mr-[8px] lg:w-[940px] md:w-[696px] sm:w-[593px] w-[90%] h-[200px] sm:h-[200px]"
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 

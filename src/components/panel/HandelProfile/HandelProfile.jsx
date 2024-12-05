@@ -147,7 +147,7 @@ const HandelProfile = ({ data }) => {
 
         <form
           onSubmit={formik.handleSubmit}
-          className="w-full flex flex-row items-center justify-between gap-4"
+          className="w-full flex flex-row items-center sm:justify-between justify-center flex-wrap gap-4"
         >
           <button
             type="button"

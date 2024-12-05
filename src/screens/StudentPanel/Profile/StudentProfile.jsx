@@ -197,9 +197,9 @@ const StudentProfile = () => {
         {/* HAndel */}
         <HandelProfile data={data} />
 
-        <form onSubmit={formik?.handleSubmit}>
-          <div className="flex flex-wrap sm:w-[95%] w-full gap-x-5 justify-center gap-y-7 mt-3">
-            <div className="w-[30%]">
+        <form onSubmit={formik?.handleSubmit} className=" mt-10">
+          <div className="flex flex-wrap mx-auto  md:max-w-[780px] lg:max-w-none  sm:w-[95%] w-full gap-x-5 justify-center gap-y-7 mt-3">
+            <div className="sm:w-[30%] w-[90%]">
               <label
                 htmlFor="FName"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -215,7 +215,8 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("FName")}
               />
             </div>
-            <div className="w-[30%]">
+
+            <div className="sm:w-[30%] w-[90%]">
               <label
                 htmlFor="LName"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -231,7 +232,7 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("LName")}
               />
             </div>
-            <div className="w-[30%]">
+            <div className="sm:w-[30%] w-[90%]">
               <label
                 htmlFor="UserAbout"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -247,7 +248,7 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("UserAbout")}
               />
             </div>
-            <div className="w-[30%]">
+            <div className="sm:w-[30%] w-[90%]">
               <label
                 htmlFor="LinkdinProfile"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -263,7 +264,7 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("LinkdinProfile")}
               />
             </div>
-            <div className="w-[30%]">
+            <div className="sm:w-[30%] w-[90%]">
               <label
                 htmlFor="TelegramLink"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -279,7 +280,7 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("TelegramLink")}
               />
             </div>
-            <div className="w-[30%] flex justify-between">
+            <div className="sm:w-[30%] w-[90%] flex justify-between">
               <div className="w-[45%]">
                 <label
                   htmlFor="ReceiveMessageEvent"
@@ -317,26 +318,7 @@ const StudentProfile = () => {
               </div>
             </div>
 
-            {/* <div className="sm:w-[30%] w-[65%]">
-              <label
-                htmlFor="Gender"
-                className="block mb-2   text-[#455A64] dark:text-white"
-              >
-                جنسیت{" "}
-              </label>
-    
-              <div>
-                <select
-                  {...formik?.getFieldProps("Gender")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  "
-                >
-                  <option value="true">مرد</option>
-                  <option value="false">زن</option>
-                </select>
-              </div>
-            </div> */}
-
-            <div className="w-[30%]">
+            <div className="sm:w-[30%] w-[90%]">
               <label
                 htmlFor="HomeAdderess"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -353,7 +335,7 @@ const StudentProfile = () => {
               />
             </div>
 
-            <div className="w-[30%]">
+            <div className="sm:w-[30%] w-[90%]">
               <label
                 htmlFor="NationalCode"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -364,13 +346,14 @@ const StudentProfile = () => {
                 type="text"
                 id="NationalCode"
                 name="NationalCode"
+                readOnly
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 placeholder="کد ملی خود را وارد کنید"
                 {...formik?.getFieldProps("NationalCode")}
               />
             </div>
 
-            <div className="sm:w-[30%]  w-[65%] relative ">
+            <div className="sm:w-[30%]  w-[90%] relative ">
               <label
                 htmlFor="BirthDay"
                 className="block mb-2   text-[#455A64] dark:text-white"
@@ -404,7 +387,7 @@ const StudentProfile = () => {
                   onChange={handelChangeData}
                   calendar={persian}
                   locale={persian_fa}
-                  className="bg-gray-50 border absolute top-[-256px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                  className="bg-gray-50 border absolute top-[-256px] lg:right-[0] left-[0] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 />
               )}
             </div>
@@ -415,7 +398,7 @@ const StudentProfile = () => {
             />
           </div>
 
-          <div className="flex sm:justify-between justify-center w-[95%] mt-12 mb-5 mr-3">
+          <div className="flex sm:justify-between justify-center  mt-12 mb-5 lg:mr-3 md:mr-10 sm:mr-7">
             {PendProf ? (
               <button className=" bg-[#2196F3] hover:bg-blue-700 dark:bg-blue-800  dark:hover:bg-blue-900 text-white font-bold h-[48px]  xl:mr-8 w-[136px] rounded">
                 <CustomSpinner color={"FFF"} size={28} />
