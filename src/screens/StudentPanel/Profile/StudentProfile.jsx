@@ -278,22 +278,63 @@ const StudentProfile = () => {
                 {...formik?.getFieldProps("TelegramLink")}
               />
             </div>
-            <div className="w-[30%]">
+            <div className="w-[30%] flex justify-between">
+              <div className="w-[45%]">
+                <label
+                  htmlFor="ReceiveMessageEvent"
+                  className="block mb-2   text-[#455A64] dark:text-white"
+                >
+                  رویداد پیام
+                </label>
+
+                <select
+                  {...formik?.getFieldProps("ReceiveMessageEvent")}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                >
+                  <option value="true">موافق</option>
+                  <option value="false">مخالف</option>
+                </select>
+              </div>
+
+              <div className="w-[45%]">
+                <label
+                  htmlFor="Gender"
+                  className="block mb-2   text-[#455A64] dark:text-white"
+                >
+                  جنسیت{" "}
+                </label>
+
+                <div>
+                  <select
+                    {...formik?.getFieldProps("Gender")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  "
+                  >
+                    <option value="true">مرد</option>
+                    <option value="false">زن</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* <div className="sm:w-[30%] w-[65%]">
               <label
-                htmlFor="ReceiveMessageEvent"
+                htmlFor="Gender"
                 className="block mb-2   text-[#455A64] dark:text-white"
               >
-                رویداد پیام
+                جنسیت{" "}
               </label>
+    
+              <div>
+                <select
+                  {...formik?.getFieldProps("Gender")}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  "
+                >
+                  <option value="true">مرد</option>
+                  <option value="false">زن</option>
+                </select>
+              </div>
+            </div> */}
 
-              <select
-                {...formik?.getFieldProps("ReceiveMessageEvent")}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-              >
-                <option value="true">موافق</option>
-                <option value="false">مخالف</option>
-              </select>
-            </div>
             <div className="w-[30%]">
               <label
                 htmlFor="HomeAdderess"
@@ -326,32 +367,6 @@ const StudentProfile = () => {
                 placeholder="کد ملی خود را وارد کنید"
                 {...formik?.getFieldProps("NationalCode")}
               />
-            </div>
-
-            <div className="sm:w-[30%] w-[65%]">
-              <label
-                htmlFor="Gender"
-                className="block mb-2   text-[#455A64] dark:text-white"
-              >
-                جنسیت{" "}
-              </label>
-              {/* <input
-                type="text"
-                id="Gender"
-                name="Gender"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-                placeholder="جنسیت خود را وارد کنید"
-                {...formik?.getFieldProps("Gender")}
-              /> */}
-              <div>
-                <select
-                  {...formik?.getFieldProps("Gender")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  "
-                >
-                  <option value="true">مرد</option>
-                  <option value="false">زن</option>
-                </select>
-              </div>
             </div>
 
             <div className="sm:w-[30%]  w-[65%] relative ">
