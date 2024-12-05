@@ -10,7 +10,7 @@ const NewsAndArticle = () => {
 
   const goTOCoursesPage = () => {
     navigate("/News");
-    window.scrollTo(0, 0); // اسکرول به بالای صفحه
+    window.scrollTo(0, 0); 
   };
 
   const { data, isPending } = useLandingNews();

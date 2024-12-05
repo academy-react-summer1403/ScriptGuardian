@@ -8,7 +8,7 @@ const OurCourses = () => {
 
   const goTOCoursesPage = () => {
     navigate("/courses");
-    window.scrollTo(0, 0); // اسکرول به بالای صفحه
+    window.scrollTo(0, 0); 
   };
 
   //Handel API

@@ -92,24 +92,6 @@ const MyCourseComment = () => {
     setItemOffset(newOffset);
   };
 
-  //API DELETE RESERVE
-
-  const { mutate: DeleteComment } = useDeleteMyCommentInCourses();
-
-  const handelDelete = (id) => {
-    DeleteComment(id, {
-      onSuccess: (data) => {
-        if (data.success) {
-          queryClient.invalidateQueries("MyCommentInCourses");
-          toast.success(data.message ? data.message : data.ErrorMessage);
-        } else {
-          toast.success("کامنت دارای ریپلای را نمی توان پاک کرد");
-        }
-      },
-    });
-    // alert(id)
-  };
-
   const loaderStyle = "flex justify-center items-center mx-auto mt-[100px]";
 
   return (
@@ -208,11 +190,11 @@ const MyCourseComment = () => {
 
                   <div className=" w-[150px] sm:mr-0 mr-[4%] md:text-base text-xs ">
                     {item?.accept ? (
-                      <span className="text-green-500 bg-green-700 py-1 px-1">
+                      <span className="py-1 px-1 text-green-700 dark:text-green-500">
                         پذیرفته شده
                       </span>
                     ) : (
-                      <span className="text-red-500 bg-red-700 p-1">
+                      <span className=" py-1 px-1 dark:text-red-500 text-red-700">
                         پذیرفته نشده
                       </span>
                     )}

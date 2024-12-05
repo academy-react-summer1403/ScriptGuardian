@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
+import { convertEnToPe } from "persian-number";
 const PriceFilter = ({ setCostDown, setCostUp, setPrice, price }) => {
   const [isOpenSecond, setIsOpenSecond] = useState(false);
   // const [price, setPrice] = useState([1000, 10000000]);
@@ -29,7 +30,8 @@ const PriceFilter = ({ setCostDown, setCostUp, setPrice, price }) => {
           <div className="flex flex-col xl:w-[248px] w-10/12">
             <div style={{ width: 300, margin: "auto" }}>
               <Typography gutterBottom>
-                محدوده قیمت: {price[1]} - {price[0]}
+                محدوده قیمت: {convertEnToPe(price[1])} -{" "}
+                {convertEnToPe(price[0])}
               </Typography>
               <Slider
                 value={price}

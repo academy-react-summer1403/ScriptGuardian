@@ -21,6 +21,8 @@ import {
   useReplayCommentCourses,
 } from "../../../../core/services/api/DetailCourses/handelCommentCourses";
 import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
+
 const CourseComment = ({
   title,
   describe,
@@ -209,7 +211,9 @@ const CourseComment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
+            <strong>
+              {insertDate && convertEnToPe(convertIsoToJalali(insertDate))}
+            </strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -220,7 +224,7 @@ const CourseComment = ({
             <div className="flex items-center gap-3">
               <button className="flex items-center 0">
                 <span className="ml-1 text-xs dark:text-white">
-                  {likeCount}
+                  {likeCount && convertEnToPe(likeCount)}
                 </span>
                 <FaThumbsUp
                   className={`text-sm ${
@@ -241,7 +245,7 @@ const CourseComment = ({
                   onClick={handelDissLike}
                 />
                 <span className="mr-1 text-xs dark:text-white">
-                  {dissLikeCount}
+                  {dissLikeCount && convertEnToPe(dissLikeCount)}
                 </span>
               </button>
             </div>

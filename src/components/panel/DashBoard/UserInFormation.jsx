@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGetStudentProfile } from "../../../core/services/api/Panel/GetProfile";
 import { convertIsoToJalali } from "../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
+
 const UserInFormation = () => {
   const { data, isPending } = useGetStudentProfile();
   return (
@@ -30,7 +32,9 @@ const UserInFormation = () => {
             {data?.birthDay === "0001-01-01T00:00:00" ? (
               <p className="text-xs">لطفا تاریخ تولد خود را وارد کنید</p>
             ) : (
-              <strong>{data && convertIsoToJalali(data?.birthDay)}</strong>
+              <strong>
+                {data && convertEnToPe(convertIsoToJalali(data?.birthDay))}
+              </strong>
             )}{" "}
           </p>
         </div>
@@ -39,7 +43,7 @@ const UserInFormation = () => {
           <p className="text-[#455A64] dark:text-gray-400">شماره همراه:</p>
           <p className="text-[#1e3e57] dark:text-[#8cc9fa]">
             {" "}
-            {data?.phoneNumber}
+            {data?.phoneNumber && convertEnToPe(data?.phoneNumber)}
           </p>
         </div>
       </div>
@@ -50,7 +54,7 @@ const UserInFormation = () => {
           <p className="text-[#1e3e57] dark:text-[#8cc9fa]">
             {" "}
             {data?.nationalCode ? (
-              data?.nationalCode
+              convertEnToPe(data?.nationalCode)
             ) : (
               <p className="text-xs">لطفا کد ملی خود را وارد کنید</p>
             )}

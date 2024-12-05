@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { convertIsoToJalali } from "../../core/utils/dateUtils";
 import { getItem } from "../../core/services/storage/storage.services";
+import { convertEnToPe } from "persian-number";
+
 const DetailsLeft = ({
   startTime,
   endTime,
@@ -94,7 +96,7 @@ const DetailsLeft = ({
               </p>
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
-              {currentRegistrants}
+              {currentRegistrants && convertEnToPe(currentRegistrants)}
             </p>
           </div>
 
@@ -239,7 +241,9 @@ const DetailsLeft = ({
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
               {/* 24 فروردین 1403 */}
-              <strong>{startTime && convertIsoToJalali(startTime)}</strong>
+              <strong>
+                {startTime && convertEnToPe(convertIsoToJalali(startTime))}
+              </strong>
             </p>
           </div>
 
@@ -332,7 +336,10 @@ const DetailsLeft = ({
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
-              <strong>{endTime && convertIsoToJalali(endTime)}</strong>
+              <strong>
+                {" "}
+                {endTime && convertEnToPe(convertIsoToJalali(endTime))}
+              </strong>
             </p>
           </div>
         </div>
@@ -360,8 +367,10 @@ const DetailsLeft = ({
 
           <p className="text-[#2196F3] dark:text-[#1E88E5] sm:text-base text-xs">
             {" "}
-            {cost}
-            <span className="text-[#263238] dark:text-gray-200">تومان</span>
+            {cost && convertEnToPe(cost)}
+            <span className="text-[#263238] dark:text-gray-200 mr-1">
+              تومان
+            </span>
           </p>
         </div>
       </div>

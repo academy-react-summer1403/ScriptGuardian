@@ -11,6 +11,8 @@ import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 import noProfile from "../../../images/NewsDetails/default_image.png";
 import { BuyModal } from "../../panel/modals/BuyModal";
 import { ButStepTwo } from "../../panel/modals/ButStepTwo";
+import { convertEnToPe } from "persian-number";
+
 const ListPanel = ({
   tumbImageAddress,
   courseTitle,
@@ -97,19 +99,22 @@ const ListPanel = ({
         </div>
         <div className="w-[80px]">
           {" "}
-          <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
+          <strong>
+            {lastUpdate && convertEnToPe(convertIsoToJalali(lastUpdate))}
+          </strong>
         </div>
         <div className="text-xs w-[80px]">
           {/* {parseFloat(cost).toString()}  */}
 
-          {cost.length > 6 ? (
+          {cost?.length > 6 ? (
             <>
-              {parseFloat(cost).toString().slice(0, 6) + "..."}
+              {cost &&
+                convertEnToPe(parseFloat(cost).toString().slice(0, 6)) + "..."}
               <span className="  ">تومان</span>
             </>
           ) : (
             <>
-              {parseFloat(cost).toString().slice(0, 6)}
+              {cost && convertEnToPe(parseFloat(cost).toString().slice(0, 6))}
               <span className="  ">تومان</span>
             </>
           )}

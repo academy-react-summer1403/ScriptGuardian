@@ -130,6 +130,7 @@ const FavoriteNews = () => {
                 currentRate={item?.currentRate}
                 newsId={item?.newsId}
                 favoriteId={item?.favoriteId}
+                currentLikeCount={item?.currentLikeCount}
               />
             ))}
           </>

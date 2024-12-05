@@ -6,6 +6,8 @@ import { useDeleteFavoriteCourses } from "../../../core/services/api/CoursesPage
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { convertIsoToJalali } from "../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
+
 const ListFavoritePanel = ({
   tumbImageAddress,
   courseTitle,
@@ -59,7 +61,7 @@ const ListFavoritePanel = ({
       </div>
       <div className="lg:mr-[5.5%] md:mr-[4%]  lg:w-[10%] md:w-[11.3%]  ">
         {" "}
-        <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
+        <strong>{lastUpdate && convertEnToPe(convertIsoToJalali(lastUpdate))}</strong>
       </div>
       <div className="lg:mr-[10%] md:mr-[5%]  lg:w-[13%] md:w-[13%] ">
         {levelName ? levelName : ""}

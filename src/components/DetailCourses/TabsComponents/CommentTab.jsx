@@ -15,12 +15,10 @@ const CommentTab = ({ activeTab }) => {
 
   const [visibleCount, setVisibleCount] = useState(5);
 
-  // تعداد کامنت‌هایی که به‌ازای هر کلیک بیشتر نمایش داده می‌شوند
   const incrementCount = 5;
   //API
   const { id } = useParams();
   const { data } = useCommentCourses(id);
-  // console.log(data, " This Data Of Comment Course  ");
 
   const roles = localStorage.getItem("roles");
 
@@ -37,10 +35,7 @@ const CommentTab = ({ activeTab }) => {
       formData.append("CourseId", values.CourseId);
       formData.append("Title", values.Title);
       formData.append("Describe", values.Describe);
-      // const formData = new FormData();
-      // for (const key in values) {
-      //   formData.append(key, values[key]);
-      // }
+
       AddComment(formData, {
         onSuccess: (data) => {
           if (data.success === true) {

@@ -3,6 +3,7 @@ import { BigImgNews } from "./BigImgNews";
 import { useNavigate } from "react-router-dom";
 import image from "../../../images/NewsDetails/default_image.png";
 import { convertIsoToJalali } from "../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
 
 const BigNews = ({
   title,
@@ -65,7 +66,7 @@ const BigNews = ({
                 />
               </svg>
             </span>
-            {currentView} بازدید{" "}
+            {currentView && convertEnToPe(currentView)} بازدید{" "}
           </div>
 
           <div className="w-[111px] h-[40px] flex bg-[#DAEEFF] dark:bg-[#0A4e9D] rounded-[80px] items-center justify-center text-[#2196F3] dark:text-[#1976D2] mr-[16px]">
@@ -132,7 +133,9 @@ const BigNews = ({
                 />
               </svg>
             </span>
-            <strong>{updateDate && convertIsoToJalali(updateDate)}</strong>{" "}
+            <strong>
+              {updateDate && convertEnToPe(convertIsoToJalali(updateDate))}
+            </strong>{" "}
           </div>
         </div>
         <div className="flex flex-row-reverse">

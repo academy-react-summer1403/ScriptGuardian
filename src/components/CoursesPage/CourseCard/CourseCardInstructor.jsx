@@ -1,4 +1,5 @@
 import React from "react";
+import { convertEnToPe } from "persian-number";
 
 const CourseCardInstructor = ({ teacherName }) => {
   return (
@@ -6,7 +7,7 @@ const CourseCardInstructor = ({ teacherName }) => {
       <p>
         <span className="font-[700] ">مدرس</span> : {teacherName}
       </p>
-      <p className="ml-5">256 دانش آموز</p>
+      <p className="ml-5">{convertEnToPe(254)} دانش آموز</p>
     </div>
   );
 };

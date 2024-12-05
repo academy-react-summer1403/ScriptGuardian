@@ -13,6 +13,7 @@ import { useReplayCommentNews } from "../../core/services/api/DetailNews/handelN
 import { useFormik } from "formik";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import { convertIsoToJalali } from "../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
 
 const Comment = ({
   title,
@@ -106,10 +107,8 @@ const Comment = ({
 
   //handel replay
 
-  // تعریف یک یوز استیت برای نمایش یا عدم نمایش فرم ریپلای
   const [isReplyVisible, setIsReplyVisible] = useState(false);
 
-  // تابعی برای تغییر وضعیت نمایش فرم
   const toggleReplyForm = () => {
     setIsReplyVisible(!isReplyVisible);
   };
@@ -167,7 +166,9 @@ const Comment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            <strong>{inserDate && convertIsoToJalali(inserDate)}</strong>
+            <strong>
+              {inserDate && convertEnToPe(convertIsoToJalali(inserDate))}
+            </strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -199,7 +200,7 @@ const Comment = ({
             <div className="flex items-center gap-3">
               <button className="flex items-center 0">
                 <span className="ml-1 text-xs dark:text-white">
-                  {likeCount}
+                  {likeCount && convertEnToPe(likeCount)}
                 </span>
                 <FaThumbsUp
                   className={`text-sm ${
@@ -220,7 +221,7 @@ const Comment = ({
                   onClick={handelDissLike}
                 />
                 <span className="mr-1 text-xs dark:text-white">
-                  {dissLikeCount}
+                  {dissLikeCount && convertEnToPe(dissLikeCount)}
                 </span>
               </button>
             </div>

@@ -49,7 +49,7 @@ const FavoriteCourse = () => {
           <h2>سطح</h2>
           <h2>مدیریت</h2>
         </div>
-{/* 
+        {/* 
         {currentItems &&
           currentItems?.map((item, index) => {
             return (

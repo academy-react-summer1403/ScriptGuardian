@@ -42,12 +42,21 @@ const Security = () => {
           <label className="block text-gray-700 dark:text-gray-200">
             جیمیل بازیابی{" "}
           </label>
-          <input
+          {/* <input
             type="text"
             className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full dark:text-white"
             placeholder="جیمیل ریکاوری"
             name="recoveryEmail"
             id="recoveryEmail"
+            {...formik.getFieldProps("recoveryEmail")}
+          /> */}
+
+          <input
+            type="text"
+            id="recoveryEmail"
+            name="recoveryEmail"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+            placeholder="جیمیل ریکاوری"
             {...formik.getFieldProps("recoveryEmail")}
           />
         </div>

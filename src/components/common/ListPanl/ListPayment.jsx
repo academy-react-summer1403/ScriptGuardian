@@ -12,6 +12,8 @@ import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 import noProfile from "../../../images/NewsDetails/default_image.png";
 import { BuyModal } from "../../panel/modals/BuyModal";
 import { ButStepTwo } from "../../panel/modals/ButStepTwo";
+import { convertEnToPe } from "persian-number";
+
 const ListPayment = ({
   courseTitle,
   fullName,
@@ -110,13 +112,13 @@ const ListPayment = ({
     <>
       <div className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-around">
         <div className=" h-full    items-center flex sm:mr-0 mr-3  w-[107px]  sm:text-base text-[8px]">
-          {paid} <span className="sm:text-xs ">تومان</span>
+          {paid && convertEnToPe(paid)} <span className="sm:text-xs ">تومان</span>
         </div>
         <div className="w-[77px] lg:block hidden  ">
-          {peymentDate && convertIsoToJalali(peymentDate)}
+          {peymentDate && convertEnToPe(convertIsoToJalali(peymentDate))}
         </div>
         <div className="w-[77px]  lg:block hidden">
-          {insertDate && convertIsoToJalali(insertDate)}
+          {insertDate && convertEnToPe(convertIsoToJalali(insertDate))}
         </div>
 
         <div className=" w-[121px] sm:text-base text-[8px]">
@@ -196,7 +198,7 @@ const ListPayment = ({
                 setImageStepTwo={setImageStepTwo}
                 setIsOpen={setIsOpen}
                 courseId={courseId}
-                setPaymentId={""}//
+                setPaymentId={""} //
               />
             </>
           )}

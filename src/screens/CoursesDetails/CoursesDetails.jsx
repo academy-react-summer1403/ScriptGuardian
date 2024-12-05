@@ -40,6 +40,7 @@ const CoursesDetails = () => {
               currentUserSetRate={data?.currentUserSetRate}
               currentUserRateNumber={data?.currentUserRateNumber}
               userLikeId={data?.userLikeId}
+              currentRegistrants={data?.currentRegistrants}
             />
 
             <DetailsLeft

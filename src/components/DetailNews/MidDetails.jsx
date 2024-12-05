@@ -8,6 +8,7 @@ import {
   useDeleteLikeNews,
   useDissAddLikeNews,
 } from "../../core/services/api/DetailNews/handelNewsLike";
+import { convertEnToPe } from "persian-number";
 const MidDetails = ({
   currentUserSetRate,
   currentUserRateNumber,
@@ -20,7 +21,7 @@ const MidDetails = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const totalStars = 5; // تعداد کل ستاره‌ها
+  const totalStars = 5;
   const { mutate: AddRate } = useAddRateNews();
   const addRate = (index) => {
     AddRate(
@@ -372,7 +373,7 @@ const MidDetails = ({
             <div className="flex items-center gap-3">
               <button className="flex items-center 0">
                 <span className="ml-1 text-xs dark:text-white text-black">
-                  {currentLikeCount}
+                  {currentLikeCount && convertEnToPe(currentLikeCount)}
                 </span>
                 <FaThumbsUp
                   className={`text-xl  ${
@@ -393,7 +394,7 @@ const MidDetails = ({
                   onClick={handleDissLike}
                 />
                 <span className="mr-1 text-xs dark:text-white text-black">
-                  {currentDissLikeCount}
+                  {currentDissLikeCount && convertEnToPe(currentDissLikeCount)}
                 </span>
               </button>
             </div>

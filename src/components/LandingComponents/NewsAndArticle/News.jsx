@@ -4,6 +4,7 @@ import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 
 import { NewsImg } from "./NewsImg";
 import { useNavigate } from "react-router-dom";
+import { convertEnToPe } from "persian-number";
 const News = ({
   title,
   addUserProfileImage,
@@ -153,7 +154,10 @@ const News = ({
                 />
               </svg>
             </span>
-            <strong>{updateDate && convertIsoToJalali(updateDate)}</strong>
+            <strong>
+              {" "}
+              {updateDate && convertEnToPe(convertIsoToJalali(updateDate))}
+            </strong>
           </div>
           <div className="flex flex-row-reverse xl:ml-0">
             {Array.from({ length: totalStars }).map((_, index) => (

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { TbBeach } from "react-icons/tb";
+import { convertEnToPe } from "persian-number";
 
 const PreviewTab = ({ activeTab, techs }) => {
   const [openSections, setOpenSections] = useState({
@@ -21,7 +22,6 @@ const PreviewTab = ({ activeTab, techs }) => {
       {activeTab === "preview" && (
         <>
           <div className=" mx-auto xl:w-[779px] w-full  ">
-            {/* فصل اول */}
             <div className="flex flex-col ">
               <div
                 onClick={() => toggleSection("chapter1")}
@@ -41,7 +41,7 @@ const PreviewTab = ({ activeTab, techs }) => {
                   </p>
                 </div>
                 <div className="flex items-center ml-5 gap-x-2">
-                  <p className="sm:text-base text-xs">56 mins</p>
+                  <p className="sm:text-base text-xs">{convertEnToPe(56)} دقیقه</p>
                   <span>
                     <svg
                       className="sm:w-4 sm:h-4 w-3 h-3"
@@ -168,7 +168,7 @@ const PreviewTab = ({ activeTab, techs }) => {
                   </p>
                 </div>
                 <div className="flex items-center ml-5 gap-x-2">
-                  <p className="sm:text-base text-xs">56 mins</p>
+                  <p className="sm:text-base text-xs">{convertEnToPe(56)} دقیقه</p>
                   <span>
                     <svg
                       className="sm:w-4 sm:h-4 w-3 h-3"
@@ -296,7 +296,7 @@ const PreviewTab = ({ activeTab, techs }) => {
                   </p>
                 </div>
                 <div className="flex items-center ml-5 gap-x-2">
-                  <p className="sm:text-base text-xs">56 mins</p>
+                  <p className="sm:text-base text-xs">{convertEnToPe(56)} دقیقه</p>
                   <span>
                     <svg
                       className="sm:w-4 sm:h-4 w-3 h-3"
@@ -423,7 +423,7 @@ const PreviewTab = ({ activeTab, techs }) => {
                   </p>
                 </div>
                 <div className="flex items-center ml-5 gap-x-2">
-                  <p className="sm:text-base text-xs">56 mins</p>
+                  <p className="sm:text-base text-xs">{convertEnToPe(56)} دقیقه</p>
                   <span>
                     <svg
                       className="sm:w-4 sm:h-4 w-3 h-3"

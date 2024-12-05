@@ -5,6 +5,8 @@ import { useCourses } from "../../../core/services/api/CoursesPage/GetAllCourses
 import { useLandingNews } from "../../../core/services/api/Landing/LandingNews";
 import Image from "../../../images/NewsDetails/default_image.png";
 import { useNavigate } from "react-router-dom";
+import { convertEnToPe } from "persian-number";
+
 const BottomDashBoard = () => {
   const navigate = useNavigate();
   //API COURSES
@@ -69,7 +71,7 @@ const BottomDashBoard = () => {
 
                         <p className="text-sm ml-3">
                           <span className="text-[#1e3e57] dark:text-[#8cc9fa]">
-                            {item?.cost ? item?.cost : ""}
+                            {item?.cost ? convertEnToPe(item?.cost) : ""}
                           </span>{" "}
                           تومان
                         </p>

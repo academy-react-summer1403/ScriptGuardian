@@ -37,6 +37,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 import { CustomSpinner } from "../../../components/animation/CustomSpinner";
+import { convertEnToPe } from "persian-number";
+
 const MyReservedCourses = () => {
   const queryClient = useQueryClient();
 
@@ -227,7 +229,7 @@ const MyReservedCourses = () => {
                   <div className=" ml-5 w-[80px]">
                     <strong>
                       {item?.reserverDate &&
-                        convertIsoToJalali(item?.reserverDate)}
+                        convertEnToPe(convertIsoToJalali(item?.reserverDate))}
                     </strong>
                   </div>
                   {item?.accept ? (

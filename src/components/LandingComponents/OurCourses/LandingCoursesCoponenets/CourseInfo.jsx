@@ -1,5 +1,6 @@
 import React from "react";
 import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
 
 const CourseInfo = ({ lastUpdate }) => {
   return (
@@ -39,7 +40,11 @@ const CourseInfo = ({ lastUpdate }) => {
               strokeLinejoin="round"
             />
           </svg>
-          <span>202 درس</span>
+          <span>
+            {" "}
+            درس
+            {convertEnToPe("202")}
+          </span>
         </span>
         <span className="flex items-center gap-1">
           <svg
@@ -62,7 +67,11 @@ const CourseInfo = ({ lastUpdate }) => {
               strokeLinejoin="round"
             />
           </svg>
-          <span>14 ساعت</span>
+          <span>
+            {" "}
+            {convertEnToPe("14")}
+            ساعت
+          </span>
         </span>
         <span className="flex items-center gap-1">
           <svg
@@ -120,7 +129,9 @@ const CourseInfo = ({ lastUpdate }) => {
             />
           </svg>
 
-          <strong>{lastUpdate && convertIsoToJalali(lastUpdate)}</strong>
+          <strong>
+            {lastUpdate && convertEnToPe(convertIsoToJalali(lastUpdate))}
+          </strong>
         </span>
       </div>
     </div>

@@ -15,7 +15,6 @@ const CommentDetails = ({ commentDtos, newsId }) => {
 
   const [visibleCount, setVisibleCount] = useState(5);
 
-  // تعداد کامنت‌هایی که به‌ازای هر کلیک بیشتر نمایش داده می‌شوند
   const incrementCount = 5;
 
   //API

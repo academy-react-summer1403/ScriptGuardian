@@ -1,3 +1,4 @@
+import { convertEnToPe } from "persian-number";
 import React from "react";
 
 const CourseInstructor = ({ teacherName }) => {
@@ -9,7 +10,7 @@ const CourseInstructor = ({ teacherName }) => {
           ? teacherName.substring(0, 10) + "..."
           : teacherName}
       </p>
-      <p className="ml-5">256 دانش آموز</p>
+      <p className="ml-5">{convertEnToPe(256)} دانش آموز</p>
     </div>
   );
 };

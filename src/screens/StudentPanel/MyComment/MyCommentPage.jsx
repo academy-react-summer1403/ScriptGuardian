@@ -69,10 +69,8 @@ const MyCommentPage = () => {
 
   const [openTab, setOpenTab] = useState(1);
 
-  const activeClasses =
-    "border dark:border-white border-gray-950 rounded-t text-blue-700";
-  const inactiveClasses = "text-blue-500 hover:text-blue-700";
-
+  const activeClasses = "border dark:border-white border-gray-950 rounded";
+  const inactiveClasses = "";
   return (
     <>
       {/* hamburger */}
@@ -99,7 +97,7 @@ const MyCommentPage = () => {
               className={`-mb-px mr-1 ${openTab === 1 ? "-mb-px" : ""}`}
             >
               <p
-                className={`bg-white dark:bg-gray-950 inline-block py-2 sm:px-4 px-1 sm:text-base text-sm  font-semibold ${
+                className={`bg-white dark:bg-gray-950 inline-block py-2 sm:px-4 px-1 sm:text-base text-sm  dark:text-white ${
                   openTab === 1 ? activeClasses : inactiveClasses
                 }`}
               >
@@ -111,7 +109,7 @@ const MyCommentPage = () => {
               className={`mr-1 ${openTab === 2 ? "-mb-px" : ""}`}
             >
               <p
-                className={`bg-white inline-block  dark:bg-gray-950  py-2 sm:px-4 px-1 sm:text-base text-sm font-semibold ${
+                className={`bg-white inline-block  dark:bg-gray-950  py-2 sm:px-4 px-1 sm:text-base text-sm dark:text-white ${
                   openTab === 2 ? activeClasses : inactiveClasses
                 }`}
               >

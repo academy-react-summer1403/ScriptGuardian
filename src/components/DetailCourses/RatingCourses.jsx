@@ -8,6 +8,7 @@ import {
 } from "../../core/services/api/CoursesPage/handelCourseLike";
 import { toast } from "react-toastify";
 import { useAddRateCourses } from "../../core/services/api/CoursesPage/handelRateCourses";
+import { convertEnToPe } from "persian-number";
 
 const RatingCourses = ({
   currentUserDissLike,
@@ -17,6 +18,7 @@ const RatingCourses = ({
   courseId,
   currentUserRateNumber,
   userLikeId,
+  currentRegistrants,
 }) => {
   const queryClient = useQueryClient();
   //Api
@@ -117,7 +119,7 @@ const RatingCourses = ({
         </div>
         <div className="flex items-center xl:gap-x-0 gap-x-2">
           <p className="sm:mr-3 text-[#263238] dark:text-gray-200 sm:text-base text-xs">
-            امتیاز 20 نفر
+            امتیاز {convertEnToPe(20)} نفر
           </p>
           {/* <button className="sm:mr-4 h-[32px]  sm:w-[81px] w-[61px] flex justify-center items-center bg-[#2196F3] dark:bg-[#1565C0] text-white shadow-Second-shadow rounded-[80px] sm:text-[12px] text-[10px]">
             ثبت دیدگاه
@@ -131,7 +133,9 @@ const RatingCourses = ({
 
         <div className="flex items-center gap-3">
           <button className="flex items-center 0">
-            <span className="ml-1 text-xs">{likeCount}</span>
+            <span className="ml-1 text-xs dark:text-white">
+              {likeCount && convertEnToPe(likeCount)}
+            </span>
             <FaThumbsUp
               className={`sm:text-xl ${
                 currentUserLike == "1"
@@ -150,7 +154,9 @@ const RatingCourses = ({
               }`}
               onClick={handleDissLike}
             />
-            <span className="mr-1 text-xs">{dissLikeCount}</span>
+            <span className="mr-1 text-xs dark:text-white">
+              {dissLikeCount && convertEnToPe(dissLikeCount)}
+            </span>
           </button>
         </div>
       </div>

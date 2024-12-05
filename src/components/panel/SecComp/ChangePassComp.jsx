@@ -58,13 +58,21 @@ const ChangePassComp = () => {
           <label className="block text-gray-700 dark:text-gray-200">
             رمز عبور فعلی
           </label>
-          <input
+          {/* <input
             type="password"
-            className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full dark:text-white"
+            className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-700 rounded w-full dark:text-white"
             placeholder="رمز عبور فعلی"
             name="oldPassword"
             id="oldPassword"
             {...formik.getFieldProps("oldPassword")}
+          /> */}
+          <input
+            type="password"
+            id="oldPassword"
+            name="oldPassword"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+            placeholder="رمز عبور فعلی"
+            {...formik?.getFieldProps("oldPassword")}
           />
           {formik.touched.oldPassword && formik.errors.oldPassword ? (
             <div className="text-red-500">{formik.errors.oldPassword}</div>
@@ -75,13 +83,22 @@ const ChangePassComp = () => {
           <label className="block text-gray-700 dark:text-gray-200">
             رمز عبور جدید
           </label>
-          <input
+          {/* <input
             type="password"
             className="mt-1 p-2 border border-gray-300 dark:border-gray-950 dark:bg-gray-800 rounded w-full dark:text-white"
             placeholder="رمز عبور جدید"
             name="newPassword"
             id="newPassword"
             {...formik.getFieldProps("newPassword")}
+          /> */}
+
+          <input
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+            placeholder="رمز عبور جدید"
+            {...formik?.getFieldProps("newPassword")}
           />
           {formik.touched.newPassword && formik.errors.newPassword ? (
             <div className="text-red-500">{formik.errors.newPassword}</div>
@@ -92,12 +109,21 @@ const ChangePassComp = () => {
           <label className="block text-gray-700 dark:text-gray-200">
             تکرار رمز عبور جدید
           </label>
+
           <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+            placeholder="تکرار رمز عبور جدید"
+            {...formik?.getFieldProps("confirmPassword")}
+          />
+          {/* <input
             type="password"
             className="mt-1 p-2 border  border-gray-300 dark:border-gray-950 dark:bg-gray-800  rounded w-full dark:text-white"
             placeholder="تکرار رمز عبور جدید"
             {...formik.getFieldProps("confirmPassword")}
-          />
+          /> */}
           {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
             <div className="text-red-500">{formik.errors.confirmPassword}</div>
           ) : null}
