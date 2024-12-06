@@ -35,7 +35,7 @@ const NewsPage = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebouncedSearchQuery(searchQuery);
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);

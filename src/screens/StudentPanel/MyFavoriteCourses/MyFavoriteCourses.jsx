@@ -71,8 +71,9 @@ const MyFavoriteCourses = () => {
 
   const [openTab, setOpenTab] = useState(1);
 
-  const activeClasses = "border dark:border-white border-gray-950 rounded";
-  const inactiveClasses = "";
+  const activeClasses =
+    "border dark:border-white border-gray-950 rounded cursor-pointer";
+  const inactiveClasses = "cursor-pointer";
 
   return (
     <>
@@ -94,7 +95,7 @@ const MyFavoriteCourses = () => {
 
         {/* Unic */}
         <div className=" mt-5 ">
-          <ul className="flex sm:gap-x-5 gap-x-1">
+          <ul className="flex sm:gap-x-5 gap-x-1 ">
             <li
               onClick={() => setOpenTab(1)}
               className={`-mb-px mr-1 ${openTab === 1 ? "-mb-px" : ""}`}

@@ -144,12 +144,12 @@ const MyCourses = () => {
           {/* DropDown */}
           <div className="flex items-center sm:w-[8%] w-[13%] sm:max-w-none max-w-[60px] relative ">
             <FiChevronDown
-              className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-transform duration-200 md:text-base sm:text-sm text-xs `}
+              className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-transform duration-200 md:text-base sm:text-sm text-xs dark:text-white`}
             />
 
             <select
               id="pageSize"
-              className="bg-gray-100 dark:bg-gray-800 rounded-md w-full h-full text-gray-700 dark:text-gray-100 outline-none text-center appearance-none md:pr-8 pr-4 md:text-base sm:text-sm text-xs "
+              className="bg-white dark:bg-gray-800 rounded-md w-full h-full text-gray-700 dark:text-gray-100 outline-none text-center appearance-none md:pr-8 pr-4 md:text-base sm:text-sm text-xs "
               value={pageSize} // مقدار انتخاب شده
               onChange={handlePageSizeChange}
             >
@@ -166,10 +166,10 @@ const MyCourses = () => {
 
         <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
           <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs justify-around">
-            <h2 className="w-[70px]"> تصویر دوره </h2>
-            <h2 className="w-[66px]">نام دوره</h2>
-            <h2 className="w-[120px]">مدرس</h2>
-            <h2 className="w-[80px]"> آخرین آپدیت</h2>
+            <h2 className="w-[70px] lg:block hidden"> تصویر دوره </h2>
+            <h2 className="w-[100px]">نام دوره</h2>
+            <h2 className="w-[80px] sm:block hidden ">مدرس</h2>
+            <h2 className="w-[80px] md:block hidden"> آخرین آپدیت</h2>
             <h2 className="w-[80px]">قیمت</h2>
             <h2 className="w-[102px]">وضعیت پرداخت</h2>
             <h2 className="w-[50px]">مدیریت</h2>

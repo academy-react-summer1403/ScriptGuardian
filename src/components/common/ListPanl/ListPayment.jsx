@@ -111,8 +111,9 @@ const ListPayment = ({
   return (
     <>
       <div className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px] justify-around">
-        <div className=" h-full    items-center flex sm:mr-0 mr-3  w-[107px]  sm:text-base text-[8px]">
-          {paid && convertEnToPe(paid)} <span className="sm:text-xs ">تومان</span>
+        <div className=" h-full    items-center flex sm:mr-0 mr-3  sm:w-[107px] w-[80px]  sm:text-base text-[8px] bg-">
+          {paid && convertEnToPe(paid)}{" "}
+          <span className="sm:text-xs ">تومان</span>
         </div>
         <div className="w-[77px] lg:block hidden  ">
           {peymentDate && convertEnToPe(convertIsoToJalali(peymentDate))}
@@ -121,14 +122,14 @@ const ListPayment = ({
           {insertDate && convertEnToPe(convertIsoToJalali(insertDate))}
         </div>
 
-        <div className=" w-[121px] sm:text-base text-[8px]">
+        <div className=" sm:w-[121px] w-[60px] sm:text-base text-[12px] bg-">
           {paymentInvoiceImage ? (
             <div
               className="flex items-center gap-x-1 cursor-pointer"
               onClick={openScreenModal}
             >
               نمایش
-              <FaEye size={16} color="white" />
+              <FaEye color="white" />
             </div>
           ) : (
             "ثبت نشده"
@@ -165,10 +166,10 @@ const ListPayment = ({
           )}
         </div>
 
-        <div className="w-[130px] sm:text-base text-[8px]">
+        <div className="sm:w-[130px] w-[65px] sm:text-base text-[8px] bg-">
           {accept ? "تایید شده" : "تایید نشده"}
         </div>
-        <div className="flex gap-x-1 w-[46px] sm:text-base text-[8px] ">
+        <div className="flex gap-x-1 w-[46px] sm:text-base text-[8px]  bg-">
           <FaEye
             className="cursor-pointer sm:text-[20px] text-[12px]"
             onClick={() => {

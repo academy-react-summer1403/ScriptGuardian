@@ -56,8 +56,9 @@ const ChangePassWord = () => {
 
   const [openTab, setOpenTab] = useState(1);
 
-  const activeClasses = "border dark:border-white border-gray-950 rounded";
-  const inactiveClasses = "";
+  const activeClasses =
+    "border dark:border-white border-gray-950 rounded cursor-pointer";
+  const inactiveClasses = "cursor-pointer";
 
   return (
     <>

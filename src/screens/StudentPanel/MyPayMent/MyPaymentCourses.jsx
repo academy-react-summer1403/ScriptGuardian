@@ -107,12 +107,16 @@ const MyPaymentCourses = () => {
 
         <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
           <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs justify-around ">
-            <h2 className="sm:text-base text-[8px]">تا الان پرداخت شد</h2>
+            <h2 className="sm:text-base text-[8px] sm:w-auto w-[80px] bg-">
+              تا الان پرداخت شد
+            </h2>
             <h2 className="lg:block hidden ">تاریخ پرداخت</h2>
             <h2 className="lg:block hidden">تاریخ شروع</h2>
             <h2 className="sm:text-base text-[8px]">تصویر آخرین پرداخت</h2>
             <h2 className="sm:text-base text-[8px]">وضعیت آخرین پرداخت</h2>
-            <h2 className="sm:text-base text-[8px]">مدیریت</h2>
+            <h2 className="sm:text-base text-[8px] sm:w-auto w-[46px]">
+              مدیریت
+            </h2>
           </div>
 
           {/* <CustomSpinner /> */}

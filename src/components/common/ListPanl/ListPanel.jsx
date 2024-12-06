@@ -78,10 +78,12 @@ const ListPanel = ({
   return (
     <>
       <div className="flex items-center text-white h-[50px] bg-[#8cc9fa] dark:bg-[#1e3e57]  w-full rounded-xl mb-2 sm:text-base md:text-base  text-[10px]  justify-around">
-        <div className="h-full w-[70px]    items-center md:flex  hidden">
+        <div className="h-full w-[70px]     items-center lg:flex  hidden">
           <img
             src={
-              tumbImageAddress && tumbImageAddress != "Not-set"
+              tumbImageAddress &&
+              tumbImageAddress != "Not-set" &&
+              tumbImageAddress != "null"
                 ? tumbImageAddress
                 : noProfile
             }
@@ -89,39 +91,42 @@ const ListPanel = ({
             className="w-full object-cover h-[80%] rounded block"
           />
         </div>
-        <div className="w-[66px]" title={courseTitle}>
+        <div className="sm:w-[100px] w-[80px] text-[8px]" title={courseTitle}>
           {courseTitle.length > 10
             ? courseTitle.slice(0, 10) + "..."
             : courseTitle}
         </div>
-        <div className="w-[120px]" title={fullName}>
+        <div className="w-[80px] sm:block hidden text-xs" title={fullName}>
           {fullName.length > 10 ? fullName.slice(0, 10) + "..." : fullName}
         </div>
-        <div className="w-[80px]">
+        <div className="w-[80px] md:block hidden">
           {" "}
           <strong>
             {lastUpdate && convertEnToPe(convertIsoToJalali(lastUpdate))}
           </strong>
         </div>
-        <div className="text-xs w-[80px]">
+        <div
+          className="text-xs w-[80px] "
+          title={cost && convertEnToPe(parseFloat(cost).toString().slice(0, 6))}
+        >
           {/* {parseFloat(cost).toString()}  */}
 
           {cost?.length > 6 ? (
             <>
               {cost &&
-                convertEnToPe(parseFloat(cost).toString().slice(0, 6)) + "..."}
-              <span className="  ">تومان</span>
+                convertEnToPe("..." + parseFloat(cost).toString().slice(0, 6))}
+              <span className="sm:block hidden">تومان</span>
             </>
           ) : (
             <>
               {cost && convertEnToPe(parseFloat(cost).toString().slice(0, 6))}
-              <span className="  ">تومان</span>
+              <span className="">تومان</span>
             </>
           )}
         </div>
 
         <div className="w-[102px]">{paymentStatus && paymentStatus}</div>
-        <div className="w-[50px] flex gap-x-1">
+        <div className=" flex w-[50px] items-center gap-x-1">
           <FaEye
             className="cursor-pointer"
             onClick={() => {
@@ -129,10 +134,9 @@ const ListPanel = ({
             }}
           />
           <FaFileInvoice
-            size={20}
             color="green"
             title="پرداخت"
-            className="cursor-pointer"
+            className="cursor-pointer "
             onClick={Click}
           />
 

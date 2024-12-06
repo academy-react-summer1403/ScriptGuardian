@@ -233,7 +233,7 @@ const MyReservedCourses = () => {
                     </strong>
                   </div>
                   {item?.accept ? (
-                    <div className="ml-5 gap-2 w-[90px] flex items-center">
+                    <div className="ml-5 gap-2 w-[90px] flex items-center ">
                       <p
                         className="text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900 rounded-md sm:text-xs  sm:px-2 "
                         onClick={() => {
@@ -259,13 +259,13 @@ const MyReservedCourses = () => {
                       />
                     </div>
                   ) : (
-                    <div className="ml-5 gap-1 flex w-[90px]">
+                    <div className="  ml-5  w-[90px] flex items-center  justify-end gap-x-4">
                       <FaTrash
-                        className="text-red-600 cursor-pointer"
+                        className="text-red-600 cursor-pointer "
                         onClick={() => handelDelete(item?.reserveId)}
                       />
                       <FaEye
-                        className="cursor-pointer"
+                        className="cursor-pointer  block ml-1"
                         onClick={() => {
                           navigate(
                             `/courses/${

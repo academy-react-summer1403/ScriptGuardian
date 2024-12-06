@@ -22,7 +22,7 @@ const BottomHeader = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebouncedSearchQuery(searchQuery);
-    }, 1000);
+    }, 1500);
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
@@ -73,7 +73,7 @@ const BottomHeader = () => {
                     </div>
                   ))
                 ) : (
-                  <p>دوره‌ای یافت نشد</p>
+                  <p className="dark:text-white">دوره‌ای یافت نشد</p>
                 )}
               </div>
             </>
