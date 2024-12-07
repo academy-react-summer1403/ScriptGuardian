@@ -5,7 +5,7 @@ const Search = ({ handleSearchChange, searchQuery }) => {
     <div className="relative z-0 shadow-Second-shadow   flex items-center  sm:w-[90%] w-[80%] h-[40px]   bg-gray-100 dark:bg-gray-800 rounded-md   ">
       <input
         type="text"
-        className="w-full sm:px-[20px] xl:py-0  h-full border-gray-300 rounded-md  focus:outline-none dark:caret-white dark:placeholder-white   z-0 sm:placeholder:text-base placeholder:text-[10px] pr-3 bg-gray-100 dark:bg-gray-800 dark:text-white "
+        className="w-full sm:px-[20px] xl:py-0  h-full border-gray-300 rounded-md  focus:outline-none dark:caret-white dark:placeholder-white   z-0 sm:placeholder:text-base placeholder:text-[10px] pr-3 bg-white dark:bg-gray-800 dark:text-white "
         placeholder="جستجو کنید..."
         value={searchQuery ? searchQuery : ""}
         onChange={handleSearchChange}

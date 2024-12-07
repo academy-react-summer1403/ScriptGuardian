@@ -133,7 +133,7 @@ const ChangePassComp = () => {
           type="submit"
           className="lg:w-[33.333%] sm:w-[50%]  bg-blue-500 dark:hover:bg-blue-700 dark:bg-blue-600 text-white p-2 rounded hover:bg-blue-600 transition mx-auto block"
         >
-          ثبت اطلاعات عبور
+          ثبت رمز عبور جدید
         </button>
       </form>
     </div>

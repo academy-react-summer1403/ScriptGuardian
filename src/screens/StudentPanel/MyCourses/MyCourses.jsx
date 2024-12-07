@@ -125,16 +125,6 @@ const MyCourses = () => {
 
         <div className="flex  justify-between w-[95%]  mt-5">
           {/* Search */}
-          {/* <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-md p-2 shadow-md  sm:w-[90%] w-[80%]">
-            <input
-              type="text"
-              placeholder="جستجو کنید..."
-              className="bg-transparent outline-none text-gray-700 dark:placeholder:text-white w-full px-2"
-            />
-            <button className="text-gray-500 hover:text-gray-700 transition-colors duration-150">
-              <FiSearch size={20} className="dark:text-white" />
-            </button>
-          </div> */}
 
           <Search
             handleSearchChange={handleSearchChange}
@@ -150,29 +140,55 @@ const MyCourses = () => {
             <select
               id="pageSize"
               className="bg-white dark:bg-gray-800 rounded-md w-full h-full text-gray-700 dark:text-gray-100 outline-none text-center appearance-none md:pr-8 pr-4 md:text-base sm:text-sm text-xs "
-              value={pageSize} // مقدار انتخاب شده
+              value={pageSize}
               onChange={handlePageSizeChange}
             >
               <option value="2">2</option>
               <option value="4">4</option>
               <option value="6">6</option>
-              <option value="8">8</option>
+              {/* <option value="8">8</option>
               <option value="16">16</option>
               <option value="32">32</option>
-              <option value="64">64</option>
+              <option value="64">64</option> */}
             </select>
           </div>
         </div>
 
         <div className="flex flex-col w-[95%]  dark:bg-gray-900 h-[400px] mt-5 overflow-hidden">
           <div className="flex  items-center text-white h-[50px] bg-[#69E5B8] dark:bg-[#145540] w-full rounded-xl mb-2 md:text-base sm:text-sm text-xs justify-around">
-            <h2 className="w-[70px] lg:block hidden"> تصویر دوره </h2>
-            <h2 className="w-[100px]">نام دوره</h2>
+            <h2
+              className="w-[70px] lg:block hidden sm:text-base
+            text-[8px]"
+            >
+              {" "}
+              تصویر دوره{" "}
+            </h2>
+            <h2
+              className="w-[100px] sm:text-base
+            text-[8px] sm:mr-0 mr-3"
+            >
+              نام دوره
+            </h2>
             <h2 className="w-[80px] sm:block hidden ">مدرس</h2>
             <h2 className="w-[80px] md:block hidden"> آخرین آپدیت</h2>
-            <h2 className="w-[80px]">قیمت</h2>
-            <h2 className="w-[102px]">وضعیت پرداخت</h2>
-            <h2 className="w-[50px]">مدیریت</h2>
+            <h2
+              className="w-[80px] sm:text-base
+            text-[8px]"
+            >
+              قیمت
+            </h2>
+            <h2
+              className="w-[102px] sm:text-base
+            text-[8px]"
+            >
+              وضعیت پرداخت
+            </h2>
+            <h2
+              className="w-[50px] sm:text-base
+            text-[8px]"
+            >
+              مدیریت
+            </h2>
           </div>
 
           {/* <CustomSpinner /> */}

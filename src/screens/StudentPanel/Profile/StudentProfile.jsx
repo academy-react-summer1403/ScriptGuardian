@@ -1,25 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  FaBars,
-  FaBell,
-  FaBookOpen,
-  FaCloudscale,
-  FaComment,
-  FaHamburger,
-  FaHome,
-  FaLock,
-  FaMinus,
-  FaMoon,
-  FaShoppingCart,
-  FaSignOutAlt,
-  FaSun,
-  FaUserCircle,
-} from "react-icons/fa";
-import { FaShop } from "react-icons/fa6";
-import { HiX } from "react-icons/hi";
-import { MdDashboard, MdShoppingCart } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
-import userProfile from "../../.././images/StudentPanel/NavStudent/images.png";
+
 import { useGetStudentProfile } from "../../../core/services/api/Panel/GetProfile";
 import { useFormik } from "formik";
 import { useEditProfile } from "../../../core/services/api/Panel/editProfile";
@@ -27,9 +7,7 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { HandelProfile } from "../../../components/panel/HandelProfile/HandelProfile";
 
-import DatePicker from "react-multi-date-picker";
 import { Calendar } from "react-multi-date-picker";
-import DateObject from "react-date-object";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import persian_en from "react-date-object/locales/persian_en";

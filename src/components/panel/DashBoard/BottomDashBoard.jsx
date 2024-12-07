@@ -61,7 +61,9 @@ const BottomDashBoard = () => {
                     </div>
                     <div className="flex w-[100%] h-[85%] flex-col justify-between ">
                       <h3 className="mr-3 text-[#263238] dark:text-gray-200">
-                        {item?.title ? item?.title : ""}
+                        {item?.title?.length > 25
+                          ? item?.title?.slice(0, 25) + "..."
+                          : item?.title}
                       </h3>
                       <div className="flex justify-between text-[#455A64] dark:text-gray-400 items-center mr-3">
                         <p className="text-sm">
@@ -121,7 +123,9 @@ const BottomDashBoard = () => {
                     </div>
                     <div className="flex w-[100%] h-[85%] flex-col justify-between ">
                       <h3 className="mr-3 text-[#263238] dark:text-gray-200">
-                        {item?.title ? item?.title : ""}
+                        {item?.title?.length > 25
+                          ? item?.title?.slice(0, 25) + "..."
+                          : item?.title}
                       </h3>
                       <div className="flex justify-between text-[#455A64] dark:text-gray-400 items-center mr-3">
                         <p className="text-sm">

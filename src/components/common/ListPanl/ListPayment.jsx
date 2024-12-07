@@ -179,9 +179,8 @@ const ListPayment = ({
 
           {paymentInvoiceImage ? (
             <FaFileInvoice
-              color="green"
               title="پرداخت"
-              className="cursor-pointer sm:text-[20px] text-[12px]"
+              className="cursor-pointer sm:text-[20px] text-[12px] text-[#50c99d] dark:text-green-800 "
               onClick={Click}
             />
           ) : (

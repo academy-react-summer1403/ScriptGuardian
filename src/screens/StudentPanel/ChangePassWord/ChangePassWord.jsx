@@ -101,7 +101,7 @@ const ChangePassWord = () => {
                   openTab === 2 ? activeClasses : inactiveClasses
                 }`}
               >
-                امنیت{" "}
+                دومرحله ای
               </p>
             </li>
           </ul>

@@ -4,7 +4,6 @@ import { HereSectionCourses } from "../../components/CoursesPage/HeroSectionCour
 import { Filters } from "../../components/CoursesPage/FilterComponents/Filters";
 import { SearchAndThemeCourses } from "../../components/CoursesPage/SearchAndThemeCourses/SearchAndThemeCourses";
 // import { LandingCourses } from "../../components/LandingComponents/OurCourses/LandingCourses";
-import { CoursesCard } from "../../components/CoursesPage/CourseCard/CourseCard";
 import { Course } from "../../components/LandingComponents/OurCourses/Course";
 import { useCourses } from "../../core/services/api/CoursesPage/GetAllCourses";
 import { CustomSpinner } from "../../components/animation/CustomSpinner";

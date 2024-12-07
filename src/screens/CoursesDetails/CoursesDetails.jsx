@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { FaMinus, FaPlus } from "react-icons/fa";
 import { BigImage } from "../../components/DetailCourses/BigImage";
 import { RatingCourses } from "../../components/DetailCourses/RatingCourses";
 import { AboutCourses } from "../../components/DetailCourses/AboutCourses";

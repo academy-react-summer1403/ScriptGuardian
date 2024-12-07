@@ -91,7 +91,10 @@ const ListPanel = ({
             className="w-full object-cover h-[80%] rounded block"
           />
         </div>
-        <div className="sm:w-[100px] w-[80px] text-[8px]" title={courseTitle}>
+        <div
+          className="sm:w-[100px] w-[80px] sm:text-base text-[8px] sm:mr-0 mr-3"
+          title={courseTitle}
+        >
           {courseTitle.length > 10
             ? courseTitle.slice(0, 10) + "..."
             : courseTitle}
@@ -128,15 +131,14 @@ const ListPanel = ({
         <div className="w-[102px]">{paymentStatus && paymentStatus}</div>
         <div className=" flex w-[50px] items-center gap-x-1">
           <FaEye
-            className="cursor-pointer"
+            className="cursor-pointer  sm:text-[20px] text-[12px]"
             onClick={() => {
               navigate(`/courses/${courseId}`);
             }}
           />
           <FaFileInvoice
-            color="green"
             title="پرداخت"
-            className="cursor-pointer "
+            className="cursor-pointer sm:text-[20px] text-[12px] text-[#50c99d] dark:text-green-800 "
             onClick={Click}
           />
 

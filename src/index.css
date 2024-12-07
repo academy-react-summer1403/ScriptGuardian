@@ -61,3 +61,10 @@ body {
 .slick-list {
   overflow: hidden !important;
 }
+.bg-landing-light-1 {
+  background-image: url("./images/Header/PNGS/header-bg.png");
+}
+
+.landing-dark-1 {
+  background-image: url("./images/Header/PNGS/headerdark2.png");
+}
