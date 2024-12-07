@@ -19,7 +19,7 @@ const LoginButton = () => {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isRegisterVerificationOpen, setIsRegisterVerification] =
     useState(false);
-  const [isRegisterFinishOpen, setIsRegisterFinishOpen] = useState(false);
+  const [isRegisterFinishOpen, setIsRegisterFinishOpen] = useState(true);
 
   const toggleLoginModal = () => {
     setIsLoginOpen(!isLoginOpen);
