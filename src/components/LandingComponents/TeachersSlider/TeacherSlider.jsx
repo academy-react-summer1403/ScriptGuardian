@@ -1,27 +1,37 @@
 import React, { useState } from "react";
 import ImageSLider from "../../../images/landing/TeachersSlider/BGIMAGE.jfif";
 import noProfile from "../../../images/NewsDetails/profile.png";
+import noProfile2 from "../../../images/landing/NOPROFILE2.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+
 import { useLandingTeachers } from "../../../core/services/api/Landing/LandingTeachers";
+import { Element } from "react-scroll";
 const TeacherSlider = () => {
   //API
   const { data, isPending } = useLandingTeachers();
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
-      <div onClick={onClick} className="absolute top-[210px] left-0 z-[100]">
-        <FaArrowLeft className="text-white " />
+      <div
+        onClick={onClick}
+        className="absolute top-[210px] left-[-28px] z-[100]"
+      >
+        <AiOutlineLeft className="dark:text-white text-[#263238] text-[60px]" />
       </div>
     );
   };
 
   const NextArrow = ({ className, style, onClick }) => {
     return (
-      <div onClick={onClick} className="absolute top-[210px] right-0">
-        <FaArrowRight className="text-white" />
+      <div
+        onClick={onClick}
+        className="absolute top-[210px] xl:right-0 right-[-30px] cursor-pointer"
+      >
+        <AiOutlineRight className="dark:text-white text-[#263238] text-[60px]" />
       </div>
     );
   };
@@ -37,13 +47,13 @@ const TeacherSlider = () => {
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1025,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 830,
         settings: {
           slidesToShow: 2,
         },
@@ -63,7 +73,11 @@ const TeacherSlider = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center z-[10] lg dark:">
+      {/* Div */}
+      <Element
+        className="flex flex-col items-center z-[10] lg dark:"
+        id="slider"
+      >
         <div className=" mt-[64px] flex justify-center">
           <h2 className="font-[900] text-[40px] text-[#263238] dark:text-gray-400  mb-10">
             اساتید ما{" "}
@@ -73,9 +87,11 @@ const TeacherSlider = () => {
         <Slider {...settings} className="xl:w-[1280px] w-[90%]    ">
           {data &&
             data?.map((item, index) => {
+              if (!item.fullName) return null;
+
               return (
                 <div
-                  className={`xl:w-[296px] md:w-[230px] md:max-w-[296px] h-[382px]  lg:mr-0 md:mr-[30px] flex flex-col items-center justify-center mb-5 ${
+                  className={`xl:w-[296px] md:w-[230px] md:max-w-[296px] h-[382px]  lg:mr-0 md:mr-[30px] flex flex-col items-center justify-center mb-5  ${
                     index % 2 !== 0 ? "sm:mt-[64px] " : ""
                   }`}
                   key={index}
@@ -85,14 +101,19 @@ const TeacherSlider = () => {
                       src={
                         item.pictureAddress && item.pictureAddress != "Not-set"
                           ? item.pictureAddress
-                          : noProfile
+                          : noProfile2
                       }
-                      className="w-full h-full rounded-[24px]"
+                      className="w-full h-full block rounded-[24px]"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <h3 className="text-[#263238] dark:text-gray-400 mt-[16px] font-[700] xl:text-[24px] text-[20px] md:mr-0 sm:mr-[50px]">
-                      {item.fullName}
+                    <h3
+                      className="text-[#263238] dark:text-gray-400 mt-[16px] font-[700] xl:text-[24px] text-[20px] lg:mr-0 md:mr-15 sm:mr-[50px]"
+                      title={item?.fullName}
+                    >
+                      {item.fullName.length > 20
+                        ? "..." + item.fullName?.slice(0, 20)
+                        : item.fullName}
                     </h3>
                     {/* <p className="text-[#455A64] dark:text-gray-200 mt-[4px] xl:text-[16px] text-[14px]">
                       بکند, node js, .netcore, database
@@ -102,7 +123,7 @@ const TeacherSlider = () => {
               );
             })}
         </Slider>
-      </div>
+      </Element>
     </>
   );
 };

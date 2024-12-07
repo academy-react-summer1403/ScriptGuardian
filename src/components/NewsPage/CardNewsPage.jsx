@@ -3,6 +3,7 @@ import News from "../../images/NewsAndArticle/photo1.png";
 import { useNavigate } from "react-router-dom";
 import image from "../../images/NewsDetails/default_image.png";
 import { convertIsoToJalali } from "../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
 
 const CardNewsPage = ({
   id,
@@ -18,33 +19,37 @@ const CardNewsPage = ({
     navigate(`/News/${id}`);
   };
 
-  const totalStars = 5; // تعداد کل ستاره‌ها
+  const totalStars = 5;
 
   const handleClickTitle = (e) => {
-    e.stopPropagation(); // جلوگیری از پیشرفت رویداد کلیک
+    e.stopPropagation();
   };
 
   return (
     <div
-      className=" lg:w-[405px]  w-[90%] sm:h-[447px] last:mb-5 cursor-pointer "
+      className=" lg:w-[405px] overflow-x-hidden  w-[90%] sm:min-h-[447px]  last:mb-5 cursor-pointer "
       onClick={navigateDetails}
     >
       <div className=" h-[280px] lg:w-[405px]">
         <img
           src={
-            addUserProfileImage && addUserProfileImage !== "Not-set"
+            addUserProfileImage &&
+            addUserProfileImage !== "Not-set" &&
+            !addUserProfileImage?.startsWith("C:\\")
               ? addUserProfileImage
               : image
           }
           alt=""
-          className="w-full h-full"
+          className="w-full h-full rounded-2xl"
         />
       </div>
-      <div className="flex flex-col text-[] lg:w-[405px]">
+      <div className="flex flex-col text-[] lg:w-[405px] min-h-[100px] bg-w">
         <h2 className="mt-[24px] text-[#263238] dark:text-gray-200 font-[700] text-[20px]">
-          {title}
+          {title.length > 25 ? title.slice(0, 25) + "..." : title}
         </h2>
-        <p className="mt-2 text-[#455A64] dark:text-gray-400">{miniDescribe}</p>
+        <p className="mt-2 text-[#455A64] dark:text-gray-400 flex flex-wrap xl:w-[400px] break-words overflow break-all whitespace-x min-h-[80px]">
+          {miniDescribe}
+        </p>
 
         <div
           className="mt-[18px] flex items-center text-[14px] text-[#2196F3] dark:text-[#1976D2] justify-between"
@@ -76,7 +81,9 @@ const CardNewsPage = ({
                 />
               </svg>
             </span>
-            <p className="mr-1">{currentView} بازدید</p>
+            <p className="mr-1">
+              {currentView && convertEnToPe(currentView)} بازدید
+            </p>
             <span className="mr-4">
               <svg
                 width="6"
@@ -151,7 +158,9 @@ const CardNewsPage = ({
                 />
               </svg>
             </span>
-            <strong>{updateDate && convertIsoToJalali(updateDate)}</strong>
+            <strong>
+              {updateDate && convertEnToPe(convertIsoToJalali(updateDate))}
+            </strong>
           </div>
           <div className="flex flex-row-reverse">
             {Array.from({ length: totalStars }).map((_, index) => (

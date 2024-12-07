@@ -18,11 +18,17 @@ export const useLandingNews = () => {
   });
 };
 
-const PageNews = async ({ SearchQuery, RowsOfPage, PageNumber }) => {
+const PageNews = async ({
+  SearchQuery,
+  RowsOfPage,
+  PageNumber,
+  SortingCol,
+}) => {
   const AllParams = {
     Query: SearchQuery ? SearchQuery : undefined,
     RowsOfPage: RowsOfPage ? RowsOfPage : 9,
     PageNumber: PageNumber ? PageNumber : 1,
+    SortingCol: SortingCol ? SortingCol : undefined,
   };
   try {
     const response = await http.get(ApiRoutes.LANDING_NEWS_URL, {
@@ -34,9 +40,15 @@ const PageNews = async ({ SearchQuery, RowsOfPage, PageNumber }) => {
     return false;
   }
 };
-export const usePageNews = ({ SearchQuery, RowsOfPage, PageNumber }) => {
+export const usePageNews = ({
+  SearchQuery,
+  RowsOfPage,
+  PageNumber,
+  SortingCol,
+}) => {
   return useQuery({
-    queryKey: ["LandingNews", SearchQuery, RowsOfPage, PageNumber],
-    queryFn: () => PageNews({ SearchQuery, RowsOfPage, PageNumber }),
+    queryKey: ["LandingNews", SearchQuery, RowsOfPage, PageNumber, SortingCol],
+    queryFn: () =>
+      PageNews({ SearchQuery, RowsOfPage, PageNumber, SortingCol }),
   });
 };

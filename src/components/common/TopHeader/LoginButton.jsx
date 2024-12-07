@@ -1,5 +1,5 @@
 import { FaSignInAlt } from "react-icons/fa";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { LoginModal } from "../../Login/LoginModal";
 import { LoginCodeVerification } from "../../Login/LoginCodeVerification";
@@ -56,16 +56,16 @@ const LoginButton = () => {
   const [isToken, setIsToken] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token"); // توکن را از localStorage می‌گیریم
-    setIsToken(!!token); // اگر توکن وجود داشت، مقدار true و اگر نداشت false تنظیم می‌شود
+    const token = localStorage.getItem("token");
+    setIsToken(!!token);
   }, []);
 
   const logOut = () => {
-    localStorage.removeItem("token"); // توکن را حذف می‌کنیم
-    localStorage.removeItem("id"); // توکن را حذف می‌کنیم
-    localStorage.removeItem("roles"); // توکن را حذف می‌کنیم
-    setIsToken(false); // مقدار isToken را به false تغییر می‌دهیم
-    setMenuOpen(false); // بستن منو بعد از خروج
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("roles");
+    setIsToken(false);
+    setMenuOpen(false);
   };
 
   const goToStudentPanel = () => {
@@ -79,28 +79,49 @@ const LoginButton = () => {
   const id = path.startsWith("/") ? path.split("/").pop() : null;
 
   useEffect(() => {
-    if (id && id.length > 10) {
+    if (
+      id &&
+      id.length > 10 &&
+      !path.includes("/Courses/") &&
+      !path.includes("/News/")
+    ) {
       setIsForgetPassLastStep(true);
     }
   }, []);
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsLoginOpen(false);
+        setIsForgetPass(false);
+        setIsRegisterOpen(false);
+      }
+    };
+
+    if (isLoginOpen || isForgetPassOpen || isRegisterOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isLoginOpen || isForgetPassOpen || isRegisterOpen]);
   return (
     <>
-      {/* <div className="" onClick={logOut}>
-        DeleteToken
-      </div> */}
       {isToken ? (
         <>
           <div className="relative">
-            {/* دکمه گرد */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center"
+              className="xl:w-[48px] lg:w-[40px] sm:w-[36px] w-[30px] xl:h-[48px] lg:h-[40px] sm:h-[36px] h-[30px]  rounded-[100%] bg-white dark:bg-gray-900 flex justify-center items-center"
             >
-              {/* آیکون یا نام */}
               <span>👤</span>
             </button>
 
-            {/* منوی کشویی */}
             {menuOpen && (
               <div className="absolute right-[-150px] mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
                 <button
@@ -139,6 +160,7 @@ const LoginButton = () => {
             openVerification={toggleLoginVerificationModal}
             openRegister={toggleRegisterModal}
             openForgetPass={toggleForGetPassModal}
+            menuRef={menuRef}
           />
           <LoginCodeVerification
             isOpen={isLoginVerificationOpen}
@@ -149,6 +171,7 @@ const LoginButton = () => {
             toggleModal={toggleRegisterModal}
             openVerification={toggleRegisterVerificationModal}
             openLogin={toggleLoginModal}
+            menuRef={menuRef}
           />
           <RegisterCodeVerification
             isOpen={isRegisterVerificationOpen}
@@ -158,6 +181,7 @@ const LoginButton = () => {
           <RegisterFinish
             isOpen={isRegisterFinishOpen}
             toggleModal={toggleRegisterFinishModal}
+            openLogin={toggleLoginModal}
           />
 
           {isForgetPassOpen && (
@@ -165,6 +189,8 @@ const LoginButton = () => {
               <ForGetPass
                 toggleForGetPassModal={toggleForGetPassModal}
                 setIsForgetPass={setIsForgetPass}
+                menuRef={menuRef}
+                openLogin={toggleLoginModal}
               />
             </>
           )}

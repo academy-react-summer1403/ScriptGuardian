@@ -2,6 +2,8 @@ import React from "react";
 import { BigImgNews } from "./BigImgNews";
 import { useNavigate } from "react-router-dom";
 import image from "../../../images/NewsDetails/default_image.png";
+import { convertIsoToJalali } from "../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
 
 const BigNews = ({
   title,
@@ -10,24 +12,25 @@ const BigNews = ({
   currentView,
   id,
   currentRate,
+  updateDate,
 }) => {
   const navigate = useNavigate();
   const goDetails = () => {
-    navigate(`/news/${id}`);
+    navigate(`/News/${id}`);
   };
 
   //handel stars
-  const totalStars = 5; // تعداد کل ستاره‌ها
+  const totalStars = 5;
 
   const handleClickTitle = (e) => {
-    e.stopPropagation(); // جلوگیری از پیشرفت رویداد کلیک
+    e.stopPropagation();
   };
 
   //API
 
   return (
     <div
-      className="xl:w-[616px]   xl:flex hidden flex-col xl:mx-auto  md:w-full items-center xl:items-start w-[90%]"
+      className="xl:w-[616px]   xl:flex hidden flex-col xl:mx-auto  md:w-full items-center xl:items-start w-[90%]  cursor-pointer"
       onClick={goDetails}
     >
       <BigImgNews
@@ -63,7 +66,7 @@ const BigNews = ({
                 />
               </svg>
             </span>
-            {currentView} بازدید{" "}
+            {currentView && convertEnToPe(currentView)} بازدید{" "}
           </div>
 
           <div className="w-[111px] h-[40px] flex bg-[#DAEEFF] dark:bg-[#0A4e9D] rounded-[80px] items-center justify-center text-[#2196F3] dark:text-[#1976D2] mr-[16px]">
@@ -130,7 +133,9 @@ const BigNews = ({
                 />
               </svg>
             </span>
-            1402/7/2
+            <strong>
+              {updateDate && convertEnToPe(convertIsoToJalali(updateDate))}
+            </strong>{" "}
           </div>
         </div>
         <div className="flex flex-row-reverse">
@@ -160,8 +165,11 @@ const BigNews = ({
         </div>
       </div>
 
-      <h2 className="mt-[24px] text-[#263238] dark:text-gray-400 font-[700] sm:text-[32px] text-[18px] ">
-        {title ? title : ""}
+      <h2
+        className="mt-[24px] text-[#263238] dark:text-gray-400 font-[700] sm:text-[32px] text-[18px] "
+        title={title}
+      >
+        {title?.length > 20 ? title?.slice(0, 20) + "..." : title}
       </h2>
       <p className="mt-[12px] text-[#455A64] dark:text-gray-200 font-[500] xl:w-auto sm:w-[516px] w-full xl:text-right text-center ">
         {miniDescribe ? miniDescribe : ""}

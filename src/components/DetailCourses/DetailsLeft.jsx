@@ -5,6 +5,9 @@ import { useAddReserveCourse } from "../../core/services/api/DetailCourses/hande
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { convertIsoToJalali } from "../../core/utils/dateUtils";
+import { getItem } from "../../core/services/storage/storage.services";
+import { convertEnToPe } from "persian-number";
+
 const DetailsLeft = ({
   startTime,
   endTime,
@@ -21,16 +24,21 @@ const DetailsLeft = ({
 
   const { mutate: AddReserve } = useAddReserveCourse();
   const handleAddReserve = () => {
-    AddReserve(courseId, {
-      onSuccess: (data) => {
-        if (data.success == true) {
-          toast.success("با موفقیت رزرو شده");
-          queryClient.invalidateQueries("CoursesDetail");
-        }
+    const token = getItem("token");
+    if (token) {
+      AddReserve(courseId, {
+        onSuccess: (data) => {
+          if (data.success == true) {
+            toast.success("با موفقیت رزرو شده");
+            queryClient.invalidateQueries("CoursesDetail");
+          }
 
-        //TODO
-      },
-    });
+          //TODO
+        },
+      });
+    } else {
+      toast.error("برای رزرو دوره ابتدا وارد شوید");
+    }
   };
   return (
     <div
@@ -40,7 +48,7 @@ const DetailsLeft = ({
         <h3 className="text-[#263238] dark:text-gray-200 font-[700] text-[24px] mt-8">
           مشخصات دوره
         </h3>
-        <div className="border-y-[1px] dark:border-y-gray-950 xl:w-[341px] w-[95%] h-[288px] mt-6 flex flex-col">
+        <div className="border-y-[1px] dark:border-y-gray-950 xl:w-[341px] w-[90%] h-[288px] mt-6 flex flex-col">
           <div className="flex justify-between w-full h-[72px] border-b dark:border-b-gray-950 items-center">
             <div className="flex items-center">
               <div className="w-[40px] h-[40px] bg-[#2196F3] dark:bg-[#1E88E5] rounded-full  flex items-center justify-center">
@@ -88,7 +96,7 @@ const DetailsLeft = ({
               </p>
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
-              {currentRegistrants}
+              {currentRegistrants && convertEnToPe(currentRegistrants)}
             </p>
           </div>
 
@@ -233,7 +241,9 @@ const DetailsLeft = ({
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
               {/* 24 فروردین 1403 */}
-              <strong>{startTime && convertIsoToJalali(startTime)}</strong>
+              <strong>
+                {startTime && convertEnToPe(convertIsoToJalali(startTime))}
+              </strong>
             </p>
           </div>
 
@@ -326,11 +336,14 @@ const DetailsLeft = ({
             </div>
             <p className="text-[#263238]  dark:text-gray-200 font-bold">
               {" "}
-              <strong>{endTime && convertIsoToJalali(endTime)}</strong>
+              <strong>
+                {" "}
+                {endTime && convertEnToPe(convertIsoToJalali(endTime))}
+              </strong>
             </p>
           </div>
         </div>
-        <div className="xl:w-[341px] w-[95%] h-[56px] mt-8 flex items-center justify-between">
+        <div className="xl:w-[341px] w-[90%] sm:h-[56px] h-[46px] mt-8 flex items-center justify-between">
           {isCourseUser != 1 ? (
             <>
               {isCourseReseve != 1 ? (
@@ -352,10 +365,12 @@ const DetailsLeft = ({
             </button>
           )}
 
-          <p className="text-[#2196F3] dark:text-[#1E88E5]">
+          <p className="text-[#2196F3] dark:text-[#1E88E5] sm:text-base text-xs">
             {" "}
-            {cost}
-            <span className="text-[#263238] dark:text-gray-200">تومان</span>
+            {cost && convertEnToPe(cost)}
+            <span className="text-[#263238] dark:text-gray-200 mr-1">
+              تومان
+            </span>
           </p>
         </div>
       </div>

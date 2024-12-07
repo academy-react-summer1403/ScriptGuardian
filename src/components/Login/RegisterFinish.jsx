@@ -6,6 +6,7 @@ import { validationRegisterFinish } from "../../core/services/validation/validat
 import { useRegisterFinish } from "../../core/services/api/Auth/Register/Register";
 import { toast } from "react-toastify";
 import { setItem } from "../../core/services/storage/storage.services";
+import { CustomSpinner } from "../animation/CustomSpinner";
 const RegisterFinish = ({ isOpen, toggleModal }) => {
   // if (isOpen === true) {
   //   console.log("true Register Finish Modal");
@@ -13,7 +14,12 @@ const RegisterFinish = ({ isOpen, toggleModal }) => {
   //   console.log("false Register Finish Modal");
 
   const navigate = useNavigate();
-  const { mutate: RegisterFinish, isError, data } = useRegisterFinish();
+  const {
+    mutate: RegisterFinish,
+    isError,
+    data,
+    isPending,
+  } = useRegisterFinish();
   // }
 
   const formik = useFormik({
@@ -149,12 +155,21 @@ const RegisterFinish = ({ isOpen, toggleModal }) => {
             </div>
 
             <div className="flex justify-center mt-[48px]">
-              <button
-                type="submit"
-                className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-              >
-                ثبت نام{" "}
-              </button>
+              {isPending ? (
+                <button
+                  type="submit"
+                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  ثبت نام{" "}
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+                </button>
+              )}
             </div>
           </form>
         </div>

@@ -8,10 +8,14 @@ import {
   useLandingNews,
   usePageNews,
 } from "../../core/services/api/Landing/LandingNews";
+import { CustomSpinner } from "../../components/animation/CustomSpinner";
 
 const NewsPage = () => {
   //handel search
   const [searchQuery, setSearchQuery] = useState(undefined);
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(undefined);
+
+  const [sortingCol, setSortingCol] = useState(undefined);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -19,16 +23,24 @@ const NewsPage = () => {
   const [current, setCurrentPage] = useState(0);
 
   const { data: News } = usePageNews({
-    SearchQuery: searchQuery,
+    SearchQuery: debouncedSearchQuery,
     RowsOfPage: itemsPerPage,
     PageNumber: current + 1,
+    SortingCol: sortingCol,
   });
   const data = News?.news;
   const Total = News?.totalCount;
-  //handel Search
 
+  //Search
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
   const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value); // به‌روزرسانی searchQuery با مقدار ورودی
+    setSearchQuery(event.target.value);
     setCurrentPage(0);
   };
 
@@ -46,6 +58,8 @@ const NewsPage = () => {
     setCurrentPage(event.selected);
   };
 
+  const loaderStyle = "flex justify-center items-center mx-auto ";
+
   return (
     <>
       <HereNewsSection />
@@ -54,25 +68,30 @@ const NewsPage = () => {
         <NewsSearchAndFilter
           searchQuery={searchQuery}
           handleSearchChange={handleSearchChange}
+          setSortingCol={setSortingCol}
         />
 
-        <div className="flex  mt-[48px] w-full flex-wrap  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] lg:justify-start justify-center">
-          {currentItems?.map((item, index) => {
-            return (
-              <>
-                <CardNewsPage
-                  key={index}
-                  id={item.id}
-                  title={item.title}
-                  miniDescribe={item.miniDescribe}
-                  addUserProfileImage={item.addUserProfileImage}
-                  currentView={item.currentView}
-                  currentRate={item.currentRate}
-                  updateDate={item?.updateDate}
-                />
-              </>
-            );
-          })}
+        <div className="flex  mt-[48px] w-full flex-wrap xl:gap-x-[32px] lg:gap-x-0  md:gap-x-[32px] sm:gap-y-[40px] min-h-[300px] gap-y-[30px] xl:justify-start lg:justify-around justify-center mb-10">
+          {!currentItems ? (
+            <CustomSpinner style={loaderStyle} />
+          ) : currentItems.length === 0 ? (
+            <p className="text-center text-gray-700 dark:text-gray-200 mx-auto mt-[150px]">
+              داده‌ای یافت نشد
+            </p>
+          ) : (
+            currentItems.map((item, index) => (
+              <CardNewsPage
+                key={index}
+                id={item.id}
+                title={item.title}
+                miniDescribe={item.miniDescribe}
+                addUserProfileImage={item.addUserProfileImage}
+                currentView={item.currentView}
+                currentRate={item.currentRate}
+                updateDate={item?.updateDate}
+              />
+            ))
+          )}
         </div>
         <div className="flex justify-center">
           <ReactPaginate

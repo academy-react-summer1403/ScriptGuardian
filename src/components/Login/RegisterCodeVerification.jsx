@@ -7,6 +7,7 @@ import { useRegisterVerification } from "../../core/services/api/Auth/Register/R
 import { validationRegisterVerification } from "../../core/services/validation/validationSchema/Auth";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { CustomSpinner } from "../animation/CustomSpinner";
 
 const RegisterCodeVerification = ({
   isOpen,
@@ -19,6 +20,7 @@ const RegisterCodeVerification = ({
     mutate: RegisterVerificationCode,
     isError,
     data,
+    isPending,
   } = useRegisterVerification();
 
   const formik = useFormik({
@@ -55,12 +57,6 @@ const RegisterCodeVerification = ({
     },
   });
 
-  // if(isOpen === true){
-  //   console.log("true Register Modal Modal")
-  // }
-  // else{
-  //   console.log("false Register Modal Modal")
-  // }
   return (
     <>
       {" "}
@@ -177,16 +173,29 @@ const RegisterCodeVerification = ({
             </div>
 
             <div className="flex justify-center mt-[48px]">
-              <button
-                onClick={() => {
-                  // toggleModal();
-                  // OpenRegisterFinish();
-                }}
-                type="submit"
-                className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-              >
-                ارسال کد{" "}
-              </button>
+              {isPending ? (
+                <button
+                  onClick={() => {
+                    // toggleModal();
+                    // OpenRegisterFinish();
+                  }}
+                  type="submit"
+                  className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    // toggleModal();
+                    // OpenRegisterFinish();
+                  }}
+                  type="submit"
+                  className="rounded-[80px] text-white w-[197px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  ارسال کد{" "}
+                </button>
+              )}
             </div>
             <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
               <p className="text-[#455A64] dark:text-gray-200">

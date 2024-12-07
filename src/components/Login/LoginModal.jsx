@@ -8,18 +8,27 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { setItem } from "../../core/services/storage/storage.services";
 import { validationSchema } from "../../core/services/validation/validationSchema/Auth";
+import { useDispatch } from "react-redux";
+import {
+  setPassword,
+  setPhoneOrGmail,
+  setRememberMe,
+} from "../../redux/slice/authSlice";
+import { CustomSpinner } from "../animation/CustomSpinner";
+
 const LoginModal = ({
   toggleModal,
   isOpen,
   openVerification,
   openRegister,
   openForgetPass,
+  menuRef,
 }) => {
   const navigate = useNavigate();
 
-  const { mutate: login, isError, data } = useLogin();
+  const { mutate: login, isError, data, isPending } = useLogin();
   console.log("this use login Data", data);
-
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       phoneOrGmail: "",
@@ -28,20 +37,31 @@ const LoginModal = ({
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      dispatch(setPassword(values.password));
+      dispatch(setRememberMe(values.rememberMe));
       login(values, {
         onSuccess: (data) => {
+          dispatch(setPhoneOrGmail(data?.phoneNumber));
+
           if (data.success) {
-            toast.success("ورود با موفقیت انجام شد");
-            setItem("token", data.token);
-            setItem("id", data.id);
-            setItem("roles", data.roles);
-            console.log(data.roles, "data roles");
-            toggleModal();
-            navigate("./panel");
+            if (data.token != null) {
+              toast.success("ورود با موفقیت انجام شد");
+              setItem("token", data.token);
+              setItem("id", data.id);
+              setItem("roles", data.roles);
+              console.log(data.roles, "data roles");
+              toggleModal();
+              navigate("./panel");
+            } else {
+              toggleModal();
+              openVerification();
+              toast.success("کد تایید را وارد کنید");
+            }
           } else {
             toast.error("ورود ناموفق بود");
           }
         },
+
         // onError: (error) => {
 
         // },
@@ -53,12 +73,15 @@ const LoginModal = ({
     <>
       {isOpen && (
         <>
-          <div className="sm:w-[420px] sm:h-[490px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col">
+          <div
+            ref={menuRef}
+            className="sm:w-[420px] sm:h-[490px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col"
+          >
             <div className="flex justify-between ">
               <h2 className="mt-[30px] mr-[32px] text-[#263238] dark:text-gray-200 font-[700] text-[32px] tracking-tight">
                 ورود به حساب
               </h2>
-              <div className="w-[48px] h-[48px] bg-[#F1F7FF] dark:bg-[#2A3B54] rounded-[16px] flex justify-center items-center mt-8 ml-[32px] ">
+              <div className="w-[48px] h-[48px] bg-[#F1F7FF] dark:bg-[#2A3B54] rounded-[16px] flex justify-center items-center mt-8 ml-[32px]  cursor-pointer">
                 <span onClick={toggleModal}>
                   <svg
                     width="24"
@@ -133,17 +156,16 @@ const LoginModal = ({
                   />
                   <label
                     htmlFor="rememberMe"
-                    className="flex justify-center items-center w-[20px] h-[20px] border-[#2196F3] dark:border-[#1565C0] border rounded-lg peer-checked:bg-blue-500 dark:peer-checked:bg-[#1565C0] peer-checked:ease-in-out"
+                    className="flex justify-center items-center w-[20px] h-[20px] border-[#2196F3] dark:border-[#1565C0] border rounded-lg peer-checked:bg-blue-500 dark:peer-checked:bg-[#1565C0] peer-checked:ease-in-out cursor-pointer"
                   >
                     <MdCheck className="text-white dark:text-gray-900" />
-                  </label>
-
+                  </label>{" "}
                   <p className="text-[#455A64] dark:text-gray-200 ">
                     من را به خاطر بسپار
                   </p>
                 </div>
                 <p
-                  className="text-[#2196F3] dark:text-[#1565C0] ml-[32px] underline p-"
+                  className="text-[#2196F3] dark:text-[#1565C0] ml-[32px] underline cursor-pointer"
                   onClick={() => {
                     openForgetPass();
                     toggleModal();
@@ -154,16 +176,29 @@ const LoginModal = ({
               </div>
 
               <div className="flex justify-center mt-[48px]">
-                <button
-                  onClick={() => {
-                    // toggleModal();
-                    // openVerification();
-                  }}
-                  type="submit"
-                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-                >
-                  ورود به حساب{" "}
-                </button>
+                {isPending ? (
+                  <button
+                    onClick={() => {
+                      // toggleModal();
+                      // openVerification();
+                    }}
+                    // type="submit"
+                    className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                  >
+                    <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      // toggleModal();
+                      // openVerification();
+                    }}
+                    type="submit"
+                    className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                  >
+                    ورود به حساب{" "}
+                  </button>
+                )}
               </div>
               <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">
                 <p className="text-[#455A64] dark:text-gray-200">

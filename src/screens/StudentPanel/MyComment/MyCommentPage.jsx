@@ -47,12 +47,10 @@ const MyCommentPage = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // وضعیت اولیه دارک مود بر اساس localStorage
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
-  // مدیریت تغییر کلاس بر روی body و ذخیره‌سازی حالت در localStorage
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -63,7 +61,6 @@ const MyCommentPage = () => {
     }
   }, [isDarkMode]);
 
-  // تغییر حالت دارک مود هنگام کلیک
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -73,13 +70,16 @@ const MyCommentPage = () => {
   const [openTab, setOpenTab] = useState(1);
 
   const activeClasses =
-    "border dark:border-white border-gray-950 rounded-t text-blue-700";
-  const inactiveClasses = "text-blue-500 hover:text-blue-700";
-
+    "border dark:border-white border-gray-950 rounded cursor-pointer";
+  const inactiveClasses = "cursor-pointer";
   return (
     <>
       {/* hamburger */}
-      <StudentHamburger toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+      <StudentHamburger
+        toggleMenu={toggleMenu}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
 
       <div className="flex flex-col items-center ">
         {/* Common */}
@@ -92,13 +92,13 @@ const MyCommentPage = () => {
 
         {/* Unic */}
         <div className=" mt-5 ">
-          <ul className="flex gap-x-5">
+          <ul className="flex sm:gap-x-5 gap-x-1">
             <li
               onClick={() => setOpenTab(1)}
               className={`-mb-px mr-1 ${openTab === 1 ? "-mb-px" : ""}`}
             >
               <p
-                className={`bg-white dark:bg-gray-950 inline-block py-2 px-4 font-semibold ${
+                className={`bg-white dark:bg-gray-950 inline-block py-2 sm:px-4 px-1 sm:text-base text-sm  dark:text-white ${
                   openTab === 1 ? activeClasses : inactiveClasses
                 }`}
               >
@@ -110,7 +110,7 @@ const MyCommentPage = () => {
               className={`mr-1 ${openTab === 2 ? "-mb-px" : ""}`}
             >
               <p
-                className={`bg-white inline-block  dark:bg-gray-950  py-2 px-4 font-semibold ${
+                className={`bg-white inline-block  dark:bg-gray-950  py-2 sm:px-4 px-1 sm:text-base text-sm dark:text-white ${
                   openTab === 2 ? activeClasses : inactiveClasses
                 }`}
               >

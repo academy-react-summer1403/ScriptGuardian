@@ -19,28 +19,28 @@ const CommonStudent = ({ toggleMenu, toggleDarkMode, isDarkMode, title }) => {
             <FaBars />
           </button>
         </div>
-        <FaMinus className="text-purple-600 dark:text-purple-900 sm:mr-0 mr-1 text-xl" />
-        <h2 className="text-[20px] mr-2 text-[#263238] dark:text-gray-200">
+        <FaMinus className="text-[#8cc9fa] dark:text-[#1e3e57] sm:mr-3 mr-1 mt-2 sm:text-xl text-base" />
+        <h2 className="sm:text-[20px] text-base sm:mr-2 mr-1 text-[#263238] dark:text-gray-200">
           {title}{" "}
         </h2>
       </div>
 
-      <div className="flex items-center gap-x-4 text-gray-500 dark:text-gray-200">
+      <div className="flex items-center sm:gap-x-4 gap-x-2 text-gray-500 dark:text-gray-200 cursor-pointer">
         {isDarkMode ? (
-          <FaMoon
-            className="text-gray-800"
-            size={20}
-            onClick={toggleDarkMode}
-          />
-        ) : (
           <FaSun
             className="text-yellow-500"
             size={20}
             onClick={toggleDarkMode}
           />
+        ) : (
+          <FaMoon
+            className="text-gray-800"
+            size={20}
+            onClick={toggleDarkMode}
+          />
         )}
-        <FaBell className="text-xl" />
-        <FaShoppingCart className="text-xl" />
+        {/* <FaBell className="text-xl" /> */}
+        {/* <FaShoppingCart className="text-xl" /> */}
       </div>
     </div>
   );

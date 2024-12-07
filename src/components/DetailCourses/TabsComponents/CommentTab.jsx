@@ -15,12 +15,10 @@ const CommentTab = ({ activeTab }) => {
 
   const [visibleCount, setVisibleCount] = useState(5);
 
-  // تعداد کامنت‌هایی که به‌ازای هر کلیک بیشتر نمایش داده می‌شوند
   const incrementCount = 5;
   //API
   const { id } = useParams();
   const { data } = useCommentCourses(id);
-  // console.log(data, " This Data Of Comment Course  ");
 
   const roles = localStorage.getItem("roles");
 
@@ -37,24 +35,18 @@ const CommentTab = ({ activeTab }) => {
       formData.append("CourseId", values.CourseId);
       formData.append("Title", values.Title);
       formData.append("Describe", values.Describe);
-      // const formData = new FormData();
-      // for (const key in values) {
-      //   formData.append(key, values[key]);
-      // }
+
       AddComment(formData, {
         onSuccess: (data) => {
           if (data.success === true) {
-            // if (roles.includes("Administrator") || roles.includes("Referee")) {
-
-            // }
+            if (roles.includes("Administrator") || roles.includes("Referee")) {
+              toast.success("کامنت  با موفقیت ارسال شد", data);
+            } else {
+              toast.warning("کامنت ارسال شد در انتظار تایید", data);
+            }
             queryClient.invalidateQueries("CommentCourses");
 
-            toast.success("کامنت  با موفقیت ارسال شد");
-            resetForm();
-
-            // else {
-            //   toast.warning("کامنت ارسال شد در انتظار تایید", data);
-            // }
+            formik.resetForm();
           } else {
             toast.error("خطا در ارسال کامنت");
           }
@@ -66,15 +58,15 @@ const CommentTab = ({ activeTab }) => {
     <>
       {activeTab === "comments" && (
         <div className="xl:w-[779px]  w-full  flex flex-col items-center mb-5">
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={formik.handleSubmit} className="w-full">
             <div className="w-full flex justify-center  flex-col">
               <input
-                className="xl:w-[779px] w-full h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs mb-5 text-white"
+                className="xl:w-[779px] w-full h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs mb-5 dark:text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("Title")}
               />
               <textarea
-                className="xl:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs text-white"
+                className="xl:w-[779px] w-full h-[100px] pt-3 pr-3 border rounded-[10px] mx-auto  dark:border-gray-950 dark:bg-slate-900  outline-none dark:caret-white sm:placeholder:text-base placeholder:text-xs dark:text-white"
                 placeholder="نظر خودتو بنویس..."
                 {...formik.getFieldProps("Describe")}
               />

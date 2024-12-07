@@ -17,6 +17,7 @@ import { MyReservedCourses } from "../screens/StudentPanel/MyReservedCourses/MyR
 import { MyFavoriteCourses } from "../screens/StudentPanel/MyFavoriteCourses/MyFavoriteCourses";
 import { MyFavoriteNews } from "../screens/StudentPanel/MyFavoriteNews/MyFavoriteNews";
 import { MyCommentPage } from "../screens/StudentPanel/MyComment/MyCommentPage";
+import { MyPaymentCourses } from "../screens/StudentPanel/MyPayMent/MyPaymentCourses";
 
 const App = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const App = createBrowserRouter([
       { path: "/panel", element: <DashBoard /> },
       { path: "/panel/MyProfile", element: <StudentProfile /> },
       { path: "/panel/MyCourses", element: <MyCourses /> },
+      { path: "/panel/MyCoursesPayment", element: <MyPaymentCourses /> },
       { path: "/panel/MyReservedCourses", element: <MyReservedCourses /> },
       { path: "/panel/MyFavoriteCourses", element: <MyFavoriteCourses /> },
       { path: "/panel/MyFavoriteNews", element: <MyFavoriteNews /> },

@@ -2,19 +2,31 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import http from "../../../interceptors/interceptors";
 import { ApiRoutes } from "../ApiRoutes/ApiRoutes";
 
-const MyCourses = async () => {
+const MyCourses = async ({ PageNumber, RowsOfPage, SearchQuery }) => {
+  const AllParams = {
+    PageNumber: PageNumber ? PageNumber : 1,
+    RowsOfPage: RowsOfPage ? RowsOfPage : 6,
+    Query: SearchQuery ? SearchQuery : undefined,
+  };
   try {
-    const response = await http.get(`${ApiRoutes.PANEL_MY_COURSES_URL}`);
-    return response.listOfMyCourses;
+    const response = await http.get(`${ApiRoutes.PANEL_MY_COURSES_URL}`, {
+      params: AllParams,
+    });
+    return response;
   } catch (error) {
     console.log("This error For MyCourses.js", error);
     return false;
   }
 };
-export const useMyCourses = () => {
+export const useMyCourses = ({ PageNumber, RowsOfPage, SearchQuery }) => {
   return useQuery({
-    queryKey: ["MyCourses"],
-    queryFn: MyCourses,
+    queryKey: ["MyCourses", PageNumber, RowsOfPage, SearchQuery],
+    queryFn: () =>
+      MyCourses({
+        PageNumber,
+        RowsOfPage,
+        SearchQuery,
+      }),
   });
 };
 
@@ -101,5 +113,23 @@ export const useMyFavoriteNews = () => {
   return useQuery({
     queryKey: ["MyFavoriteNews"],
     queryFn: MyFavoriteNews,
+  });
+};
+
+//handel my Courses payMent List
+
+const MyPaymentCourses = async () => {
+  try {
+    const response = await http.get(`${ApiRoutes.PANEL_MY_PAYMENT_LIST_URL}`);
+    return response;
+  } catch (error) {
+    console.log("This error For MyCourses.js", error);
+    return false;
+  }
+};
+export const useMyPaymentCourses = () => {
+  return useQuery({
+    queryKey: ["MyPaymentCourses"],
+    queryFn: () => MyPaymentCourses(),
   });
 };

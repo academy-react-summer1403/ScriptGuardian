@@ -18,6 +18,7 @@ import {
 
 import noProfile from "../../../../images/NewsDetails/profile.png";
 import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
 const ReplayCommentCourse = ({
   describe,
   title,
@@ -39,100 +40,6 @@ const ReplayCommentCourse = ({
   insertDate,
 }) => {
   const queryClient = useQueryClient();
-
-  // //API
-  // //handel Like Comment
-  // const { mutate: AddLike } = useAddLikeCommentNews();
-
-  // const handelLike = () => {
-  //   if (currentUserIsLike === true) {
-  //     AddLike(
-  //       { commentId: id, LikeType: false },
-  //       {
-  //         onSuccess: (data) => {
-  //           if (data.success) {
-  //             toast.success("کامنت با موفقیت لایکش برداشته شد");
-  //             queryClient.invalidateQueries("AddLikeCommentNews");
-  //           } else {
-  //             toast.error("خطا در برداشتن لایک کامنت");
-  //           }
-  //         },
-  //       }
-  //     );
-  //   } else {
-  //     AddLike(
-  //       { commentId: id, LikeType: true },
-
-  //       {
-  //         onSuccess: (data) => {
-  //           if (data.success) {
-  //             toast.success("کامنت با موفقیت لایک شد");
-  //             queryClient.invalidateQueries("AddLikeCommentNews");
-  //           } else {
-  //             toast.error("خطا در لایک کامنت");
-  //           }
-  //         },
-  //       }
-  //     );
-  //   }
-  // };
-
-  //API
-  //handel Like Comment
-  // const { mutate: AddLikeAndDissLike } = useAddLikeCommentNews();
-  // const { mutate: DeleteLikeAndDissLike } = useDeleteLikeCommentNews();
-
-  // const handelLike = () => {
-  //   if (currentUserIsLike === true) {
-  //     DeleteLikeAndDissLike(currentUserLikeId, {
-  //       onSuccess: () => {
-  //         toast.success("با موفقیت لایک  برداشته شد");
-  //         queryClient.invalidateQueries("DetailNews");
-  //       },
-  //     });
-  //   } else {
-  //     AddLikeAndDissLike(
-  //       { commentId: id, LikeType: true },
-
-  //       {
-  //         onSuccess: (data) => {
-  //           if (data.success) {
-  //             toast.success("کامنت با موفقیت لایک شد");
-  //             queryClient.invalidateQueries("DetailNews");
-  //           } else {
-  //             toast.error("خطا در لایک کامنت");
-  //           }
-  //         },
-  //       }
-  //     );
-  //   }
-  // };
-
-  // const handelDissLike = () => {
-  //   if (currentUserIsDissLike === true) {
-  //     DeleteLikeAndDissLike(currentUserLikeId, {
-  //       onSuccess: () => {
-  //         toast.success("با موفقیت  دیس لایک  برداشته شد");
-  //         queryClient.invalidateQueries("DetailNews");
-  //       },
-  //     });
-  //   } else {
-  //     AddLikeAndDissLike(
-  //       { commentId: id, LikeType: false },
-
-  //       {
-  //         onSuccess: (data) => {
-  //           if (data.success) {
-  //             toast.success("کامنت با موفقیت دیس لایک شد");
-  //             queryClient.invalidateQueries("DetailNews");
-  //           } else {
-  //             toast.error("خطا در  دیس لایک لایک کامنت");
-  //           }
-  //         },
-  //       }
-  //     );
-  //   }
-  // };
 
   //API
   //handel Like Comment
@@ -174,29 +81,6 @@ const ReplayCommentCourse = ({
   };
 
   const handelDissLike = () => {
-    // if (currentUserIsDissLike === true) {
-    //   DeleteLikeAndDissLike(currentUserLikeId, {
-    //     onSuccess: () => {
-    //       toast.success("با موفقیت  دیس لایک  برداشته شد");
-    //       queryClient.invalidateQueries("DetailNews");
-    //     },
-    //   });
-    // } else {
-    //   AddLikeAndDissLike(
-    //     { commentId: id, LikeType: false },
-    //     {
-    //       onSuccess: (data) => {
-    //         if (data.success) {
-    //           toast.success("کامنت با موفقیت دیس لایک شد");
-    //           queryClient.invalidateQueries("DetailNews");
-    //         } else {
-    //           toast.error("خطا در  دیس لایک لایک کامنت");
-    //         }
-    //       },
-    //     }
-    //   );
-    // }
-
     AddDissLike(CommentId, {
       onSuccess: () => {
         toast.success("با موفقیت دیس لایک  شد شد");
@@ -207,10 +91,8 @@ const ReplayCommentCourse = ({
 
   //show replay
 
-  // تعریف یک یوز استیت برای نمایش یا عدم نمایش فرم ریپلای
   const [isReplyVisible, setIsReplyVisible] = useState(false);
 
-  // تابعی برای تغییر وضعیت نمایش فرم
   const toggleReplyForm = () => {
     setIsReplyVisible(!isReplyVisible);
   };
@@ -226,10 +108,6 @@ const ReplayCommentCourse = ({
       Describe: "",
     },
     onSubmit: (values, { resetForm }) => {
-      // const formData = new FormData();
-      // formData.append("CourseId", values.CourseId);
-      // formData.append("Title", values.Title);
-      // formData.append("Describe", values.Describe);
       const formData = new FormData();
       for (const key in values) {
         formData.append(key, values[key]);
@@ -270,7 +148,9 @@ const ReplayCommentCourse = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
+            <strong>
+              {insertDate && convertEnToPe(convertIsoToJalali(insertDate))}
+            </strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs  text-[#455A64] dark:text-gray-400 mt-2 sm:mr-4 mr-2">
@@ -282,7 +162,7 @@ const ReplayCommentCourse = ({
         <div className="flex items-center text-sm mt-3 sm:mr-4 mr-2">
           <div className="flex items-center gap-3">
             <button className="flex items-center 0">
-              <span className="ml-1 text-xs dark:text-white">{likeCount}</span>
+              <span className="ml-1 text-xs dark:text-white">{likeCount && convertEnToPe(likeCount)}</span>
               <FaThumbsUp
                 className={`text-sm ${
                   currentUserEmotion === "LIKED"
@@ -302,7 +182,7 @@ const ReplayCommentCourse = ({
                 onClick={handelDissLike}
               />
               <span className="mr-1 text-xs dark:text-white">
-                {dissLikeCount}
+                {dissLikeCount && convertEnToPe(dissLikeCount)}
               </span>
             </button>
           </div>

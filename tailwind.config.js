@@ -25,7 +25,7 @@ export default {
         "Second-shadow": "0px 0px 20px 0px rgba(0, 0, 0, 0.05)",
       },
       animation: {
-        "spin-slow": "spin 4s linear infinite", // تعریف چرخش آرام
+        "spin-slow": "spin 4s linear infinite",
       },
     },
   },

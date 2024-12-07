@@ -1,5 +1,7 @@
 import React from "react";
 import { useLandingReport } from "../../../core/services/api/Landing/LandingReport";
+import { convertEnToPe } from "persian-number";
+
 const InfoBoxes = () => {
   const { data, isPending } = useLandingReport();
 
@@ -32,7 +34,7 @@ const InfoBoxes = () => {
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900] sm:text-[30px] text-[25px] text-[#263238] dark:text-gray-200">
-            {data && data.teacherCount}
+            {data && convertEnToPe(data?.teacherCount)}
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400 sm:block hidden">
             مدرس مجرب
@@ -67,7 +69,7 @@ const InfoBoxes = () => {
 
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900]  sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
-            {data && data.courseCount}
+            {data && convertEnToPe(data?.courseCount)}
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400 sm:block hidden">
             دوره با کیفیت
@@ -121,7 +123,7 @@ const InfoBoxes = () => {
         </div>
         <div className="flex flex-col min-w-[92px] min-[83px]  justify-center items-center mt-2 ">
           <h3 className="font-[900] sm:text-[30px] text-[23px]  text-[#263238] dark:text-gray-200">
-            {data && data.studentCount}
+            {data && convertEnToPe(data?.studentCount)}
           </h3>
           <p className="font-[700] text-[20px] text-[#455A64] dark:text-gray-400 sm:block hidden">
             نفر دانشجو

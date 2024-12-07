@@ -27,7 +27,30 @@ export const validationRegisterCode = Yup.object({
     .min(11, "شماره تلفن باید  11 کاراکتر باشد"),
 });
 
+export const validationForgetPass = Yup.object({
+  email: Yup.string()
+    .email("فرمت جیمیل معتبر نیست")
+    .required("جیمیل الزامی است"),
+});
 export const validationRegisterVerification = Yup.object().shape({
+  verifyCode1: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode2: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode3: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode4: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+  verifyCode5: Yup.string()
+    .matches(/^[0-9]$/, "فقط عدد مجاز است")
+    .required("این فیلد اجباری است"),
+});
+
+export const validationRegisterVerificationLoginStepTwo = Yup.object().shape({
   verifyCode1: Yup.string()
     .matches(/^[0-9]$/, "فقط عدد مجاز است")
     .required("این فیلد اجباری است"),

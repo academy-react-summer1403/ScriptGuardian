@@ -4,6 +4,7 @@ import { convertIsoToJalali } from "../../../core/utils/dateUtils";
 
 import { NewsImg } from "./NewsImg";
 import { useNavigate } from "react-router-dom";
+import { convertEnToPe } from "persian-number";
 const News = ({
   title,
   addUserProfileImage,
@@ -15,19 +16,19 @@ const News = ({
 }) => {
   const navigate = useNavigate();
   const goDetails = () => {
-    navigate(`/news/${id}`);
+    navigate(`/News/${id}`);
   };
 
   //handel stars
-  const totalStars = 5; // تعداد کل ستاره‌ها
+  const totalStars = 5;
 
   const handleClickTitle = (e) => {
-    e.stopPropagation(); // جلوگیری از پیشرفت رویداد کلیک
+    e.stopPropagation();
   };
 
   return (
     <div
-      className="xl:w-[624px] lg:w-[90%] sm:w-[624px] w-[90%] sm:h-[161px]  flex sm:flex-row flex-col items-center  sm:mb-0 mb-5"
+      className="xl:w-[624px] lg:w-[90%] sm:w-[624px] w-[90%] sm:h-[161px]  flex sm:flex-row flex-col items-center   sm:mb-0 mb-5 cursor-pointer"
       onClick={goDetails}
     >
       <NewsImg
@@ -40,11 +41,13 @@ const News = ({
         }
       />
       <div className="md:mr-[24px] xl:mr-[24px] lg:mr-[60px] mr-4 flex flex-col sm:w-[376px] sm:mt-0 mt-3 w-[90%] sm:text-right text-center">
-        <h3 className="text-[20px] font-[700] text-[#263238] dark:text-gray-400">
+        <h3 className="sm:text-[20px] text-sm font-[700] text-[#263238] dark:text-gray-400 ">
           {title.length > 25 ? title.substring(0, 25) + "..." : title}
         </h3>
-        <p className="text-[14px] text-[#455A64] dark:text-gray-200 mt-[8px]  md:w-auto sm:w-[320px]  ">
-          {miniDescribe}
+        <p className="text-[14px] text-[#455A64] dark:text-gray-200 mt-[8px]  md:w-auto sm:w-[320px] h-[100px]  ">
+          {miniDescribe.length > 40
+            ? miniDescribe.substring(0, 40) + "..."
+            : miniDescribe}
         </p>
         <div
           className="mt-[18px] flex items-center text-[14px] text-[#2196F3] dark:text-[#1976D2] justify-between"
@@ -151,7 +154,10 @@ const News = ({
                 />
               </svg>
             </span>
-            <strong>{updateDate && convertIsoToJalali(updateDate)}</strong>
+            <strong>
+              {" "}
+              {updateDate && convertEnToPe(convertIsoToJalali(updateDate))}
+            </strong>
           </div>
           <div className="flex flex-row-reverse xl:ml-0">
             {Array.from({ length: totalStars }).map((_, index) => (

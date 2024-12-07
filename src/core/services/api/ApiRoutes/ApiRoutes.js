@@ -4,6 +4,7 @@ export const LandingReport = "/Home/LandingReport";
 export const ApiRoutes = {
   //Auth
   LOGIN_URL: "/sign/login",
+  LOGIN_STEP_URL: "/Sign/LoginTwoStep?",
   REGISTER_CODE_URL: "/Sign/SendVerifyMessage",
   REGISTER_CODE_VERIFICATION_URL: "/Sign/VerifyMessage",
   REGISTER_CODE_FINISH: "/Sign/Register",
@@ -53,11 +54,16 @@ export const ApiRoutes = {
   DETAILS_ADD_FAVORITE_NEWS_URL: "/News/AddFavoriteNews?",
   DETAILS_DELETE_FAVORITE_NEWS_URL: "/News/DeleteFavoriteNews",
 
+  //Filters:Technologies
+  GET_LIST_OF_TECHNOLOGIES_URL: "/Home/GetTechnologies",
+  GET_LIST_OF_COURSE_TYPE_URL: "/CourseType/GetCourseTypes",
+  GET_LIST_OF_COURSE_LEVEL_URL: "/CourseLevel/GetAllCourseLevel",
   //StudentPanel DashBoard
   PANEL_PROFILE_URL: "/SharePanel/GetProfileInfo",
 
   //student panel My Courses
   PANEL_MY_COURSES_URL: "/SharePanel/GetMyCourses",
+  PANEL_MY_PAYMENT_LIST_URL: "/CoursePayment/StudentUserPayList",
   PANEL_MY_RESERVED_COURSES_URL: "/SharePanel/GetMyCoursesReserve",
   PANEL_DELETE_MY_RESERVED_COURSES_URL: "/CourseReserve",
   PANEL_MY_FAVORITE_COURSES_URL: "/SharePanel/GetMyFavoriteCourses",
@@ -77,4 +83,11 @@ export const ApiRoutes = {
 
   //Student Panel Change pass
   PANEL_CHANGE_PASSWORD_URL: "/SharePanel/ChangePassword",
+  PANEL_GET_SECURITY_URL: "/SharePanel/GetSecurityInfo",
+  PANEL_UPDATE_SECURITY_URL: "/SharePanel/EditSecurity",
+
+  //Buy Courses
+  PANEL_ADD_COURSE_PAYMENT_STEP_ONE_URL: "/CoursePayment/StudentAddPeyment",
+  PANEL_ADD_COURSE_PAYMENT_STEP_TWO_URL:
+    "/CoursePayment/StudentAddPeymentImage",
 };

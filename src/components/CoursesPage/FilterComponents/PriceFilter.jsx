@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
-const PriceFilter = ({ setCostDown, setCostUp }) => {
+import { convertEnToPe } from "persian-number";
+const PriceFilter = ({ setCostDown, setCostUp, setPrice, price }) => {
   const [isOpenSecond, setIsOpenSecond] = useState(false);
-  const [value, setValue] = useState([0, 10000000]); // مقادیر پیش‌فرض برای حداقل و حداکثر
+  // const [price, setPrice] = useState([1000, 10000000]);
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    setCostDown(newValue[0]); // ارسال پایین‌ترین قیمت به setCostDown
-    setCostUp(newValue[1]); // ارسال بالاترین قیمت به setCostUp
+    setPrice(newValue);
+    setCostDown(newValue[0]);
+    setCostUp(newValue[1]);
   };
   return (
     <div className="w-full min-h-[25px] mt-[20px]  ">
@@ -29,27 +30,28 @@ const PriceFilter = ({ setCostDown, setCostUp }) => {
           <div className="flex flex-col xl:w-[248px] w-10/12">
             <div style={{ width: 300, margin: "auto" }}>
               <Typography gutterBottom>
-                محدوده قیمت: {value[1]} - {value[0]}
+                محدوده قیمت: {convertEnToPe(price[1])} -{" "}
+                {convertEnToPe(price[0])}
               </Typography>
               <Slider
-                value={value}
+                value={price}
                 onChange={handleChange}
-                valueLabelDisplay="auto" // برای نمایش مقدار فعلی
-                min={0} // حداقل مقدار
-                max={10000000} // حداکثر مقدار
+                valueLabelDisplay="auto"
+                min={1000}
+                max={10000000}
                 aria-labelledby="range-slider"
                 sx={{
-                  width: 238, // عرض اسلایدر
-                  height: 8, // ارتفاع اسلایدر
-                  color: "#60B764", // رنگ اسلایدر
+                  width: 238,
+                  height: 8,
+                  color: "#60B764",
                   "& .MuiSlider-thumb": {
-                    backgroundColor: "#60B764", // رنگ دکمه (thumb)
+                    backgroundColor: "#60B764",
                   },
                   "& .MuiSlider-track": {
-                    backgroundColor: "#60B764", // رنگ نوار پر شده (track)
+                    backgroundColor: "#60B764",
                   },
                   "& .MuiSlider-rail": {
-                    backgroundColor: "#C8E6C9", // رنگ نوار خالی (rail)
+                    backgroundColor: "#C8E6C9",
                   },
                 }}
               />

@@ -7,12 +7,17 @@ import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 // } from "../../../../core/services/api/CoursesPage/handelCourseLike";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-// import {
-//   useAddFavoriteCourses,
-//   useDeleteFavoriteCourses,
-// } from "../../../../core/services/api/CoursesPage/handelCoursesFavorite";
-import { useAddDissLikeCourses, useAddLikeCourses, useDeleteLikeCourses } from "../../../core/services/api/CoursesPage/handelCourseLike";
-import { useAddFavoriteCourses, useDeleteFavoriteCourses } from "../../../core/services/api/CoursesPage/handelCoursesFavorite";
+import { convertEnToPe } from "persian-number";
+
+import {
+  useAddDissLikeCourses,
+  useAddLikeCourses,
+  useDeleteLikeCourses,
+} from "../../../core/services/api/CoursesPage/handelCourseLike";
+import {
+  useAddFavoriteCourses,
+  useDeleteFavoriteCourses,
+} from "../../../core/services/api/CoursesPage/handelCoursesFavorite";
 const PriceAndFavoritesCard = ({
   handleClickTitle,
   likeCount,
@@ -51,16 +56,6 @@ const PriceAndFavoritesCard = ({
         {};
     }
   };
-
-  // const handleDissLike = () => {
-  //   DissLike(courseId, {
-  //     onSuccess: () => {
-  //       toast.success("با موفقیت دیس لایک شد");
-
-  //       queryClient.invalidateQueries("LandingCourses", "CoursesDetail");
-  //     },
-  //   });
-  // };
 
   const handleDissLike = () => {
     if (userIsDissLiked === true) {
@@ -149,7 +144,6 @@ const PriceAndFavoritesCard = ({
     </svg>
   );
 
-  console.log(isUserFavorite, "isUserFavorite");
   return (
     <div
       className="flex  mt-[14px] justify-between  items-center"
@@ -163,7 +157,7 @@ const PriceAndFavoritesCard = ({
       {/* {userLikeId} */}
       <div className="flex items-center gap-3">
         <button className="flex items-center 0">
-          <span className="ml-1 text-xs">{likeCount}</span>
+          <span className="ml-1 text-xs">{likeCount && convertEnToPe(likeCount)}</span>
           <FaThumbsUp
             className={`text-sm ${userIsLiked ? "text-green-400" : ""}`}
             onClick={handelLike}
@@ -174,12 +168,16 @@ const PriceAndFavoritesCard = ({
             className={`text-sm  ${userIsDissLiked ? "text-red-400" : ""}`}
             onClick={handleDissLike}
           />
-          <span className="mr-1 text-xs">{dissLikeCount}</span>
+          <span className="mr-1 text-xs">
+            {dissLikeCount && convertEnToPe(dissLikeCount)}
+          </span>
         </button>
       </div>
       <p className="text-[#2196F3] dark:text-[#BBDEFB] font-[500] tracking-tight">
         {" "}
-        {cost}{" "}
+        {parseFloat(cost).toFixed(2) % 1 === 0
+          ? convertEnToPe(parseInt(cost))
+          : convertEnToPe(cost)}{" "}
         <span className="text-[12px] text-[#263238] dark:text-[#CFD8DC] ml-5">
           تومان
         </span>{" "}

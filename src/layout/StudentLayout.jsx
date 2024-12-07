@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import {
   FaBookOpen,
   FaCalendarAlt,
   FaComment,
   FaCommentAlt,
+  FaDollarSign,
   FaHeart,
   FaHome,
   FaLock,
@@ -20,14 +21,34 @@ import { useGetStudentProfile } from "../core/services/api/Panel/GetProfile";
 const StudentLayout = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  //handel close
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isModalOpen]);
 
   const handleLogout = () => {
-    // در اینجا کد خروج از حساب را اضافه کنید
     console.log("Logged out");
     setIsModalOpen(false);
-    localStorage.removeItem("token"); // توکن را حذف می‌کنیم
-    localStorage.removeItem("id"); // توکن را حذف می‌کنیم
-    localStorage.removeItem("roles"); // توکن را حذف می‌کنیم
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("roles");
     navigate("/");
   };
   //API
@@ -37,7 +58,7 @@ const StudentLayout = () => {
   return (
     <>
       <div className="flex container   md:mt-5 min-h-[600px] gap-x-7     mx-auto  ">
-        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#7665E7]  dark:bg-[#5C4DAC] rounded-xl  hidden">
+        <div className="xl:flex flex-col min-h-20  w-[250px]  bg-[#65c0a0]  dark:bg-[#1e3e57] rounded-xl  hidden">
           <div className="flex">
             {" "}
             <Link to="/">
@@ -66,53 +87,101 @@ const StudentLayout = () => {
           </div>
 
           <div className="flex flex-col border-t-[1px] mt-1 w-[90%] mx-auto ">
-            <div className="flex items-center gap-x-2 text-white mt-3 py-2  w-full">
+            <NavLink
+              to="/panel"
+              end
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <MdDashboard className="text-xl" />
-              <NavLink to="/panel">داشبورد</NavLink>
-            </div>
+              داشبورد
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+              to="/panel/MyProfile"
+            >
               <FaUserCircle className="text-xl" />
-              <NavLink to="/panel/MyProfile"> ویرایش پروفایل</NavLink>
-            </div>
+              ویرایش پروفایل
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyCourses"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaBookOpen className="text-xl" />
-              <NavLink to="/panel/MyCourses">دوره های من</NavLink>
-            </div>
+              دوره های من
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyCoursesPayment"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
+              <FaDollarSign className="text-xl" />
+              پرداخت های من{" "}
+            </NavLink>
+
+            <NavLink
+              to="/panel/MyReservedCourses"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]    rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaCalendarAlt className="text-xl" />
-              <NavLink to="/panel/MyReservedCourses">
-                دوره های رزرو شده{" "}
-              </NavLink>
-            </div>
+              دوره های رزرو شده{" "}
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyFavoriteCourses"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaHeart className="text-xl" />
-              <NavLink to="/panel/MyFavoriteCourses">
-                دوره های مورد علاقه{" "}
-              </NavLink>
-            </div>
+              مورد علاقه
+            </NavLink>
 
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaRegNewspaper className="text-xl" />
-              <NavLink to="/panel/MyFavoriteNews">خبر های مورد علاقه </NavLink>
-            </div>
-
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+            <NavLink
+              to="/panel/MyCommentPage"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]   rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaCommentAlt className="text-xl" />
-              <NavLink to="/panel/MyCommentPage">کامنت های من </NavLink>
-            </div>
-            <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
+              کامنت های من
+            </NavLink>
+            <NavLink
+              to="/panel/ChangePassword"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center gap-x-2 text-white mt-3 shadow-lg px-3 py-2 w-full bg-gradient-to-r from-[#6eb5f0] to-[#2196F3]  rounded-lg font-semibold transition-transform transform hover:scale-105 dark:from-gray-700 dark:to-gray-900"
+                  : "flex items-center gap-x-2 text-white mt-3 py-2 px-3  w-full"
+              }
+            >
               <FaLock className="text-xl" />
-              <NavLink to="/panel/ChangePassword">تغییر رمز عبور</NavLink>
-            </div>
-
-            {/* <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
-              <FaComment className="text-xl" />
-              <NavLink to="/panel/MyComments">نظرات ثبت شده</NavLink>
-            </div> */}
+              امنیت{" "}
+            </NavLink>
 
             <div className="flex items-center gap-x-2 text-white mt-1 py-2  w-full">
               <div className="relative">
@@ -126,7 +195,10 @@ const StudentLayout = () => {
 
                 {isModalOpen && (
                   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white rounded-lg p-6 max-w-sm w-full">
+                    <div
+                      ref={menuRef}
+                      className="bg-white rounded-lg p-6 max-w-sm w-full"
+                    >
                       <h2 className="text-lg font-semibold text-gray-800 mb-4">
                         آیا مطمئن هستید که می‌خواهید از حساب خود خارج شوید؟
                       </h2>
@@ -152,7 +224,7 @@ const StudentLayout = () => {
           </div>
         </div>
 
-        <div className="w-full bg-gray-200 dark:bg-gray-900    md:rounded-xl">
+        <div className="w-full  bg-[#E3F2FD] dark:bg-gray-900     md:rounded-xl">
           <Outlet />
         </div>
       </div>

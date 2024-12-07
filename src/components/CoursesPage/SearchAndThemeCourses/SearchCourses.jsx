@@ -2,10 +2,10 @@ import React from "react";
 
 const SearchCourses = ({ handleSearchChange, searchQuery }) => {
   return (
-    <div className="relative z-0 shadow-Second-shadow   flex items-center xl:w-[620px] sm:w-[40%] w-full  h-[56px] sm:order-none ">
+    <div className="relative z-0 shadow-Second-shadow   flex items-center xl:w-[730px] xl:mr-3 lg:w-[500px] md:w-[350px] sm:w-[350px] w-[100%] mx-auto sm:mx-0    h-[56px] sm:order-none order-1 ">
       <input
         type="text"
-        className="w-full sm:px-[20px] py-[15.5px]  h-full border-gray-300 sm:rounded-[16px] focus:outline-none dark:bg-gray-900 dark:caret-white dark:placeholder-white dark:text-white  z-0 sm:placeholder:text-base placeholder:text-[10px]"
+        className="w-full sm:px-[20px] py-[15.5px]  h-full border-gray-300 sm:rounded-[16px] focus:outline-none dark:bg-gray-900 dark:caret-white dark:placeholder-white dark:text-white  z-0 sm:placeholder:text-base placeholder:text-[10px] pr-3  rounded-2xl "
         placeholder="چی میخوای یادبگیری؟"
         value={searchQuery ? searchQuery : ""}
         onChange={handleSearchChange}

@@ -1,6 +1,6 @@
 import React from "react";
 
-const LeftEducationalPacks = () => {
+const LeftEducationalPacks = ({one}) => {
   return (
     <div className="flex items-center ">
       <div className="flex flex-col flex-wrap w-[460px] h-[149px]">

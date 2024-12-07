@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import NoProf from "../../images/NewsDetails/profile.png";
 import { convertIsoToJalali } from "../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
 
 const ReplayComment = ({
   describe,
@@ -126,10 +127,8 @@ const ReplayComment = ({
 
   //show replay
 
-  // تعریف یک یوز استیت برای نمایش یا عدم نمایش فرم ریپلای
   const [isReplyVisible, setIsReplyVisible] = useState(false);
 
-  // تابعی برای تغییر وضعیت نمایش فرم
   const toggleReplyForm = () => {
     setIsReplyVisible(!isReplyVisible);
   };
@@ -183,7 +182,9 @@ const ReplayComment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-            <strong>{inserDate && convertIsoToJalali(inserDate)}</strong>
+            <strong>
+              {inserDate && convertEnToPe(convertIsoToJalali(inserDate))}
+            </strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs  text-[#455A64] dark:text-gray-400 mt-2 sm:mr-4 mr-2 flex">
@@ -193,30 +194,11 @@ const ReplayComment = ({
           {title} {describe}
         </p>
         <div className="flex items-center text-sm mt-3 sm:mr-4 mr-2">
-          {/* <p className="text-[#F44336] dark:text-[#D32F2F] sm:text-[16px] text-xs">
-            {likeCount}
-          </p>
-          <span className="mr-1 sm:w-4 sm:h-4 w-3 h-3" onClick={handelLike}>
-            <svg
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.41301 13.8736C8.18634 13.9536 7.81301 13.9536 7.58634 13.8736C5.65301 13.2136 1.33301 10.4602 1.33301 5.79356C1.33301 3.73356 2.99301 2.06689 5.03967 2.06689C6.25301 2.06689 7.32634 2.65356 7.99967 3.56023C8.67301 2.65356 9.75301 2.06689 10.9597 2.06689C13.0063 2.06689 14.6663 3.73356 14.6663 5.79356C14.6663 10.4602 10.3463 13.2136 8.41301 13.8736Z"
-                className={`stroke-[#F44336]  dark:stroke-[#D32F2F] ${
-                  currentUserIsLike ? "fill-[#F44336] dark:fill-[#D32F2F]" : ""
-                }`}
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span> */}
-
           <div className="flex items-center gap-3">
             <button className="flex items-center 0">
-              <span className="ml-1 text-xs dark:text-white">{likeCount}</span>
+              <span className="ml-1 text-xs dark:text-white">
+                {likeCount && convertEnToPe(likeCount)}
+              </span>
               <FaThumbsUp
                 className={`text-sm ${
                   currentUserIsLike
@@ -236,7 +218,7 @@ const ReplayComment = ({
                 onClick={handelDissLike}
               />
               <span className="mr-1 text-xs dark:text-white">
-                {dissLikeCount}
+                {dissLikeCount && convertEnToPe(dissLikeCount)}
               </span>
             </button>
           </div>

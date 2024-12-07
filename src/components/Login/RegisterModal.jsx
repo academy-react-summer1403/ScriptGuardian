@@ -6,26 +6,20 @@ import { useRegisterCode } from "../../core/services/api/Auth/Register/Register"
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setPhoneNumber } from "../../redux/slice/phoneNumberSlice";
+import { CustomSpinner } from "../animation/CustomSpinner";
 
 const RegisterModal = ({
   isOpen,
   toggleModal,
   openVerification,
   openLogin,
+  menuRef,
 }) => {
-  // if (isOpen === true) {
-  //   console.log("true Register Modal");
-  //   history.pushState(null, "", "/Register");
-  // } else {
-  //   console.log("false Register Modal");
-  //   history.pushState(null, "", "/");
-  // }
-
   //HandelFormik
 
   const dispatch = useDispatch();
 
-  const { mutate: RegisterCode, isError, data } = useRegisterCode();
+  const { mutate: RegisterCode, isError, data, isPending } = useRegisterCode();
   console.log("this use RegisterCode Data", data);
   const formik = useFormik({
     initialValues: {
@@ -60,7 +54,10 @@ const RegisterModal = ({
         }}
       >bigtest</div> */}
       {isOpen && (
-        <div className="sm:w-[420px] sm:h-[380px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col">
+        <div
+          ref={menuRef}
+          className="sm:w-[420px] sm:h-[380px] w-[90%]  absolute bg-white dark:bg-gray-900 rounded-[24px] top-[73px]  left-1/2 transform -translate-x-1/2 flex flex-col"
+        >
           <div className="flex justify-between ">
             <h2 className="mt-[30px] mr-[32px] text-[#263238] dark:text-gray-200 font-[700] text-[32px] tracking-tight">
               ساخت حساب کاربری
@@ -108,22 +105,35 @@ const RegisterModal = ({
               {...formik.getFieldProps("phoneNumber")}
             />
             {formik.errors.phoneNumber && (
-              <div className="dark:text-red-800 text-red-600 absolute top-[110px] right-11">
+              <div className="dark:text-red-800 text-red-600 absolute top-[190px] right-11">
                 {formik.errors.phoneNumber}
               </div>
             )}
 
             <div className="flex justify-center mt-[48px]">
-              <button
-                onClick={() => {
-                  // toggleModal();
-                  // openVerification();
-                }}
-                type="submit"
-                className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-              >
-                دریافت کد تایید
-              </button>
+              {isPending ? (
+                <button
+                  onClick={() => {
+                    // toggleModal();
+                    // openVerification();
+                  }}
+                  type="submit"
+                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    // toggleModal();
+                    // openVerification();
+                  }}
+                  type="submit"
+                  className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+                >
+                  دریافت کد تایید
+                </button>
+              )}
             </div>
 
             <div className="w-[148px] flex text-[14px] tracking-tighter justify-center mx-auto mt-5 sm:mb-0 mb-5">

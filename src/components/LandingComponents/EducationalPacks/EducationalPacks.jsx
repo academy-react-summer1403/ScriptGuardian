@@ -1,8 +1,9 @@
 import React from "react";
 import { RightEducationalPacks } from "./RightEducationalPacks";
 import { LeftEducationalPacks } from "./LeftEducationalPacks";
-
+import { useTechnologies } from "../../../core/services/api/handelFilters/CourseFilter";
 const EducationalPacks = () => {
+  const { data: Technologies } = useTechnologies();
   return (
     <>
       <div className=" bg-[#FAFBFC] dark:bg-[#2C2F33] max-w-[1343px] container w-full  mx-auto xl:flex hidden relative">
@@ -1014,7 +1015,7 @@ const EducationalPacks = () => {
             <LeftEducationalPacks />
 
             {/* Right */}
-            <RightEducationalPacks />
+            <RightEducationalPacks data={Technologies} />
           </div>
         </div>
       </div>

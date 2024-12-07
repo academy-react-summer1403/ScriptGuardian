@@ -28,7 +28,7 @@ const CoursesCard = ({
   };
   return (
     <div
-      className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5  cursor-pointer"
+      className="w-[296px] h-[389px] flex flex-col bg-white dark:bg-gray-900 rounded-[24px] shadow-ّFirst-shadow text-[#263238] dark:text-white last:mb-5  cursor-pointer sm:mx-0 mx-auto"
       onClick={navigateDetails}
       style={{ direction: "rtl" }}
     >

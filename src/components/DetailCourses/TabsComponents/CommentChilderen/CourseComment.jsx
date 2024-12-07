@@ -21,6 +21,8 @@ import {
   useReplayCommentCourses,
 } from "../../../../core/services/api/DetailCourses/handelCommentCourses";
 import { convertIsoToJalali } from "../../../../core/utils/dateUtils";
+import { convertEnToPe } from "persian-number";
+
 const CourseComment = ({
   title,
   describe,
@@ -142,10 +144,8 @@ const CourseComment = ({
 
   //handel replay
 
-  // تعریف یک یوز استیت برای نمایش یا عدم نمایش فرم ریپلای
   const [isReplyVisible, setIsReplyVisible] = useState(false);
 
-  // تابعی برای تغییر وضعیت نمایش فرم
   const toggleReplyForm = () => {
     setIsReplyVisible(!isReplyVisible);
   };
@@ -211,7 +211,9 @@ const CourseComment = ({
             </span>
           </div>
           <p className="sm:text-xs text-[10px] text-[#607D8B] dark:text-gray-400">
-          <strong>{insertDate && convertIsoToJalali(insertDate)}</strong>
+            <strong>
+              {insertDate && convertEnToPe(convertIsoToJalali(insertDate))}
+            </strong>
           </p>
         </div>
         <p className="sm:text-sm text-xs text-[#455A64] dark:text-gray-400 mt-2">
@@ -222,7 +224,7 @@ const CourseComment = ({
             <div className="flex items-center gap-3">
               <button className="flex items-center 0">
                 <span className="ml-1 text-xs dark:text-white">
-                  {likeCount}
+                  {likeCount && convertEnToPe(likeCount)}
                 </span>
                 <FaThumbsUp
                   className={`text-sm ${
@@ -243,7 +245,7 @@ const CourseComment = ({
                   onClick={handelDissLike}
                 />
                 <span className="mr-1 text-xs dark:text-white">
-                  {dissLikeCount}
+                  {dissLikeCount && convertEnToPe(dissLikeCount)}
                 </span>
               </button>
             </div>
@@ -294,7 +296,7 @@ const CourseComment = ({
           <form onSubmit={formik.handleSubmit}>
             <div className="w-full flex justify-center  flex-col">
               <input
-                className="xl:w-[779px] w-[95%] h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white"
+                className="xl:w-[779px] w-[95%] h-[50px] pt-1 pr-3 border rounded-[10px] mx-auto mt-[24px] dark:border-gray-950 dark:bg-slate-900 bg-slate-100  outline-none dark:caret-white dark:text-white text-black"
                 placeholder=" عنوان نظر خودتو بنویس..."
                 {...formik.getFieldProps("Title")}
               />

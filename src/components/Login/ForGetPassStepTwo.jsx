@@ -10,12 +10,13 @@ import { useDispatch } from "react-redux";
 import { validationRegisterCode } from "../../core/services/validation/validationSchema/Auth";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import { CustomSpinner } from "../animation/CustomSpinner";
 
 const ForGetPassStepTwo = ({ setIsForgetPassLastStep }) => {
   //handelstep two
   const { id } = useParams();
   const { data: StepTwo } = useForgetPassStepTwoGet(id && id);
-//   console.log(StepTwo.id, "this step two for use forget pass");
+  //   console.log(StepTwo.id, "this step two for use forget pass");
 
   useEffect(() => {
     if (StepTwo) {
@@ -28,11 +29,11 @@ const ForGetPassStepTwo = ({ setIsForgetPassLastStep }) => {
   }, [StepTwo]);
 
   //handel setep theree
-  const { mutate: ForGetPass, isError } = useForgetPassStepThird();
+  const { mutate: ForGetPass, isError, isPending } = useForgetPassStepThird();
   //   console.log("thisloction", window.location.href);
   const formik = useFormik({
     initialValues: {
-      userId: "40323",
+      userId: StepTwo && StepTwo?.id,
       newPassword: "",
       resetValue: id && id,
     },
@@ -105,7 +106,7 @@ const ForGetPassStepTwo = ({ setIsForgetPassLastStep }) => {
 
       <form onSubmit={formik.handleSubmit}>
         <div className="mt-[48px]">
-          <label htmlFor="newPassword" className="mr-[32px] text-xl">
+          <label htmlFor="newPassword" className="mr-[32px] text-xl dark:text-white">
             رمز عبور جدید
           </label>
           <input
@@ -123,16 +124,29 @@ const ForGetPassStepTwo = ({ setIsForgetPassLastStep }) => {
         )} */}
 
         <div className="flex justify-center mt-[48px]">
-          <button
-            onClick={() => {
-              // toggleModal();
-              // openVerification();
-            }}
-            type="submit"
-            className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
-          >
-            تغییر رمز{" "}
-          </button>
+          {isPending ? (
+            <button
+              onClick={() => {
+                // toggleModal();
+                // openVerification();
+              }}
+              type="submit"
+              className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+            >
+              <CustomSpinner color={"#FFF"} style={""} size={"30"} />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                // toggleModal();
+                // openVerification();
+              }}
+              type="submit"
+              className="rounded-[80px] text-white w-[208px] h-[56px] bg-[#2196F3] dark:bg-[#1565C0] hover:bg-[#1976D2] dark:hover:bg-[#0D47A1] transition-colors duration-300"
+            >
+              تغییر رمز{" "}
+            </button>
+          )}
         </div>
       </form>
     </div>

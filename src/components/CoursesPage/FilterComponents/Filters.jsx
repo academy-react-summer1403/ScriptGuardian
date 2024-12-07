@@ -7,10 +7,33 @@ import { TimeRangeFilter } from "./TimeRangeFilter";
 import { TeacherFilter } from "./TeacherFilter";
 import { FaClosedCaptioning } from "react-icons/fa";
 import { RiCloseLine } from "react-icons/ri";
-const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
+const Filters = ({
+  showMenu,
+  handleClick,
+  setCostDown,
+  setCostUp,
+  data,
+  setListTech,
+  listTech,
+  setCurrentTeacher,
+  menuRef,
+  setListCourseType,
+  setCourseLevelId,
+  setSelectedTeacherId,
+  selectedTeacherId,
+  resetFilters,
+  courseLevelChecked,
+  setCourseLevelChecked,
+  setStatusCourseType,
+  statusCourseType,
+  setPrice,
+  price,
+  setSelectedIds,
+  selectedIds,
+}) => {
   return (
     <>
-      <div className="lg:flex min-h-[779px] xl:w-[296px] lg:w-[249px] md:w-[209px]  border rounded-[24px] bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center xl:mr-0 mr-4  hidden ">
+      <div className="lg:flex min-h-[779px] xl:w-[296px] lg:w-[249px] md:w-[209px]  border rounded-2xl  bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center xl:mr-0 mr-4  hidden  ">
         {/* 1Com */}
         <div className="xl:w-[272px] w-10/12 h-[48px] bg-[#ECEFF1] dark:bg-[#1C1C1C] rounded-[16px] mt-[12px] flex justify-between items-center">
           <div className="flex items-center mr-[16px] gap-[6px]">
@@ -35,7 +58,10 @@ const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
             </span>
             <p className="text-[#263238] dark:text-gray-400">فیلتر</p>
           </div>
-          <div className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center">
+          <div
+            className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center cursor-pointer"
+            onClick={resetFilters}
+          >
             <span>
               {" "}
               <svg
@@ -89,7 +115,12 @@ const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
 
         {/*  Accordion1 */}
         <div className="w-full lg:flex lg:flex-col hidden">
-          <CategoryFilter />
+          <CategoryFilter
+            setListTech={setListTech}
+            listTech={listTech}
+            setSelectedIds={setSelectedIds}
+            selectedIds={selectedIds}
+          />
 
           {/* Accordion2 */}
 
@@ -97,23 +128,40 @@ const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
             setCostDown={setCostDown}
             setCostUp={setCostUp}
             data={data}
+            setPrice={setPrice}
+            price={price}
           />
           {/* Accordion3 */}
 
-          <FilterTopics />
+          <FilterTopics
+            setListCourseType={setListCourseType}
+            setStatusCourseType={setStatusCourseType}
+            statusCourseType={statusCourseType}
+          />
 
           {/* Accordion4 */}
 
-          <TimeRangeFilter />
+          <TimeRangeFilter
+            setCourseLevelId={setCourseLevelId}
+            courseLevelChecked={courseLevelChecked}
+            setCourseLevelChecked={setCourseLevelChecked}
+          />
           {/* Accordion5 */}
-          <TeacherFilter />
+          <TeacherFilter
+            setCurrentTeacher={setCurrentTeacher}
+            setSelectedTeacherId={setSelectedTeacherId}
+            selectedTeacherId={selectedTeacherId}
+          />
         </div>
       </div>
 
       {/* MD */}
 
       {showMenu && (
-        <div className="lg:flex ease-in-out duration-100 min-h-[779px] w-[296px] fixed right-0 top-0   border  bg-white dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center  z-[10] ">
+        <div
+          ref={menuRef}
+          className="lg:flex ease-in-out duration-100 h- min-h-[779px] w-[296px] fixed right-0 top-0   border  bg-white  dark:bg-gray-900 dark:border-gray-950 shadow-ّFirst-shadow flex-col items-center  z-[10] "
+        >
           {/* 1Com */}
           <div className="absolute left-6 top-2" onClick={handleClick}>
             <RiCloseLine size={24} className="dark:text-white" />
@@ -141,7 +189,10 @@ const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
               </span>
               <p className="text-[#263238] dark:text-gray-400">فیلتر</p>
             </div>
-            <div className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center">
+            <div
+              className="w-[32px] h-[32px] bg-[#F44336] hover:bg-[#D32F2F] dark:bg-[#B71C1C] dark:hover:bg-[#C62828] rounded-[12px] ml-[8px] flex justify-center items-center"
+              onClick={resetFilters}
+            >
               <span>
                 {" "}
                 <svg
@@ -195,20 +246,43 @@ const Filters = ({ showMenu, handleClick, setCostDown, setCostUp, data }) => {
 
         {/*  Accordion1 */}
           <div className="w-full ">
-            <CategoryFilter />
+            <CategoryFilter
+              setListTech={setListTech}
+              listTech={listTech}
+              setSelectedIds={setSelectedIds}
+              selectedIds={selectedIds}
+            />
 
             {/* Accordion2 */}
 
-            <PriceFilter />
+            <PriceFilter
+              setCostDown={setCostDown}
+              setCostUp={setCostUp}
+              data={data}
+              setPrice={setPrice}
+              price={price}
+            />
             {/* Accordion3 */}
 
-            <FilterTopics />
+            <FilterTopics
+              setListCourseType={setListCourseType}
+              setStatusCourseType={setStatusCourseType}
+              statusCourseType={statusCourseType}
+            />
 
             {/* Accordion4 */}
 
-            <TimeRangeFilter />
+            <TimeRangeFilter
+              setCourseLevelId={setCourseLevelId}
+              courseLevelChecked={courseLevelChecked}
+              setCourseLevelChecked={setCourseLevelChecked}
+            />
             {/* Accordion5 */}
-            <TeacherFilter />
+            <TeacherFilter
+              setCurrentTeacher={setCurrentTeacher}
+              setSelectedTeacherId={setSelectedTeacherId}
+              selectedTeacherId={selectedTeacherId}
+            />
           </div>
         </div>
       )}

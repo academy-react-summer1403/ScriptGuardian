@@ -17,7 +17,7 @@ const HereSectionCourses = () => {
             کامپیوتری را ایجاد و توسعه دهند.{" "}
           </p>
         </div>
-        <div className="xl:w-[584px] sm:block sm:static absolute   xl:h-[485px] bg-heroCourses  bg-no-repeat  bg-contain sm:bg-center w-full h-full left- top-0  z-0 sm:opacity-100 dark:sm:opacity-100 opacity-40 dark:opacity-30"></div>
+        <div className="xl:w-[584px] sm:block sm:static absolute   xl:h-[485px] bg-heroCourses  bg-no-repeat  bg-contain sm:bg-center lg:bg-left w-full h-full left- top-0  z-0 sm:opacity-100 dark:sm:opacity-100 opacity-40 dark:opacity-30"></div>
       </div>
     </div>
   );

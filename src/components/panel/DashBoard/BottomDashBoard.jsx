@@ -5,6 +5,8 @@ import { useCourses } from "../../../core/services/api/CoursesPage/GetAllCourses
 import { useLandingNews } from "../../../core/services/api/Landing/LandingNews";
 import Image from "../../../images/NewsDetails/default_image.png";
 import { useNavigate } from "react-router-dom";
+import { convertEnToPe } from "persian-number";
+
 const BottomDashBoard = () => {
   const navigate = useNavigate();
   //API COURSES
@@ -24,7 +26,7 @@ const BottomDashBoard = () => {
       <div className="flex flex-col sm:w-[47.5%] ">
         <div className="flex items-center text-xl gap-x-1 ">
           {" "}
-          <FaMinus className="text-xl text-purple-600 dark:text-purple-800" />
+          <FaMinus className="text-xl text-[#8cc9fa] dark:text-[#1e3e57]" />
           <h3 className="text-[#263238] dark:text-gray-200 font-bold">
             {" "}
             اخرین دوره ثبت شده
@@ -38,7 +40,7 @@ const BottomDashBoard = () => {
               return (
                 <>
                   <div
-                    className="flex w-full bg-white dark:bg-gray-900 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
+                    className="flex w-full bg-white dark:bg-gray-950 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
                     key={index}
                     onClick={() => {
                       navigate(
@@ -59,7 +61,9 @@ const BottomDashBoard = () => {
                     </div>
                     <div className="flex w-[100%] h-[85%] flex-col justify-between ">
                       <h3 className="mr-3 text-[#263238] dark:text-gray-200">
-                        {item?.title ? item?.title : ""}
+                        {item?.title?.length > 25
+                          ? item?.title?.slice(0, 25) + "..."
+                          : item?.title}
                       </h3>
                       <div className="flex justify-between text-[#455A64] dark:text-gray-400 items-center mr-3">
                         <p className="text-sm">
@@ -68,8 +72,8 @@ const BottomDashBoard = () => {
                         </p>
 
                         <p className="text-sm ml-3">
-                          <span className="text-purple-700 dark:text-purple-500">
-                            {item?.cost ? item?.cost : ""}
+                          <span className="text-[#1e3e57] dark:text-[#8cc9fa]">
+                            {item?.cost ? convertEnToPe(item?.cost) : ""}
                           </span>{" "}
                           تومان
                         </p>
@@ -87,7 +91,7 @@ const BottomDashBoard = () => {
       <div className="flex flex-col sm:w-[47.5%] sm:mt-0 mt-5 mb-5">
         <div className="flex items-center text-xl gap-x-1 ">
           {" "}
-          <FaMinus className="text-xl text-purple-600 dark:text-purple-800" />
+          <FaMinus className="text-xl text-[#8cc9fa] dark:text-[#1e3e57]" />
           <h3 className="text-[#263238] dark:text-gray-200 font-bold">
             {" "}
             آخرین اخبار ثبت شده{" "}
@@ -100,7 +104,7 @@ const BottomDashBoard = () => {
               return (
                 <>
                   <div
-                    className="flex w-full bg-white dark:bg-gray-900 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
+                    className="flex w-full bg-white dark:bg-gray-950 rounded-md h-[75px] shadow-ّFirst-shadow  items-center border-gray-200 dark:border-gray-950 cursor-pointer"
                     key={index}
                     onClick={() => {
                       navigate(`/News/${item?.id ? item?.id : "no ID"}`);
@@ -119,20 +123,15 @@ const BottomDashBoard = () => {
                     </div>
                     <div className="flex w-[100%] h-[85%] flex-col justify-between ">
                       <h3 className="mr-3 text-[#263238] dark:text-gray-200">
-                        {item?.title ? item?.title : ""}
+                        {item?.title?.length > 25
+                          ? item?.title?.slice(0, 25) + "..."
+                          : item?.title}
                       </h3>
                       <div className="flex justify-between text-[#455A64] dark:text-gray-400 items-center mr-3">
                         <p className="text-sm">
                           {" "}
                           {item?.addUserFullName ? item?.addUserFullName : ""}
                         </p>
-
-                        {/* <p className="text-sm ml-3">
-                        <span className="text-purple-700 dark:text-purple-500">
-                          500,000
-                        </span>{" "}
-                        تومان
-                      </p> */}
                       </div>
                     </div>
                   </div>

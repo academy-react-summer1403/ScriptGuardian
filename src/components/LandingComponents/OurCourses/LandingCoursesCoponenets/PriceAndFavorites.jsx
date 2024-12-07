@@ -11,6 +11,7 @@ import {
   useAddFavoriteCourses,
   useDeleteFavoriteCourses,
 } from "../../../../core/services/api/CoursesPage/handelCoursesFavorite";
+import { convertEnToPe } from "persian-number";
 const PriceAndFavorites = ({
   handleClickTitle,
   likeCount,
@@ -161,7 +162,7 @@ const PriceAndFavorites = ({
 
       <div className="xl:flex lg:hidden flex  items-center gap-3  ">
         <button className="flex items-center 0">
-          <span className="ml-1 text-xs">{likeCount}</span>
+          <span className="ml-1 text-xs">{convertEnToPe(likeCount)}</span>
           <FaThumbsUp
             className={`text-sm ${userIsLiked ? "text-green-400" : ""}`}
             onClick={handelLike}
@@ -172,12 +173,14 @@ const PriceAndFavorites = ({
             className={`text-sm  ${userIsDissLiked ? "text-red-400" : ""}`}
             onClick={handleDissLike}
           />
-          <span className="mr-1 text-xs">{dissLikeCount}</span>
+          <span className="mr-1 text-xs">{convertEnToPe(dissLikeCount)}</span>
         </button>
       </div>
       <p className="text-[#2196F3] dark:text-[#BBDEFB] font-[500] tracking-tight">
         {" "}
-        {parseFloat(cost).toFixed(2) % 1 === 0 ? parseInt(cost) : cost}{" "}
+        {parseFloat(cost).toFixed(2) % 1 === 0
+          ? convertEnToPe(parseInt(cost))
+          : convertEnToPe(cost)}{" "}
         <span className="text-[12px] text-[#263238] dark:text-[#CFD8DC] ml-5">
           تومان
         </span>{" "}

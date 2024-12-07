@@ -1,10 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Element } from "react-scroll";
 
 const Footer = () => {
   return (
     <footer className=" h-[553px] bg-[#252641] dark:bg-[#1C1D33] mt-[100px] xl:w-full max-w-[1360px]  mx-auto">
-      <div className="container flex flex-col  items-center mx-auto">
+      <Element
+        id="footer"
+        className="container flex flex-col  items-center mx-auto"
+      >
         <div className=" h-[30.68px] flex mt-[56px] gap-[8px] items-center">
           <span>
             <svg
@@ -134,11 +138,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="sm:w-full w-[90%]   bg-black/[0.2] dark:bg-black/[0.4] mt-[48px]  h-[64px] rounded-[16px] flex justify-between  items-center  ">
-          <div className="flex md:gap-3 sm:gap-2 md:mr-[61px] mr-[2%]   items-center text-[12px]  text-center sm:w-auto w-[63%] ">
-            <span>
+          <div className="flex md:gap-3 sm:gap-2 md:mr-[61px] mr-[2%]   items-center text-[12px]  text-center sm:w-auto w-full ">
+            <span className="sm:w-5  sm:h-5">
               <svg
-                width="20"
-                height="20"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -153,12 +155,12 @@ const Footer = () => {
                 />
               </svg>
             </span>
-            <p className="text-white ">
+            <p className="text-white sm:mx-0 mx-auto">
               تمام حقوق مادی و معنوی این مجموعه متعلق به script.ir میباشد
             </p>
           </div>
 
-          <div className="w-[224px] flex md:gap-4 sm:gap-3 gap-1 md:ml-6 ml-[1%] ">
+          <div className="w-[224px] sm:flex hidden md:gap-4 sm:gap-3 gap-1 md:ml-6 ml-[1%]  ">
             <div className="sm:w-[32px] sm:h-[32px] w-[28px] h-[28px] flex justify-center items-center rounded-full bg-[#263238] dark:bg-[#1E272C]">
               <span className="">
                 <svg
@@ -255,7 +257,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Element>
     </footer>
   );
 };

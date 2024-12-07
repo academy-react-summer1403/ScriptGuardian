@@ -27,6 +27,11 @@ const onError = (err) => {
     window.location.pathname = "/";
     removeItem("token");
   }
+  if (err.response.status === 422 || err.response.status === 400) {
+    if (err.response.data.ErrorMessage.length > 0) {
+      err.response.data.ErrorMessage.map((i) => toast.error(i));
+    }
+  }
   if (err.response.status >= 400 && err.response.status < 500) {
     // alert("Client error: " + err.response.status);
   }

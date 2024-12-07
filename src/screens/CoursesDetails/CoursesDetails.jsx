@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { FaMinus, FaPlus } from "react-icons/fa";
 import { BigImage } from "../../components/DetailCourses/BigImage";
 import { RatingCourses } from "../../components/DetailCourses/RatingCourses";
 import { AboutCourses } from "../../components/DetailCourses/AboutCourses";
@@ -28,18 +27,6 @@ const CoursesDetails = () => {
               courseId={data?.courseId}
               userFavoriteId={data?.userFavoriteId}
             />
-            <DetailsLeft
-              startTime={data?.startTime}
-              endTime={data?.endTime}
-              courseStatusName={data?.courseStatusName}
-              cost={data?.cost}
-              currentRegistrants={data?.currentRegistrants}
-              teacherName={data?.teacherName}
-              courseId={data?.courseId}
-              isCourseReseve={data?.isCourseReseve}
-              isCourseUser={data?.isCourseUser}
-              hidden={" flex lg:hidden"}
-            />
 
             <AboutCourses title={data?.title} describe={data?.describe} />
 
@@ -52,6 +39,20 @@ const CoursesDetails = () => {
               currentUserSetRate={data?.currentUserSetRate}
               currentUserRateNumber={data?.currentUserRateNumber}
               userLikeId={data?.userLikeId}
+              currentRegistrants={data?.currentRegistrants}
+            />
+
+            <DetailsLeft
+              startTime={data?.startTime}
+              endTime={data?.endTime}
+              courseStatusName={data?.courseStatusName}
+              cost={data?.cost}
+              currentRegistrants={data?.currentRegistrants}
+              teacherName={data?.teacherName}
+              courseId={data?.courseId}
+              isCourseReseve={data?.isCourseReseve}
+              isCourseUser={data?.isCourseUser}
+              hidden={" flex lg:hidden"}
             />
 
             <Tabs techs={data?.techs} />
